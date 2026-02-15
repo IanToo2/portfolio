@@ -28,6 +28,8 @@
   임시 클론 폴더는 `.tmp_repo_analysis`를 사용하고, 작업 종료 시 반드시 삭제한다.
 - 삭제 결과 확인:
   임시 클론 삭제 성공 여부(`DELETED`)를 확인한다.
+- 작업 완료 커밋:
+  각 task 종료 시 변경사항을 반드시 커밋한다.
 - 샌드박스 오류 대응:
   `windows sandbox: setup refresh failed` 발생 시 동일 목적 명령을 `require_escalated`로 즉시 재시도한다.
 - 우회 금지:
