@@ -933,6 +933,11 @@ a {
   gap: 0.38rem;
 }
 
+.contact-direct-link {
+  display: flex;
+  width: fit-content;
+}
+
 .contact-emoji {
   font-size: 0.95em;
   line-height: 1;

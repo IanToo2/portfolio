@@ -337,7 +337,7 @@ export default function App() {
           <article className="contact-card panel">
             <p>{t.contactLabel}</p>
             <h2><span className="contact-emoji" aria-hidden="true">✉️</span>{localizedProfile.email}</h2>
-            <a href={localizedProfile.github} target="_blank" rel="noreferrer">
+            <a className="contact-direct-link" href={localizedProfile.github} target="_blank" rel="noreferrer">
               <span className="contact-emoji" aria-hidden="true">🐙</span>
               {localizedProfile.github.replace("https://", "")}
             </a>
