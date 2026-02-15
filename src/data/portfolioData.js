@@ -202,11 +202,13 @@ export const CERTIFICATIONS = [
     bullets: [
       "발급기관: ACTFL",
       "자격증 번호: 214048029418",
+      "등급: IM1",
       "유효기간: 2024.09.01 - 2026.08.31"
     ],
     bulletsEn: [
       "Issuing Authority: ACTFL",
       "Certificate No.: 214048029418",
+      "Grade: IM1",
       "Validity: 2024.09.01 - 2026.08.31"
     ]
   },
