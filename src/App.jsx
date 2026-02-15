@@ -91,8 +91,8 @@ export default function App() {
             <div className="hero-copy-area">
               <p className="eyebrow">{localizedProfile.role} · {localizedProfile.domain}</p>
               <h1>
-                {localizedProfile.name}
-                <span>{t.navLabel}</span>
+                <span className="hero-name">{localizedProfile.name}</span>
+                <span className="hero-title">{t.navLabel}</span>
               </h1>
               <p className="hero-copy">{localizedProfile.intro}</p>
               <div className="hero-actions">
