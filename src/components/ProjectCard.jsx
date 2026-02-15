@@ -1,16 +1,27 @@
 const DEFAULT_LABELS = {
-  projectTypeLabel: "프로젝트 성격",
-  scopeLabel: "담당 범위",
-  technologiesLabel: "기술 스택",
-  contributionsLabel: "주요 기여",
-  metricsLabel: "성과 지표",
-  statusDone: "완료",
-  statusPending: "진행 중인 프로젝트"
+  projectTypeLabel: "Project Type",
+  scopeLabel: "Scope",
+  technologiesLabel: "Tech Stack",
+  contributionsLabel: "Key Contributions",
+  metricsLabel: "Impact Metrics",
+  statusDone: "Completed",
+  statusPending: "In Progress",
+  collapseLabel: "Collapse",
+  expandLabel: "Expand"
 };
 
-export default function ProjectCard({ project, labels = DEFAULT_LABELS }) {
+export default function ProjectCard({
+  project,
+  labels = DEFAULT_LABELS,
+  collapsible = false,
+  collapsed = false,
+  onToggleCollapse
+}) {
+  const collapseLabel = labels.collapseLabel ?? "Collapse";
+  const expandLabel = labels.expandLabel ?? "Expand";
+
   return (
-    <article className="project-card panel">
+    <article className={`project-card panel ${collapsible ? "is-collapsible" : ""} ${collapsed ? "is-collapsed" : ""}`}>
       <div className="project-top">
         <strong>{project.name}</strong>
         <span>{project.period}</span>
@@ -23,35 +34,49 @@ export default function ProjectCard({ project, labels = DEFAULT_LABELS }) {
           {labels.scopeLabel}: {project.scope.join(" / ")}
         </p>
       </div>
-      <ul className="project-tech" aria-label={labels.technologiesLabel}>
-        {project.tech.map((tech) => (
-          <li key={tech}>{tech}</li>
-        ))}
-      </ul>
-      {project.metrics?.length ? (
-        <div className="project-metrics">
-          <p className="project-metrics-title">{labels.metricsLabel}</p>
-          <div className="project-metrics-grid">
-            {project.metrics.map((metric) => (
-              <div key={`${metric.label}-${metric.value}`} className="project-metric-item">
-                <span>{metric.label}</span>
-                <strong>{metric.value}</strong>
-              </div>
+      {!collapsed ? (
+        <>
+          <ul className="project-tech" aria-label={labels.technologiesLabel}>
+            {project.tech.map((tech) => (
+              <li key={tech}>{tech}</li>
             ))}
-          </div>
-        </div>
+          </ul>
+          {project.metrics?.length ? (
+            <div className="project-metrics">
+              <p className="project-metrics-title">{labels.metricsLabel}</p>
+              <div className="project-metrics-grid">
+                {project.metrics.map((metric) => (
+                  <div key={`${metric.label}-${metric.value}`} className="project-metric-item">
+                    <span>{metric.label}</span>
+                    <strong>{metric.value}</strong>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null}
+          <p className="project-contrib-title">{labels.contributionsLabel}</p>
+          <ul className="project-contrib">
+            {project.contributions.map((contribution) => (
+              <li key={contribution}>{contribution}</li>
+            ))}
+          </ul>
+        </>
       ) : null}
-      <p className="project-contrib-title">{labels.contributionsLabel}</p>
-      <ul className="project-contrib">
-        {project.contributions.map((contribution) => (
-          <li key={contribution}>{contribution}</li>
-        ))}
-      </ul>
       <div className="project-status-wrap">
         <span className={`project-status ${project.isPending ? "pending" : "done"}`}>
           {project.isPending ? labels.statusPending : labels.statusDone}
         </span>
       </div>
+      {collapsible ? (
+        <button
+          type="button"
+          className="project-collapse-btn"
+          aria-expanded={!collapsed}
+          onClick={onToggleCollapse}
+        >
+          {collapsed ? expandLabel : collapseLabel}
+        </button>
+      ) : null}
     </article>
   );
 }

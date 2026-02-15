@@ -1,272 +1,71 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import Icon from "./components/Icon";
 import ProjectCard from "./components/ProjectCard";
 import SectionHead from "./components/SectionHead";
 import TimelineGroup from "./components/TimelineGroup";
-import {
-  EDUCATION,
-  EXPERIENCE,
-  FOCUS,
-  HIGHLIGHTS,
-  METRICS,
-  NAV_ITEMS,
-  PROFILE,
-  PROJECTS,
-  STACK,
-  TRAINING
-} from "./data/portfolioData";
-
-const TEXT = {
-  ko: {
-    navLabel: "포트폴리오",
-    heroActionProjects: "프로젝트 보기",
-    heroActionContact: "연락하기",
-    heroActionMail: "이메일 문의",
-    panelSnapshot: "Profile Snapshot",
-    summaryLabel: "Summary",
-    summaryTitle: "업무 맥락을 빠르게 파악해 안정적으로 구현합니다",
-    summarySubtitle: "SCM 무역/물류 도메인에서 설계-개발-운영 전환까지 일관되게 수행합니다.",
-    highlightsLabel: "Highlights",
-    highlightsTitle: "핵심 성과",
-    highlightsSubtitle: "개발·전환·운영 연계 전 과정을 통해 얻은 운영 품질 경험을 정리했습니다.",
-    projectsLabel: "Projects",
-    projectsTitle: "개발 프로젝트",
-    projectsSubtitle: "프로덕션 환경에서 검증한 구현 경험을 중심으로 정리했습니다.",
-    featuredHead: "대표 프로젝트",
-    featuredSub:
-      "핵심 기여와 운영 영향도가 큰 프로젝트를 우선 배치했습니다.",
-    additionalHead: "추가 프로젝트",
-    qaTitle: "QA 프로젝트",
-    qaSubtitle: "데이터 정합성과 쿼리 변환 이슈 중심으로 검증한 이력입니다.",
-    stackLabel: "Skill Set",
-    stackTitle: "사용 가능한 기술 스택",
-    stackSubtitle: "백엔드 중심으로 데이터베이스, 배포 파이프라인, 협업 도구를 다룹니다.",
-    stackProficiencyLabel: "숙련도",
-    experienceLabel: "Experience",
-    experienceTitle: "경력 및 학습 타임라인",
-    experienceSubtitle: "실무 경험, 학력, 교육 이력을 분리해 성장 흐름을 보여줍니다.",
-    focusLabel: "What I Build",
-    focusTitle: "중점 업무 영역",
-    focusSubtitle: "기능 구현뿐 아니라 연동 안정성과 운영 효율까지 함께 고려합니다.",
-    contactLabel: "Contact",
-    contactFooter: "더 나은 운영을 위한 준비가 된 파트너",
-    contactEmail: "GitHub 보기",
-    contactMailLabel: "이메일 문의",
-    contactCopyLabel: "이메일 복사",
-    contactCopiedLabel: "이메일 복사됨",
-    switchLang: "EN",
-    projectCard: {
-      projectTypeLabel: "프로젝트 성격",
-      scopeLabel: "담당 범위",
-      technologiesLabel: "기술 스택",
-      contributionsLabel: "주요 기여",
-      metricsLabel: "성과 지표",
-      statusDone: "완료",
-      statusPending: "진행 중인 프로젝트",
-      copySubject: "포트폴리오 문의드립니다",
-      copyBody: "안녕하세요, 포트폴리오를 보고 연락드립니다."
-    },
-    timelineTitles: {
-      work: "실무 경력",
-      education: "학력",
-      training: "교육 이력"
-    }
-  },
-  en: {
-    navLabel: "Portfolio",
-    heroActionProjects: "View Projects",
-    heroActionContact: "Contact",
-    heroActionMail: "Send Email",
-    panelSnapshot: "Profile Snapshot",
-    summaryLabel: "Summary",
-    summaryTitle: "I understand business context quickly and build reliable solutions.",
-    summarySubtitle: "I consistently handle design, development, and operations handoff in SCM trade/logistics.",
-    highlightsLabel: "Highlights",
-    highlightsTitle: "Key Highlights",
-    highlightsSubtitle: "I focus on quality outcomes across development, migration, and operations.",
-    projectsLabel: "Projects",
-    projectsTitle: "Development Projects",
-    projectsSubtitle: "Production-validated implementation experience.",
-    featuredHead: "Featured Projects",
-    featuredSub: "Priority is given to projects with major contribution and operational impact.",
-    additionalHead: "Additional Projects",
-    qaTitle: "QA Projects",
-    qaSubtitle: "Migration and SQL conversion cases validated for data consistency.",
-    stackLabel: "Skill Set",
-    stackTitle: "Available Technology Stack",
-    stackSubtitle: "Core backend focus on databases, delivery pipelines, and collaboration tools.",
-    stackProficiencyLabel: "Proficiency",
-    experienceLabel: "Experience",
-    experienceTitle: "Career & Learning Timeline",
-    experienceSubtitle: "Work, education, and training paths with practical growth context.",
-    focusLabel: "What I Build",
-    focusTitle: "Focus Areas",
-    focusSubtitle: "I build for integration reliability and operational efficiency, not only feature delivery.",
-    contactLabel: "Contact",
-    contactFooter: "A steady partner ready for better operations.",
-    contactEmail: "Open GitHub",
-    contactMailLabel: "Email Me",
-    contactCopyLabel: "Copy Email",
-    contactCopiedLabel: "Email Copied",
-    switchLang: "KO",
-    projectCard: {
-      projectTypeLabel: "Project Type",
-      scopeLabel: "Responsibility",
-      technologiesLabel: "Tech Stack",
-      contributionsLabel: "Key Contributions",
-      metricsLabel: "Impact Metrics",
-      statusDone: "Completed",
-      statusPending: "In Progress",
-      copySubject: "Portfolio Inquiry",
-      copyBody: "Hello, I read your portfolio and would like to discuss a potential opportunity."
-    },
-    timelineTitles: {
-      work: "Work Experience",
-      education: "Education",
-      training: "Training"
-    }
-  }
-};
+import { TEXT } from "./data/portfolioText";
+import useActiveSection from "./hooks/useActiveSection";
+import usePortfolioViewModel from "./hooks/usePortfolioViewModel";
+import useViewportFlags from "./hooks/useViewportFlags";
 
 export default function App() {
-  const [activeSection, setActiveSection] = useState("summary");
   const [lang, setLang] = useState("ko");
   const [emailCopied, setEmailCopied] = useState(false);
+  const [projectView, setProjectView] = useState("all");
+  const [collapsedProjects, setCollapsedProjects] = useState({});
   const year = useMemo(() => new Date().getFullYear(), []);
   const t = TEXT[lang];
 
-  const isQaProject = (project) =>
-    project.kind === "QA" ||
-    project.kindEn === "QA" ||
-    project.scope.includes("QA") ||
-    project.scope.includes("테스트");
+  const {
+    localizedProfile,
+    localizedNavItems,
+    localizedMetrics,
+    localizedHighlights,
+    localizedStack,
+    localizedExperience,
+    localizedEducation,
+    localizedTraining,
+    localizedFocus,
+    featuredProjects,
+    restDevelopmentProjects,
+    qaProjects,
+    visibleDevelopmentProjects,
+    projectViewOptions,
+    projectCardLabels
+  } = usePortfolioViewModel({ lang, t, projectView });
 
-  const localize = (item, field, fallbackField = field) =>
-    lang === "en" ? item[`${field}En`] ?? item[fallbackField] : item[field];
-  const localizeList = (item, field, fallbackField = field) => {
-    const resolved = localize(item, field, fallbackField);
-    return Array.isArray(resolved) ? resolved : item[fallbackField];
-  };
-
-  const localizedProfile = useMemo(
-    () => ({
-      name: localize(PROFILE, "name", "name"),
-      role: localize(PROFILE, "role"),
-      domain: localize(PROFILE, "domain"),
-      tagline: localize(PROFILE, "tagline"),
-      intro: localize(PROFILE, "intro"),
-      email: PROFILE.email,
-      github: PROFILE.github
-    }),
-    [lang]
-  );
+  const { showTopButton, isMobile } = useViewportFlags();
+  const sectionIds = useMemo(() => [...localizedNavItems.map((item) => item.id), "qa"], [localizedNavItems]);
+  const { activeSection, setActiveSection } = useActiveSection(sectionIds);
 
   const subject = encodeURIComponent(t.projectCard.copySubject);
   const body = encodeURIComponent(t.projectCard.copyBody);
-  const mailTo = useMemo(() => `mailto:${PROFILE.email}?subject=${subject}&body=${body}`, [subject, body]);
+  const mailTo = useMemo(
+    () => `mailto:${localizedProfile.email}?subject=${subject}&body=${body}`,
+    [localizedProfile.email, subject, body]
+  );
 
-  const localizedNavItems = NAV_ITEMS.map((item) => ({ ...item, label: localize(item, "label") }));
-  const localizedMetrics = METRICS.map((item) => ({
-    ...item,
-    label: localize(item, "label"),
-    value: localize(item, "value")
-  }));
-  const localizedHighlights = HIGHLIGHTS.map((item) => ({
-    ...item,
-    title: localize(item, "title"),
-    text: localize(item, "text")
-  }));
-  const localizedProjects = PROJECTS.map((project) => ({
-    ...project,
-    name: localize(project, "name"),
-    period: localize(project, "period"),
-    kind: localize(project, "kind"),
-    scope: localizeList(project, "scope"),
-    tech: localizeList(project, "tech"),
-    contributions: localizeList(project, "contributions"),
-    metrics: project.metrics?.map((metric) => ({
-      label: localize(metric, "label"),
-      value: localize(metric, "value")
-    }))
-  }));
-
-  const localizedStack = STACK.map((group) => ({
-    ...group,
-    title: localize(group, "title"),
-    items: localizeList(group, "items")
-  }));
-  const localizedExperience = EXPERIENCE.map((item) => ({
-    ...item,
-    period: localize(item, "period"),
-    organization: localize(item, "organization"),
-    title: localize(item, "title"),
-    bullets: localizeList(item, "bullets")
-  }));
-  const localizedEducation = EDUCATION.map((item) => ({
-    ...item,
-    period: localize(item, "period"),
-    organization: localize(item, "organization"),
-    title: localize(item, "title"),
-    bullets: localizeList(item, "bullets")
-  }));
-  const localizedTraining = TRAINING.map((item) => ({
-    ...item,
-    period: localize(item, "period"),
-    organization: localize(item, "organization"),
-    title: localize(item, "title"),
-    bullets: localizeList(item, "bullets")
-  }));
-  const localizedFocus = FOCUS.map((item) => ({
-    ...item,
-    title: localize(item, "title"),
-    desc: localize(item, "desc")
-  }));
-
-  const developmentProjects = localizedProjects.filter((project) => !isQaProject(project));
-  const qaProjects = localizedProjects.filter((project) => isQaProject(project));
-  const featuredProjects = developmentProjects.slice(0, 2);
-  const restDevelopmentProjects = developmentProjects.slice(2);
+  const getProjectKey = (project) => `${project.name}|${project.period}`;
+  const isProjectCollapsed = (project) => (isMobile ? collapsedProjects[getProjectKey(project)] !== false : false);
+  const toggleProjectCollapse = (project) => {
+    const key = getProjectKey(project);
+    setCollapsedProjects((prev) => ({ ...prev, [key]: !(prev[key] !== false) }));
+  };
 
   const toggleLang = () => setLang((prev) => (prev === "ko" ? "en" : "ko"));
 
   const copyEmail = () => {
     if (!navigator?.clipboard?.writeText) return;
-    navigator.clipboard.writeText(PROFILE.email).then(() => {
+    navigator.clipboard.writeText(localizedProfile.email).then(() => {
       setEmailCopied(true);
       window.setTimeout(() => setEmailCopied(false), 1600);
     });
   };
 
-  useEffect(() => {
-    const sectionIds = [...NAV_ITEMS.map((item) => item.id), "qa"];
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter(Boolean);
-
-    if (!sections.length) return undefined;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-
-        if (!visible.length) return;
-        const nextId = visible[0].target.id === "qa" ? "projects" : visible[0].target.id;
-        setActiveSection(nextId);
-      },
-      {
-        rootMargin: "-32% 0px -52% 0px",
-        threshold: [0.25, 0.45, 0.7]
-      }
-    );
-
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <>
+      <a className="skip-link" href="#summary">{t.skipToMain}</a>
       <div className="bg-layer" aria-hidden="true" />
       <div className="grain" aria-hidden="true" />
 
@@ -282,7 +81,7 @@ export default function App() {
                 onClick={() => setActiveSection(item.id)}
               >
                 <span className="menu-emoji" aria-hidden="true">{item.emoji}</span>
-                <span>{item.label}</span>
+                <span className="menu-label">{item.label}</span>
               </a>
             ))}
           </nav>
@@ -377,26 +176,76 @@ export default function App() {
             icon="box"
           />
           <div className="featured-head">
-            <h3>{t.featuredHead}</h3>
-            <p>{t.featuredSub}</p>
+            <div>
+              <h3>{t.featuredHead}</h3>
+              <p>{t.featuredSub}</p>
+            </div>
+            <div className="project-controls" role="tablist" aria-label={t.projectViewLabel}>
+              {projectViewOptions.map((option) => (
+                <button
+                  key={option.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={projectView === option.id}
+                  className={`project-control ${projectView === option.id ? "active" : ""}`}
+                  onClick={() => setProjectView(option.id)}
+                >
+                  <span>{option.label}</span>
+                  <strong>{option.count}</strong>
+                </button>
+              ))}
+            </div>
           </div>
-          <div className="featured-grid">
-            {featuredProjects.map((project) => (
-              <ProjectCard key={project.name} project={project} labels={t.projectCard} />
-            ))}
-          </div>
-          {restDevelopmentProjects.length ? (
+          {projectView === "all" ? (
             <>
-              <div className="project-subhead">
-                <h3>{t.additionalHead}</h3>
-              </div>
-              <div className="project-grid">
-                {restDevelopmentProjects.map((project) => (
-                  <ProjectCard key={project.name} project={project} labels={t.projectCard} />
+              <div className="featured-grid">
+                {featuredProjects.map((project) => (
+                  <ProjectCard
+                    key={project.name}
+                    project={project}
+                    labels={projectCardLabels}
+                    collapsible={isMobile}
+                    collapsed={isProjectCollapsed(project)}
+                    onToggleCollapse={() => toggleProjectCollapse(project)}
+                  />
                 ))}
               </div>
+              {restDevelopmentProjects.length ? (
+                <>
+                  <div className="project-subhead">
+                    <h3>{t.additionalHead}</h3>
+                  </div>
+                  <div className="project-grid">
+                    {restDevelopmentProjects.map((project) => (
+                      <ProjectCard
+                        key={project.name}
+                        project={project}
+                        labels={projectCardLabels}
+                        collapsible={isMobile}
+                        collapsed={isProjectCollapsed(project)}
+                        onToggleCollapse={() => toggleProjectCollapse(project)}
+                      />
+                    ))}
+                  </div>
+                </>
+              ) : null}
             </>
-          ) : null}
+          ) : visibleDevelopmentProjects.length ? (
+            <div className="project-grid">
+              {visibleDevelopmentProjects.map((project) => (
+                <ProjectCard
+                  key={project.name}
+                  project={project}
+                  labels={projectCardLabels}
+                  collapsible={isMobile}
+                  collapsed={isProjectCollapsed(project)}
+                  onToggleCollapse={() => toggleProjectCollapse(project)}
+                />
+              ))}
+            </div>
+          ) : (
+            <p className="empty-state panel">{t.projectViewEmpty}</p>
+          )}
         </section>
 
         <section id="qa" className="section reveal d4">
@@ -408,7 +257,14 @@ export default function App() {
           />
           <div className="project-grid">
             {qaProjects.map((project) => (
-              <ProjectCard key={project.name} project={project} labels={t.projectCard} />
+              <ProjectCard
+                key={project.name}
+                project={project}
+                labels={projectCardLabels}
+                collapsible={isMobile}
+                collapsed={isProjectCollapsed(project)}
+                onToggleCollapse={() => toggleProjectCollapse(project)}
+              />
             ))}
           </div>
         </section>
@@ -498,6 +354,15 @@ export default function App() {
           </article>
         </section>
       </main>
+      <button
+        type="button"
+        className={`to-top ${showTopButton ? "show" : ""}`}
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        tabIndex={showTopButton ? 0 : -1}
+        aria-hidden={!showTopButton}
+      >
+        {t.toTop}
+      </button>
     </>
   );
 }

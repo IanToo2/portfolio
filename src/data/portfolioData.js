@@ -229,8 +229,8 @@ export const PROJECTS = [
   {
     name: "S-OIL SCM QA 테스트",
     nameEn: "S-OIL SCM QA Testing",
-    period: "기간 입력 예정",
-    periodEn: "To be determined",
+    period: "2025.11",
+    periodEn: "Nov 2025",
     kind: "QA",
     kindEn: "QA",
     scope: ["테스트"],
@@ -258,8 +258,8 @@ export const PROJECTS = [
   {
     name: "SCHNEIDER POC 프로젝트",
     nameEn: "SCHNEIDER PoC Project",
-    period: "기간 입력 예정",
-    periodEn: "To be determined",
+    period: "2025.10 - 2025.11",
+    periodEn: "Oct 2025 - Nov 2025",
     kind: "영업 제안용 PoC",
     kindEn: "Pre-sales PoC",
     scope: ["역할/범위 입력 예정"],
