@@ -19,4 +19,4 @@ Before performing any task, strictly follow:
 2. If `npm` is blocked by PowerShell execution policy (`npm.ps1`), run commands via `cmd /c npm ...`.
 3. On Windows, avoid passing `*.md` directly to `rg`; use `-g "*.md"` include globs instead.
 4. If console output looks garbled, verify actual file encoding/content before editing (do not assume corruption from terminal rendering alone).
-5. If `git push` fails with `fatal: unable to access ... port 443`, immediately rerun the same `git push` with `require_escalated` (no workaround command changes).
+5. In this environment, run `git push` with `require_escalated` on the first attempt (do not try plain `git push` first).
