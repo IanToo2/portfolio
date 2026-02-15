@@ -1,4 +1,14 @@
-export default function ProjectCard({ project }) {
+const DEFAULT_LABELS = {
+  projectTypeLabel: "프로젝트 성격",
+  scopeLabel: "담당 범위",
+  technologiesLabel: "기술 스택",
+  contributionsLabel: "주요 기여",
+  metricsLabel: "성과 지표",
+  statusDone: "완료",
+  statusPending: "진행 중인 프로젝트"
+};
+
+export default function ProjectCard({ project, labels = DEFAULT_LABELS }) {
   return (
     <article className="project-card panel">
       <div className="project-top">
@@ -6,15 +16,32 @@ export default function ProjectCard({ project }) {
         <span>{project.period}</span>
       </div>
       <div className="project-meta">
-        <p className="project-kind">프로젝트 성격: {project.kind}</p>
-        <p className="project-kind">수행 범위: {project.scope.join(" / ")}</p>
+        <p className="project-kind">
+          {labels.projectTypeLabel}: {project.kind}
+        </p>
+        <p className="project-kind">
+          {labels.scopeLabel}: {project.scope.join(" / ")}
+        </p>
       </div>
-      <ul className="project-tech">
+      <ul className="project-tech" aria-label={labels.technologiesLabel}>
         {project.tech.map((tech) => (
           <li key={tech}>{tech}</li>
         ))}
       </ul>
-      <p className="project-contrib-title">상세 기여</p>
+      {project.metrics?.length ? (
+        <div className="project-metrics">
+          <p className="project-metrics-title">{labels.metricsLabel}</p>
+          <div className="project-metrics-grid">
+            {project.metrics.map((metric) => (
+              <div key={`${metric.label}-${metric.value}`} className="project-metric-item">
+                <span>{metric.label}</span>
+                <strong>{metric.value}</strong>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : null}
+      <p className="project-contrib-title">{labels.contributionsLabel}</p>
       <ul className="project-contrib">
         {project.contributions.map((contribution) => (
           <li key={contribution}>{contribution}</li>
@@ -22,7 +49,7 @@ export default function ProjectCard({ project }) {
       </ul>
       <div className="project-status-wrap">
         <span className={`project-status ${project.isPending ? "pending" : "done"}`}>
-          {project.isPending ? "🚧 진행 중 / 진행 예정" : "✅ 종료"}
+          {project.isPending ? labels.statusPending : labels.statusDone}
         </span>
       </div>
     </article>
