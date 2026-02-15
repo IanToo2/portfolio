@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import HeroDecorStrip from "./components/HeroDecorStrip";
 import Icon from "./components/Icon";
 import ProjectCard from "./components/ProjectCard";
 import SectionHead from "./components/SectionHead";
@@ -109,6 +110,7 @@ export default function App() {
                 </a>
               </div>
               <p className="hero-tag">{localizedProfile.tagline}</p>
+              <HeroDecorStrip />
             </div>
 
             <aside className="hero-panel panel">
@@ -349,6 +351,11 @@ export default function App() {
               <button className="btn ghost" type="button" onClick={copyEmail}>
                 {emailCopied ? t.contactCopiedLabel : t.contactCopyLabel}
               </button>
+            </div>
+            <div className="contact-badges" aria-hidden="true">
+              <span className="contact-badge">📨 Quick Reply</span>
+              <span className="contact-badge">🤝 Open to Collaboration</span>
+              <span className="contact-badge">🛠️ Backend Focus</span>
             </div>
             <small>{year} · {t.contactFooter}</small>
           </article>
