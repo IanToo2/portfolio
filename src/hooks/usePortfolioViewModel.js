@@ -1,5 +1,7 @@
 import { useMemo } from "react";
 import {
+  AWARDS,
+  CERTIFICATIONS,
   EDUCATION,
   EXPERIENCE,
   FOCUS,
@@ -159,6 +161,30 @@ export default function usePortfolioViewModel({ lang, t, projectView }) {
     [lang]
   );
 
+  const localizedAwards = useMemo(
+    () =>
+      AWARDS.map((item) => ({
+        ...item,
+        period: localize(item, "period"),
+        organization: localize(item, "organization"),
+        title: localize(item, "title"),
+        bullets: localizeList(item, "bullets")
+      })),
+    [lang]
+  );
+
+  const localizedCertifications = useMemo(
+    () =>
+      CERTIFICATIONS.map((item) => ({
+        ...item,
+        period: localize(item, "period"),
+        organization: localize(item, "organization"),
+        title: localize(item, "title"),
+        bullets: localizeList(item, "bullets")
+      })),
+    [lang]
+  );
+
   const localizedFocus = useMemo(
     () =>
       FOCUS.map((item) => ({
@@ -244,6 +270,8 @@ export default function usePortfolioViewModel({ lang, t, projectView }) {
     localizedExperience,
     localizedEducation,
     localizedTraining,
+    localizedAwards,
+    localizedCertifications,
     localizedFocus,
     featuredProjects,
     restDevelopmentProjects,

@@ -147,6 +147,32 @@ export const TRAINING = [
   }
 ];
 
+export const AWARDS = [
+  {
+    period: "입력 예정",
+    periodEn: "To be updated",
+    organization: "입력 예정",
+    organizationEn: "To be updated",
+    title: "수상 이력 추가 예정",
+    titleEn: "Awards to be added",
+    bullets: ["구체적인 수상 내역을 입력해 주세요."],
+    bulletsEn: ["Please add specific award details."]
+  }
+];
+
+export const CERTIFICATIONS = [
+  {
+    period: "입력 예정",
+    periodEn: "To be updated",
+    organization: "입력 예정",
+    organizationEn: "To be updated",
+    title: "자격증 추가 예정",
+    titleEn: "Certifications to be added",
+    bullets: ["취득한 자격증명, 발급기관, 취득일을 입력해 주세요."],
+    bulletsEn: ["Please add certificate name, issuing authority, and acquisition date."]
+  }
+];
+
 export const PROJECTS = [
   {
     name: "Spigen Korea 신규 SCM 프로젝트 구축",

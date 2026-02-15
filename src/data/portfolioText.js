@@ -58,7 +58,9 @@ export const TEXT = {
     timelineTitles: {
       work: "실무 경력",
       education: "학력",
-      training: "교육 이력"
+      training: "교육 이력",
+      awards: "수상 이력",
+      certifications: "자격증"
     }
   },
   en: {
@@ -119,7 +121,9 @@ export const TEXT = {
     timelineTitles: {
       work: "Work Experience",
       education: "Education",
-      training: "Training"
+      training: "Training",
+      awards: "Awards",
+      certifications: "Certifications"
     }
   }
 };
