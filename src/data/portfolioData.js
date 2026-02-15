@@ -168,8 +168,14 @@ export const CERTIFICATIONS = [
     organizationEn: "Human Resources Development Service of Korea",
     title: "정보처리기사",
     titleEn: "Engineer Information Processing",
-    bullets: ["자격증 번호: 24202040788J"],
-    bulletsEn: ["Certificate No.: 24202040788J"]
+    bullets: [
+      "발급기관: 한국산업인력공단",
+      "자격증 번호: 24202040788J"
+    ],
+    bulletsEn: [
+      "Issuing Authority: Human Resources Development Service of Korea",
+      "Certificate No.: 24202040788J"
+    ]
   }
 ];
 

@@ -316,7 +316,11 @@ export default function App() {
             <TimelineGroup title={t.timelineTitles.education} items={localizedEducation} />
             <TimelineGroup title={t.timelineTitles.training} items={localizedTraining} />
             <TimelineGroup title={t.timelineTitles.awards} items={localizedAwards} />
-            <TimelineGroup title={t.timelineTitles.certifications} items={localizedCertifications} />
+            <TimelineGroup
+              title={t.timelineTitles.certifications}
+              items={localizedCertifications}
+              showOrganizationInHeading={false}
+            />
           </div>
         </section>
 

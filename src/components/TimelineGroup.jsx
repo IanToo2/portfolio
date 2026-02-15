@@ -1,4 +1,9 @@
-export default function TimelineGroup({ title, items }) {
+export default function TimelineGroup({
+  title,
+  items,
+  showOrganizationInHeading = true,
+  titleFirst = false
+}) {
   return (
     <div className="timeline-group">
       <h3 className="timeline-group-title">{title}</h3>
@@ -6,7 +11,11 @@ export default function TimelineGroup({ title, items }) {
         {items.map((item) => (
           <article key={`${title}-${item.period}-${item.organization}`} className="timeline-card panel">
             <span>{item.period}</span>
-            <h3>{item.organization} · {item.title}</h3>
+            <h3>
+              {showOrganizationInHeading
+                ? (titleFirst ? `${item.title} · ${item.organization}` : `${item.organization} · ${item.title}`)
+                : item.title}
+            </h3>
             <ul>
               {item.bullets.map((bullet) => (
                 <li key={bullet}>{bullet}</li>
