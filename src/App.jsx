@@ -154,6 +154,23 @@ export default function App() {
           </div>
         </section>
 
+        <section id="focus" className="section reveal d4">
+          <SectionHead
+            label={t.focusLabel}
+            title={t.focusTitle}
+            subtitle={t.focusSubtitle}
+            icon="link"
+          />
+          <div className="focus-grid">
+            {localizedFocus.map((item, index) => (
+              <article key={item.title} className={`focus-card c${index + 1} panel`}>
+                <h3><Icon type={item.icon} />{item.title}</h3>
+                <p>{item.desc}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section id="highlights" className="section reveal d4">
           <SectionHead
             label={t.highlightsLabel}
@@ -321,23 +338,6 @@ export default function App() {
               items={localizedCertifications}
               showOrganizationInHeading={false}
             />
-          </div>
-        </section>
-
-        <section id="focus" className="section reveal d6">
-          <SectionHead
-            label={t.focusLabel}
-            title={t.focusTitle}
-            subtitle={t.focusSubtitle}
-            icon="link"
-          />
-          <div className="focus-grid">
-            {localizedFocus.map((item, index) => (
-              <article key={item.title} className={`focus-card c${index + 1} panel`}>
-                <h3><Icon type={item.icon} />{item.title}</h3>
-                <p>{item.desc}</p>
-              </article>
-            ))}
           </div>
         </section>
 

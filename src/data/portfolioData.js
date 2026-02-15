@@ -17,11 +17,11 @@ export const PROFILE = {
 
 export const NAV_ITEMS = [
   { id: "summary", label: "소개", labelEn: "Summary", emoji: "👋" },
+  { id: "focus", label: "중점 업무", labelEn: "Focus", emoji: "🎯" },
   { id: "highlights", label: "성과", labelEn: "Highlights", emoji: "📈" },
   { id: "projects", label: "프로젝트", labelEn: "Projects", emoji: "🗂️" },
   { id: "stack", label: "기술 스택", labelEn: "Skill Set", emoji: "🛠️" },
   { id: "experience", label: "경력", labelEn: "Experience", emoji: "📌" },
-  { id: "focus", label: "중점 업무", labelEn: "Focus", emoji: "🎯" },
   { id: "contact", label: "연락", labelEn: "Contact", emoji: "✉️" }
 ];
 
