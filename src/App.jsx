@@ -11,7 +11,6 @@ import useViewportFlags from "./hooks/useViewportFlags";
 
 export default function App() {
   const [lang, setLang] = useState("ko");
-  const [emailCopied, setEmailCopied] = useState(false);
   const [projectView, setProjectView] = useState("all");
   const [collapsedProjects, setCollapsedProjects] = useState({});
   const year = useMemo(() => new Date().getFullYear(), []);
@@ -56,14 +55,6 @@ export default function App() {
   };
 
   const toggleLang = () => setLang((prev) => (prev === "ko" ? "en" : "ko"));
-
-  const copyEmail = () => {
-    if (!navigator?.clipboard?.writeText) return;
-    navigator.clipboard.writeText(localizedProfile.email).then(() => {
-      setEmailCopied(true);
-      window.setTimeout(() => setEmailCopied(false), 1600);
-    });
-  };
 
 
   return (
@@ -349,17 +340,6 @@ export default function App() {
               <span className="contact-emoji" aria-hidden="true">🐙</span>
               {localizedProfile.github.replace("https://", "")}
             </a>
-            <div className="contact-links">
-              <a className="btn ghost" href={mailTo}>
-                {t.contactMailLabel}
-              </a>
-              <a className="btn ghost" href={localizedProfile.github} target="_blank" rel="noreferrer">
-                {t.contactEmail}
-              </a>
-              <button className="btn ghost" type="button" onClick={copyEmail}>
-                {emailCopied ? t.contactCopiedLabel : t.contactCopyLabel}
-              </button>
-            </div>
             <div className="contact-badges" aria-hidden="true">
               <span className="contact-badge">📨 Quick Reply</span>
               <span className="contact-badge">🤝 Open to Collaboration</span>
