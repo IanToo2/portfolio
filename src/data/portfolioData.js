@@ -161,6 +161,22 @@ export const AWARDS = [
 ];
 export const CERTIFICATIONS = [
   {
+    period: "2025.05.17",
+    periodEn: "May 17, 2025",
+    organization: "마이크로소프트",
+    organizationEn: "Microsoft",
+    title: "Microsoft Certified: Azure AZ900",
+    titleEn: "Microsoft Certified: Azure AZ900",
+    bullets: [
+      "발급기관: 마이크로소프트",
+      "자격증 번호: C76F0A07F0A39D11"
+    ],
+    bulletsEn: [
+      "Issuing Authority: Microsoft",
+      "Certificate No.: C76F0A07F0A39D11"
+    ]
+  },
+  {
     period: "2024.09.10",
     periodEn: "Sep 10, 2024",
     organization: "한국산업인력공단",
