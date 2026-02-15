@@ -162,14 +162,14 @@ export const AWARDS = [
 
 export const CERTIFICATIONS = [
   {
-    period: "입력 예정",
-    periodEn: "To be updated",
-    organization: "입력 예정",
-    organizationEn: "To be updated",
-    title: "자격증 추가 예정",
-    titleEn: "Certifications to be added",
-    bullets: ["취득한 자격증명, 발급기관, 취득일을 입력해 주세요."],
-    bulletsEn: ["Please add certificate name, issuing authority, and acquisition date."]
+    period: "2024.09.10",
+    periodEn: "Sep 10, 2024",
+    organization: "한국산업인력공단",
+    organizationEn: "Human Resources Development Service of Korea",
+    title: "정보처리기사",
+    titleEn: "Engineer Information Processing",
+    bullets: ["자격증 번호: 24202040788J"],
+    bulletsEn: ["Certificate No.: 24202040788J"]
   }
 ];
 
