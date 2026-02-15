@@ -177,6 +177,24 @@ export const CERTIFICATIONS = [
     ]
   },
   {
+    period: "2024.09.01",
+    periodEn: "Sep 1, 2024",
+    organization: "ACTFL",
+    organizationEn: "ACTFL",
+    title: "OPIc",
+    titleEn: "OPIc",
+    bullets: [
+      "발급기관: ACTFL",
+      "자격증 번호: 214048029418",
+      "유효기간: 2024.09.01 - 2026.08.31"
+    ],
+    bulletsEn: [
+      "Issuing Authority: ACTFL",
+      "Certificate No.: 214048029418",
+      "Validity: 2024.09.01 - 2026.08.31"
+    ]
+  },
+  {
     period: "2023.12.15",
     periodEn: "Dec 15, 2023",
     organization: "한국데이터산업진흥원",
