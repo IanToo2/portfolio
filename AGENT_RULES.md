@@ -9,3 +9,6 @@ Before performing any task, strictly follow:
 5. Show the diff before applying changes.
 6. Assume this is a Vite + React project.
 7. If file corruption is suspected, ask before rewriting.
+8. For `git push` in sandboxed sessions, use escalated permissions (`require_escalated`) by default.
+9. After refactoring or extracting large blocks, ensure required imports are still present before finishing.
+10. When using scripted/regex replacements, scope edits narrowly to avoid breaking top-level imports and exports.
