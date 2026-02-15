@@ -404,11 +404,17 @@ a {
   color: #0f172a;
 }
 
-.hero-panel a {
+.hero-panel-link {
   text-decoration: none;
   color: #1d4ed8;
   border-bottom: 1px solid rgba(37, 99, 235, 0.34);
   padding-bottom: 0.08rem;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+
+.hero-panel-link:hover {
+  color: #1e40af;
+  border-color: rgba(30, 64, 175, 0.5);
 }
 
 .section {

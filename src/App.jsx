@@ -119,10 +119,18 @@ export default function App() {
                     </div>
                   </li>
                 ))}
+                <li>
+                  <span className="badge"><Icon type="link" /></span>
+                  <div>
+                    <p>GitHub</p>
+                    <strong>
+                      <a className="hero-panel-link" href={localizedProfile.github} target="_blank" rel="noreferrer">
+                        {localizedProfile.github.replace("https://", "")}
+                      </a>
+                    </strong>
+                  </div>
+                </li>
               </ul>
-              <a href={localizedProfile.github} target="_blank" rel="noreferrer">
-                {localizedProfile.github.replace("https://", "")}
-              </a>
             </aside>
           </div>
         </section>
