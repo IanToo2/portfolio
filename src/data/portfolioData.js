@@ -149,16 +149,21 @@ export const TRAINING = [
 
 export const AWARDS = [
   {
-    period: "입력 예정",
-    periodEn: "To be updated",
-    organization: "입력 예정",
-    organizationEn: "To be updated",
-    title: "수상 이력 추가 예정",
-    titleEn: "Awards to be added",
-    bullets: ["구체적인 수상 내역을 입력해 주세요."],
-    bulletsEn: ["Please add specific award details."]
+    period: "2024.01 - 2024.09",
+    periodEn: "Jan 2024 - Sep 2024",
+    organization: "삼성청년소프트웨어아카데미(SSAFY)",
+    organizationEn: "Samsung Youth Software Academy (SSAFY)",
+    title: "교육 과정 수상",
+    titleEn: "Awards During Training",
+    bullets: [
+      "SSAFY 교육 과정 중 2회 수상"
+    ],
+    bulletsEn: [
+      "Received two awards during the SSAFY training program."
+    ]
   }
 ];
+
 export const CERTIFICATIONS = [
   {
     period: "2025.05.17",
