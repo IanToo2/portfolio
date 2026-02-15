@@ -159,7 +159,6 @@ export const AWARDS = [
     bulletsEn: ["Please add specific award details."]
   }
 ];
-
 export const CERTIFICATIONS = [
   {
     period: "2024.09.10",
@@ -176,9 +175,24 @@ export const CERTIFICATIONS = [
       "Issuing Authority: Human Resources Development Service of Korea",
       "Certificate No.: 24202040788J"
     ]
+  },
+  {
+    period: "2023.12.15",
+    periodEn: "Dec 15, 2023",
+    organization: "한국데이터산업진흥원",
+    organizationEn: "Korea Data Agency",
+    title: "SQLD",
+    titleEn: "SQL Developer (SQLD)",
+    bullets: [
+      "발급기관: 한국데이터산업진흥원",
+      "자격증 번호: SQLD-051016153"
+    ],
+    bulletsEn: [
+      "Issuing Authority: Korea Data Agency",
+      "Certificate No.: SQLD-051016153"
+    ]
   }
 ];
-
 export const PROJECTS = [
   {
     name: "Spigen Korea 신규 SCM 프로젝트 구축",
