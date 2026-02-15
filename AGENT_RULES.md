@@ -12,3 +12,10 @@ Before performing any task, strictly follow:
 8. For `git push` in sandboxed sessions, use escalated permissions (`require_escalated`) by default.
 9. After refactoring or extracting large blocks, ensure required imports are still present before finishing.
 10. When using scripted/regex replacements, scope edits narrowly to avoid breaking top-level imports and exports.
+
+## Windows Shell Notes (Learned)
+
+1. In PowerShell, use `;` instead of `&&` for sequential commands.
+2. If `npm` is blocked by PowerShell execution policy (`npm.ps1`), run commands via `cmd /c npm ...`.
+3. On Windows, avoid passing `*.md` directly to `rg`; use `-g "*.md"` include globs instead.
+4. If console output looks garbled, verify actual file encoding/content before editing (do not assume corruption from terminal rendering alone).
