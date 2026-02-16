@@ -200,7 +200,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="summary" className="section reveal d3">
+        <section id="summary" className="section section-summary reveal d3">
           <SectionHead
             label={t.summaryLabel}
             title={t.summaryTitle}
@@ -218,7 +218,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="focus" className="section reveal d4">
+        <section id="focus" className="section section-focus reveal d4">
           <SectionHead
             label={t.focusLabel}
             title={t.focusTitle}
@@ -235,7 +235,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="highlights" className="section reveal d4">
+        <section id="highlights" className="section section-highlights reveal d4">
           <SectionHead
             label={t.highlightsLabel}
             title={t.highlightsTitle}
@@ -253,7 +253,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="projects" className="section reveal d4">
+        <section id="projects" className="section section-projects reveal d4">
           <SectionHead
             label={t.projectsLabel}
             title={t.projectsTitle}
@@ -293,7 +293,7 @@ export default function App() {
           })}
         </section>
 
-        <section id="stack" className="section reveal d5">
+        <section id="stack" className="section section-stack reveal d5">
           <SectionHead
             label={t.stackLabel}
             title={t.stackTitle}
@@ -327,7 +327,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="experience" className="section reveal d5">
+        <section id="experience" className="section section-experience reveal d5">
           <SectionHead
             label={t.experienceLabel}
             title={t.experienceTitle}
@@ -351,7 +351,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="contact" className="section reveal d6">
+        <section id="contact" className="section section-contact reveal d6">
           <article className="contact-card panel">
             <p>{t.contactLabel}</p>
             <h2><span className="contact-emoji" aria-hidden="true">✉️</span>{localizedProfile.email}</h2>
