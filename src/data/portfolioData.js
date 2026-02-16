@@ -336,6 +336,45 @@ export const PROJECTS = [
     isPending: false
   },
   {
+    name: "TravelLog_BE 팀 프로젝트",
+    nameEn: "TravelLog_BE Team Project",
+    period: "2024.05 - 2024.05",
+    periodEn: "May 2024 - May 2024",
+    kind: "팀 프로젝트",
+    kindEn: "Team Project",
+    scope: ["개발", "테스트", "리팩토링"],
+    scopeEn: ["Development", "Testing", "Refactoring"],
+    tech: ["Java", "Spring Boot", "Spring Security", "MyBatis", "JWT", "MySQL", "Gradle", "Git", "GitHub"],
+    techEn: ["Java", "Spring Boot", "Spring Security", "MyBatis", "JWT", "MySQL", "Gradle", "Git", "GitHub"],
+    contributions: [
+      "회원/인증 API 구현: 회원 CRUD, 로그인/로그아웃, 토큰 발급/재발급, 중복체크 및 비밀번호 관련 기능 개발",
+      "리뷰 API 구현: 리뷰 CRUD, 작성자/관광지 기준 조회, 리뷰 좋아요 등록/취소/목록/Top 리뷰 기능 개발",
+      "MyBatis DAO/DTO 구조 정리 및 리뷰/회원 도메인 버그 수정, CORS/응답 DTO 안정화",
+      "팀 이슈 #30 중심으로 리뷰 도메인 기능 확장 및 유지보수"
+    ],
+    contributionsEn: [
+      "Implemented member/auth APIs including member CRUD, login/logout, token issue/refresh, duplicate checks, and password flows.",
+      "Implemented review APIs including review CRUD, author/content-based queries, review likes add/remove/list, and top review endpoints.",
+      "Refined MyBatis DAO/DTO structures and stabilized review/member domain bugs, CORS, and response DTO behavior.",
+      "Expanded and maintained review-domain features with primary focus on team issue #30."
+    ],
+    metrics: [
+      {
+        label: "개인 커밋",
+        labelEn: "Personal commits",
+        value: "47개 (no-merge)",
+        valueEn: "47 commits (no-merge)"
+      },
+      {
+        label: "주요 기여 도메인",
+        labelEn: "Primary contribution domains",
+        value: "회원/인증, 리뷰",
+        valueEn: "Member/Auth, Review"
+      }
+    ],
+    isPending: false
+  },
+  {
     name: "S-OIL SCM QA 테스트",
     nameEn: "S-OIL SCM QA Testing",
     period: "2025.11",
