@@ -56,7 +56,13 @@ const isQaProject = (project) => {
   return [...scopeValues, ...scopeEnValues].some((scope) => normalizeToken(scope) === "qa");
 };
 
-export default function usePortfolioViewModel({ lang, t, projectView }) {
+const isTeamProject = (project) => {
+  const koKind = normalizeToken(project.kind);
+  const enKind = normalizeToken(project.kindEn);
+  return koKind.includes("팀프로젝트") || enKind.includes("teamproject");
+};
+
+export default function usePortfolioViewModel({ lang, t }) {
   const localize = (item, field, fallbackField = field) =>
     lang === "en" ? item[`${field}En`] ?? item[fallbackField] : item[field];
   const localizeList = (item, field, fallbackField = field) => {
@@ -175,19 +181,30 @@ export default function usePortfolioViewModel({ lang, t, projectView }) {
     [lang]
   );
 
-  const developmentProjects = useMemo(
-    () => localizedProjects.filter((project) => !isQaProject(project)),
+  const teamProjects = useMemo(
+    () => localizedProjects.filter((project) => isTeamProject(project)).sort(byLatestPeriod),
     [localizedProjects]
   );
 
-  const qaProjects = useMemo(
-    () => localizedProjects.filter((project) => isQaProject(project)).sort(byLatestPeriod),
+  const workScmProjects = useMemo(
+    () =>
+      localizedProjects
+        .filter((project) => !isTeamProject(project) && !isQaProject(project))
+        .sort(byLatestPeriod),
+    [localizedProjects]
+  );
+
+  const workQaProjects = useMemo(
+    () =>
+      localizedProjects
+        .filter((project) => !isTeamProject(project) && isQaProject(project))
+        .sort(byLatestPeriod),
     [localizedProjects]
   );
 
   const featuredProjects = useMemo(
     () =>
-      developmentProjects
+      workScmProjects
         .filter((project) => {
           const koName = (project.name ?? "").toLowerCase();
           const enName = (project.nameEn ?? "").toLowerCase();
@@ -196,37 +213,7 @@ export default function usePortfolioViewModel({ lang, t, projectView }) {
           );
         })
         .slice(0, 2),
-    [developmentProjects]
-  );
-
-  const restDevelopmentProjects = useMemo(
-    () => {
-      const featuredProjectIds = new Set(featuredProjects.map((project) => project.id));
-      return developmentProjects
-        .filter((project) => !featuredProjectIds.has(project.id))
-        .sort(byLatestPeriod);
-    },
-    [developmentProjects, featuredProjects]
-  );
-
-  const inProgressDevelopmentProjects = useMemo(
-    () => developmentProjects.filter((project) => project.isPending).sort(byLatestPeriod),
-    [developmentProjects]
-  );
-
-  const visibleDevelopmentProjects = useMemo(() => {
-    if (projectView === "featured") return featuredProjects;
-    if (projectView === "inProgress") return inProgressDevelopmentProjects;
-    return developmentProjects;
-  }, [developmentProjects, featuredProjects, inProgressDevelopmentProjects, projectView]);
-
-  const projectViewOptions = useMemo(
-    () => [
-      { id: "all", label: t.projectViewAll, count: developmentProjects.length },
-      { id: "featured", label: t.projectViewFeatured, count: featuredProjects.length },
-      { id: "inProgress", label: t.projectViewInProgress, count: inProgressDevelopmentProjects.length }
-    ],
-    [developmentProjects.length, featuredProjects.length, inProgressDevelopmentProjects.length, t]
+    [workScmProjects]
   );
 
   const projectCardLabels = useMemo(
@@ -251,10 +238,9 @@ export default function usePortfolioViewModel({ lang, t, projectView }) {
     localizedCertifications,
     localizedFocus,
     featuredProjects,
-    restDevelopmentProjects,
-    qaProjects,
-    visibleDevelopmentProjects,
-    projectViewOptions,
+    workScmProjects,
+    workQaProjects,
+    teamProjects,
     projectCardLabels
   };
 }

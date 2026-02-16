@@ -43,7 +43,6 @@ const STACK_TECH_LOGOS = {
 
 export default function App() {
   const [lang, setLang] = useState("ko");
-  const [projectView, setProjectView] = useState("all");
   const [collapsedProjects, setCollapsedProjects] = useState({});
   const year = useMemo(() => new Date().getFullYear(), []);
   const t = TEXT[lang];
@@ -61,15 +60,14 @@ export default function App() {
     localizedCertifications,
     localizedFocus,
     featuredProjects,
-    restDevelopmentProjects,
-    qaProjects,
-    visibleDevelopmentProjects,
-    projectViewOptions,
+    workScmProjects,
+    workQaProjects,
+    teamProjects,
     projectCardLabels
-  } = usePortfolioViewModel({ lang, t, projectView });
+  } = usePortfolioViewModel({ lang, t });
 
   const { showTopButton, isMobile } = useViewportFlags();
-  const sectionIds = useMemo(() => [...localizedNavItems.map((item) => item.id), "qa"], [localizedNavItems]);
+  const sectionIds = useMemo(() => localizedNavItems.map((item) => item.id), [localizedNavItems]);
   const { activeSection, setActiveSection } = useActiveSection(sectionIds);
 
   const subject = encodeURIComponent(t.projectCard.copySubject);
@@ -101,6 +99,20 @@ export default function App() {
         />
       ))}
     </div>
+  );
+
+  const renderProjectGroup = ({ title, subtitle, projects }) => (
+    <>
+      <div className="project-subhead">
+        <h3>{title}</h3>
+        {subtitle ? <p>{subtitle}</p> : null}
+      </div>
+      {projects.length ? (
+        renderProjectCards(projects, "project-grid")
+      ) : (
+        <p className="empty-state panel">{t.projectEmpty}</p>
+      )}
+    </>
   );
 
   return (
@@ -248,49 +260,32 @@ export default function App() {
               <h3>{t.featuredHead}</h3>
               <p>{t.featuredSub}</p>
             </div>
-            <div className="project-controls" role="tablist" aria-label={t.projectViewLabel}>
-              {projectViewOptions.map((option) => (
-                <button
-                  key={option.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={projectView === option.id}
-                  className={`project-control ${projectView === option.id ? "active" : ""}`}
-                  onClick={() => setProjectView(option.id)}
-                >
-                  <span>{option.label}</span>
-                  <strong>{option.count}</strong>
-                </button>
-              ))}
-            </div>
           </div>
-          {projectView === "all" ? (
-            <>
-              {renderProjectCards(featuredProjects, "featured-grid")}
-              {restDevelopmentProjects.length ? (
-                <>
-                  <div className="project-subhead">
-                    <h3>{t.additionalHead}</h3>
-                  </div>
-                  {renderProjectCards(restDevelopmentProjects, "project-grid")}
-                </>
-              ) : null}
-            </>
-          ) : visibleDevelopmentProjects.length ? (
-            renderProjectCards(visibleDevelopmentProjects, "project-grid")
+          {featuredProjects.length ? (
+            renderProjectCards(featuredProjects, "featured-grid")
           ) : (
-            <p className="empty-state panel">{t.projectViewEmpty}</p>
+            <p className="empty-state panel">{t.projectEmpty}</p>
           )}
-        </section>
 
-        <section id="qa" className="section reveal d4">
-          <SectionHead
-            label={t.projectsLabel}
-            title={t.qaTitle}
-            subtitle={t.qaSubtitle}
-            icon="shield"
-          />
-          {renderProjectCards(qaProjects, "project-grid")}
+          <div className="project-subhead project-group-head">
+            <h3>{t.workHead}</h3>
+            <p>{t.workSub}</p>
+          </div>
+          {renderProjectGroup({
+            title: t.scmHead,
+            subtitle: t.scmSub,
+            projects: workScmProjects
+          })}
+          {renderProjectGroup({
+            title: t.qaHead,
+            subtitle: t.qaSub,
+            projects: workQaProjects
+          })}
+          {renderProjectGroup({
+            title: t.teamHead,
+            subtitle: t.teamSub,
+            projects: teamProjects
+          })}
         </section>
 
         <section id="stack" className="section reveal d5">
