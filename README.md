@@ -13,7 +13,8 @@
 ## Run locally
 ```powershell
 cd C:\ToyProject\portfolio-site
-npm install
+npm ci
+npm run validate
 npm run dev
 ```
 
@@ -21,6 +22,7 @@ Open `http://localhost:5173`.
 
 ## Build
 ```powershell
+npm run validate
 npm run build
 npm run preview
 ```
