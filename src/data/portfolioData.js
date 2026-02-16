@@ -157,19 +157,31 @@ export const TRAINING = [
 
 export const AWARDS = [
   {
-    period: "2024.01 - 2024.09",
-    periodEn: "Jan 2024 - Sep 2024",
-    organization: "삼성청년소프트웨어아카데미(SSAFY)",
-    organizationEn: "Samsung Youth Software Academy (SSAFY)",
-    title: "우수상 / 최우수상",
-    titleEn: "Excellence Award / Grand Prize",
+    period: "수상일자 추후 입력",
+    periodEn: "Date to be added",
+    organization: "",
+    organizationEn: "",
+    title: "우수상",
+    titleEn: "Excellence Award",
     bullets: [
-      "우수상",
-      "최우수상"
+      "수상일자 추후 입력"
     ],
     bulletsEn: [
-      "Excellence Award",
-      "Grand Prize"
+      "Date to be added"
+    ]
+  },
+  {
+    period: "수상일자 추후 입력",
+    periodEn: "Date to be added",
+    organization: "",
+    organizationEn: "",
+    title: "최우수상",
+    titleEn: "Grand Prize",
+    bullets: [
+      "수상일자 추후 입력"
+    ],
+    bulletsEn: [
+      "Date to be added"
     ]
   }
 ];
