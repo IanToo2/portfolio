@@ -12,7 +12,7 @@ export const TEXT = {
     highlightsTitle: "핵심 성과",
     highlightsSubtitle: "개발·전환·운영 연계 전 과정을 통해 얻은 운영 품질 경험을 정리했습니다.",
     projectsLabel: "Projects",
-    projectsTitle: "개발 프로젝트",
+    projectsTitle: "프로젝트",
     projectsSubtitle: "대표, 실무(SCM/QA), 팀 프로젝트로 구분해 정리했습니다.",
     featuredHead: "대표 프로젝트",
     featuredSub:
@@ -82,7 +82,7 @@ export const TEXT = {
     highlightsTitle: "Key Highlights",
     highlightsSubtitle: "I focus on quality outcomes across development, migration, and operations.",
     projectsLabel: "Projects",
-    projectsTitle: "Development Projects",
+    projectsTitle: "Projects",
     projectsSubtitle: "Organized into featured, work (SCM/QA), and team projects.",
     featuredHead: "Featured Projects",
     featuredSub: "Priority is given to projects with major contribution and operational impact.",
