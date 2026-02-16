@@ -822,11 +822,29 @@ a {
 }
 
 .stack-card li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.36rem;
   border: 1px solid var(--line);
   border-radius: 999px;
-  padding: 0.3rem 0.62rem;
+  padding: 0.26rem 0.58rem 0.26rem 0.34rem;
   background: #fff;
   font-size: 0.8rem;
+}
+
+.stack-tech-logo {
+  min-width: 1.16rem;
+  height: 1.16rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.36rem;
+  border: 1px solid rgba(37, 99, 235, 0.24);
+  background: rgba(37, 99, 235, 0.08);
+  color: #1e3a8a;
+  font-size: 0.62rem;
+  font-weight: 800;
+  line-height: 1;
 }
 
 .stack-meter-label {

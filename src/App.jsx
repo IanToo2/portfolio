@@ -19,6 +19,28 @@ const NAV_ICON_BY_SECTION = {
   contact: "mail"
 };
 
+const STACK_TECH_LOGOS = {
+  Java: "☕",
+  "Spring Boot": "🌱",
+  JPA: "JPA",
+  MyBatis: "MB",
+  Oracle: "OR",
+  PostgreSQL: "🐘",
+  MySQL: "🐬",
+  "AWS EC2": "EC2",
+  "AWS RDS": "RDS",
+  "AWS S3": "S3",
+  Docker: "🐳",
+  Jenkins: "JK",
+  "GitLab CI": "GL",
+  Git: "Git",
+  GitLab: "GL",
+  Jira: "JR",
+  JavaScript: "JS",
+  Polymer: "PL",
+  React: "⚛"
+};
+
 export default function App() {
   const [lang, setLang] = useState("ko");
   const [projectView, setProjectView] = useState("all");
@@ -284,7 +306,10 @@ export default function App() {
                 <h3><Icon type={group.icon} />{group.title}</h3>
                 <ul>
                   {group.items.map((item) => (
-                    <li key={item}>{item}</li>
+                    <li key={item}>
+                      <span className="stack-tech-logo" aria-hidden="true">{STACK_TECH_LOGOS[item] ?? "•"}</span>
+                      <span>{item}</span>
+                    </li>
                   ))}
                 </ul>
                 {typeof group.proficiency === "number" ? (

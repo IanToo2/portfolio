@@ -1,17 +1,20 @@
 import { useMemo } from "react";
 
 const RASTER_ICON_CONFIG = {
-  clock: { token: "CLK", colors: ["#dbeafe", "#bfdbfe"], stroke: "#1d4ed8" },
-  building: { token: "BLD", colors: ["#ede9fe", "#ddd6fe"], stroke: "#6d28d9" },
-  box: { token: "BOX", colors: ["#fef3c7", "#fde68a"], stroke: "#b45309" },
-  cloud: { token: "CLD", colors: ["#cffafe", "#a5f3fc"], stroke: "#0e7490" },
-  gear: { token: "OPS", colors: ["#dcfce7", "#bbf7d0"], stroke: "#15803d" },
-  team: { token: "TEAM", colors: ["#ffe4e6", "#fecdd3"], stroke: "#be123c" },
-  layout: { token: "UI", colors: ["#e0f2fe", "#bae6fd"], stroke: "#0369a1" },
   spark: { token: "GO", colors: ["#fef9c3", "#fde047"], stroke: "#a16207" },
   target: { token: "AIM", colors: ["#fee2e2", "#fecaca"], stroke: "#b91c1c" },
   timeline: { token: "LOG", colors: ["#e0e7ff", "#c7d2fe"], stroke: "#4338ca" },
   mail: { token: "MAIL", colors: ["#dbeafe", "#bfdbfe"], stroke: "#1e40af" }
+};
+
+const EMOJI_ICONS = {
+  clock: "⏱️",
+  building: "🏢",
+  box: "📦",
+  cloud: "☁️",
+  gear: "⚙️",
+  team: "🤝",
+  layout: "🧩"
 };
 
 const GLYPH_ICONS = {
@@ -129,6 +132,10 @@ export default function Icon({ type }) {
 
   if (GLYPH_ICONS[type]) {
     return <span className="icon icon-glyph" aria-hidden="true">{GLYPH_ICONS[type]}</span>;
+  }
+
+  if (EMOJI_ICONS[type]) {
+    return <span className="icon icon-emoji" aria-hidden="true">{EMOJI_ICONS[type]}</span>;
   }
 
   if (SVG_ICONS[type]) {
