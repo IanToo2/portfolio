@@ -9,13 +9,14 @@ import {
   METRICS,
   NAV_ITEMS,
   PROFILE,
+  PROJECT_CATEGORY,
+  PROJECT_TRACK,
   PROJECTS,
   STACK,
   TRAINING
 } from "../data/portfolioData";
 
 const DATE_PATTERN = /(20\d{2})\.(0[1-9]|1[0-2])/g;
-const FEATURED_PROJECT_KEYWORDS = ["spigen", "cj"];
 
 const normalizeToken = (value) =>
   String(value ?? "")
@@ -48,20 +49,6 @@ const resolvePendingStatus = (project) => {
   return endOfMonth >= new Date();
 };
 
-const isQaProject = (project) => {
-  if (normalizeToken(project.kind) === "qa" || normalizeToken(project.kindEn) === "qa") return true;
-
-  const scopeValues = Array.isArray(project.scope) ? project.scope : [];
-  const scopeEnValues = Array.isArray(project.scopeEn) ? project.scopeEn : [];
-  return [...scopeValues, ...scopeEnValues].some((scope) => normalizeToken(scope) === "qa");
-};
-
-const isTeamProject = (project) => {
-  const koKind = normalizeToken(project.kind);
-  const enKind = normalizeToken(project.kindEn);
-  return koKind.includes("팀프로젝트") || enKind.includes("teamproject");
-};
-
 export default function usePortfolioViewModel({ lang, t }) {
   const localize = (item, field, fallbackField = field) =>
     lang === "en" ? item[`${field}En`] ?? item[fallbackField] : item[field];
@@ -77,6 +64,11 @@ export default function usePortfolioViewModel({ lang, t }) {
       title: localize(item, "title"),
       bullets: localizeList(item, "bullets")
     }));
+  const resolveProjectCategory = (project) => project.category ?? PROJECT_CATEGORY.WORK;
+  const resolveProjectTrack = (project, category) => {
+    if (project.track) return project.track;
+    return category === PROJECT_CATEGORY.TEAM ? PROJECT_TRACK.TEAM : PROJECT_TRACK.SCM;
+  };
 
   const localizedProfile = useMemo(
     () => ({
@@ -118,21 +110,28 @@ export default function usePortfolioViewModel({ lang, t }) {
 
   const localizedProjects = useMemo(
     () =>
-      PROJECTS.map((project) => ({
-        ...project,
-        id: createProjectId(project),
-        name: localize(project, "name"),
-        period: localize(project, "period"),
-        kind: localize(project, "kind"),
-        isPending: resolvePendingStatus(project),
-        scope: localizeList(project, "scope"),
-        tech: localizeList(project, "tech"),
-        contributions: localizeList(project, "contributions"),
-        metrics: project.metrics?.map((metric) => ({
-          label: localize(metric, "label"),
-          value: localize(metric, "value")
-        }))
-      })),
+      PROJECTS.map((project) => {
+        const category = resolveProjectCategory(project);
+        const track = resolveProjectTrack(project, category);
+        return {
+          ...project,
+          id: createProjectId(project),
+          category,
+          track,
+          isFeatured: Boolean(project.isFeatured),
+          name: localize(project, "name"),
+          period: localize(project, "period"),
+          kind: localize(project, "kind"),
+          isPending: resolvePendingStatus(project),
+          scope: localizeList(project, "scope"),
+          tech: localizeList(project, "tech"),
+          contributions: localizeList(project, "contributions"),
+          metrics: project.metrics?.map((metric) => ({
+            label: localize(metric, "label"),
+            value: localize(metric, "value")
+          }))
+        };
+      }),
     [lang]
   );
 
@@ -182,38 +181,41 @@ export default function usePortfolioViewModel({ lang, t }) {
   );
 
   const teamProjects = useMemo(
-    () => localizedProjects.filter((project) => isTeamProject(project)).sort(byLatestPeriod),
+    () =>
+      localizedProjects
+        .filter((project) => project.category === PROJECT_CATEGORY.TEAM)
+        .sort(byLatestPeriod),
+    [localizedProjects]
+  );
+
+  const workProjects = useMemo(
+    () => localizedProjects.filter((project) => project.category === PROJECT_CATEGORY.WORK),
     [localizedProjects]
   );
 
   const workScmProjects = useMemo(
     () =>
-      localizedProjects
-        .filter((project) => !isTeamProject(project) && !isQaProject(project))
+      workProjects
+        .filter((project) => project.track === PROJECT_TRACK.SCM)
         .sort(byLatestPeriod),
-    [localizedProjects]
+    [workProjects]
   );
 
   const workQaProjects = useMemo(
     () =>
-      localizedProjects
-        .filter((project) => !isTeamProject(project) && isQaProject(project))
+      workProjects
+        .filter((project) => project.track === PROJECT_TRACK.QA)
         .sort(byLatestPeriod),
-    [localizedProjects]
+    [workProjects]
   );
 
   const featuredProjects = useMemo(
     () =>
-      workScmProjects
-        .filter((project) => {
-          const koName = (project.name ?? "").toLowerCase();
-          const enName = (project.nameEn ?? "").toLowerCase();
-          return FEATURED_PROJECT_KEYWORDS.some(
-            (keyword) => koName.includes(keyword) || enName.includes(keyword)
-          );
-        })
+      workProjects
+        .filter((project) => project.isFeatured)
+        .sort(byLatestPeriod)
         .slice(0, 2),
-    [workScmProjects]
+    [workProjects]
   );
 
   const projectCardLabels = useMemo(

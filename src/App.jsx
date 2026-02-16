@@ -1,9 +1,13 @@
 import { useMemo, useState } from "react";
 import HeroDecorStrip from "./components/HeroDecorStrip";
 import Icon from "./components/Icon";
-import ProjectCard from "./components/ProjectCard";
-import SectionHead from "./components/SectionHead";
-import TimelineGroup from "./components/TimelineGroup";
+import ContactSection from "./components/sections/ContactSection";
+import ExperienceSection from "./components/sections/ExperienceSection";
+import FocusSection from "./components/sections/FocusSection";
+import HighlightsSection from "./components/sections/HighlightsSection";
+import ProjectsSection from "./components/sections/ProjectsSection";
+import StackSection from "./components/sections/StackSection";
+import SummarySection from "./components/sections/SummarySection";
 import { TEXT } from "./data/portfolioText";
 import useActiveSection from "./hooks/useActiveSection";
 import usePortfolioViewModel from "./hooks/usePortfolioViewModel";
@@ -19,31 +23,8 @@ const NAV_ICON_BY_SECTION = {
   contact: "mail"
 };
 
-const STACK_TECH_LOGOS = {
-  Java: "☕",
-  "Spring Boot": "🌱",
-  JPA: "JPA",
-  MyBatis: "MB",
-  Oracle: "OR",
-  PostgreSQL: "🐘",
-  MySQL: "🐬",
-  "AWS EC2": "EC2",
-  "AWS RDS": "RDS",
-  "AWS S3": "S3",
-  Docker: "🐳",
-  Jenkins: "JK",
-  "GitLab CI": "GL",
-  Git: "Git",
-  GitLab: "GL",
-  Jira: "JR",
-  JavaScript: "JS",
-  Polymer: "PL",
-  React: "⚛"
-};
-
 export default function App() {
   const [lang, setLang] = useState("ko");
-  const [collapsedProjects, setCollapsedProjects] = useState({});
   const year = useMemo(() => new Date().getFullYear(), []);
   const t = TEXT[lang];
 
@@ -77,49 +58,7 @@ export default function App() {
     [localizedProfile.email, subject, body]
   );
 
-  const getProjectKey = (project) => project.id ?? `${project.name}|${project.period}`;
-  const isProjectCollapsed = (project) => (isMobile ? collapsedProjects[getProjectKey(project)] !== false : false);
-  const toggleProjectCollapse = (project) => {
-    const key = getProjectKey(project);
-    setCollapsedProjects((prev) => ({ ...prev, [key]: !(prev[key] !== false) }));
-  };
-
   const toggleLang = () => setLang((prev) => (prev === "ko" ? "en" : "ko"));
-
-  const filteredWorkScmProjects = useMemo(() => {
-    const featuredProjectIds = new Set(featuredProjects.map((project) => project.id));
-    return workScmProjects.filter((project) => !featuredProjectIds.has(project.id));
-  }, [featuredProjects, workScmProjects]);
-  const workProjectTotal = filteredWorkScmProjects.length + workQaProjects.length;
-
-  const renderProjectCards = (projects, className) => (
-    <div className={className}>
-      {projects.map((project) => (
-        <ProjectCard
-          key={project.id}
-          project={project}
-          labels={projectCardLabels}
-          collapsible={isMobile}
-          collapsed={isProjectCollapsed(project)}
-          onToggleCollapse={() => toggleProjectCollapse(project)}
-        />
-      ))}
-    </div>
-  );
-
-  const renderProjectGroup = ({ title, subtitle, projects }) => (
-    <>
-      <div className="project-subhead">
-        <h3>{title}</h3>
-        {subtitle ? <p>{subtitle}</p> : null}
-      </div>
-      {projects.length ? (
-        renderProjectCards(projects, "project-grid")
-      ) : (
-        <p className="empty-state panel">{t.projectEmpty}</p>
-      )}
-    </>
-  );
 
   return (
     <>
@@ -201,181 +140,28 @@ export default function App() {
           </div>
         </section>
 
-        <section id="summary" className="section section-summary reveal d3">
-          <SectionHead
-            label={t.summaryLabel}
-            title={t.summaryTitle}
-            subtitle={t.summarySubtitle}
-            icon="route"
-          />
-          <div className="metric-grid">
-            {localizedMetrics.map((item) => (
-              <article key={item.label} className="metric-card panel">
-                <div className="badge"><Icon type={item.icon} /></div>
-                <p>{item.label}</p>
-                <strong>{item.value}</strong>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="focus" className="section section-focus reveal d4">
-          <SectionHead
-            label={t.focusLabel}
-            title={t.focusTitle}
-            subtitle={t.focusSubtitle}
-            icon="link"
-          />
-          <div className="focus-grid">
-            {localizedFocus.map((item, index) => (
-              <article key={item.title} className={`focus-card c${index + 1} panel`}>
-                <h3><Icon type={item.icon} />{item.title}</h3>
-                <p>{item.desc}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="highlights" className="section section-highlights reveal d4">
-          <SectionHead
-            label={t.highlightsLabel}
-            title={t.highlightsTitle}
-            subtitle={t.highlightsSubtitle}
-            icon="shield"
-          />
-          <div className="metric-grid">
-            {localizedHighlights.map((item) => (
-              <article key={item.title} className="metric-card panel">
-                <div className="badge"><Icon type={item.icon} /></div>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="projects" className="section section-projects reveal d4">
-          <SectionHead
-            label={t.projectsLabel}
-            title={t.projectsTitle}
-            subtitle={t.projectsSubtitle}
-            icon="box"
-          />
-          <div className="featured-head">
-            <div>
-              <h3>{t.featuredHead}</h3>
-              <p>{t.featuredSub}</p>
-            </div>
-          </div>
-          {featuredProjects.length ? (
-            renderProjectCards(featuredProjects, "featured-grid")
-          ) : (
-            <p className="empty-state panel">{t.projectEmpty}</p>
-          )}
-
-          <div className="work-project-shell panel">
-            <div className="project-subhead project-group-head">
-              <h3>{t.workHead}</h3>
-              <p>{t.workSub}</p>
-            </div>
-            <div className="work-project-overview" aria-label={t.workHead}>
-              <span className="work-project-pill">
-                {t.scmHead}
-                <strong>{filteredWorkScmProjects.length}</strong>
-              </span>
-              <span className="work-project-pill">
-                {t.qaHead}
-                <strong>{workQaProjects.length}</strong>
-              </span>
-              <span className="work-project-pill total">
-                {t.workHead}
-                <strong>{workProjectTotal}</strong>
-              </span>
-            </div>
-            <div className="work-project-shell-body">
-              {renderProjectGroup({
-                title: t.scmHead,
-                subtitle: t.scmSub,
-                projects: filteredWorkScmProjects
-              })}
-              {renderProjectGroup({
-                title: t.qaHead,
-                subtitle: t.qaSub,
-                projects: workQaProjects
-              })}
-            </div>
-          </div>
-          {renderProjectGroup({
-            title: t.teamHead,
-            subtitle: t.teamSub,
-            projects: teamProjects
-          })}
-        </section>
-
-        <section id="stack" className="section section-stack reveal d5">
-          <SectionHead
-            label={t.stackLabel}
-            title={t.stackTitle}
-            subtitle={t.stackSubtitle}
-            icon="server"
-          />
-          <div className="stack-grid">
-            {localizedStack.map((group) => (
-              <article key={group.title} className="stack-card panel">
-                <h3><Icon type={group.icon} />{group.title}</h3>
-                <ul>
-                  {group.items.map((item) => (
-                    <li key={item}>
-                      <span className="stack-tech-logo" aria-hidden="true">{STACK_TECH_LOGOS[item] ?? "•"}</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="experience" className="section section-experience reveal d5">
-          <SectionHead
-            label={t.experienceLabel}
-            title={t.experienceTitle}
-            subtitle={t.experienceSubtitle}
-            icon="clock"
-          />
-          <div className="timeline-groups">
-            <TimelineGroup title={t.timelineTitles.work} items={localizedExperience} />
-            <TimelineGroup title={t.timelineTitles.education} items={localizedEducation} />
-            <TimelineGroup title={t.timelineTitles.training} items={localizedTraining} />
-            <TimelineGroup
-              title={t.timelineTitles.awards}
-              items={localizedAwards}
-              showOrganizationInHeading={false}
-            />
-            <TimelineGroup
-              title={t.timelineTitles.certifications}
-              items={localizedCertifications}
-              showOrganizationInHeading={false}
-            />
-          </div>
-        </section>
-
-        <section id="contact" className="section section-contact reveal d6">
-          <article className="contact-card panel">
-            <p>{t.contactLabel}</p>
-            <h2><span className="contact-emoji" aria-hidden="true">✉️</span>{localizedProfile.email}</h2>
-            <a className="contact-direct-link" href={localizedProfile.github} target="_blank" rel="noreferrer">
-              <span className="contact-emoji" aria-hidden="true">🐙</span>
-              {localizedProfile.github.replace("https://", "")}
-            </a>
-            <div className="contact-badges" aria-hidden="true">
-              <span className="contact-badge">📨 Quick Reply</span>
-              <span className="contact-badge">🤝 Open to Collaboration</span>
-              <span className="contact-badge">🛠️ Backend Focus</span>
-            </div>
-            <small>{year} · {t.contactFooter}</small>
-          </article>
-        </section>
+        <SummarySection t={t} localizedMetrics={localizedMetrics} />
+        <FocusSection t={t} localizedFocus={localizedFocus} />
+        <HighlightsSection t={t} localizedHighlights={localizedHighlights} />
+        <ProjectsSection
+          t={t}
+          featuredProjects={featuredProjects}
+          workScmProjects={workScmProjects}
+          workQaProjects={workQaProjects}
+          teamProjects={teamProjects}
+          projectCardLabels={projectCardLabels}
+          isMobile={isMobile}
+        />
+        <StackSection t={t} localizedStack={localizedStack} />
+        <ExperienceSection
+          t={t}
+          localizedExperience={localizedExperience}
+          localizedEducation={localizedEducation}
+          localizedTraining={localizedTraining}
+          localizedAwards={localizedAwards}
+          localizedCertifications={localizedCertifications}
+        />
+        <ContactSection t={t} localizedProfile={localizedProfile} year={year} />
       </main>
       <button
         type="button"

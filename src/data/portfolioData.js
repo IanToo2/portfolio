@@ -256,8 +256,23 @@ export const CERTIFICATIONS = [
     ]
   }
 ];
+
+export const PROJECT_CATEGORY = Object.freeze({
+  WORK: "work",
+  TEAM: "team"
+});
+
+export const PROJECT_TRACK = Object.freeze({
+  SCM: "scm",
+  QA: "qa",
+  TEAM: "team"
+});
+
 export const PROJECTS = [
   {
+    category: PROJECT_CATEGORY.WORK,
+    track: PROJECT_TRACK.SCM,
+    isFeatured: true,
     name: "Spigen Korea 신규 SCM 프로젝트 구축",
     nameEn: "Spigen Korea New SCM Development",
     period: "2024.10 - 2025.03",
@@ -297,6 +312,9 @@ export const PROJECTS = [
     isPending: false
   },
   {
+    category: PROJECT_CATEGORY.WORK,
+    track: PROJECT_TRACK.SCM,
+    isFeatured: true,
     name: "CJ Freshway SCM 컨버전 프로젝트",
     nameEn: "CJ Freshway SCM Conversion Project",
     period: "2025.05 - 2025.09",
@@ -336,6 +354,9 @@ export const PROJECTS = [
     isPending: false
   },
   {
+    category: PROJECT_CATEGORY.TEAM,
+    track: PROJECT_TRACK.TEAM,
+    isFeatured: false,
     name: "말랑(Mallang) 팀 프로젝트",
     nameEn: "Mallang Team Project",
     period: "2024.07 - 2024.08",
@@ -383,6 +404,9 @@ export const PROJECTS = [
     isPending: false
   },
   {
+    category: PROJECT_CATEGORY.TEAM,
+    track: PROJECT_TRACK.TEAM,
+    isFeatured: false,
     name: "TravelLog 프로젝트",
     nameEn: "TravelLog Project",
     period: "2024.05 - 2024.05",
@@ -434,6 +458,9 @@ export const PROJECTS = [
     isPending: false
   },
   {
+    category: PROJECT_CATEGORY.WORK,
+    track: PROJECT_TRACK.QA,
+    isFeatured: false,
     name: "S-OIL SCM QA 테스트",
     nameEn: "S-OIL SCM QA Testing",
     period: "2025.11",
@@ -463,6 +490,9 @@ export const PROJECTS = [
     isPending: true
   },
   {
+    category: PROJECT_CATEGORY.WORK,
+    track: PROJECT_TRACK.SCM,
+    isFeatured: false,
     name: "SCHNEIDER POC 프로젝트",
     nameEn: "SCHNEIDER PoC Project",
     period: "2025.10 - 2025.11",
@@ -486,6 +516,9 @@ export const PROJECTS = [
     isPending: true
   },
   {
+    category: PROJECT_CATEGORY.WORK,
+    track: PROJECT_TRACK.SCM,
+    isFeatured: false,
     name: "SMARTSUITE 1.0 수출입 모듈 개발",
     nameEn: "SMARTSUITE 1.0 Import/Export Module",
     period: "2025.12 - 2026.02",
