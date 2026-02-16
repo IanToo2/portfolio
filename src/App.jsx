@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Icon from "./components/Icon";
 import ContactSection from "./components/sections/ContactSection";
 import ExperienceSection from "./components/sections/ExperienceSection";
@@ -8,6 +8,7 @@ import StackSection from "./components/sections/StackSection";
 import SummarySection from "./components/sections/SummarySection";
 import { TEXT } from "./data/portfolioText";
 import useActiveSection from "./hooks/useActiveSection";
+import usePortfolioPdfExport from "./hooks/usePortfolioPdfExport";
 import usePortfolioViewModel from "./hooks/usePortfolioViewModel";
 import useViewportFlags from "./hooks/useViewportFlags";
 
@@ -46,6 +47,10 @@ export default function App() {
   const { showTopButton, isMobile } = useViewportFlags();
   const sectionIds = useMemo(() => localizedNavItems.map((item) => item.id), [localizedNavItems]);
   const { activeSection, setActiveSection } = useActiveSection(sectionIds);
+  const handlePdfExportError = useCallback(() => {
+    window.alert(t.pdfExportError);
+  }, [t.pdfExportError]);
+  const { isExportingPdf, exportPortfolioPdf } = usePortfolioPdfExport({ onError: handlePdfExportError });
 
   const toggleLang = () => setLang((prev) => (prev === "ko" ? "en" : "ko"));
 
@@ -156,7 +161,13 @@ export default function App() {
           localizedAwards={localizedAwards}
           localizedCertifications={localizedCertifications}
         />
-        <ContactSection t={t} localizedProfile={localizedProfile} year={year} />
+        <ContactSection
+          t={t}
+          localizedProfile={localizedProfile}
+          year={year}
+          onExportPdf={exportPortfolioPdf}
+          isExportingPdf={isExportingPdf}
+        />
       </main>
       <button
         type="button"

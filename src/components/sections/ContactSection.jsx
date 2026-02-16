@@ -1,4 +1,4 @@
-export default function ContactSection({ t, localizedProfile, year }) {
+export default function ContactSection({ t, localizedProfile, year, onExportPdf, isExportingPdf }) {
   return (
     <section id="contact" className="section section-contact reveal d6">
       <article className="contact-card panel">
@@ -13,6 +13,11 @@ export default function ContactSection({ t, localizedProfile, year }) {
             <span className="contact-link-label">{t.contactEmail}</span>
             <span className="contact-link-value">{localizedProfile.github.replace("https://", "")}</span>
           </a>
+        </div>
+        <div className="contact-actions">
+          <button className="contact-pdf-btn" type="button" onClick={onExportPdf} disabled={isExportingPdf}>
+            {isExportingPdf ? t.pdfExportLoading : t.pdfExportLabel}
+          </button>
         </div>
         <small>{year}</small>
       </article>

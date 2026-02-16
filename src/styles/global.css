@@ -1119,6 +1119,36 @@ a {
   gap: 0.62rem;
 }
 
+.contact-actions {
+  margin-top: 0.72rem;
+}
+
+.contact-pdf-btn {
+  appearance: none;
+  border: 1px solid rgba(37, 99, 235, 0.3);
+  border-radius: 999px;
+  background: rgba(37, 99, 235, 0.1);
+  color: #1d4ed8;
+  padding: 0.48rem 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+
+.contact-pdf-btn:hover,
+.contact-pdf-btn:focus-visible {
+  border-color: rgba(37, 99, 235, 0.48);
+  background: rgba(37, 99, 235, 0.14);
+  transform: translateY(-1px);
+}
+
+.contact-pdf-btn:disabled {
+  opacity: 0.66;
+  cursor: wait;
+  transform: none;
+}
+
 .contact-link {
   border: 1px solid rgba(37, 99, 235, 0.24);
   border-radius: 14px;
@@ -1188,6 +1218,62 @@ a {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
+}
+
+body.is-exporting-pdf {
+  background: #ffffff;
+}
+
+body.is-exporting-pdf .topbar,
+body.is-exporting-pdf .to-top,
+body.is-exporting-pdf .contact-actions {
+  display: none !important;
+}
+
+body.is-exporting-pdf .bg-layer,
+body.is-exporting-pdf .grain {
+  opacity: 0 !important;
+}
+
+body.is-exporting-pdf .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+body.is-exporting-pdf * {
+  transition: none !important;
+}
+
+body.is-exporting-pdf .hero-actions {
+  display: none !important;
+}
+
+body.is-exporting-pdf .hero h1 .hero-title {
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  color: #1d4ed8 !important;
+}
+
+body.is-exporting-pdf .panel,
+body.is-exporting-pdf .hero-panel,
+body.is-exporting-pdf .section,
+body.is-exporting-pdf .featured-grid .project-card,
+body.is-exporting-pdf .work-project-shell,
+body.is-exporting-pdf .project-subhead,
+body.is-exporting-pdf .focus-card.c1,
+body.is-exporting-pdf .focus-card.c2,
+body.is-exporting-pdf .focus-card.c3,
+body.is-exporting-pdf .contact-card {
+  background: #ffffff !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+body.is-exporting-pdf .stack-card::before,
+body.is-exporting-pdf .section::before {
+  opacity: 0.35;
 }
 
 .reveal {
