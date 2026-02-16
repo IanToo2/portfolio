@@ -336,8 +336,8 @@ export const PROJECTS = [
     isPending: false
   },
   {
-    name: "TravelLog_BE 팀 프로젝트",
-    nameEn: "TravelLog_BE Team Project",
+    name: "TravelLog 프로젝트",
+    nameEn: "TravelLog Project",
     period: "2024.05 - 2024.05",
     periodEn: "May 2024 - May 2024",
     kind: "팀 프로젝트",
