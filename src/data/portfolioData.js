@@ -144,11 +144,13 @@ export const TRAINING = [
     titleEn: "Software Education Program",
     bullets: [
       "2024년 1월 ~ 9월 수료",
-      "교육 과정 중 2회 수상"
+      "2회 수상",
+      "팀 프로젝트 2회 진행"
     ],
     bulletsEn: [
       "Completed in Jan 2024 - Sep 2024",
-      "Received two awards during the training program."
+      "Received two awards.",
+      "Completed two team projects."
     ]
   }
 ];
