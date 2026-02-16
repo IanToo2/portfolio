@@ -142,8 +142,14 @@ export const TRAINING = [
     organizationEn: "Samsung Youth Software Academy (SSAFY)",
     title: "교육과정",
     titleEn: "Software Education Program",
-    bullets: ["2024년 1월 ~ 9월 수료"],
-    bulletsEn: ["Completed in Jan 2024 - Sep 2024"]
+    bullets: [
+      "2024년 1월 ~ 9월 수료",
+      "교육 과정 중 2회 수상"
+    ],
+    bulletsEn: [
+      "Completed in Jan 2024 - Sep 2024",
+      "Received two awards during the training program."
+    ]
   }
 ];
 
@@ -156,10 +162,10 @@ export const AWARDS = [
     title: "교육 과정 수상",
     titleEn: "Awards During Training",
     bullets: [
-      "SSAFY 교육 과정 중 2회 수상"
+      "상 이름은 추후 추가 예정"
     ],
     bulletsEn: [
-      "Received two awards during the SSAFY training program."
+      "Exact award names will be added later."
     ]
   }
 ];
