@@ -3,7 +3,6 @@ const DEFAULT_LABELS = {
   scopeLabel: "Scope",
   technologiesLabel: "Tech Stack",
   contributionsLabel: "Key Contributions",
-  metricsLabel: "Metrics",
   statusDone: "Completed",
   statusPending: "In Progress",
   collapseLabel: "Collapse",
@@ -47,19 +46,6 @@ export default function ProjectCard({
               <li key={contribution}>{contribution}</li>
             ))}
           </ul>
-          {Array.isArray(project.metrics) && project.metrics.length ? (
-            <div className="project-metrics">
-              <p className="project-metrics-title">{labels.metricsLabel ?? "Metrics"}</p>
-              <div className="project-metrics-grid">
-                {project.metrics.map((metric) => (
-                  <div key={`${metric.label}-${metric.value}`} className="project-metric-item">
-                    <span>{metric.label}</span>
-                    <strong>{metric.value}</strong>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ) : null}
         </>
       ) : null}
       <div className="project-status-wrap">
