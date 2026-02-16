@@ -161,13 +161,15 @@ export const AWARDS = [
     periodEn: "Jan 2024 - Sep 2024",
     organization: "삼성청년소프트웨어아카데미(SSAFY)",
     organizationEn: "Samsung Youth Software Academy (SSAFY)",
-    title: "교육 과정 수상",
-    titleEn: "Awards During Training",
+    title: "우수상 / 최우수상",
+    titleEn: "Excellence Award / Grand Prize",
     bullets: [
-      "상 이름은 추후 추가 예정"
+      "우수상",
+      "최우수상"
     ],
     bulletsEn: [
-      "Exact award names will be added later."
+      "Excellence Award",
+      "Grand Prize"
     ]
   }
 ];
