@@ -48,6 +48,20 @@ const resolvePendingStatus = (project) => {
   return endOfMonth >= new Date();
 };
 
+const resolveTenureYearLabel = (tenureStart, lang) => {
+  const match = String(tenureStart ?? "").match(/^(20\d{2})-(0[1-9]|1[0-2])$/);
+  if (!match) return null;
+
+  const startYear = Number(match[1]);
+  const startMonth = Number(match[2]);
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const currentMonth = now.getMonth() + 1;
+  const monthDiff = (currentYear - startYear) * 12 + (currentMonth - startMonth);
+  const tenureYear = Math.floor(Math.max(0, monthDiff) / 12) + 1;
+  return lang === "en" ? `Year ${tenureYear}` : `${tenureYear}년차`;
+};
+
 export default function usePortfolioViewModel({ lang, t }) {
   const localize = (item, field, fallbackField = field) =>
     lang === "en" ? item[`${field}En`] ?? item[fallbackField] : item[field];
@@ -92,7 +106,11 @@ export default function usePortfolioViewModel({ lang, t }) {
       METRICS.map((item) => ({
         ...item,
         label: localize(item, "label"),
-        value: localize(item, "value")
+        value: (() => {
+          const baseValue = localize(item, "value");
+          const tenureLabel = resolveTenureYearLabel(item.tenureStart, lang);
+          return tenureLabel ? `${baseValue} (${tenureLabel})` : baseValue;
+        })()
       })),
     [lang]
   );

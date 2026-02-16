@@ -1,46 +1,107 @@
-import { useMemo } from "react";
-
-const RASTER_ICON_CONFIG = {
-  spark: { token: "GO", colors: ["#fef9c3", "#fde047"], stroke: "#a16207" },
-  target: { token: "AIM", colors: ["#fee2e2", "#fecaca"], stroke: "#b91c1c" },
-  timeline: { token: "LOG", colors: ["#e0e7ff", "#c7d2fe"], stroke: "#4338ca" },
-  mail: { token: "MAIL", colors: ["#dbeafe", "#bfdbfe"], stroke: "#1e40af" }
-};
-
-const EMOJI_ICONS = {
-  clock: "⏱️",
-  building: "🏢",
-  box: "📦",
-  cloud: "☁️",
-  gear: "⚙️",
-  team: "🤝",
-  layout: "🧩"
-};
-
-const GLYPH_ICONS = {
-  server: "API",
-  database: "DB",
-  sql: "SQL"
-};
-
 const SVG_ICONS = {
+  dot: <circle cx="12" cy="12" r="2.1" fill="currentColor" stroke="none" />,
+  spark: (
+    <>
+      <path d="M12 3.5 14 8l4.5 2-4.5 2-2 4.5-2-4.5-4.5-2L10 8l2-4.5Z" />
+      <path d="m18.5 4 .6 1.3L20.5 6l-1.4.7-.6 1.3-.6-1.3-1.4-.7 1.4-.7.6-1.3Z" />
+    </>
+  ),
+  target: (
+    <>
+      <circle cx="12" cy="12" r="7.4" />
+      <circle cx="12" cy="12" r="4.2" />
+      <circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none" />
+    </>
+  ),
+  timeline: (
+    <>
+      <path d="M6 5.5v13M18 5.5v13" />
+      <circle cx="6" cy="8" r="1.5" fill="currentColor" stroke="none" />
+      <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" />
+      <circle cx="18" cy="16" r="1.5" fill="currentColor" stroke="none" />
+      <path d="M7.8 8h2.7m2.7 4h2.7" />
+    </>
+  ),
+  mail: (
+    <>
+      <rect x="4.2" y="6.2" width="15.6" height="11.6" rx="2.3" />
+      <path d="m5.4 7.7 6.6 5 6.6-5" />
+    </>
+  ),
+  clock: (
+    <>
+      <circle cx="12" cy="12" r="7.8" />
+      <path d="M12 8.2v4.4l3.1 1.9" />
+    </>
+  ),
+  building: (
+    <>
+      <rect x="6" y="4.5" width="12" height="15" rx="1.8" />
+      <path d="M9 8h.01M12 8h.01M15 8h.01M9 11h.01M12 11h.01M15 11h.01M9 14h.01M12 14h.01M15 14h.01" />
+      <path d="M11 19.5v-2.8h2v2.8" />
+    </>
+  ),
+  box: (
+    <>
+      <path d="m12 4.2 7.2 3.9v7.8L12 19.8 4.8 15.9V8.1L12 4.2Z" />
+      <path d="m12 11.1 7.2-3.9M12 11.1 4.8 7.2M12 11.1v8.7" />
+    </>
+  ),
+  cloud: (
+    <>
+      <path d="M8.6 18a4 4 0 1 1 .7-7.9 4.8 4.8 0 0 1 9.2 1.5A3.3 3.3 0 0 1 18 18H8.6Z" />
+    </>
+  ),
+  gear: (
+    <>
+      <circle cx="12" cy="12" r="2.6" />
+      <path d="m12 4.6.8 1.7 1.8.3.9-1.6 1.8 1-.4 1.8 1.3 1.2 1.7-.7.9 1.8-1.6.9.1 1.8 1.6.9-.9 1.8-1.7-.7-1.3 1.2.4 1.8-1.8 1-.9-1.6-1.8.3-.8 1.7h-2l-.8-1.7-1.8-.3-.9 1.6-1.8-1 .4-1.8-1.3-1.2-1.7.7-.9-1.8 1.6-.9-.1-1.8-1.6-.9.9-1.8 1.7.7 1.3-1.2-.4-1.8 1.8-1 .9 1.6 1.8-.3.8-1.7Z" />
+    </>
+  ),
+  team: (
+    <>
+      <circle cx="8.3" cy="9" r="2.3" />
+      <circle cx="15.7" cy="9" r="2.3" />
+      <path d="M4.8 17.6a3.8 3.8 0 0 1 3.5-3h8.2a3.8 3.8 0 0 1 3.5 3" />
+    </>
+  ),
+  layout: (
+    <>
+      <rect x="4.5" y="5" width="15" height="14" rx="2.2" />
+      <path d="M10.5 5v14M10.5 10.3h9" />
+    </>
+  ),
+  server: (
+    <>
+      <rect x="4.6" y="5.2" width="14.8" height="5.2" rx="1.6" />
+      <rect x="4.6" y="13.6" width="14.8" height="5.2" rx="1.6" />
+      <path d="M8 7.9h.01M8 16.3h.01M12 7.9h4M12 16.3h4" />
+    </>
+  ),
+  database: (
+    <>
+      <ellipse cx="12" cy="6.9" rx="5.7" ry="2.5" />
+      <path d="M6.3 7v4.6c0 1.4 2.6 2.5 5.7 2.5s5.7-1.1 5.7-2.5V7" />
+      <path d="M6.3 11.4V16c0 1.4 2.6 2.5 5.7 2.5s5.7-1.1 5.7-2.5v-4.6" />
+    </>
+  ),
   route: (
     <>
-      <circle cx="6" cy="6" r="2" />
-      <circle cx="18" cy="18" r="2" />
-      <path d="M8 6h4a3 3 0 0 1 3 3v3a2 2 0 0 0 2 2h1" />
+      <circle cx="6.1" cy="6.1" r="2.1" />
+      <circle cx="17.9" cy="17.9" r="2.1" />
+      <path d="M8.4 6.1h3.7a3 3 0 0 1 3 3V13a2.6 2.6 0 0 0 2.6 2.6h.2" />
     </>
   ),
   link: (
     <>
-      <path d="M10 14a3 3 0 0 1 0-4l2-2a3 3 0 0 1 4 4l-1 1" />
-      <path d="M14 10a3 3 0 0 1 0 4l-2 2a3 3 0 0 1-4-4l1-1" />
+      <path d="M10 14a3.2 3.2 0 0 1 0-4.5l2.2-2.2a3.2 3.2 0 1 1 4.5 4.5l-1 1" />
+      <path d="M14 10a3.2 3.2 0 0 1 0 4.5l-2.2 2.2a3.2 3.2 0 1 1-4.5-4.5l1-1" />
     </>
   ),
   shield: (
     <>
-      <path d="M12 3 5 6v5c0 4.4 3 8 7 10 4-2 7-5.6 7-10V6l-7-3Z" />
-      <path d="m9.5 12 1.8 1.8 3.2-3.2" />
+      <path d="M12 3.4 5.2 6.2v4.9c0 4.4 2.8 7.7 6.8 9.5 4-1.8 6.8-5.1 6.8-9.5V6.2L12 3.4Z" />
+      <path d="m9.5 11.9 1.8 1.8 3.3-3.3" />
     </>
   )
 };
@@ -52,95 +113,10 @@ const commonSvgProps = {
   strokeWidth: "1.8",
   strokeLinecap: "round",
   strokeLinejoin: "round",
-  className: "icon icon-svg"
+  className: "icon icon-svg",
+  "aria-hidden": "true"
 };
 
-const rasterCache = new Map();
-
-function drawRoundedRect(ctx, x, y, width, height, radius) {
-  ctx.beginPath();
-  ctx.moveTo(x + radius, y);
-  ctx.lineTo(x + width - radius, y);
-  ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-  ctx.lineTo(x + width, y + height - radius);
-  ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-  ctx.lineTo(x + radius, y + height);
-  ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-  ctx.lineTo(x, y + radius);
-  ctx.quadraticCurveTo(x, y, x + radius, y);
-  ctx.closePath();
-}
-
-function createRasterIcon(type) {
-  if (rasterCache.has(type)) {
-    return rasterCache.get(type);
-  }
-  if (typeof document === "undefined") {
-    return null;
-  }
-
-  const config = RASTER_ICON_CONFIG[type];
-  if (!config) {
-    return null;
-  }
-
-  const canvas = document.createElement("canvas");
-  canvas.width = 48;
-  canvas.height = 48;
-
-  const ctx = canvas.getContext("2d");
-  if (!ctx) {
-    return null;
-  }
-
-  const gradient = ctx.createLinearGradient(0, 0, 48, 48);
-  gradient.addColorStop(0, config.colors[0]);
-  gradient.addColorStop(1, config.colors[1]);
-
-  drawRoundedRect(ctx, 2, 2, 44, 44, 12);
-  ctx.fillStyle = gradient;
-  ctx.fill();
-  ctx.lineWidth = 2;
-  ctx.strokeStyle = config.stroke;
-  ctx.stroke();
-
-  ctx.beginPath();
-  ctx.arc(36, 12, 6, 0, Math.PI * 2);
-  ctx.fillStyle = "rgba(255,255,255,0.42)";
-  ctx.fill();
-
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.font = "700 12px Manrope, 'Noto Sans KR', sans-serif";
-  ctx.fillStyle = "#0f172a";
-  ctx.fillText(config.token, 24, 26);
-
-  const raster = canvas.toDataURL("image/png");
-  rasterCache.set(type, raster);
-  return raster;
-}
-
 export default function Icon({ type }) {
-  const rasterIcon = useMemo(() => createRasterIcon(type), [type]);
-
-  if (RASTER_ICON_CONFIG[type]) {
-    if (rasterIcon) {
-      return <img className="icon icon-raster" src={rasterIcon} alt="" aria-hidden="true" />;
-    }
-    return <span className="icon icon-glyph" aria-hidden="true">{RASTER_ICON_CONFIG[type].token}</span>;
-  }
-
-  if (GLYPH_ICONS[type]) {
-    return <span className="icon icon-glyph" aria-hidden="true">{GLYPH_ICONS[type]}</span>;
-  }
-
-  if (EMOJI_ICONS[type]) {
-    return <span className="icon icon-emoji" aria-hidden="true">{EMOJI_ICONS[type]}</span>;
-  }
-
-  if (SVG_ICONS[type]) {
-    return <svg {...commonSvgProps}>{SVG_ICONS[type]}</svg>;
-  }
-
-  return <span className="icon icon-emoji" aria-hidden="true">+</span>;
+  return <svg {...commonSvgProps}>{SVG_ICONS[type] ?? SVG_ICONS.dot}</svg>;
 }

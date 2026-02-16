@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react";
-import HeroDecorStrip from "./components/HeroDecorStrip";
 import Icon from "./components/Icon";
 import ContactSection from "./components/sections/ContactSection";
 import ExperienceSection from "./components/sections/ExperienceSection";
@@ -48,13 +47,6 @@ export default function App() {
   const sectionIds = useMemo(() => localizedNavItems.map((item) => item.id), [localizedNavItems]);
   const { activeSection, setActiveSection } = useActiveSection(sectionIds);
 
-  const subject = encodeURIComponent(t.projectCard.copySubject);
-  const body = encodeURIComponent(t.projectCard.copyBody);
-  const mailTo = useMemo(
-    () => `mailto:${localizedProfile.email}?subject=${subject}&body=${body}`,
-    [localizedProfile.email, subject, body]
-  );
-
   const toggleLang = () => setLang((prev) => (prev === "ko" ? "en" : "ko"));
 
   return (
@@ -64,7 +56,18 @@ export default function App() {
       <div className="grain" aria-hidden="true" />
 
       <header className="topbar reveal d1">
-        <a className="logo" href="#top"><span>KJI</span></a>
+        <a className="logo" href="#top" aria-label={`${localizedProfile.name} portfolio home`}>
+          <span className="logo-mark" aria-hidden="true">
+            <svg className="logo-mark-svg" viewBox="0 0 24 24" fill="none">
+              <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+              <path d="m8.2 15.8 3.1-7 3.1 7m-4.4-2.5h2.6M15.8 8.8v6.9m0 0h2.4" />
+            </svg>
+          </span>
+          <span className="logo-wordmark">
+            <strong>{localizedProfile.name}</strong>
+            <small>{localizedProfile.role} · {localizedProfile.domain}</small>
+          </span>
+        </a>
         <div className="topbar-right">
           <nav className="menu">
             {localizedNavItems.map((item) => (
@@ -74,7 +77,7 @@ export default function App() {
                 className={activeSection === item.id ? "active" : ""}
                 onClick={() => setActiveSection(item.id)}
               >
-                <span className="menu-emoji" aria-hidden="true">
+                <span className="menu-icon" aria-hidden="true">
                   <Icon type={NAV_ICON_BY_SECTION[item.id] ?? "spark"} />
                 </span>
                 <span className="menu-label">{item.label}</span>
@@ -99,13 +102,9 @@ export default function App() {
               <p className="hero-copy">{localizedProfile.intro}</p>
               <div className="hero-actions">
                 <a className="btn primary" href="#projects">{t.heroActionProjects}</a>
-                <a className="btn ghost" href="#contact">{t.heroActionContact}</a>
-                <a className="btn ghost" href={mailTo}>
-                  {t.heroActionMail}
-                </a>
+                <a className="btn ghost" href="#experience">{t.heroActionExperience}</a>
+                <a className="btn ghost" href="#stack">{t.heroActionStack}</a>
               </div>
-              <p className="hero-tag">{localizedProfile.tagline}</p>
-              <HeroDecorStrip />
             </div>
 
             <aside className="hero-panel panel">

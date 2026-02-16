@@ -1,27 +1,6 @@
 import Icon from "../Icon";
 import SectionHead from "../SectionHead";
-
-const STACK_TECH_LOGOS = {
-  Java: "☕",
-  "Spring Boot": "🌱",
-  JPA: "JPA",
-  MyBatis: "MB",
-  Oracle: "OR",
-  PostgreSQL: "🐘",
-  MySQL: "🐬",
-  "AWS EC2": "EC2",
-  "AWS RDS": "RDS",
-  "AWS S3": "S3",
-  Docker: "🐳",
-  Jenkins: "JK",
-  "GitLab CI": "GL",
-  Git: "Git",
-  GitLab: "GL",
-  Jira: "JR",
-  JavaScript: "JS",
-  Polymer: "PL",
-  React: "⚛"
-};
+import TechLogo from "../TechLogo";
 
 export default function StackSection({ t, localizedStack }) {
   return (
@@ -39,7 +18,7 @@ export default function StackSection({ t, localizedStack }) {
             <ul>
               {group.items.map((item) => (
                 <li key={item}>
-                  <span className="stack-tech-logo" aria-hidden="true">{STACK_TECH_LOGOS[item] ?? "•"}</span>
+                  <TechLogo name={item} />
                   <span>{item}</span>
                 </li>
               ))}

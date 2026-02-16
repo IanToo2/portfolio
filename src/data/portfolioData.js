@@ -1,31 +1,31 @@
 export const PROFILE = {
   name: "김정인",
   nameEn: "KIM Jeong-in",
-  role: "Backend Developer",
-  roleEn: "Backend Developer",
-  domain: "SCM Trade & Logistics",
-  domainEn: "SCM Trade & Logistics",
+  role: "Backend",
+  roleEn: "Backend",
+  domain: "SCM",
+  domainEn: "SCM",
   tagline: "업무 맥락으로 빠르게 구현하고 안정적으로 운영합니다.",
   taglineEn: "I build systems quickly from business context and keep operations stable.",
   intro:
-    "EMRO에서 SCM 무역/물류 도메인을 개발하고 있습니다. 비즈니스 로직을 명확히 설계하고, 운영에서 바로 체감되는 개선을 만드는 데 집중합니다.",
+    "EMRO에서 SCM 도메인을 개발하고 있습니다. 비즈니스 로직을 명확히 설계하고, 운영에서 바로 체감되는 개선을 만드는 데 집중합니다.",
   introEn:
-    "I build backend features in SCM trade and logistics at EMRO, focusing on clear business logic design and improvements that improve day-to-day operations.",
+    "I build backend features in the SCM domain at EMRO, focusing on clear business logic design and improvements that improve day-to-day operations.",
   email: "rlawjddla0203@gmail.com",
   github: "https://github.com/IanToo2"
 };
 
 export const NAV_ITEMS = [
-  { id: "summary", label: "소개", labelEn: "Summary", emoji: "👋" },
-  { id: "highlights", label: "중점 업무", labelEn: "Focus", emoji: "🎯" },
-  { id: "projects", label: "프로젝트", labelEn: "Projects", emoji: "🗂️" },
-  { id: "stack", label: "기술 스택", labelEn: "Skill Set", emoji: "🛠️" },
-  { id: "experience", label: "경력", labelEn: "Experience", emoji: "📌" },
-  { id: "contact", label: "연락", labelEn: "Contact", emoji: "✉️" }
+  { id: "summary", label: "소개", labelEn: "Summary" },
+  { id: "highlights", label: "중점 업무", labelEn: "Focus" },
+  { id: "projects", label: "프로젝트", labelEn: "Projects" },
+  { id: "stack", label: "기술 스택", labelEn: "Skill Set" },
+  { id: "experience", label: "경력", labelEn: "Experience" },
+  { id: "contact", label: "연락", labelEn: "Contact" }
 ];
 
 export const METRICS = [
-  { label: "실무 경력", labelEn: "Years of Experience", value: "2024.09 - 현재", valueEn: "Sep 2024 - Present", icon: "clock" },
+  { label: "실무 경력", labelEn: "Years of Experience", value: "2024.09 - 현재", valueEn: "Sep 2024 - Present", icon: "clock", tenureStart: "2024-09" },
   { label: "현재 소속", labelEn: "Current Company", value: "EMRO", valueEn: "EMRO", icon: "building" },
   { label: "주력 도메인", labelEn: "Primary Domain", value: "SCM", valueEn: "SCM", icon: "box" }
 ];
@@ -108,12 +108,12 @@ export const EXPERIENCE = [
     title: "SCM Developer",
     titleEn: "SCM Developer",
     bullets: [
-      "SCM 무역/물류 기능 신규 개발 및 운영 고도화",
+      "SCM 기능 신규 개발 및 운영 고도화",
       "SAP 연동 데이터 처리 로직 설계 및 안정화",
       "Oracle 기반 쿼리 최적화와 배치 성능 개선"
     ],
     bulletsEn: [
-      "Built and stabilized new SCM trade/logistics features.",
+      "Built and stabilized new SCM features.",
       "Designed and stabilized SAP integration and data processing.",
       "Optimized Oracle queries and improved batch performance."
     ]
