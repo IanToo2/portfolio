@@ -342,17 +342,23 @@ export const PROJECTS = [
     periodEn: "May 2024 - May 2024",
     kind: "팀 프로젝트",
     kindEn: "Team Project",
-    scope: ["개발", "테스트", "리팩토링"],
-    scopeEn: ["Development", "Testing", "Refactoring"],
-    tech: ["Java", "Spring Boot", "Spring Security", "MyBatis", "JWT", "MySQL", "Gradle", "Git", "GitHub"],
-    techEn: ["Java", "Spring Boot", "Spring Security", "MyBatis", "JWT", "MySQL", "Gradle", "Git", "GitHub"],
+    scope: ["설계", "개발", "테스트", "배포", "운영"],
+    scopeEn: ["Design", "Development", "Testing", "Deployment", "Operations"],
+    tech: ["Java", "Spring Boot", "Spring Security", "MyBatis", "JWT", "MySQL (RDS)", "MinIO", "Docker", "Jenkins", "Nginx", "Gradle", "Git", "GitHub"],
+    techEn: ["Java", "Spring Boot", "Spring Security", "MyBatis", "JWT", "MySQL (RDS)", "MinIO", "Docker", "Jenkins", "Nginx", "Gradle", "Git", "GitHub"],
     contributions: [
+      "DB ERD 설계 및 MySQL(RDS) 스키마 설계를 단독 담당",
+      "Docker + Jenkins 기반 배포 파이프라인과 Nginx 리버스 프록시 구성을 단독 담당",
+      "MinIO 기반 객체 스토리지 연동 환경 구성",
       "회원/인증 API 구현: 회원 CRUD, 로그인/로그아웃, 토큰 발급/재발급, 중복체크 및 비밀번호 관련 기능 개발",
       "리뷰 API 구현: 리뷰 CRUD, 작성자/관광지 기준 조회, 리뷰 좋아요 등록/취소/목록/Top 리뷰 기능 개발",
       "MyBatis DAO/DTO 구조 정리 및 리뷰/회원 도메인 버그 수정, CORS/응답 DTO 안정화",
       "팀 이슈 #30 중심으로 리뷰 도메인 기능 확장 및 유지보수"
     ],
     contributionsEn: [
+      "Sole owner of DB ERD design and MySQL (RDS) schema design.",
+      "Sole owner of deployment setup with Docker + Jenkins pipeline and Nginx reverse proxy.",
+      "Set up object storage integration environment based on MinIO.",
       "Implemented member/auth APIs including member CRUD, login/logout, token issue/refresh, duplicate checks, and password flows.",
       "Implemented review APIs including review CRUD, author/content-based queries, review likes add/remove/list, and top review endpoints.",
       "Refined MyBatis DAO/DTO structures and stabilized review/member domain bugs, CORS, and response DTO behavior.",
@@ -370,6 +376,12 @@ export const PROJECTS = [
         labelEn: "Primary contribution domains",
         value: "회원/인증, 리뷰",
         valueEn: "Member/Auth, Review"
+      },
+      {
+        label: "단독 담당",
+        labelEn: "Sole ownership",
+        value: "DB ERD 설계, 배포 파이프라인",
+        valueEn: "DB ERD design, deployment pipeline"
       }
     ],
     isPending: false
