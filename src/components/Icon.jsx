@@ -106,6 +106,29 @@ const SVG_ICONS = {
   )
 };
 
+const DEFAULT_ICON_TYPE = "dot";
+const DEFAULT_ICON_SCALE = 0.92;
+
+const ICON_OPTICAL_SCALE = {
+  dot: 1,
+  spark: 0.9,
+  target: 0.9,
+  timeline: 0.9,
+  mail: 0.92,
+  clock: 0.92,
+  building: 0.92,
+  box: 0.92,
+  cloud: 0.92,
+  gear: 0.88,
+  team: 0.92,
+  layout: 0.92,
+  server: 0.92,
+  database: 0.9,
+  route: 0.88,
+  link: 0.92,
+  shield: 0.9
+};
+
 const commonSvgProps = {
   viewBox: "0 0 24 24",
   fill: "none",
@@ -118,5 +141,13 @@ const commonSvgProps = {
 };
 
 export default function Icon({ type }) {
-  return <svg {...commonSvgProps}>{SVG_ICONS[type] ?? SVG_ICONS.dot}</svg>;
+  const iconType = SVG_ICONS[type] ? type : DEFAULT_ICON_TYPE;
+  const scale = ICON_OPTICAL_SCALE[iconType] ?? DEFAULT_ICON_SCALE;
+  const transform = scale === 1 ? undefined : `translate(12 12) scale(${scale}) translate(-12 -12)`;
+
+  return (
+    <svg {...commonSvgProps}>
+      <g transform={transform}>{SVG_ICONS[iconType]}</g>
+    </svg>
+  );
 }

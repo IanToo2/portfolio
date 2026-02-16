@@ -27,7 +27,7 @@ export const TEXT = {
     teamSub: "교육 과정/취업 준비 시기에 수행한 팀 서비스 개발 프로젝트입니다.",
     projectEmpty: "해당 분류의 프로젝트가 아직 없습니다.",
     stackLabel: "Skill Set",
-    stackTitle: "사용 가능한 기술 스택",
+    stackTitle: "기술 스택",
     stackSubtitle: "백엔드 중심으로 데이터베이스, 배포 파이프라인, 협업 도구를 다룹니다.",
     experienceLabel: "Experience",
     experienceTitle: "경력 및 학습 타임라인",

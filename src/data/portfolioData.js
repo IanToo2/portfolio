@@ -88,7 +88,7 @@ export const STACK = [
     titleEn: "Collaboration",
     icon: "team",
     proficiency: 80,
-    items: ["Git", "GitLab", "Jira"]
+    items: ["Git", "GitHub", "GitLab", "SVN", "Jira"]
   },
   {
     title: "Frontend",
@@ -364,8 +364,8 @@ export const PROJECTS = [
     kindEn: "Team Project",
     scope: ["기획", "설계", "개발", "배포", "운영"],
     scopeEn: ["Planning", "Design", "Development", "Deployment", "Operations"],
-    tech: ["Java 21", "Spring Boot", "Spring Security", "Spring Data JPA", "JWT", "OAuth2", "MariaDB", "Swagger", "Docker", "Jenkins", "AWS EC2", "Nginx", "Git", "GitLab"],
-    techEn: ["Java 21", "Spring Boot", "Spring Security", "Spring Data JPA", "JWT", "OAuth2", "MariaDB", "Swagger", "Docker", "Jenkins", "AWS EC2", "Nginx", "Git", "GitLab"],
+    tech: ["Java 21", "Spring Boot", "Spring Security", "Spring Data JPA", "JWT", "OAuth2", "MariaDB", "Swagger", "Docker", "Jenkins", "AWS EC2", "Nginx", "Git", "GitHub"],
+    techEn: ["Java 21", "Spring Boot", "Spring Security", "Spring Data JPA", "JWT", "OAuth2", "MariaDB", "Swagger", "Docker", "Jenkins", "AWS EC2", "Nginx", "Git", "GitHub"],
     contributions: [
       "백엔드 팀장으로 퀴즈/학습/영역 점령 도메인의 핵심 API 설계 및 구현 주도",
       "퀴즈 결과 집계 로직과 6시간 단위 문제 스케줄링을 구현하고 일일 결산 API 고도화",

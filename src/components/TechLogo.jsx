@@ -2,6 +2,7 @@ import awsLogo from "../assets/logos/tech/aws.svg";
 import dockerLogo from "../assets/logos/tech/docker.svg";
 import genericTechLogo from "../assets/logos/tech/generic-tech.svg";
 import gitLogo from "../assets/logos/tech/git.svg";
+import githubLogo from "../assets/logos/tech/github.svg";
 import gitlabLogo from "../assets/logos/tech/gitlab.svg";
 import javaLogo from "../assets/logos/tech/java.svg";
 import javascriptLogo from "../assets/logos/tech/javascript.svg";
@@ -15,6 +16,7 @@ import polymerLogo from "../assets/logos/tech/polymer.svg";
 import postgresqlLogo from "../assets/logos/tech/postgresql.svg";
 import reactLogo from "../assets/logos/tech/react.svg";
 import springBootLogo from "../assets/logos/tech/springboot.svg";
+import svnLogo from "../assets/logos/tech/svn.svg";
 
 const TECH_LOGO_MAP = {
   Java: javaLogo,
@@ -32,6 +34,8 @@ const TECH_LOGO_MAP = {
   "GitLab CI": gitlabLogo,
   Git: gitLogo,
   GitLab: gitlabLogo,
+  GitHub: githubLogo,
+  SVN: svnLogo,
   Jira: jiraLogo,
   JavaScript: javascriptLogo,
   Polymer: polymerLogo,
