@@ -47,7 +47,7 @@ export default function App() {
     [localizedProfile.email, subject, body]
   );
 
-  const getProjectKey = (project) => `${project.name}|${project.period}`;
+  const getProjectKey = (project) => project.id ?? `${project.name}|${project.period}`;
   const isProjectCollapsed = (project) => (isMobile ? collapsedProjects[getProjectKey(project)] !== false : false);
   const toggleProjectCollapse = (project) => {
     const key = getProjectKey(project);
@@ -56,6 +56,20 @@ export default function App() {
 
   const toggleLang = () => setLang((prev) => (prev === "ko" ? "en" : "ko"));
 
+  const renderProjectCards = (projects, className) => (
+    <div className={className}>
+      {projects.map((project) => (
+        <ProjectCard
+          key={project.id}
+          project={project}
+          labels={projectCardLabels}
+          collapsible={isMobile}
+          collapsed={isProjectCollapsed(project)}
+          onToggleCollapse={() => toggleProjectCollapse(project)}
+        />
+      ))}
+    </div>
+  );
 
   return (
     <>
@@ -218,51 +232,18 @@ export default function App() {
           </div>
           {projectView === "all" ? (
             <>
-              <div className="featured-grid">
-                {featuredProjects.map((project) => (
-                  <ProjectCard
-                    key={project.name}
-                    project={project}
-                    labels={projectCardLabels}
-                    collapsible={isMobile}
-                    collapsed={isProjectCollapsed(project)}
-                    onToggleCollapse={() => toggleProjectCollapse(project)}
-                  />
-                ))}
-              </div>
+              {renderProjectCards(featuredProjects, "featured-grid")}
               {restDevelopmentProjects.length ? (
                 <>
                   <div className="project-subhead">
                     <h3>{t.additionalHead}</h3>
                   </div>
-                  <div className="project-grid">
-                    {restDevelopmentProjects.map((project) => (
-                      <ProjectCard
-                        key={project.name}
-                        project={project}
-                        labels={projectCardLabels}
-                        collapsible={isMobile}
-                        collapsed={isProjectCollapsed(project)}
-                        onToggleCollapse={() => toggleProjectCollapse(project)}
-                      />
-                    ))}
-                  </div>
+                  {renderProjectCards(restDevelopmentProjects, "project-grid")}
                 </>
               ) : null}
             </>
           ) : visibleDevelopmentProjects.length ? (
-            <div className="project-grid">
-              {visibleDevelopmentProjects.map((project) => (
-                <ProjectCard
-                  key={project.name}
-                  project={project}
-                  labels={projectCardLabels}
-                  collapsible={isMobile}
-                  collapsed={isProjectCollapsed(project)}
-                  onToggleCollapse={() => toggleProjectCollapse(project)}
-                />
-              ))}
-            </div>
+            renderProjectCards(visibleDevelopmentProjects, "project-grid")
           ) : (
             <p className="empty-state panel">{t.projectViewEmpty}</p>
           )}
@@ -275,18 +256,7 @@ export default function App() {
             subtitle={t.qaSubtitle}
             icon="shield"
           />
-          <div className="project-grid">
-            {qaProjects.map((project) => (
-              <ProjectCard
-                key={project.name}
-                project={project}
-                labels={projectCardLabels}
-                collapsible={isMobile}
-                collapsed={isProjectCollapsed(project)}
-                onToggleCollapse={() => toggleProjectCollapse(project)}
-              />
-            ))}
-          </div>
+          {renderProjectCards(qaProjects, "project-grid")}
         </section>
 
         <section id="stack" className="section reveal d5">

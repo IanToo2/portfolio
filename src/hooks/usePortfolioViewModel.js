@@ -22,6 +22,12 @@ const normalizeToken = (value) =>
     .toLowerCase()
     .replace(/\s+/g, "");
 
+const createProjectId = (project) => {
+  const nameToken = normalizeToken(project.nameEn ?? project.name ?? "project");
+  const periodToken = normalizeToken(project.periodEn ?? project.period ?? "period");
+  return `${nameToken}-${periodToken}`;
+};
+
 const periodOrderKey = (periodText) => {
   const matches = [...String(periodText ?? "").matchAll(DATE_PATTERN)];
   if (!matches.length) return Number.NEGATIVE_INFINITY;
@@ -57,6 +63,14 @@ export default function usePortfolioViewModel({ lang, t, projectView }) {
     const resolved = localize(item, field, fallbackField);
     return Array.isArray(resolved) ? resolved : item[fallbackField];
   };
+  const localizeTimelineItems = (items) =>
+    items.map((item) => ({
+      ...item,
+      period: localize(item, "period"),
+      organization: localize(item, "organization"),
+      title: localize(item, "title"),
+      bullets: localizeList(item, "bullets")
+    }));
 
   const localizedProfile = useMemo(
     () => ({
@@ -100,6 +114,7 @@ export default function usePortfolioViewModel({ lang, t, projectView }) {
     () =>
       PROJECTS.map((project) => ({
         ...project,
+        id: createProjectId(project),
         name: localize(project, "name"),
         period: localize(project, "period"),
         kind: localize(project, "kind"),
@@ -126,62 +141,27 @@ export default function usePortfolioViewModel({ lang, t, projectView }) {
   );
 
   const localizedExperience = useMemo(
-    () =>
-      EXPERIENCE.map((item) => ({
-        ...item,
-        period: localize(item, "period"),
-        organization: localize(item, "organization"),
-        title: localize(item, "title"),
-        bullets: localizeList(item, "bullets")
-      })),
+    () => localizeTimelineItems(EXPERIENCE),
     [lang]
   );
 
   const localizedEducation = useMemo(
-    () =>
-      EDUCATION.map((item) => ({
-        ...item,
-        period: localize(item, "period"),
-        organization: localize(item, "organization"),
-        title: localize(item, "title"),
-        bullets: localizeList(item, "bullets")
-      })),
+    () => localizeTimelineItems(EDUCATION),
     [lang]
   );
 
   const localizedTraining = useMemo(
-    () =>
-      TRAINING.map((item) => ({
-        ...item,
-        period: localize(item, "period"),
-        organization: localize(item, "organization"),
-        title: localize(item, "title"),
-        bullets: localizeList(item, "bullets")
-      })),
+    () => localizeTimelineItems(TRAINING),
     [lang]
   );
 
   const localizedAwards = useMemo(
-    () =>
-      AWARDS.map((item) => ({
-        ...item,
-        period: localize(item, "period"),
-        organization: localize(item, "organization"),
-        title: localize(item, "title"),
-        bullets: localizeList(item, "bullets")
-      })),
+    () => localizeTimelineItems(AWARDS),
     [lang]
   );
 
   const localizedCertifications = useMemo(
-    () =>
-      CERTIFICATIONS.map((item) => ({
-        ...item,
-        period: localize(item, "period"),
-        organization: localize(item, "organization"),
-        title: localize(item, "title"),
-        bullets: localizeList(item, "bullets")
-      })),
+    () => localizeTimelineItems(CERTIFICATIONS),
     [lang]
   );
 
@@ -220,15 +200,12 @@ export default function usePortfolioViewModel({ lang, t, projectView }) {
   );
 
   const restDevelopmentProjects = useMemo(
-    () =>
-      developmentProjects
-        .filter(
-          (project) =>
-            !featuredProjects.some(
-              (featured) => featured.name === project.name && featured.period === project.period
-            )
-        )
-        .sort(byLatestPeriod),
+    () => {
+      const featuredProjectIds = new Set(featuredProjects.map((project) => project.id));
+      return developmentProjects
+        .filter((project) => !featuredProjectIds.has(project.id))
+        .sort(byLatestPeriod);
+    },
     [developmentProjects, featuredProjects]
   );
 
