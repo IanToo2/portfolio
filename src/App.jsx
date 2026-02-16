@@ -86,6 +86,11 @@ export default function App() {
 
   const toggleLang = () => setLang((prev) => (prev === "ko" ? "en" : "ko"));
 
+  const filteredWorkScmProjects = useMemo(() => {
+    const featuredProjectIds = new Set(featuredProjects.map((project) => project.id));
+    return workScmProjects.filter((project) => !featuredProjectIds.has(project.id));
+  }, [featuredProjects, workScmProjects]);
+
   const renderProjectCards = (projects, className) => (
     <div className={className}>
       {projects.map((project) => (
@@ -274,7 +279,7 @@ export default function App() {
           {renderProjectGroup({
             title: t.scmHead,
             subtitle: t.scmSub,
-            projects: workScmProjects
+            projects: filteredWorkScmProjects
           })}
           {renderProjectGroup({
             title: t.qaHead,
