@@ -129,8 +129,8 @@ export const EDUCATION = [
     organizationEn: "Kyungpook National University",
     title: "학사",
     titleEn: "Bachelor's Degree",
-    bullets: ["2017년 3월 입학 ~ 2024년 2월 졸업"],
-    bulletsEn: ["Bachelor's program, Mar 2017 ~ Feb 2024"]
+    bullets: ["2017년 3월 입학 ~ 2024년 2월 졸업", "소프트웨어학과"],
+    bulletsEn: ["Bachelor's program, Mar 2017 ~ Feb 2024", "Department of Software"]
   }
 ];
 
@@ -157,31 +157,31 @@ export const TRAINING = [
 
 export const AWARDS = [
   {
-    period: "수상일자 추후 입력",
-    periodEn: "Date to be added",
-    organization: "",
-    organizationEn: "",
-    title: "우수상",
-    titleEn: "Excellence Award",
-    bullets: [
-      "수상일자 추후 입력"
-    ],
-    bulletsEn: [
-      "Date to be added"
-    ]
-  },
-  {
-    period: "수상일자 추후 입력",
-    periodEn: "Date to be added",
-    organization: "",
-    organizationEn: "",
+    period: "2024.08",
+    periodEn: "Aug 2024",
+    organization: "삼성전자주식회사",
+    organizationEn: "Samsung Electronics Co., Ltd.",
     title: "최우수상",
     titleEn: "Grand Prize",
     bullets: [
-      "수상일자 추후 입력"
+      "OpenAPI와 생성형 AI를 활용한 프로젝트 경진대회에서 글을 멀리하고 스마트폰에 빠져 문해력을 잃은 세대를 위한 모바일 게임 서비스 주제로 구미지역 1등(최우수팀) 선정"
     ],
     bulletsEn: [
-      "Date to be added"
+      "Selected as the 1st place team (Grand Prize) in the Gumi region in a project competition using OpenAPI and generative AI, with a mobile game service theme for a generation losing literacy due to heavy smartphone use."
+    ]
+  },
+  {
+    period: "2024.05",
+    periodEn: "May 2024",
+    organization: "삼성전자주식회사",
+    organizationEn: "Samsung Electronics Co., Ltd.",
+    title: "우수상",
+    titleEn: "Excellence Award",
+    bullets: [
+      "한국관광공사 공공데이터 API를 이용한 웹 프로젝트 경진대회에서 우수팀 선정"
+    ],
+    bulletsEn: [
+      "Selected as an excellence team in a web project competition using Korea Tourism Organization public data APIs."
     ]
   }
 ];

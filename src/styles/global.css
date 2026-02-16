@@ -992,11 +992,17 @@ a {
   line-height: 1;
 }
 
-.timeline-groups {
+.timeline-columns {
   margin-top: 0.95rem;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.9rem;
+}
+
+.timeline-column {
+  display: grid;
+  gap: 0.9rem;
+  align-content: start;
 }
 
 .timeline-group-title {
@@ -1021,6 +1027,12 @@ a {
 
 .timeline-card h3 {
   margin: 0.6rem 0 0.45rem;
+}
+
+.timeline-org {
+  margin: -0.1rem 0 0.5rem;
+  color: var(--muted);
+  font-size: 0.86rem;
 }
 
 .timeline-card ul {
@@ -1203,7 +1215,7 @@ a {
     grid-template-columns: 1fr;
   }
 
-  .timeline-groups {
+  .timeline-columns {
     grid-template-columns: 1fr;
   }
 }

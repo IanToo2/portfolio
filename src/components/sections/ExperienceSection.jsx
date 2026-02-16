@@ -17,20 +17,24 @@ export default function ExperienceSection({
         subtitle={t.experienceSubtitle}
         icon="clock"
       />
-      <div className="timeline-groups">
-        <TimelineGroup title={t.timelineTitles.work} items={localizedExperience} />
-        <TimelineGroup title={t.timelineTitles.education} items={localizedEducation} />
-        <TimelineGroup title={t.timelineTitles.training} items={localizedTraining} />
-        <TimelineGroup
-          title={t.timelineTitles.awards}
-          items={localizedAwards}
-          showOrganizationInHeading={false}
-        />
-        <TimelineGroup
-          title={t.timelineTitles.certifications}
-          items={localizedCertifications}
-          showOrganizationInHeading={false}
-        />
+      <div className="timeline-columns">
+        <div className="timeline-column">
+          <TimelineGroup title={t.timelineTitles.work} items={localizedExperience} />
+          <TimelineGroup title={t.timelineTitles.education} items={localizedEducation} />
+          <TimelineGroup
+            title={t.timelineTitles.awards}
+            items={localizedAwards}
+            showOrganizationInHeading={false}
+          />
+        </div>
+        <div className="timeline-column">
+          <TimelineGroup title={t.timelineTitles.training} items={localizedTraining} />
+          <TimelineGroup
+            title={t.timelineTitles.certifications}
+            items={localizedCertifications}
+            showOrganizationInHeading={false}
+          />
+        </div>
       </div>
     </section>
   );

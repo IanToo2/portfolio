@@ -16,6 +16,9 @@ export default function TimelineGroup({
                 ? (titleFirst ? `${item.title} · ${item.organization}` : `${item.organization} · ${item.title}`)
                 : item.title}
             </h3>
+            {!showOrganizationInHeading && item.organization ? (
+              <p className="timeline-org">{item.organization}</p>
+            ) : null}
             <ul>
               {item.bullets.map((bullet) => (
                 <li key={bullet}>{bullet}</li>
