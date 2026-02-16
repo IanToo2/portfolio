@@ -331,16 +331,6 @@ export default function App() {
                     </li>
                   ))}
                 </ul>
-                {typeof group.proficiency === "number" ? (
-                  <>
-                    <p className="stack-meter-label">
-                      {t.stackProficiencyLabel}: {group.proficiency}%
-                    </p>
-                    <div className="stack-meter" role="progressbar" aria-valuenow={group.proficiency} aria-valuemin={0} aria-valuemax={100}>
-                      <span style={{ width: `${group.proficiency}%` }} />
-                    </div>
-                  </>
-                ) : null}
               </article>
             ))}
           </div>
