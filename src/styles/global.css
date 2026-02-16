@@ -701,6 +701,67 @@ a {
   padding-top: 0.2rem;
 }
 
+.work-project-shell {
+  margin-top: 1.2rem;
+  padding: 0.88rem;
+  border-color: rgba(var(--section-accent), 0.34);
+  background:
+    linear-gradient(150deg, rgba(255, 255, 255, 0.97), rgba(var(--section-accent), 0.1)),
+    #ffffff;
+}
+
+.work-project-shell .project-group-head {
+  margin-top: 0;
+}
+
+.work-project-overview {
+  margin-top: 0.62rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.44rem;
+}
+
+.work-project-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  padding: 0.28rem 0.56rem;
+  border-radius: 999px;
+  border: 1px solid rgba(var(--section-accent), 0.34);
+  background: rgba(255, 255, 255, 0.86);
+  color: #1f3557;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.work-project-pill strong {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 0.36rem;
+  border-radius: 999px;
+  background: rgba(var(--section-accent), 0.16);
+  color: rgb(var(--section-accent));
+  font-size: 0.74rem;
+}
+
+.work-project-pill.total {
+  border-color: rgba(var(--section-accent), 0.5);
+  background: rgba(var(--section-accent), 0.14);
+}
+
+.work-project-shell-body {
+  margin-top: 0.28rem;
+  padding-left: 0.66rem;
+  border-left: 2px dashed rgba(var(--section-accent), 0.34);
+}
+
+.work-project-shell-body .project-subhead {
+  margin-top: 0.74rem;
+}
+
 .section-contact .contact-card {
   margin-top: 0;
 }
@@ -1368,6 +1429,31 @@ a {
     margin-top: 0.48rem;
   }
 
+  .work-project-shell {
+    margin-top: 0.95rem;
+    padding: 0.7rem;
+  }
+
+  .work-project-shell-body {
+    margin-top: 0.2rem;
+    padding-left: 0.44rem;
+  }
+
+  .work-project-overview {
+    gap: 0.34rem;
+  }
+
+  .work-project-pill {
+    font-size: 0.73rem;
+    padding: 0.22rem 0.46rem;
+  }
+
+  .work-project-pill strong {
+    min-width: 1.12rem;
+    height: 1.12rem;
+    font-size: 0.7rem;
+  }
+
   .metric-grid,
   .stack-grid,
   .focus-grid {
@@ -1540,6 +1626,14 @@ a {
   .project-subhead {
     margin-top: 0.66rem;
     padding: 0.48rem 0.56rem;
+  }
+
+  .work-project-shell {
+    padding: 0.58rem;
+  }
+
+  .work-project-shell-body {
+    padding-left: 0.34rem;
   }
 
   .project-grid {

@@ -90,6 +90,7 @@ export default function App() {
     const featuredProjectIds = new Set(featuredProjects.map((project) => project.id));
     return workScmProjects.filter((project) => !featuredProjectIds.has(project.id));
   }, [featuredProjects, workScmProjects]);
+  const workProjectTotal = filteredWorkScmProjects.length + workQaProjects.length;
 
   const renderProjectCards = (projects, className) => (
     <div className={className}>
@@ -272,20 +273,38 @@ export default function App() {
             <p className="empty-state panel">{t.projectEmpty}</p>
           )}
 
-          <div className="project-subhead project-group-head">
-            <h3>{t.workHead}</h3>
-            <p>{t.workSub}</p>
+          <div className="work-project-shell panel">
+            <div className="project-subhead project-group-head">
+              <h3>{t.workHead}</h3>
+              <p>{t.workSub}</p>
+            </div>
+            <div className="work-project-overview" aria-label={t.workHead}>
+              <span className="work-project-pill">
+                {t.scmHead}
+                <strong>{filteredWorkScmProjects.length}</strong>
+              </span>
+              <span className="work-project-pill">
+                {t.qaHead}
+                <strong>{workQaProjects.length}</strong>
+              </span>
+              <span className="work-project-pill total">
+                {t.workHead}
+                <strong>{workProjectTotal}</strong>
+              </span>
+            </div>
+            <div className="work-project-shell-body">
+              {renderProjectGroup({
+                title: t.scmHead,
+                subtitle: t.scmSub,
+                projects: filteredWorkScmProjects
+              })}
+              {renderProjectGroup({
+                title: t.qaHead,
+                subtitle: t.qaSub,
+                projects: workQaProjects
+              })}
+            </div>
           </div>
-          {renderProjectGroup({
-            title: t.scmHead,
-            subtitle: t.scmSub,
-            projects: filteredWorkScmProjects
-          })}
-          {renderProjectGroup({
-            title: t.qaHead,
-            subtitle: t.qaSub,
-            projects: workQaProjects
-          })}
           {renderProjectGroup({
             title: t.teamHead,
             subtitle: t.teamSub,
