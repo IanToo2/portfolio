@@ -17,8 +17,7 @@ export const PROFILE = {
 
 export const NAV_ITEMS = [
   { id: "summary", label: "소개", labelEn: "Summary", emoji: "👋" },
-  { id: "focus", label: "중점 업무", labelEn: "Focus", emoji: "🎯" },
-  { id: "highlights", label: "성과", labelEn: "Highlights", emoji: "📈" },
+  { id: "highlights", label: "중점 업무", labelEn: "Focus", emoji: "🎯" },
   { id: "projects", label: "프로젝트", labelEn: "Projects", emoji: "🗂️" },
   { id: "stack", label: "기술 스택", labelEn: "Skill Set", emoji: "🛠️" },
   { id: "experience", label: "경력", labelEn: "Experience", emoji: "📌" },
@@ -33,24 +32,24 @@ export const METRICS = [
 
 export const HIGHLIGHTS = [
   {
-    title: "운영 안정성 강화",
-    titleEn: "Operational Reliability",
-    text: "SCM 시스템 이관/개발 전환 시 회귀 테스트와 릴리즈 체크리스트를 고정해 운영 장애 리스크를 낮췄습니다.",
-    textEn: "Reduced production risk during SCM migrations by standardizing regression tests and release checklists.",
+    title: "SCM 구축·전환 개발",
+    titleEn: "SCM Implementation & Conversion Development",
+    text: "신규 구축과 컨버전 프로젝트에서 핵심 기능 구현과 도메인 전환을 담당하며, 일정 내 안정적인 릴리즈 기준을 정착시켰습니다.",
+    textEn: "Led core feature implementation and domain migration across implementation and conversion projects, establishing stable release standards within schedule.",
     icon: "shield"
   },
   {
-    title: "데이터 정합성 제어",
-    titleEn: "Data Integrity Control",
-    text: "Oracle→PostgreSQL 전환 과정에서 인터페이스 매핑, 타입, 함수 차이를 문서화해 품질 이슈를 줄였습니다.",
-    textEn: "Reduced data quality issues during Oracle to PostgreSQL migration by documenting interface mappings, types, and function differences.",
+    title: "연동 안정성과 데이터 정합성 관리",
+    titleEn: "Integration Stability & Data Integrity Management",
+    text: "SAP 인터페이스 로직 개선과 중복 데이터 처리 보완을 통해 연동 안정성을 높였고, DB 전환 시 스키마·쿼리 정합성 검증으로 품질 이슈를 줄였습니다.",
+    textEn: "Improved integration stability through SAP interface logic and deduplication handling, and reduced quality issues by validating schema and query consistency during DB migration.",
     icon: "database"
   },
   {
-    title: "엔드-투-엔드 협업",
-    titleEn: "End-to-End Delivery",
-    text: "요구사항-개발-테스트-배포 파이프라인을 한 화면에서 추적해 일정 지연 없이 QA 전달을 완료했습니다.",
-    textEn: "Improved delivery quality by tracking requirement, development, testing, and release steps in one pipeline view.",
+    title: "팀 프로젝트 백엔드 리드 경험",
+    titleEn: "Backend Leadership in Team Projects",
+    text: "팀 프로젝트에서 백엔드 리드로 핵심 API 설계, 인증 체계 정비, 배포 파이프라인 운영을 맡아 개발부터 배포까지 흐름을 안정적으로 연결했습니다.",
+    textEn: "As a backend lead in team projects, I handled core API design, authentication flow setup, and deployment pipeline operations to connect development and release reliably.",
     icon: "route"
   }
 ];
@@ -281,8 +280,8 @@ export const PROJECTS = [
     kindEn: "New Setup",
     scope: ["개발", "테스트", "배포", "운영"],
     scopeEn: ["Development", "Testing", "Release", "Operations"],
-    tech: ["Java", "Spring", "Jenkins", "Git", "GitHub", "Polymer", "JavaScript", "PostgreSQL"],
-    techEn: ["Java", "Spring", "Jenkins", "Git", "GitHub", "Polymer", "JavaScript", "PostgreSQL"],
+    tech: ["Java", "Spring", "MyBatis", "Jenkins", "Git", "GitHub", "Polymer", "JavaScript", "PostgreSQL"],
+    techEn: ["Java", "Spring", "MyBatis", "Jenkins", "Git", "GitHub", "Polymer", "JavaScript", "PostgreSQL"],
     contributions: [
       "SAP 인터페이스(MM11/MM18) 연동 및 적재 로직 개발/고도화",
       "인터페이스 처리 중복 데이터 처리 기능 구현으로 연계 안정성 강화",
@@ -323,8 +322,8 @@ export const PROJECTS = [
     kindEn: "Enterprise Conversion",
     scope: ["개발", "테스트", "배포", "운영"],
     scopeEn: ["Development", "Testing", "Release", "Operations"],
-    tech: ["Java", "Spring", "Jenkins", "Git", "GitLab", "Polymer", "JavaScript", "PostgreSQL"],
-    techEn: ["Java", "Spring", "Jenkins", "Git", "GitLab", "Polymer", "JavaScript", "PostgreSQL"],
+    tech: ["Java", "Spring", "MyBatis", "Jenkins", "Git", "GitLab", "Polymer", "JavaScript", "PostgreSQL"],
+    techEn: ["Java", "Spring", "MyBatis", "Jenkins", "Git", "GitLab", "Polymer", "JavaScript", "PostgreSQL"],
     contributions: [
       "SCM v7 기반 시스템을 v9로 업그레이드하는 범위와 연계 영향도를 선행 분석해 전환 로드맵 수립",
       "Oracle 기반 스키마/쿼리를 PostgreSQL로 이관하며 데이터 정합성 검증",
@@ -357,8 +356,8 @@ export const PROJECTS = [
     category: PROJECT_CATEGORY.TEAM,
     track: PROJECT_TRACK.TEAM,
     isFeatured: false,
-    name: "말랑(Mallang) 팀 프로젝트",
-    nameEn: "Mallang Team Project",
+    name: "말랑(Mallang)",
+    nameEn: "Mallang",
     period: "2024.07 - 2024.08",
     periodEn: "Jul 2024 - Aug 2024",
     kind: "팀 프로젝트",
@@ -407,8 +406,8 @@ export const PROJECTS = [
     category: PROJECT_CATEGORY.TEAM,
     track: PROJECT_TRACK.TEAM,
     isFeatured: false,
-    name: "TravelLog 프로젝트",
-    nameEn: "TravelLog Project",
+    name: "TravelLog",
+    nameEn: "TravelLog",
     period: "2024.05 - 2024.05",
     periodEn: "May 2024 - May 2024",
     kind: "팀 프로젝트",
@@ -501,8 +500,8 @@ export const PROJECTS = [
     kindEn: "Pre-sales PoC",
     scope: ["역할/범위 입력 예정"],
     scopeEn: ["To be defined"],
-    tech: ["Java", "Spring", "Jenkins", "Git", "GitLab", "Polymer", "JavaScript", "PostgreSQL"],
-    techEn: ["Java", "Spring", "Jenkins", "Git", "GitLab", "Polymer", "JavaScript", "PostgreSQL"],
+    tech: ["Java", "Spring", "MyBatis", "Jenkins", "Git", "GitLab", "Polymer", "JavaScript", "PostgreSQL"],
+    techEn: ["Java", "Spring", "MyBatis", "Jenkins", "Git", "GitLab", "Polymer", "JavaScript", "PostgreSQL"],
     contributions: ["핵심 기여 입력 예정"],
     contributionsEn: ["Key contributions to be updated."],
     metrics: [
@@ -527,8 +526,8 @@ export const PROJECTS = [
     kindEn: "Import/Export Module Project",
     scope: ["역할/범위 입력 예정"],
     scopeEn: ["To be defined"],
-    tech: ["JavaScript", "Java", "Spring", "PostgreSQL"],
-    techEn: ["JavaScript", "Java", "Spring", "PostgreSQL"],
+    tech: ["JavaScript", "Java", "Spring", "MyBatis", "Polymer", "SVN", "PostgreSQL"],
+    techEn: ["JavaScript", "Java", "Spring", "MyBatis", "Polymer", "SVN", "PostgreSQL"],
     contributions: ["핵심 기여 입력 예정"],
     contributionsEn: ["Key contributions to be updated."],
     metrics: [
@@ -540,26 +539,5 @@ export const PROJECTS = [
       }
     ],
     isPending: true
-  }
-];
-
-export const FOCUS = [
-  {
-    title: "SCM 도메인 개발",
-    titleEn: "SCM Domain Development",
-    desc: "SCM 핵심 기능을 설계, 구현하고 운영에서 바로 체감되는 개선을 우선으로 진행합니다.",
-    descEn: "I prioritize practical operational improvements while designing and implementing core SCM functions."
-  },
-  {
-    title: "SAP Integration",
-    titleEn: "SAP Integration",
-    desc: "외부 시스템과의 데이터 정합성을 유지하면서도 업무 변경 요청을 빠르게 반영합니다.",
-    descEn: "I integrate external systems with business consistency and adapt quickly to changing requirements."
-  },
-  {
-    title: "Operation Stability",
-    titleEn: "Operation Stability",
-    desc: "오류가 적게 나는 로직과 쿼리 개선으로 운영 대응 난이도를 낮추고 대응 속도를 높입니다.",
-    descEn: "I reduce operational complexity by improving logic and query stability with a focus on fewer incidents."
   }
 ];

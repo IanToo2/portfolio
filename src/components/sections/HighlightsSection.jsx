@@ -8,7 +8,7 @@ export default function HighlightsSection({ t, localizedHighlights }) {
         label={t.highlightsLabel}
         title={t.highlightsTitle}
         subtitle={t.highlightsSubtitle}
-        icon="shield"
+        icon="target"
       />
       <div className="metric-grid">
         {localizedHighlights.map((item) => (

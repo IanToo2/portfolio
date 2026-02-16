@@ -4,7 +4,6 @@ import {
   CERTIFICATIONS,
   EDUCATION,
   EXPERIENCE,
-  FOCUS,
   HIGHLIGHTS,
   METRICS,
   NAV_ITEMS,
@@ -170,16 +169,6 @@ export default function usePortfolioViewModel({ lang, t }) {
     [lang]
   );
 
-  const localizedFocus = useMemo(
-    () =>
-      FOCUS.map((item) => ({
-        ...item,
-        title: localize(item, "title"),
-        desc: localize(item, "desc")
-      })),
-    [lang]
-  );
-
   const teamProjects = useMemo(
     () =>
       localizedProjects
@@ -238,7 +227,6 @@ export default function usePortfolioViewModel({ lang, t }) {
     localizedTraining,
     localizedAwards,
     localizedCertifications,
-    localizedFocus,
     featuredProjects,
     workScmProjects,
     workQaProjects,

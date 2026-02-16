@@ -3,7 +3,6 @@ import HeroDecorStrip from "./components/HeroDecorStrip";
 import Icon from "./components/Icon";
 import ContactSection from "./components/sections/ContactSection";
 import ExperienceSection from "./components/sections/ExperienceSection";
-import FocusSection from "./components/sections/FocusSection";
 import HighlightsSection from "./components/sections/HighlightsSection";
 import ProjectsSection from "./components/sections/ProjectsSection";
 import StackSection from "./components/sections/StackSection";
@@ -15,8 +14,7 @@ import useViewportFlags from "./hooks/useViewportFlags";
 
 const NAV_ICON_BY_SECTION = {
   summary: "spark",
-  focus: "target",
-  highlights: "shield",
+  highlights: "target",
   projects: "box",
   stack: "layout",
   experience: "timeline",
@@ -39,7 +37,6 @@ export default function App() {
     localizedTraining,
     localizedAwards,
     localizedCertifications,
-    localizedFocus,
     featuredProjects,
     workScmProjects,
     workQaProjects,
@@ -141,7 +138,6 @@ export default function App() {
         </section>
 
         <SummarySection t={t} localizedMetrics={localizedMetrics} />
-        <FocusSection t={t} localizedFocus={localizedFocus} />
         <HighlightsSection t={t} localizedHighlights={localizedHighlights} />
         <ProjectsSection
           t={t}

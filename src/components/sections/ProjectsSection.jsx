@@ -16,7 +16,8 @@ export default function ProjectsSection({
     const featuredProjectIds = new Set(featuredProjects.map((project) => project.id));
     return workScmProjects.filter((project) => !featuredProjectIds.has(project.id));
   }, [featuredProjects, workScmProjects]);
-  const workProjectTotal = filteredWorkScmProjects.length + workQaProjects.length;
+  const workScmProjectTotal = workScmProjects.length;
+  const workProjectTotal = workScmProjectTotal + workQaProjects.length;
 
   const getProjectKey = (project) => project.id ?? `${project.name}|${project.period}`;
   const isProjectCollapsed = (project) => (isMobile ? collapsedProjects[getProjectKey(project)] !== false : false);
@@ -80,17 +81,17 @@ export default function ProjectsSection({
           <p>{t.workSub}</p>
         </div>
         <div className="work-project-overview" aria-label={t.workHead}>
+          <span className="work-project-pill total">
+            {t.workHead}
+            <strong>{workProjectTotal}</strong>
+          </span>
           <span className="work-project-pill">
             {t.scmHead}
-            <strong>{filteredWorkScmProjects.length}</strong>
+            <strong>{workScmProjectTotal}</strong>
           </span>
           <span className="work-project-pill">
             {t.qaHead}
             <strong>{workQaProjects.length}</strong>
-          </span>
-          <span className="work-project-pill total">
-            {t.workHead}
-            <strong>{workProjectTotal}</strong>
           </span>
         </div>
         <div className="work-project-shell-body">
