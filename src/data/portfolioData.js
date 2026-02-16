@@ -336,6 +336,53 @@ export const PROJECTS = [
     isPending: false
   },
   {
+    name: "말랑(Mallang) 팀 프로젝트",
+    nameEn: "Mallang Team Project",
+    period: "2024.07 - 2024.08",
+    periodEn: "Jul 2024 - Aug 2024",
+    kind: "팀 프로젝트",
+    kindEn: "Team Project",
+    scope: ["기획", "설계", "개발", "배포", "운영"],
+    scopeEn: ["Planning", "Design", "Development", "Deployment", "Operations"],
+    tech: ["Java 21", "Spring Boot", "Spring Security", "Spring Data JPA", "JWT", "OAuth2", "MariaDB", "Swagger", "Docker", "Jenkins", "AWS EC2", "Nginx", "Git", "GitLab"],
+    techEn: ["Java 21", "Spring Boot", "Spring Security", "Spring Data JPA", "JWT", "OAuth2", "MariaDB", "Swagger", "Docker", "Jenkins", "AWS EC2", "Nginx", "Git", "GitLab"],
+    contributions: [
+      "백엔드 팀장으로 퀴즈/학습/영역 점령 도메인의 핵심 API 설계 및 구현 주도",
+      "퀴즈 결과 집계 로직과 6시간 단위 문제 스케줄링을 구현하고 일일 결산 API 고도화",
+      "User/Area API 응답 규격 정비 및 DTO/에러코드 리팩토링으로 클라이언트 연동 안정화",
+      "Spring Security + JWT/OAuth2 인증 흐름 정리와 Swagger 기반 요청/응답 스키마 문서화",
+      "운영 환경(application-prod, Dockerfile) 타임존/설정 정비 및 Jenkins 기반 배포 파이프라인 유지보수"
+    ],
+    contributionsEn: [
+      "Led core API design and implementation as backend team lead across quiz, study, and territory domains.",
+      "Implemented quiz result aggregation and 6-hour quiz scheduling, then improved the daily settlement API.",
+      "Stabilized client integration by refactoring User/Area API response contracts, DTOs, and error codes.",
+      "Organized authentication flows with Spring Security + JWT/OAuth2 and documented request/response schemas with Swagger.",
+      "Maintained production configuration (application-prod, Dockerfile) and Jenkins-based deployment pipeline."
+    ],
+    metrics: [
+      {
+        label: "개인 커밋",
+        labelEn: "Personal commits",
+        value: "131개 (no-merge, alias 합산)",
+        valueEn: "131 commits (no-merge, aliases combined)"
+      },
+      {
+        label: "주요 기여 도메인",
+        labelEn: "Primary contribution domains",
+        value: "퀴즈/영역/유저 API, 스케줄러",
+        valueEn: "Quiz/Area/User APIs, scheduler"
+      },
+      {
+        label: "역할",
+        labelEn: "Role",
+        value: "Backend 팀장",
+        valueEn: "Backend Team Lead"
+      }
+    ],
+    isPending: false
+  },
+  {
     name: "TravelLog 프로젝트",
     nameEn: "TravelLog Project",
     period: "2024.05 - 2024.05",
