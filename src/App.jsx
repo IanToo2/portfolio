@@ -9,6 +9,16 @@ import useActiveSection from "./hooks/useActiveSection";
 import usePortfolioViewModel from "./hooks/usePortfolioViewModel";
 import useViewportFlags from "./hooks/useViewportFlags";
 
+const NAV_ICON_BY_SECTION = {
+  summary: "spark",
+  focus: "target",
+  highlights: "shield",
+  projects: "box",
+  stack: "layout",
+  experience: "timeline",
+  contact: "mail"
+};
+
 export default function App() {
   const [lang, setLang] = useState("ko");
   const [projectView, setProjectView] = useState("all");
@@ -88,7 +98,9 @@ export default function App() {
                 className={activeSection === item.id ? "active" : ""}
                 onClick={() => setActiveSection(item.id)}
               >
-                <span className="menu-emoji" aria-hidden="true">{item.emoji}</span>
+                <span className="menu-emoji" aria-hidden="true">
+                  <Icon type={NAV_ICON_BY_SECTION[item.id] ?? "spark"} />
+                </span>
                 <span className="menu-label">{item.label}</span>
               </a>
             ))}
