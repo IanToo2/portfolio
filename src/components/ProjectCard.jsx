@@ -71,6 +71,8 @@ export default function ProjectCard({
   const expandLabel = labels.expandLabel ?? "Expand";
   const trackLabel = project.track === "scm" ? "SCM" : project.track === "qa" ? "QA" : null;
   const groupedTechStack = groupTechStack(project.tech);
+  const projectKey = (project.id ?? `${project.name}-${project.period}`).replace(/[^a-zA-Z0-9_-]/g, "-");
+  const detailsId = `project-details-${projectKey}`;
   const techGroupLabels = {
     ...DEFAULT_LABELS.techGroupLabels,
     ...(labels.techGroupLabels ?? {})
@@ -93,8 +95,7 @@ export default function ProjectCard({
           {labels.scopeLabel}: {project.scope.join(" / ")}
         </p>
       </div>
-      {!collapsed ? (
-        <>
+      <div id={detailsId} hidden={collapsed}>
           <div className="project-tech-groups" aria-label={labels.technologiesLabel}>
             {groupedTechStack.map(({ group, items }) => (
               <div key={group} className="project-tech-group">
@@ -115,8 +116,7 @@ export default function ProjectCard({
               <li key={contribution}>{contribution}</li>
             ))}
           </ul>
-        </>
-      ) : null}
+      </div>
       <div className="project-status-wrap">
         <span className={`project-status ${project.isPending ? "pending" : "done"}`}>
           {project.isPending ? labels.statusPending : labels.statusDone}
@@ -127,6 +127,7 @@ export default function ProjectCard({
           type="button"
           className="ui-btn ui-btn-soft project-collapse-btn"
           aria-expanded={!collapsed}
+          aria-controls={detailsId}
           onClick={onToggleCollapse}
         >
           {collapsed ? expandLabel : collapseLabel}

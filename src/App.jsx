@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import Icon from "./components/Icon";
 import ContactSection from "./components/sections/ContactSection";
 import ExperienceSection from "./components/sections/ExperienceSection";
@@ -23,6 +23,7 @@ const NAV_ICON_BY_SECTION = {
 
 export default function App() {
   const [lang, setLang] = useState("ko");
+  const navLinkRefs = useRef([]);
   const year = useMemo(() => new Date().getFullYear(), []);
   const t = TEXT[lang];
 
@@ -53,6 +54,31 @@ export default function App() {
   const { isExportingPdf, exportPortfolioPdf } = usePortfolioPdfExport({ onError: handlePdfExportError });
 
   const toggleLang = () => setLang((prev) => (prev === "ko" ? "en" : "ko"));
+  const handleMenuKeyDown = useCallback((event, index) => {
+    const { key } = event;
+    if (!["ArrowRight", "ArrowLeft", "Home", "End"].includes(key)) {
+      return;
+    }
+
+    const total = navLinkRefs.current.length;
+    if (!total) {
+      return;
+    }
+
+    event.preventDefault();
+    let nextIndex = index;
+    if (key === "ArrowRight") {
+      nextIndex = (index + 1) % total;
+    } else if (key === "ArrowLeft") {
+      nextIndex = (index - 1 + total) % total;
+    } else if (key === "Home") {
+      nextIndex = 0;
+    } else if (key === "End") {
+      nextIndex = total - 1;
+    }
+
+    navLinkRefs.current[nextIndex]?.focus();
+  }, []);
 
   return (
     <>
@@ -75,14 +101,18 @@ export default function App() {
         </a>
         <div className="topbar-right">
           <nav className="menu" aria-label={t.navLabel}>
-            {localizedNavItems.map((item) => (
+            {localizedNavItems.map((item, index) => (
               <a
                 key={item.id}
                 href={`#${item.id}`}
+                ref={(node) => {
+                  navLinkRefs.current[index] = node;
+                }}
                 className={activeSection === item.id ? "active" : ""}
                 aria-current={activeSection === item.id ? "page" : undefined}
                 aria-label={item.label}
                 onClick={() => setActiveSection(item.id)}
+                onKeyDown={(event) => handleMenuKeyDown(event, index)}
               >
                 <span className="menu-icon" aria-hidden="true">
                   <Icon type={NAV_ICON_BY_SECTION[item.id] ?? "spark"} />
@@ -177,6 +207,7 @@ export default function App() {
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         tabIndex={showTopButton ? 0 : -1}
         aria-hidden={!showTopButton}
+        aria-label={t.toTop}
       >
         {t.toTop}
       </button>
