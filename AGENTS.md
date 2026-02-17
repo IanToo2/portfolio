@@ -45,6 +45,7 @@
 - git push는 명시적 요청 시 수행
 - 깨진 상태로 커밋 금지
 - MCP 환경이 아닌 경우 Git, GitHub 작업은 CLI 환경을 사용
+- MCP 환경이 아닌 경우 Codex shell 명령은 `bash -lc "<command>"` 형태로 강제 실행
 
 ---
 
