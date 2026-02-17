@@ -1,15 +1,19 @@
 import Icon from "../Icon";
-import SectionHead from "../SectionHead";
+import SectionShell from "../SectionShell";
 
 export default function SummarySection({ t, localizedMetrics }) {
   return (
-    <section id="summary" className="section section-summary reveal d3">
-      <SectionHead
-        label={t.summaryLabel}
-        title={t.summaryTitle}
-        subtitle={t.summarySubtitle}
-        icon="route"
-      />
+    <SectionShell
+      id="summary"
+      toneClass="section-summary"
+      revealClass="d3"
+      head={{
+        label: t.summaryLabel,
+        title: t.summaryTitle,
+        subtitle: t.summarySubtitle,
+        icon: "route"
+      }}
+    >
       <div className="metric-grid">
         {localizedMetrics.map((item) => (
           <article key={item.label} className="metric-card panel">
@@ -19,6 +23,6 @@ export default function SummarySection({ t, localizedMetrics }) {
           </article>
         ))}
       </div>
-    </section>
+    </SectionShell>
   );
 }

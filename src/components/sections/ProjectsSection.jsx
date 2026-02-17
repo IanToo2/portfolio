@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import ProjectCard from "../ProjectCard";
-import SectionHead from "../SectionHead";
+import SectionShell from "../SectionShell";
 
 export default function ProjectsSection({
   t,
@@ -56,13 +56,17 @@ export default function ProjectsSection({
   );
 
   return (
-    <section id="projects" className="section section-projects reveal d4">
-      <SectionHead
-        label={t.projectsLabel}
-        title={t.projectsTitle}
-        subtitle={t.projectsSubtitle}
-        icon="box"
-      />
+    <SectionShell
+      id="projects"
+      toneClass="section-projects"
+      revealClass="d4"
+      head={{
+        label: t.projectsLabel,
+        title: t.projectsTitle,
+        subtitle: t.projectsSubtitle,
+        icon: "box"
+      }}
+    >
       <div className="featured-head">
         <div>
           <h3>{t.featuredHead}</h3>
@@ -112,6 +116,6 @@ export default function ProjectsSection({
         subtitle: t.teamSub,
         projects: teamProjects
       })}
-    </section>
+    </SectionShell>
   );
 }

@@ -1,15 +1,19 @@
 import Icon from "../Icon";
-import SectionHead from "../SectionHead";
+import SectionShell from "../SectionShell";
 
 export default function HighlightsSection({ t, localizedHighlights }) {
   return (
-    <section id="highlights" className="section section-highlights reveal d4">
-      <SectionHead
-        label={t.highlightsLabel}
-        title={t.highlightsTitle}
-        subtitle={t.highlightsSubtitle}
-        icon="target"
-      />
+    <SectionShell
+      id="highlights"
+      toneClass="section-highlights"
+      revealClass="d4"
+      head={{
+        label: t.highlightsLabel,
+        title: t.highlightsTitle,
+        subtitle: t.highlightsSubtitle,
+        icon: "target"
+      }}
+    >
       <div className="metric-grid">
         {localizedHighlights.map((item) => (
           <article key={item.title} className="metric-card panel">
@@ -19,6 +23,6 @@ export default function HighlightsSection({ t, localizedHighlights }) {
           </article>
         ))}
       </div>
-    </section>
+    </SectionShell>
   );
 }

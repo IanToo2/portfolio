@@ -1,4 +1,4 @@
-import SectionHead from "../SectionHead";
+import SectionShell from "../SectionShell";
 import TimelineGroup from "../TimelineGroup";
 
 export default function ExperienceSection({
@@ -10,13 +10,17 @@ export default function ExperienceSection({
   localizedCertifications
 }) {
   return (
-    <section id="experience" className="section section-experience reveal d5">
-      <SectionHead
-        label={t.experienceLabel}
-        title={t.experienceTitle}
-        subtitle={t.experienceSubtitle}
-        icon="clock"
-      />
+    <SectionShell
+      id="experience"
+      toneClass="section-experience"
+      revealClass="d5"
+      head={{
+        label: t.experienceLabel,
+        title: t.experienceTitle,
+        subtitle: t.experienceSubtitle,
+        icon: "clock"
+      }}
+    >
       <div className="timeline-columns">
         <div className="timeline-column">
           <TimelineGroup title={t.timelineTitles.work} items={localizedExperience} />
@@ -36,6 +40,6 @@ export default function ExperienceSection({
           />
         </div>
       </div>
-    </section>
+    </SectionShell>
   );
 }

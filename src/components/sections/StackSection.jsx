@@ -1,16 +1,20 @@
 import Icon from "../Icon";
-import SectionHead from "../SectionHead";
+import SectionShell from "../SectionShell";
 import TechLogo from "../TechLogo";
 
 export default function StackSection({ t, localizedStack }) {
   return (
-    <section id="stack" className="section section-stack reveal d5">
-      <SectionHead
-        label={t.stackLabel}
-        title={t.stackTitle}
-        subtitle={t.stackSubtitle}
-        icon="server"
-      />
+    <SectionShell
+      id="stack"
+      toneClass="section-stack"
+      revealClass="d5"
+      head={{
+        label: t.stackLabel,
+        title: t.stackTitle,
+        subtitle: t.stackSubtitle,
+        icon: "server"
+      }}
+    >
       <div className="stack-grid">
         {localizedStack.map((group) => (
           <article key={group.title} className="stack-card panel">
@@ -26,6 +30,6 @@ export default function StackSection({ t, localizedStack }) {
           </article>
         ))}
       </div>
-    </section>
+    </SectionShell>
   );
 }
