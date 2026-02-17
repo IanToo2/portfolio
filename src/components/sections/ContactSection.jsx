@@ -1,16 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
 
 export default function ContactSection({ t, localizedProfile, year, onExportPdf, isExportingPdf }) {
-  const [isCopied, setIsCopied] = useState(false);
+  const [copyState, setCopyState] = useState("idle");
 
   useEffect(() => {
-    if (!isCopied) {
+    if (copyState === "idle") {
       return undefined;
     }
 
-    const timer = window.setTimeout(() => setIsCopied(false), 1800);
+    const timer = window.setTimeout(() => setCopyState("idle"), 1800);
     return () => window.clearTimeout(timer);
-  }, [isCopied]);
+  }, [copyState]);
 
   const copyEmail = useCallback(async () => {
     const email = localizedProfile.email;
@@ -28,9 +28,9 @@ export default function ContactSection({ t, localizedProfile, year, onExportPdf,
         document.execCommand("copy");
         document.body.removeChild(tempInput);
       }
-      setIsCopied(true);
+      setCopyState("success");
     } catch {
-      setIsCopied(false);
+      setCopyState("error");
     }
   }, [localizedProfile.email]);
 
@@ -55,15 +55,17 @@ export default function ContactSection({ t, localizedProfile, year, onExportPdf,
             type="button"
             onClick={copyEmail}
           >
-            {isCopied ? (t.contactCopiedLabel ?? "Copied") : (t.contactCopyLabel ?? "Copy Email")}
+            {copyState === "success" ? (t.contactCopiedLabel ?? "Copied") : (t.contactCopyLabel ?? "Copy Email")}
           </button>
           <button className="ui-btn ui-btn-soft contact-pdf-btn" type="button" onClick={onExportPdf} disabled={isExportingPdf}>
             {isExportingPdf ? t.pdfExportLoading : t.pdfExportLabel}
           </button>
         </div>
         <p className="contact-copy-status" role="status" aria-live="polite">
-          {isCopied ? (t.contactCopiedLabel ?? "Copied") : ""}
+          {copyState === "success" ? (t.contactCopiedLabel ?? "Copied") : ""}
+          {copyState === "error" ? (t.contactCopyFailedLabel ?? "Copy failed. Please try again.") : ""}
         </p>
+        <p>{t.contactFooter}</p>
         <small>{year}</small>
       </article>
     </section>
