@@ -96,3 +96,14 @@ pm run ...)가 있으면, 이중 인용 here-string(@"...")을 사용하지 않�
 - 이 경우 단일 인용 here-string(@'... '@)을 사용해 원문을 그대로 유지한다.
 - GitHub API 전송은 항상 UTF-8 bytes + pplication/json; charset=utf-8을 사용한다.
 - 전송 후 GET 재조회로 제어문자(\x00-\x1F) 및 U+FFFD 문자가 없는지 검증한다.
+
+---
+
+## 9. 작업 기본 순서 (Issue -> Plan -> Dev)
+
+- DEV 작업은 기본적으로 아래 순서를 따른다.
+  - 1) Issue: 작업 시작 시 GitHub 이슈를 먼저 등록한다. (한국어 작성)
+  - 2) Plan: Goal / Scope / Done criteria를 명시한다.
+  - 3) Dev: 구현 후 검증(validate, build, 필요 시 localhost 확인)을 수행한다.
+- 이슈 등록이 인증/네트워크 문제로 막히면 사유를 기록하고 Plan -> Dev를 먼저 진행한 뒤, 가능해지는 즉시 이슈를 등록/갱신한다.
+- 작업 완료 후 이슈에 결과(변경 요약, 검증 결과, 관련 커밋)를 반영한다.
