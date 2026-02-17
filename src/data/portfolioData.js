@@ -8,9 +8,9 @@ export const PROFILE = {
   tagline: "업무 맥락으로 빠르게 구현하고 안정적으로 운영합니다.",
   taglineEn: "I build systems quickly from business context and keep operations stable.",
   intro:
-    "EMRO에서 SCM 도메인 백엔드 개발을 담당하고 있습니다. 구축·전환·운영 전 과정에서 비즈니스 로직을 명확히 설계하고, 테스트와 검증을 통해 현업이 바로 체감할 수 있는 개선을 만듭니다.",
+    "EMRO에서 SCM 도메인 솔루션 개발을 담당하고 있습니다. 구축·전환·운영 전 과정에서 비즈니스 로직을 명확히 설계하고, 테스트와 검증을 통해 현업이 바로 체감할 수 있는 개선을 만듭니다.",
   introEn:
-    "I handle backend development in the SCM domain at EMRO. Across implementation, migration, and operations, I design business logic clearly and deliver practical improvements through testing and validation.",
+    "I handle solution development in the SCM domain at EMRO. Across implementation, migration, and operations, I design business logic clearly and deliver practical improvements through testing and validation.",
   email: "rlawjddla0203@gmail.com",
   github: "https://github.com/IanToo2"
 };
