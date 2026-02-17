@@ -3,3 +3,4 @@
 dist/
 dev.log
 dev.err.log
+.env.local
