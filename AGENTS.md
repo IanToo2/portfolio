@@ -45,7 +45,6 @@
 - git push는 명시적 요청 시 수행
 - 깨진 상태로 커밋 금지
 - MCP 환경이 아닌 경우 Git, GitHub 작업은 CLI 환경을 사용
-- MCP 환경이 아닌 경우 Codex shell 명령은 `bash -lc "<command>"` 형태로 강제 실행
 
 ---
 
@@ -79,8 +78,9 @@ Validate: validate + build (+ localhost if needed)
 
 ## 7. WSL 전환 기준 규칙
 
-- 이 저장소의 표준 실행 환경은 WSL(ubuntu/bash)이다.
-- shell 명령은 `bash -lc "<command>"` 형태를 기본으로 한다.
+- 이 저장소의 표준 실행 환경은 WSL(Ubuntu)이다.
+- shell 명령은 현재 세션 셸을 기본으로 사용한다.
+- 셸 차이로 재현 이슈가 있을 때만 `bash -lc "<command>"` 형태로 고정한다.
 - Git 줄바꿈 정책은 LF 기준으로 고정한다.
   - 권장: `git config --global core.autocrlf input`
   - 권장: `git config --global core.eol lf`
