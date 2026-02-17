@@ -225,6 +225,25 @@ export default function usePortfolioViewModel({ lang, t }) {
     [workProjects]
   );
 
+  const summaryQuick = useMemo(() => {
+    const strengths = localizedHighlights.slice(0, 3).map((item) => item.title);
+    const impacts = featuredProjects
+      .flatMap((project) =>
+        (project.metrics ?? []).slice(0, 1).map((metric) => `${metric.label}: ${metric.value}`)
+      )
+      .slice(0, 3);
+    const fallbackImpacts = localizedMetrics
+      .slice(0, 2)
+      .map((item) => `${item.label}: ${item.value}`);
+
+    return {
+      coreLine: localizedProfile.tagline,
+      strengths,
+      impacts: impacts.length ? impacts : fallbackImpacts,
+      fit: t.summaryQuickFitValue ?? (lang === "ko" ? "SCM 도메인 Backend Developer" : "SCM Domain Backend Developer")
+    };
+  }, [featuredProjects, lang, localizedHighlights, localizedMetrics, localizedProfile.tagline, t.summaryQuickFitValue]);
+
   const projectCardLabels = useMemo(
     () => ({
       ...t.projectCard,
@@ -245,6 +264,7 @@ export default function usePortfolioViewModel({ lang, t }) {
     localizedTraining,
     localizedAwards,
     localizedCertifications,
+    summaryQuick,
     featuredProjects,
     workScmProjects,
     workQaProjects,

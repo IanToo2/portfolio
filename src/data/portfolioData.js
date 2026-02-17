@@ -283,16 +283,14 @@ export const PROJECTS = [
     tech: ["Java", "Spring", "MyBatis", "Jenkins", "Git", "GitHub", "Polymer", "JavaScript", "PostgreSQL"],
     techEn: ["Java", "Spring", "MyBatis", "Jenkins", "Git", "GitHub", "Polymer", "JavaScript", "PostgreSQL"],
     contributions: [
-      "SAP 인터페이스(MM11/MM18) 연동 및 적재 로직 개발/고도화",
-      "인터페이스 처리 중복 데이터 처리 기능 구현으로 연계 안정성 강화",
-      "DAMO 결재 연동 및 콜백/보안 설정 조정",
-      "계약 단가 모니터링(평균 단가 화면) 신규 개발"
+      "문제: 인터페이스 중복 데이터와 연계 오류로 운영 안정성이 흔들리는 구간이 존재",
+      "역할: SAP MM11/MM18 연동·적재 로직과 중복 데이터 처리, 결재 연동 설정을 설계·구현",
+      "성과: 핵심 인터페이스 중단 이슈를 실질적으로 제거하고 계약 단가 모니터링 기능을 신규 제공"
     ],
     contributionsEn: [
-      "Developed and enhanced SAP interface integration (MM11/MM18) and load processes.",
-      "Improved integration stability by deduplicating interface data handling.",
-      "Integrated DAMO approval workflow and tuned callback/security settings.",
-      "Built a contract price monitoring screen for average purchase prices."
+      "Problem: Operational stability was affected by duplicated interface data and integration errors.",
+      "Role: Designed and implemented SAP MM11/MM18 integration, load logic, deduplication handling, and approval integration settings.",
+      "Impact: Eliminated major interface interruption issues and shipped a new contract price monitoring feature."
     ],
     metrics: [
       {
@@ -325,16 +323,14 @@ export const PROJECTS = [
     tech: ["Java", "Spring", "MyBatis", "Jenkins", "Git", "GitLab", "Polymer", "JavaScript", "PostgreSQL"],
     techEn: ["Java", "Spring", "MyBatis", "Jenkins", "Git", "GitLab", "Polymer", "JavaScript", "PostgreSQL"],
     contributions: [
-      "SCM v7 기반 시스템을 v9로 업그레이드하는 범위와 연계 영향도를 선행 분석해 전환 로드맵 수립",
-      "Oracle 기반 스키마/쿼리를 PostgreSQL로 이관하며 데이터 정합성 검증",
-      "Oracle SQL 함수/타입 차이로 인한 QA 이슈를 회귀 테스트로 정리",
-      "개발·테스트·배포·운영 체크리스트를 정비해 안정적 전환 지원"
+      "문제: SCM v7 → v9 전환 과정에서 DB 이관, SQL 차이, 연계 영향도를 동시에 관리해야 했음",
+      "역할: 전환 로드맵 수립, Oracle→PostgreSQL 이관 검증, 회귀 테스트 및 운영 체크리스트 표준화 주도",
+      "성과: 메이저 도메인 4개를 안정적으로 전환하고 기획~운영까지 연결된 전달 체계를 정착"
     ],
     contributionsEn: [
-      "Built migration roadmap by analyzing scope and upstream/downstream impact from SCM v7 to v9.",
-      "Migrated Oracle schemas and queries to PostgreSQL with data consistency checks.",
-      "Captured QA issues from SQL type and function differences and verified via regression tests.",
-      "Standardized development, testing, release, and operations checklists for smoother transition."
+      "Problem: SCM v7 to v9 migration required simultaneous control of DB migration, SQL differences, and integration impact.",
+      "Role: Led migration roadmap planning, Oracle-to-PostgreSQL validation, regression QA, and ops checklist standardization.",
+      "Impact: Delivered stable migration across four core domains and established an end-to-end handoff flow from planning to operations."
     ],
     metrics: [
       {

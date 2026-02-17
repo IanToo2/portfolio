@@ -38,6 +38,7 @@ export default function App() {
     localizedTraining,
     localizedAwards,
     localizedCertifications,
+    summaryQuick,
     featuredProjects,
     workScmProjects,
     workQaProjects,
@@ -181,7 +182,7 @@ export default function App() {
           </div>
         </section>
 
-        <SummarySection t={t} localizedMetrics={localizedMetrics} />
+        <SummarySection t={t} localizedMetrics={localizedMetrics} summaryQuick={summaryQuick} />
         <HighlightsSection t={t} localizedHighlights={localizedHighlights} />
         <ProjectsSection
           t={t}
