@@ -1,9 +1,9 @@
 export default function ContactSection({ t, localizedProfile, year, onExportPdf, isExportingPdf }) {
   return (
-    <section id="contact" className="section section-contact reveal d6">
-      <article className="contact-card ui-card">
+    <section id="contact" className="section section-contact reveal d6" aria-labelledby="contact-title">
+      <article className="contact-card ui-card ui-card--strong">
         <p>{t.contactLabel}</p>
-        <h2>{t.contactTitle}</h2>
+        <h2 id="contact-title">{t.contactTitle}</h2>
         <div className="contact-hub">
           <a className="contact-link" href={`mailto:${localizedProfile.email}`}>
             <span className="contact-link-label">{t.contactMailLabel}</span>

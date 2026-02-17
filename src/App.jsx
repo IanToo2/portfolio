@@ -74,12 +74,14 @@ export default function App() {
           </span>
         </a>
         <div className="topbar-right">
-          <nav className="menu">
+          <nav className="menu" aria-label={t.navLabel}>
             {localizedNavItems.map((item) => (
               <a
                 key={item.id}
                 href={`#${item.id}`}
                 className={activeSection === item.id ? "active" : ""}
+                aria-current={activeSection === item.id ? "page" : undefined}
+                aria-label={item.label}
                 onClick={() => setActiveSection(item.id)}
               >
                 <span className="menu-icon" aria-hidden="true">
@@ -112,7 +114,7 @@ export default function App() {
               </div>
             </div>
 
-            <aside className="hero-panel ui-card">
+            <aside className="hero-panel ui-card ui-card--strong">
               <p className="panel-kicker">{t.panelSnapshot}</p>
               <h2>{localizedProfile.name}</h2>
               <ul className="hero-panel-list">

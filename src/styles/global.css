@@ -192,6 +192,11 @@ a {
   border-color: rgba(15, 23, 42, 0.3);
 }
 
+.menu a:focus-visible {
+  color: var(--ink);
+  border-color: rgba(37, 99, 235, 0.46);
+}
+
 .menu-icon {
   display: inline-flex;
   align-items: center;
@@ -369,6 +374,17 @@ a {
   border-radius: var(--radius-lg);
   background: var(--panel-strong);
   box-shadow: var(--shadow-soft);
+}
+
+.ui-card--muted {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(15, 23, 42, 0.08);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+}
+
+.ui-card--strong {
+  border-color: rgba(37, 99, 235, 0.24);
+  box-shadow: var(--shadow-hard);
 }
 
 .hero-panel {
@@ -1404,6 +1420,7 @@ body.is-exporting-pdf .section::before {
   }
 
   .menu a {
+    position: relative;
     border: 1px solid var(--line);
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.8);

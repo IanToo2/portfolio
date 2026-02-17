@@ -9,7 +9,7 @@ export default function TimelineGroup({
       <h3 className="timeline-group-title">{title}</h3>
       <div className="timeline">
         {items.map((item) => (
-          <article key={`${title}-${item.period}-${item.organization}`} className="timeline-card ui-card">
+          <article key={`${title}-${item.period}-${item.organization}`} className="timeline-card ui-card ui-card--muted">
             <span>{item.period}</span>
             <h3>
               {showOrganizationInHeading
