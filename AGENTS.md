@@ -77,30 +77,22 @@ Validate: validate + build (+ localhost if needed)
 
 ---
 
-## 7. GitHub 이슈 한글 인코딩 규칙
+## 7. WSL 전환 기준 규칙
 
-- GitHub API로 이슈/코멘트 작성 시 `Content-Type`에 반드시 `charset=utf-8`을 지정한다.
-- PowerShell에서 JSON 본문은 UTF-8 바이트로 전송한다.
-  - 예시: `$utf8NoBom = [System.Text.UTF8Encoding]::new($false)`
-  - 예시: `$bodyBytes = $utf8NoBom.GetBytes($payloadJson)`
-  - 예시: `Invoke-RestMethod ... -Body $bodyBytes -ContentType "application/json; charset=utf-8"`
-- 전송 후에는 API 재조회로 한글 키워드가 정상인지 확인한다.
-  - 제목/본문에 `?` 치환 문자가 보이면 실패로 간주하고 UTF-8 바이트 전송 방식으로 재시도한다.
-
----
-
-## 8. PowerShell Markdown Safety (GitHub API)
-
-- PowerShell에서 백틱()은 escape 문자다.
-- Markdown 본문에 backtick 표기(예: ria-current, 
-pm run ...)가 있으면, 이중 인용 here-string(@"...")을 사용하지 않는다.
-- 이 경우 단일 인용 here-string(@'... '@)을 사용해 원문을 그대로 유지한다.
-- GitHub API 전송은 항상 UTF-8 bytes + pplication/json; charset=utf-8을 사용한다.
-- 전송 후 GET 재조회로 제어문자(\x00-\x1F) 및 U+FFFD 문자가 없는지 검증한다.
+- 이 저장소의 표준 실행 환경은 WSL(ubuntu/bash)이다.
+- shell 명령은 `bash -lc "<command>"` 형태를 기본으로 한다.
+- Git 줄바꿈 정책은 LF 기준으로 고정한다.
+  - 권장: `git config --global core.autocrlf input`
+  - 권장: `git config --global core.eol lf`
+  - 권장: `git config --global core.filemode false`
+- 저장소 루트에 `.gitattributes`를 유지해 EOL 차이로 인한 대량 diff를 방지한다.
+- Windows에서 복사된 `node_modules`는 재사용하지 않는다.
+  - WSL 첫 실행 시: `rm -rf node_modules && npm install`
+  - 증상: `@rollup/rollup-linux-x64-gnu` 누락 등 플랫폼 바이너리 오류
 
 ---
 
-## 9. 작업 기본 순서 (Issue -> Plan -> Dev)
+## 8. 작업 기본 순서 (Issue -> Plan -> Dev)
 
 - DEV 작업은 기본적으로 아래 순서를 따른다.
   - 1) Issue: 작업 시작 시 GitHub 이슈를 먼저 등록한다. (한국어 작성)

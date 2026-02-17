@@ -1,15 +1,8 @@
-# Portfolio Site 상태 요약
+# Portfolio Site
 
-기준일: 2026-02-17
-
-## 1) 현재 상태
+## 1) 개요
 - 용도: React/Vite 기반 개인 포트폴리오 단일 페이지.
-- Git: `main` 브랜치, `origin/main` 추적, 워킹트리 변경 없음.
-- 로컬 서버: `http://localhost:5173` 응답 `200` 확인.
-- 최근 커밋:
-  - `ef0d719` chore: stop tracking local dev log files
-  - `3e33f10` feat: resolve issues #2-#5 for cards, a11y, seo, and fonts
-  - `405c8f9` docs: enforce bash-lc for codex shell commands
+- 주요 기능: 다국어 전환(ko/en), 프로젝트/경력 섹션, PDF 내보내기, 반응형 UI.
 
 ## 2) 실행/검증
 ```bash
@@ -30,9 +23,16 @@ npm run dev
 - `src/hooks/usePortfolioPdfExport.js`: PDF 내보내기.
 - `scripts/validate-encoding.mjs`: 인코딩/문자 검증 스크립트.
 
-## 4) 현재 기능 범위
-- 한국어/영어 전환.
-- 프로젝트 분류/필터 표시.
-- 섹션 active 상태 반영(스크롤 기반).
-- 포트폴리오 PDF 저장.
-- 반응형 UI, 스킵 링크/키보드 내비게이션 적용.
+## 4) WSL 전환 체크리스트
+- Windows에서 가져온 `node_modules`는 삭제 후 WSL에서 재설치한다.
+```bash
+rm -rf node_modules
+npm install
+```
+- Git 줄바꿈 설정을 LF 기준으로 맞춘다.
+```bash
+git config --global core.autocrlf input
+git config --global core.eol lf
+git config --global core.filemode false
+```
+- `.gitattributes`(`* text=auto eol=lf`)가 유지되는지 확인한다.
