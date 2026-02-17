@@ -17,7 +17,7 @@ export default function StackSection({ t, localizedStack }) {
     >
       <div className="stack-grid">
         {localizedStack.map((group) => (
-          <article key={group.title} className="stack-card panel">
+          <article key={group.title} className="stack-card ui-card">
             <h3><Icon type={group.icon} />{group.title}</h3>
             <ul>
               {group.items.map((item) => (

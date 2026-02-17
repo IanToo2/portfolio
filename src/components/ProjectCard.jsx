@@ -77,7 +77,7 @@ export default function ProjectCard({
   };
 
   return (
-    <article className={`project-card panel ${collapsible ? "is-collapsible" : ""} ${collapsed ? "is-collapsed" : ""}`}>
+    <article className={`project-card ui-card ${collapsible ? "is-collapsible" : ""} ${collapsed ? "is-collapsed" : ""}`}>
       <div className="project-top">
         <strong>{project.name}</strong>
         <div className="project-top-meta">
@@ -125,7 +125,7 @@ export default function ProjectCard({
       {collapsible ? (
         <button
           type="button"
-          className="project-collapse-btn"
+          className="ui-btn ui-btn-soft project-collapse-btn"
           aria-expanded={!collapsed}
           onClick={onToggleCollapse}
         >

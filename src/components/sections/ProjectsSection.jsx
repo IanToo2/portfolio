@@ -50,7 +50,7 @@ export default function ProjectsSection({
       {projects.length ? (
         renderProjectCards(projects, "project-grid")
       ) : (
-        <p className="empty-state panel">{t.projectEmpty}</p>
+        <p className="empty-state ui-card">{t.projectEmpty}</p>
       )}
     </>
   );
@@ -76,10 +76,10 @@ export default function ProjectsSection({
       {featuredProjects.length ? (
         renderProjectCards(featuredProjects, "featured-grid")
       ) : (
-        <p className="empty-state panel">{t.projectEmpty}</p>
+        <p className="empty-state ui-card">{t.projectEmpty}</p>
       )}
 
-      <div className="work-project-shell panel">
+      <div className="work-project-shell ui-card">
         <div className="project-subhead project-group-head">
           <h3>{t.workHead}</h3>
           <p>{t.workSub}</p>

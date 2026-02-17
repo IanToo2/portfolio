@@ -1,7 +1,7 @@
 export default function ContactSection({ t, localizedProfile, year, onExportPdf, isExportingPdf }) {
   return (
     <section id="contact" className="section section-contact reveal d6">
-      <article className="contact-card panel">
+      <article className="contact-card ui-card">
         <p>{t.contactLabel}</p>
         <h2>{t.contactTitle}</h2>
         <div className="contact-hub">
@@ -15,7 +15,7 @@ export default function ContactSection({ t, localizedProfile, year, onExportPdf,
           </a>
         </div>
         <div className="contact-actions">
-          <button className="contact-pdf-btn" type="button" onClick={onExportPdf} disabled={isExportingPdf}>
+          <button className="ui-btn ui-btn-soft contact-pdf-btn" type="button" onClick={onExportPdf} disabled={isExportingPdf}>
             {isExportingPdf ? t.pdfExportLoading : t.pdfExportLabel}
           </button>
         </div>

@@ -106,13 +106,13 @@ export default function App() {
               </h1>
               <p className="hero-copy">{localizedProfile.intro}</p>
               <div className="hero-actions">
-                <a className="btn primary" href="#projects">{t.heroActionProjects}</a>
-                <a className="btn ghost" href="#experience">{t.heroActionExperience}</a>
-                <a className="btn ghost" href="#stack">{t.heroActionStack}</a>
+                <a className="ui-btn ui-btn-primary" href="#projects">{t.heroActionProjects}</a>
+                <a className="ui-btn ui-btn-ghost" href="#experience">{t.heroActionExperience}</a>
+                <a className="ui-btn ui-btn-ghost" href="#stack">{t.heroActionStack}</a>
               </div>
             </div>
 
-            <aside className="hero-panel panel">
+            <aside className="hero-panel ui-card">
               <p className="panel-kicker">{t.panelSnapshot}</p>
               <h2>{localizedProfile.name}</h2>
               <ul className="hero-panel-list">

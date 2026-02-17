@@ -16,7 +16,7 @@ export default function HighlightsSection({ t, localizedHighlights }) {
     >
       <div className="metric-grid">
         {localizedHighlights.map((item) => (
-          <article key={item.title} className="metric-card panel">
+          <article key={item.title} className="metric-card ui-card">
             <div className="badge"><Icon type={item.icon} /></div>
             <h3>{item.title}</h3>
             <p>{item.text}</p>

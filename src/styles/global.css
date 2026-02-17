@@ -292,30 +292,78 @@ a {
   gap: 0.72rem;
 }
 
+.ui-btn,
+.btn,
+.project-control,
+.project-collapse-btn,
+.contact-pdf-btn {
+  appearance: none;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-weight: 700;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 160ms ease, color 160ms ease, background-color 160ms ease;
+}
+
+.ui-btn:hover,
+.btn:hover,
+.project-control:hover,
+.project-collapse-btn:hover,
+.contact-pdf-btn:hover {
+  transform: translateY(-1px);
+}
+
+.ui-btn:disabled,
+.project-collapse-btn:disabled,
+.contact-pdf-btn:disabled {
+  opacity: 0.66;
+  cursor: wait;
+  transform: none;
+}
+
+.ui-btn,
 .btn {
   border-radius: 999px;
   padding: 0.75rem 1.1rem;
   text-decoration: none;
-  font-weight: 700;
-  border: 1px solid transparent;
-  transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
-.btn:hover {
-  transform: translateY(-2px);
-}
-
+.ui-btn-primary,
 .btn.primary {
   color: #fff;
   background: linear-gradient(120deg, #2563eb, #3b82f6 52%, #14b8a6);
   box-shadow: 0 10px 24px rgba(37, 99, 235, 0.25);
 }
 
+.ui-btn-ghost,
 .btn.ghost {
   background: rgba(255, 255, 255, 0.82);
   border-color: var(--line);
 }
 
+.ui-btn-soft,
+.project-collapse-btn,
+.contact-pdf-btn {
+  border: 1px solid rgba(37, 99, 235, 0.28);
+  background: rgba(37, 99, 235, 0.08);
+  color: #1d4ed8;
+}
+
+.ui-btn-soft:hover,
+.ui-btn-soft:focus-visible,
+.project-collapse-btn:hover,
+.project-collapse-btn:focus-visible,
+.contact-pdf-btn:hover,
+.contact-pdf-btn:focus-visible {
+  border-color: rgba(37, 99, 235, 0.48);
+  background: rgba(37, 99, 235, 0.14);
+}
+
+.ui-card,
 .panel {
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
@@ -598,19 +646,12 @@ a {
 }
 
 .project-control {
-  appearance: none;
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.88);
-  border-radius: 999px;
   padding: 0.3rem 0.62rem;
-  display: inline-flex;
-  align-items: center;
   gap: 0.42rem;
   color: var(--muted);
-  cursor: pointer;
   font-size: 0.78rem;
-  font-weight: 700;
-  transition: border-color 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
 .project-control strong {
@@ -625,7 +666,6 @@ a {
 .project-control:hover {
   color: var(--ink);
   border-color: rgba(37, 99, 235, 0.4);
-  transform: translateY(-1px);
 }
 
 .project-control.active {
@@ -938,15 +978,8 @@ a {
 
 .project-collapse-btn {
   margin-top: 0.62rem;
-  appearance: none;
-  border: 1px solid rgba(37, 99, 235, 0.28);
-  background: rgba(37, 99, 235, 0.08);
-  color: #1d4ed8;
-  border-radius: 999px;
   padding: 0.3rem 0.62rem;
   font-size: 0.76rem;
-  font-weight: 700;
-  cursor: pointer;
 }
 
 .project-card.is-collapsible.is-collapsed .project-status-wrap {
@@ -1124,29 +1157,16 @@ a {
 }
 
 .contact-pdf-btn {
-  appearance: none;
-  border: 1px solid rgba(37, 99, 235, 0.3);
-  border-radius: 999px;
+  border-color: rgba(37, 99, 235, 0.3);
   background: rgba(37, 99, 235, 0.1);
-  color: #1d4ed8;
   padding: 0.48rem 0.9rem;
   font-size: 0.82rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
 }
 
 .contact-pdf-btn:hover,
 .contact-pdf-btn:focus-visible {
   border-color: rgba(37, 99, 235, 0.48);
   background: rgba(37, 99, 235, 0.14);
-  transform: translateY(-1px);
-}
-
-.contact-pdf-btn:disabled {
-  opacity: 0.66;
-  cursor: wait;
-  transform: none;
 }
 
 .contact-link {
@@ -1256,6 +1276,7 @@ body.is-exporting-pdf .hero h1 .hero-title {
   color: #1d4ed8 !important;
 }
 
+body.is-exporting-pdf .ui-card,
 body.is-exporting-pdf .panel,
 body.is-exporting-pdf .hero-panel,
 body.is-exporting-pdf .section,
@@ -1440,7 +1461,8 @@ body.is-exporting-pdf .section::before {
     gap: 0.5rem;
   }
 
-  .hero-actions .btn {
+  .hero-actions .btn,
+  .hero-actions .ui-btn {
     padding: 0.62rem 0.9rem;
     font-size: 0.84rem;
   }

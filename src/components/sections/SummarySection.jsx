@@ -16,7 +16,7 @@ export default function SummarySection({ t, localizedMetrics }) {
     >
       <div className="metric-grid">
         {localizedMetrics.map((item) => (
-          <article key={item.label} className="metric-card panel">
+          <article key={item.label} className="metric-card ui-card">
             <div className="badge"><Icon type={item.icon} /></div>
             <p>{item.label}</p>
             <strong>{item.value}</strong>
