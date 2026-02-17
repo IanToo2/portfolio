@@ -333,14 +333,14 @@ export const PROJECTS = [
     tech: ["Java", "Spring", "MyBatis", "Jenkins", "Git", "GitHub", "Polymer", "JavaScript", "PostgreSQL"],
     techEn: ["Java", "Spring", "MyBatis", "Jenkins", "Git", "GitHub", "Polymer", "JavaScript", "PostgreSQL"],
     contributions: [
-      "문제: 인터페이스 중복 데이터와 연계 오류로 운영 안정성이 흔들리는 구간이 존재",
-      "역할: SAP MM11/MM18 연동·적재 로직과 중복 데이터 처리, 결재 연동 설정을 설계·구현",
-      "성과: 핵심 인터페이스 중단 이슈를 실질적으로 제거하고 계약 단가 모니터링 기능을 신규 제공"
+      "문제: 인터페이스 중복 데이터와 연계 오류로 장애 재발 위험이 높았음",
+      "역할: SAP MM11/MM18 연동·적재 로직, 중복 데이터 처리, 결재 연동 설정을 설계·구현",
+      "영향: 핵심 인터페이스 중단 이슈를 제거하고 계약 단가 모니터링 기능 4개를 운영에 안착"
     ],
     contributionsEn: [
-      "Problem: Operational stability was affected by duplicated interface data and integration errors.",
-      "Role: Designed and implemented SAP MM11/MM18 integration, load logic, deduplication handling, and approval integration settings.",
-      "Impact: Eliminated major interface interruption issues and shipped a new contract price monitoring feature."
+      "Problem: Repeated failures were likely due to duplicated interface data and integration errors.",
+      "Role: Designed and implemented SAP MM11/MM18 integration/load logic, deduplication handling, and approval integration settings.",
+      "Impact: Removed major interface interruption issues and stabilized four contract-price monitoring capabilities."
     ],
     metrics: [
       {
@@ -373,14 +373,14 @@ export const PROJECTS = [
     tech: ["Java", "Spring", "MyBatis", "Jenkins", "Git", "GitLab", "Polymer", "JavaScript", "PostgreSQL"],
     techEn: ["Java", "Spring", "MyBatis", "Jenkins", "Git", "GitLab", "Polymer", "JavaScript", "PostgreSQL"],
     contributions: [
-      "문제: SCM v7 → v9 전환 과정에서 DB 이관, SQL 차이, 연계 영향도를 동시에 관리해야 했음",
-      "역할: 전환 로드맵 수립, Oracle→PostgreSQL 이관 검증, 회귀 테스트 및 운영 체크리스트 표준화 주도",
-      "성과: 메이저 도메인 4개를 안정적으로 전환하고 기획~운영까지 연결된 전달 체계를 정착"
+      "문제: SCM v7→v9 전환에서 DB 이관, SQL 차이, 연계 영향도를 동시에 통제해야 했음",
+      "역할: 전환 로드맵 수립, Oracle→PostgreSQL 검증, 회귀 테스트, 운영 체크리스트 표준화를 주도",
+      "영향: 메이저 도메인 4개를 안정적으로 전환하고 기획~운영 4단계 전달 흐름을 정착"
     ],
     contributionsEn: [
-      "Problem: SCM v7 to v9 migration required simultaneous control of DB migration, SQL differences, and integration impact.",
+      "Problem: SCM v7 to v9 migration demanded simultaneous control of DB migration, SQL differences, and integration impact.",
       "Role: Led migration roadmap planning, Oracle-to-PostgreSQL validation, regression QA, and ops checklist standardization.",
-      "Impact: Delivered stable migration across four core domains and established an end-to-end handoff flow from planning to operations."
+      "Impact: Delivered stable migration across four core domains and established a four-stage handoff flow from planning to operations."
     ],
     metrics: [
       {
