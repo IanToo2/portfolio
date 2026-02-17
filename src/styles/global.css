@@ -518,6 +518,7 @@ a {
 }
 
 .section-icon {
+  position: relative;
   width: 1.62rem;
   height: 1.62rem;
   flex: 0 0 1.62rem;
@@ -532,10 +533,13 @@ a {
 }
 
 .section-icon .icon-svg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
   width: 1rem;
   height: 1rem;
   stroke-width: 1.8;
-  transform: none;
+  transform: translate(-50%, -50%);
   display: block;
 }
 
