@@ -44,6 +44,7 @@
 - build 통과 후 커밋
 - git push는 명시적 요청 시 수행
 - 깨진 상태로 커밋 금지
+- MCP 환경이 아닌 경우 Git, GitHub 작업은 CLI 환경을 사용
 
 ---
 
@@ -72,3 +73,15 @@ Scope:
 Done:  
 Type: DEV / ANALYSIS  
 Validate: validate + build (+ localhost if needed)
+
+---
+
+## 7. GitHub 이슈 한글 인코딩 규칙
+
+- GitHub API로 이슈/코멘트 작성 시 `Content-Type`에 반드시 `charset=utf-8`을 지정한다.
+- PowerShell에서 JSON 본문은 UTF-8 바이트로 전송한다.
+  - 예시: `$utf8NoBom = [System.Text.UTF8Encoding]::new($false)`
+  - 예시: `$bodyBytes = $utf8NoBom.GetBytes($payloadJson)`
+  - 예시: `Invoke-RestMethod ... -Body $bodyBytes -ContentType "application/json; charset=utf-8"`
+- 전송 후에는 API 재조회로 한글 키워드가 정상인지 확인한다.
+  - 제목/본문에 `?` 치환 문자가 보이면 실패로 간주하고 UTF-8 바이트 전송 방식으로 재시도한다.
