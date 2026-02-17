@@ -8,6 +8,7 @@ import {
   METRICS,
   NAV_ITEMS,
   PROFILE,
+  SCAN_HIERARCHY,
   PROJECT_CATEGORY,
   PROJECT_TRACK,
   PROJECTS,
@@ -98,6 +99,22 @@ export default function usePortfolioViewModel({ lang, t }) {
 
   const localizedNavItems = useMemo(
     () => NAV_ITEMS.map((item) => ({ ...item, label: localize(item, "label") })),
+    [lang]
+  );
+
+  const scanHierarchy = useMemo(
+    () => ({
+      stages: SCAN_HIERARCHY.stages.map((stage) => ({
+        id: stage.id,
+        label: localize(stage, "label"),
+        detail: localize(stage, "detail")
+      })),
+      sectionOrder: SCAN_HIERARCHY.sectionOrder.map((item) => localize(item, "label")),
+      textRules: {
+        subtitle: localize(SCAN_HIERARCHY.textRules, "subtitle"),
+        contribution: localize(SCAN_HIERARCHY.textRules, "contribution")
+      }
+    }),
     [lang]
   );
 
@@ -256,6 +273,7 @@ export default function usePortfolioViewModel({ lang, t }) {
   return {
     localizedProfile,
     localizedNavItems,
+    scanHierarchy,
     localizedMetrics,
     localizedHighlights,
     localizedStack,

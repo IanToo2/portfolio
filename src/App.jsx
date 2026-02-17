@@ -30,6 +30,7 @@ export default function App() {
   const {
     localizedProfile,
     localizedNavItems,
+    scanHierarchy,
     localizedMetrics,
     localizedHighlights,
     localizedStack,
@@ -182,7 +183,12 @@ export default function App() {
           </div>
         </section>
 
-        <SummarySection t={t} localizedMetrics={localizedMetrics} summaryQuick={summaryQuick} />
+        <SummarySection
+          t={t}
+          localizedMetrics={localizedMetrics}
+          summaryQuick={summaryQuick}
+          scanHierarchy={scanHierarchy}
+        />
         <HighlightsSection t={t} localizedHighlights={localizedHighlights} />
         <ProjectsSection
           t={t}

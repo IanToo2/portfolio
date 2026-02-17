@@ -24,6 +24,50 @@ export const NAV_ITEMS = [
   { id: "contact", label: "연락", labelEn: "Contact" }
 ];
 
+export const SCAN_HIERARCHY = {
+  stages: [
+    {
+      id: "role",
+      label: "역할/도메인 확인",
+      labelEn: "Role/Domain First",
+      detail: "현재 수행 직무와 도메인을 먼저 노출",
+      detailEn: "Show current role and domain before details."
+    },
+    {
+      id: "strength",
+      label: "핵심 강점 3개 스캔",
+      labelEn: "Scan 3 Strengths",
+      detail: "Summary 바로 아래 강점 3개를 한 번에 확인",
+      detailEn: "Expose three strengths right under Summary."
+    },
+    {
+      id: "impact",
+      label: "대표 성과 2~3개 확인",
+      labelEn: "Check 2-3 Impacts",
+      detail: "성과 지표 중심으로 대표 결과를 우선 배치",
+      detailEn: "Prioritize key outcomes with impact metrics."
+    },
+    {
+      id: "fit",
+      label: "적합 포지션 판단",
+      labelEn: "Fit Position Check",
+      detail: "요약 블록 마지막에 적합 포지션을 명시",
+      detailEn: "State best-fit position at the end of the quick summary."
+    }
+  ],
+  sectionOrder: [
+    { id: "summary", label: "Summary", labelEn: "Summary" },
+    { id: "highlights", label: "Highlights", labelEn: "Highlights" },
+    { id: "projects", label: "Projects", labelEn: "Projects" }
+  ],
+  textRules: {
+    subtitle: "1-2문장",
+    subtitleEn: "1-2 sentences",
+    contribution: "3-5줄",
+    contributionEn: "3-5 lines"
+  }
+};
+
 export const METRICS = [
   { label: "실무 경력", labelEn: "Years of Experience", value: "2024.09 - 현재", valueEn: "Sep 2024 - Present", icon: "clock", tenureStart: "2024-09" },
   { label: "현재 소속", labelEn: "Current Company", value: "EMRO", valueEn: "EMRO", icon: "building" },

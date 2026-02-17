@@ -667,6 +667,49 @@ a {
   font-size: 0.82rem;
 }
 
+.summary-scan-order {
+  margin-top: 0.72rem;
+  border: 1px dashed rgba(37, 99, 235, 0.28);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.8);
+  padding: 0.62rem 0.68rem;
+}
+
+.summary-scan-order > p {
+  margin: 0;
+  color: #1f3557;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.summary-scan-order ol {
+  margin: 0.44rem 0 0;
+  padding-left: 1.08rem;
+  display: grid;
+  gap: 0.32rem;
+}
+
+.summary-scan-order li {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.summary-scan-order li strong {
+  color: var(--ink);
+  margin-right: 0.28rem;
+}
+
+.summary-scan-order li span {
+  color: var(--muted);
+}
+
+.summary-scan-meta {
+  margin-top: 0.5rem !important;
+  color: #355070 !important;
+  font-size: 0.76rem !important;
+  font-weight: 700;
+}
+
 .metric-grid,
 .stack-grid,
 .focus-grid {

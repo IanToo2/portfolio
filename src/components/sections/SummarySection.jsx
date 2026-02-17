@@ -1,7 +1,7 @@
 import Icon from "../Icon";
 import SectionShell from "../SectionShell";
 
-export default function SummarySection({ t, localizedMetrics, summaryQuick }) {
+export default function SummarySection({ t, localizedMetrics, summaryQuick, scanHierarchy }) {
   return (
     <SectionShell
       id="summary"
@@ -39,6 +39,21 @@ export default function SummarySection({ t, localizedMetrics, summaryQuick }) {
           <span>{t.summaryQuickFitLabel}</span>
           <strong>{summaryQuick.fit}</strong>
         </p>
+        <div className="summary-scan-order" aria-label={t.summaryScanOrderLabel ?? t.summaryQuickLabel}>
+          <p>{t.summaryScanOrderLabel ?? "Scan Order"}</p>
+          <ol>
+            {scanHierarchy.stages.map((stage) => (
+              <li key={stage.id}>
+                <strong>{stage.label}</strong>
+                <span>{stage.detail}</span>
+              </li>
+            ))}
+          </ol>
+          <p className="summary-scan-meta">
+            {t.summaryScanRuleLabel ?? "Rules"}:{" "}
+            {scanHierarchy.sectionOrder.join(" -> ")} · {scanHierarchy.textRules.subtitle} · {scanHierarchy.textRules.contribution}
+          </p>
+        </div>
       </article>
       <div className="metric-grid">
         {localizedMetrics.map((item) => (
