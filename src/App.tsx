@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import Icon from "./components/Icon";
 import ContactSection from "./components/sections/ContactSection";
 import ExperienceSection from "./components/sections/ExperienceSection";
@@ -12,7 +12,7 @@ import usePortfolioPdfExport from "./hooks/usePortfolioPdfExport";
 import usePortfolioViewModel from "./hooks/usePortfolioViewModel";
 import useViewportFlags from "./hooks/useViewportFlags";
 
-const NAV_ICON_BY_SECTION = {
+const NAV_ICON_BY_SECTION: Record<string, string> = {
   summary: "spark",
   highlights: "target",
   projects: "box",
@@ -22,8 +22,8 @@ const NAV_ICON_BY_SECTION = {
 };
 
 export default function App() {
-  const [lang, setLang] = useState("ko");
-  const navLinkRefs = useRef([]);
+  const [lang, setLang] = useState<"ko" | "en">("ko");
+  const navLinkRefs = useRef<Array<HTMLAnchorElement | null>>([]);
   const year = useMemo(() => new Date().getFullYear(), []);
   const t = TEXT[lang];
 
@@ -64,7 +64,7 @@ export default function App() {
     document.documentElement.lang = lang;
   }, [lang]);
 
-  const handleMenuKeyDown = useCallback((event, index) => {
+  const handleMenuKeyDown = useCallback((event: KeyboardEvent<HTMLAnchorElement>, index: number) => {
     const { key } = event;
     if (!["ArrowRight", "ArrowLeft", "Home", "End"].includes(key)) {
       return;

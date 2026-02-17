@@ -465,20 +465,20 @@ export const PROJECTS = [
     contributions: [
       "DB ERD 설계 및 MySQL(RDS) 스키마 설계를 단독 담당",
       "Docker + Jenkins 기반 배포 파이프라인과 Nginx 리버스 프록시 구성을 단독 담당",
-      "MinIO 기반 객체 스토리지 연동 환경 구성",
+      "오브젝트 스토리지를 활용한 캐싱 처리로 이미지 로딩 시간을 약 2초에서 0.2초 수준으로 개선",
       "회원/인증 API 구현: 회원 CRUD, 로그인/로그아웃, 토큰 발급/재발급, 중복체크 및 비밀번호 관련 기능 개발",
       "리뷰 API 구현: 리뷰 CRUD, 작성자/관광지 기준 조회, 리뷰 좋아요 등록/취소/목록/Top 리뷰 기능 개발",
       "MyBatis DAO/DTO 구조 정리 및 리뷰/회원 도메인 버그 수정, CORS/응답 DTO 안정화",
-      "팀 이슈 #30 중심으로 리뷰 도메인 기능 확장 및 유지보수"
+      "리뷰 도메인 기능 확장 및 유지보수"
     ],
     contributionsEn: [
       "Sole owner of DB ERD design and MySQL (RDS) schema design.",
       "Sole owner of deployment setup with Docker + Jenkins pipeline and Nginx reverse proxy.",
-      "Set up object storage integration environment based on MinIO.",
+      "Improved image loading from about 2.0s to around 0.2s by applying caching with object storage.",
       "Implemented member/auth APIs including member CRUD, login/logout, token issue/refresh, duplicate checks, and password flows.",
       "Implemented review APIs including review CRUD, author/content-based queries, review likes add/remove/list, and top review endpoints.",
       "Refined MyBatis DAO/DTO structures and stabilized review/member domain bugs, CORS, and response DTO behavior.",
-      "Expanded and maintained review-domain features with primary focus on team issue #30."
+      "Expanded and maintained review-domain features."
     ],
     metrics: [
       {
@@ -510,29 +510,37 @@ export const PROJECTS = [
     nameEn: "S-OIL SCM QA Testing",
     period: "2025.11",
     periodEn: "Nov 2025",
-    kind: "QA",
-    kindEn: "QA",
-    scope: ["테스트"],
-    scopeEn: ["QA"],
-    tech: ["Oracle", "PostgreSQL", "SQL"],
-    techEn: ["Oracle", "PostgreSQL", "SQL"],
+    kind: "QA 검증/전달",
+    kindEn: "QA Validation & Handoff",
+    scope: ["테스트 시나리오 작성", "단위 테스트", "결함 전달"],
+    scopeEn: ["Scenario Design", "Unit Testing", "Defect Handoff"],
+    tech: [],
+    techEn: [],
     contributions: [
-      "Oracle SQL 쿼리의 PostgreSQL 변환 이슈 중심으로 QA 테스트 시나리오를 정리",
-      "조회 성능과 결과 정합성 회귀 케이스를 기준으로 테스트 수행"
+      "개발된 모듈 기준으로 기능별 테스트 시나리오를 설계하고 검증 케이스를 정리",
+      "시나리오 기반 기능 테스트와 단위 테스트를 수행해 결함 재현 조건을 명확화",
+      "결함 원인/재현 절차/영향 범위를 문서화해 개발자에게 전달하고 수정 검증을 지원"
     ],
     contributionsEn: [
-      "Built QA scenarios focusing on PostgreSQL migration issues from Oracle SQL.",
-      "Executed regression tests for query performance and result consistency."
+      "Designed module-level test scenarios and organized validation cases for implemented features.",
+      "Executed scenario-based functional tests and unit tests, clarifying reproducible defect conditions.",
+      "Documented root cause, reproduction steps, and impact, then handed off findings to developers and supported fix verification."
     ],
     metrics: [
       {
-        label: "회귀 테스트 범위",
-        labelEn: "Regression coverage",
-        value: "핵심 쿼리 위주",
-        valueEn: "Core queries prioritized"
+        label: "테스트 운영 방식",
+        labelEn: "Test Operation Model",
+        value: "시나리오 + 단위 테스트 + 개발 전달",
+        valueEn: "Scenario + Unit Test + Developer Handoff"
+      },
+      {
+        label: "결함 전달 기준",
+        labelEn: "Defect Handoff Standard",
+        value: "재현 절차/영향 범위 문서화",
+        valueEn: "Reproduction Steps and Impact Documented"
       }
     ],
-    isPending: true
+    isPending: false
   },
   {
     category: PROJECT_CATEGORY.WORK,
