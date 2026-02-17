@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Icon from "./components/Icon";
 import ContactSection from "./components/sections/ContactSection";
 import ExperienceSection from "./components/sections/ExperienceSection";
@@ -54,6 +54,14 @@ export default function App() {
   const { isExportingPdf, exportPortfolioPdf } = usePortfolioPdfExport({ onError: handlePdfExportError });
 
   const toggleLang = () => setLang((prev) => (prev === "ko" ? "en" : "ko"));
+  const logoHomeAriaLabel = t.logoHomeAriaLabel ?? `${localizedProfile.name} portfolio home`;
+  const langSwitchAriaLabel =
+    t.langSwitchAriaLabel ?? (lang === "ko" ? "Switch to English page" : "Switch to Korean page");
+
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
+
   const handleMenuKeyDown = useCallback((event, index) => {
     const { key } = event;
     if (!["ArrowRight", "ArrowLeft", "Home", "End"].includes(key)) {
@@ -87,7 +95,7 @@ export default function App() {
       <div className="grain" aria-hidden="true" />
 
       <header className="topbar reveal d1">
-        <a className="logo" href="#top" aria-label={`${localizedProfile.name} portfolio home`}>
+        <a className="logo" href="#top" aria-label={logoHomeAriaLabel}>
           <span className="logo-mark" aria-hidden="true">
             <svg className="logo-mark-svg" viewBox="0 0 24 24" fill="none">
               <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
@@ -121,7 +129,7 @@ export default function App() {
               </a>
             ))}
           </nav>
-          <button className="lang-switch" type="button" onClick={toggleLang}>
+          <button className="lang-switch" type="button" onClick={toggleLang} aria-label={langSwitchAriaLabel}>
             {t.switchLang}
           </button>
         </div>

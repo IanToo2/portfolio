@@ -3,6 +3,7 @@ const DEFAULT_LABELS = {
   scopeLabel: "Scope",
   technologiesLabel: "Tech Stack",
   contributionsLabel: "Key Contributions",
+  metricsLabel: "Impact Metrics",
   techGroupLabels: {
     frontend: "Frontend",
     backend: "Backend",
@@ -69,8 +70,10 @@ export default function ProjectCard({
 }) {
   const collapseLabel = labels.collapseLabel ?? "Collapse";
   const expandLabel = labels.expandLabel ?? "Expand";
+  const metricsLabel = labels.metricsLabel ?? "Impact Metrics";
   const trackLabel = project.track === "scm" ? "SCM" : project.track === "qa" ? "QA" : null;
   const groupedTechStack = groupTechStack(project.tech);
+  const projectMetrics = (project.metrics ?? []).filter((metric) => metric?.label || metric?.value);
   const projectKey = (project.id ?? `${project.name}-${project.period}`).replace(/[^a-zA-Z0-9_-]/g, "-");
   const detailsId = `project-details-${projectKey}`;
   const techGroupLabels = {
@@ -116,6 +119,19 @@ export default function ProjectCard({
               <li key={contribution}>{contribution}</li>
             ))}
           </ul>
+          {projectMetrics.length ? (
+            <div className="project-metrics">
+              <p className="project-metrics-title">{metricsLabel}</p>
+              <div className="project-metrics-grid">
+                {projectMetrics.map((metric, index) => (
+                  <div key={`${projectKey}-metric-${index}`} className="project-metric-item">
+                    <span>{metric.label}</span>
+                    <strong>{metric.value}</strong>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null}
       </div>
       <div className="project-status-wrap">
         <span className={`project-status ${project.isPending ? "pending" : "done"}`}>
