@@ -9,6 +9,7 @@ import {
   NAV_ITEMS,
   PROFILE,
   SCAN_HIERARCHY,
+  SUMMARY_QUICK_MODEL,
   PROJECT_CATEGORY,
   PROJECT_TRACK,
   PROJECTS,
@@ -243,14 +244,16 @@ export default function usePortfolioViewModel({ lang, t }) {
   );
 
   const summaryQuick = useMemo(() => {
-    const strengths = localizedHighlights.slice(0, 3).map((item) => item.title);
+    const strengths = localizedHighlights
+      .slice(0, SUMMARY_QUICK_MODEL.strengthsMax)
+      .map((item) => item.title);
     const impacts = featuredProjects
       .flatMap((project) =>
         (project.metrics ?? []).slice(0, 1).map((metric) => `${metric.label}: ${metric.value}`)
       )
-      .slice(0, 3);
+      .slice(0, SUMMARY_QUICK_MODEL.impactsMax);
     const fallbackImpacts = localizedMetrics
-      .slice(0, 2)
+      .slice(0, SUMMARY_QUICK_MODEL.metricFallbackMax)
       .map((item) => `${item.label}: ${item.value}`);
 
     return {

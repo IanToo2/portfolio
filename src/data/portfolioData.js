@@ -68,6 +68,12 @@ export const SCAN_HIERARCHY = {
   }
 };
 
+export const SUMMARY_QUICK_MODEL = {
+  strengthsMax: 3,
+  impactsMax: 3,
+  metricFallbackMax: 2
+};
+
 export const METRICS = [
   { label: "실무 경력", labelEn: "Years of Experience", value: "2024.09 - 현재", valueEn: "Sep 2024 - Present", icon: "clock", tenureStart: "2024-09" },
   { label: "현재 소속", labelEn: "Current Company", value: "EMRO", valueEn: "EMRO", icon: "building" },
