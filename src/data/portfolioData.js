@@ -84,22 +84,22 @@ export const HIGHLIGHTS = [
   {
     title: "SCM 구축·전환 개발",
     titleEn: "SCM Implementation & Conversion Development",
-    text: "신규 구축과 컨버전 프로젝트에서 핵심 기능 구현과 도메인 전환을 담당하며, 일정 내 안정적인 릴리즈 기준을 정착시켰습니다.",
-    textEn: "Led core feature implementation and domain migration across implementation and conversion projects, establishing stable release standards within schedule.",
+    text: "신규 구축·컨버전 프로젝트에서 핵심 기능 구현과 도메인 전환을 담당하며 안정적인 릴리즈 기준을 정착시켰습니다.",
+    textEn: "Delivered core features and domain migration in implementation and conversion projects with stable release standards.",
     icon: "shield"
   },
   {
     title: "연동 안정성과 데이터 정합성 관리",
     titleEn: "Integration Stability & Data Integrity Management",
-    text: "SAP 인터페이스 로직 개선과 중복 데이터 처리 보완을 통해 연동 안정성을 높였고, DB 전환 시 스키마·쿼리 정합성 검증으로 품질 이슈를 줄였습니다.",
-    textEn: "Improved integration stability through SAP interface logic and deduplication handling, and reduced quality issues by validating schema and query consistency during DB migration.",
+    text: "SAP 인터페이스 로직과 중복 데이터 처리를 개선하고 DB 전환 정합성 검증으로 품질 이슈를 줄였습니다.",
+    textEn: "Improved SAP interface and deduplication logic, then reduced quality issues with DB migration consistency checks.",
     icon: "database"
   },
   {
     title: "팀 프로젝트 백엔드 리드 경험",
     titleEn: "Backend Leadership in Team Projects",
-    text: "팀 프로젝트에서 백엔드 리드로 핵심 API 설계, 인증 체계 정비, 배포 파이프라인 운영을 맡아 개발부터 배포까지 흐름을 안정적으로 연결했습니다.",
-    textEn: "As a backend lead in team projects, I handled core API design, authentication flow setup, and deployment pipeline operations to connect development and release reliably.",
+    text: "팀 프로젝트에서 백엔드 리드로 API 설계, 인증 체계, 배포 파이프라인을 정비해 개발-배포 흐름을 안정화했습니다.",
+    textEn: "As backend lead, I standardized API design, auth flow, and deployment pipeline to stabilize delivery.",
     icon: "route"
   }
 ];
