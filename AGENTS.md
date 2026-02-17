@@ -85,3 +85,14 @@ Validate: validate + build (+ localhost if needed)
   - 예시: `Invoke-RestMethod ... -Body $bodyBytes -ContentType "application/json; charset=utf-8"`
 - 전송 후에는 API 재조회로 한글 키워드가 정상인지 확인한다.
   - 제목/본문에 `?` 치환 문자가 보이면 실패로 간주하고 UTF-8 바이트 전송 방식으로 재시도한다.
+
+---
+
+## 8. PowerShell Markdown Safety (GitHub API)
+
+- PowerShell에서 백틱()은 escape 문자다.
+- Markdown 본문에 backtick 표기(예: ria-current, 
+pm run ...)가 있으면, 이중 인용 here-string(@"...")을 사용하지 않는다.
+- 이 경우 단일 인용 here-string(@'... '@)을 사용해 원문을 그대로 유지한다.
+- GitHub API 전송은 항상 UTF-8 bytes + pplication/json; charset=utf-8을 사용한다.
+- 전송 후 GET 재조회로 제어문자(\x00-\x1F) 및 U+FFFD 문자가 없는지 검증한다.
