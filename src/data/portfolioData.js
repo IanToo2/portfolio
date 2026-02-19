@@ -582,14 +582,28 @@ export const PROJECTS = [
     scopeEn: ["To be defined"],
     tech: ["JavaScript", "Java", "Spring", "MyBatis", "Polymer", "SVN", "PostgreSQL"],
     techEn: ["JavaScript", "Java", "Spring", "MyBatis", "Polymer", "SVN", "PostgreSQL"],
-    contributions: ["핵심 기여 입력 예정"],
-    contributionsEn: ["Key contributions to be updated."],
+    contributions: [
+      "B/L·L/G·Invoice 업무 화면의 조회/편집 흐름을 개선하고, 관리·리스트·팝업 UI를 일관된 입력 규칙으로 정비",
+      "BL/LG/LC 도메인의 Controller·Service·Repository·Mapper를 함께 수정해 파라미터 정합성과 조회 로직을 안정화",
+      "수출입 모듈 고도화 이슈를 연속 반영하며 화면-백엔드 연계 품질을 개선"
+    ],
+    contributionsEn: [
+      "Improved B/L, L/G, and Invoice UI flows across manage/list/popup screens with consistent input rules.",
+      "Stabilized parameter consistency and query behavior by coordinating Controller, Service, Repository, and Mapper changes in BL/LG/LC domains.",
+      "Continuously delivered import/export module enhancements on SVN branch tasks (Jan 29 to Feb 11, 2026), improving UI-backend integration quality."
+    ],
     metrics: [
       {
-        label: "상태",
-        labelEn: "Status",
-        value: "진행 예정",
-        valueEn: "Planned"
+        label: "개인 리비전",
+        labelEn: "Personal revisions",
+        value: "r1113~r1312 구간 50건",
+        valueEn: "50 revisions in r1113-r1312"
+      },
+      {
+        label: "변경 파일",
+        labelEn: "Files touched",
+        value: "고유 29개 (UI 15 / Java 10 / Mapper 4)",
+        valueEn: "29 unique files (UI 15 / Java 10 / Mapper 4)"
       }
     ],
     isPending: true
