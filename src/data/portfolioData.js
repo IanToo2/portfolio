@@ -544,6 +544,98 @@ export const PROJECTS = [
   },
   {
     category: PROJECT_CATEGORY.WORK,
+    track: PROJECT_TRACK.QA,
+    isFeatured: false,
+    name: "Cadentia 신규 릴리즈 QA",
+    nameEn: "Cadentia New Release QA",
+    period: "2026.02 - 2026.04",
+    periodEn: "Feb 2026 - Apr 2026",
+    kind: "QA_HOTFIX 검증/전달",
+    kindEn: "QA_HOTFIX Validation & Handoff",
+    scope: ["요건 검토", "핫픽스 QA", "결함 전달", "수정 검증"],
+    scopeEn: ["Requirement Review", "Hotfix QA", "Defect Handoff", "Fix Verification"],
+    tech: ["Notion", "QA 프로세스 운영"],
+    techEn: ["Notion", "QA Process Operations"],
+    contributions: [
+      "QA_HOTFIX 운영 규칙(High 우선순위, 접수일+3일 마감)을 기준으로 릴리즈 검증 항목을 관리",
+      "핫픽스 이슈별 재현 조건과 영향 범위를 정리해 개발팀 전달 품질을 표준화",
+      "메인 업무-실행 TODO-산출물 연결 구조를 유지해 QA 이력 추적성과 후속 검증 효율을 강화"
+    ],
+    contributionsEn: [
+      "Managed release validation tasks under the QA_HOTFIX policy (High priority with a +3-day due window from intake).",
+      "Standardized developer handoff quality by documenting reproducible conditions and impact scope per hotfix issue.",
+      "Improved traceability and follow-up verification efficiency by maintaining links across main tasks, execution TODOs, and deliverables."
+    ],
+    metrics: [
+      {
+        label: "우선순위 정책",
+        labelEn: "Priority Policy",
+        value: "QA_HOTFIX = High 고정",
+        valueEn: "QA_HOTFIX fixed to High"
+      },
+      {
+        label: "SLA 기준",
+        labelEn: "SLA Standard",
+        value: "접수일 기준 +3일",
+        valueEn: "Due in 3 days from intake"
+      },
+      {
+        label: "진행 상태",
+        labelEn: "Current Status",
+        value: "릴리즈 QA 진행중",
+        valueEn: "Release QA in progress"
+      }
+    ],
+    isPending: true
+  },
+  {
+    category: PROJECT_CATEGORY.WORK,
+    track: PROJECT_TRACK.QA,
+    isFeatured: false,
+    name: "QA 자동화 툴 개발",
+    nameEn: "QA Automation Tooling",
+    period: "2026.02 - 2026.04",
+    periodEn: "Feb 2026 - Apr 2026",
+    kind: "바이브 코딩 기반 QA 자동화 개발",
+    kindEn: "Vibe-Coding-Based QA Automation Development",
+    scope: ["구조 설계", "실행 스크립트 정비", "결과 리포트 검증", "운영 문서화"],
+    scopeEn: ["Structure Design", "Runner Script Setup", "Report Validation", "Operational Documentation"],
+    tech: ["Node.js", "Playwright", "Notion", "Chrome", "Microsoft Edge"],
+    techEn: ["Node.js", "Playwright", "Notion", "Chrome", "Microsoft Edge"],
+    contributions: [
+      "바이브 코딩 워크플로우로 QA 테스트 자동화 운영 허브를 구축하고 프로그램 사용법/데일리/TODO 구조를 표준화",
+      "로컬 Playwright 기반 `qa:unit`, `qa:discover-menus` 실행 절차와 환경변수 가이드를 정립",
+      "리포트 산출물(JSON/HTML) 생성 경로와 종료 로그 검증 기준을 정의해 결과 확인 절차를 명확화"
+    ],
+    contributionsEn: [
+      "Built a QA automation operations hub through a vibe-coding workflow, and standardized usage docs, daily logs, and TODO tracking.",
+      "Established execution procedures and environment variable guidance for local Playwright runners (`qa:unit`, `qa:discover-menus`).",
+      "Defined validation standards for JSON/HTML report outputs and completion logs to make result checks consistent."
+    ],
+    metrics: [
+      {
+        label: "개발 방식",
+        labelEn: "Development Approach",
+        value: "바이브 코딩 기반 반복 개선",
+        valueEn: "Iterative improvement with vibe coding"
+      },
+      {
+        label: "자동화 실행 커맨드",
+        labelEn: "Automation Commands",
+        value: "qa:unit, qa:discover-menus",
+        valueEn: "qa:unit, qa:discover-menus"
+      },
+      {
+        label: "결과 검증 기준",
+        labelEn: "Result Validation Standard",
+        value: "JSON/HTML 리포트 + 종료 메시지 확인",
+        valueEn: "JSON/HTML reports + completion summary check"
+      }
+    ],
+    isPending: true
+  },
+  {
+    category: PROJECT_CATEGORY.WORK,
     track: PROJECT_TRACK.SCM,
     isFeatured: false,
     name: "SCHNEIDER POC 프로젝트",

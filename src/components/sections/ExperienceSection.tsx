@@ -12,6 +12,7 @@ interface TimelineText {
   experienceLabel: string;
   experienceTitle: string;
   experienceSubtitle: string;
+  workProjectCountText?: string;
   timelineTitles: {
     work: string;
     education: string;
@@ -23,6 +24,7 @@ interface TimelineText {
 
 interface ExperienceSectionProps {
   t: TimelineText;
+  workProjectTotal: number;
   localizedExperience: TimelineItem[];
   localizedEducation: TimelineItem[];
   localizedTraining: TimelineItem[];
@@ -32,12 +34,18 @@ interface ExperienceSectionProps {
 
 export default function ExperienceSection({
   t,
+  workProjectTotal,
   localizedExperience,
   localizedEducation,
   localizedTraining,
   localizedAwards,
   localizedCertifications
 }: ExperienceSectionProps) {
+  const workProjectCountText = t.workProjectCountText?.replace("{count}", String(workProjectTotal));
+  const workTimelineTitle = workProjectCountText
+    ? `${t.timelineTitles.work} · ${workProjectCountText}`
+    : t.timelineTitles.work;
+
   return (
     <SectionShell
       id="experience"
@@ -52,7 +60,7 @@ export default function ExperienceSection({
     >
       <div className="timeline-columns">
         <div className="timeline-column">
-          <TimelineGroup title={t.timelineTitles.work} items={localizedExperience} />
+          <TimelineGroup title={workTimelineTitle} items={localizedExperience} />
           <TimelineGroup title={t.timelineTitles.education} items={localizedEducation} />
           <TimelineGroup
             title={t.timelineTitles.awards}

@@ -48,6 +48,7 @@ export default function App() {
   } = usePortfolioViewModel({ lang, t });
 
   const { showTopButton, isMobile } = useViewportFlags();
+  const workProjectTotal = workScmProjects.length + workQaProjects.length;
   const sectionIds = useMemo(() => localizedNavItems.map((item) => item.id), [localizedNavItems]);
   const { activeSection, setActiveSection } = useActiveSection(sectionIds);
   const handlePdfExportError = useCallback(() => {
@@ -202,6 +203,7 @@ export default function App() {
         <StackSection t={t} localizedStack={localizedStack} />
         <ExperienceSection
           t={t}
+          workProjectTotal={workProjectTotal}
           localizedExperience={localizedExperience}
           localizedEducation={localizedEducation}
           localizedTraining={localizedTraining}

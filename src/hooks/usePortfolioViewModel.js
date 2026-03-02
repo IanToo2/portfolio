@@ -181,8 +181,33 @@ export default function usePortfolioViewModel({ lang, t }) {
   );
 
   const localizedExperience = useMemo(
-    () => localizeTimelineItems(EXPERIENCE),
-    [lang]
+    () => {
+      const workProjects = localizedProjects.filter((project) => project.category === PROJECT_CATEGORY.WORK);
+      const scmCount = workProjects.filter((project) => project.track === PROJECT_TRACK.SCM).length;
+      const qaCount = workProjects.filter((project) => project.track === PROJECT_TRACK.QA).length;
+      const mixTemplate =
+        t.workProjectMixText ??
+        (lang === "en"
+          ? "{scm} SCM projects · {qa} QA projects"
+          : "SCM 프로젝트 {scm}건 · QA 프로젝트 {qa}건");
+      const mixText = mixTemplate
+        .replace("{scm}", String(scmCount))
+        .replace("{qa}", String(qaCount));
+
+      return localizeTimelineItems(EXPERIENCE).map((item) => {
+        if (String(item.organization ?? "").toLowerCase() !== "emro") {
+          return item;
+        }
+
+        const bullets = Array.isArray(item.bullets) ? item.bullets : [];
+        const nextBullets = bullets[0] === mixText ? bullets : [mixText, ...bullets];
+        return {
+          ...item,
+          bullets: nextBullets
+        };
+      });
+    },
+    [lang, localizedProjects, t.workProjectMixText]
   );
 
   const localizedEducation = useMemo(
