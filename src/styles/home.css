@@ -68,10 +68,10 @@
 
 .home-hero-card h3 {
   margin: 0.68rem 0 0;
-  font-size: clamp(1.56rem, 2.6vw, 2.2rem);
+  font-size: clamp(1.52rem, 2.2vw, 2.02rem);
   letter-spacing: -0.04em;
   line-height: 1.12;
-  max-width: 24ch;
+  max-width: none;
 }
 
 .home-hero-copy {
