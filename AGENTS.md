@@ -11,7 +11,7 @@
   - Scope
   - Done criteria
 - `DEV`는 기본 순서를 따른다.
-  - Issue 등록(한국어) -> Plan -> Dev -> Validate -> Manual check(if needed) -> Commit -> Push -> Issue update
+  - Issue 등록(한국어) -> Plan -> Dev -> Validate -> Manual check(if needed) -> Commit -> Push -> Issue update -> Issue close(if resolved)
 - 위험 작업은 실행 전에 확인한다.
   - 파일 삭제
   - 외부 네트워크
@@ -44,6 +44,7 @@
   - 검증과 필요한 수동 테스트가 끝나면 커밋 후 기본적으로 `push`까지 진행
   - `push`를 못 했으면 인증/네트워크/사용자 지시 사유를 남긴다
   - 작업 완료 후 이슈에 변경 요약, 검증 결과, 커밋/푸시 상태를 남긴다
+  - 이슈가 해결 상태면 마지막 업데이트 후 닫고, 남은 작업이나 차단 사유가 있으면 닫지 않는다
 - `ANALYSIS`
   - read-only 유지
   - commit / push 금지
@@ -55,6 +56,7 @@
 - 하위 Task 본문 첫 줄은 `Parent: #<번호>`
 - 하위 Task 본문에 `Task-Key: T-01` 형식 식별자 사용
 - 구현/검증/커밋/푸시는 하위 Task 단위로 한 번에 1개씩 처리
+- 해결 완료된 이슈는 변경 요약과 검증 결과를 남긴 뒤 닫는다
 
 ## 7. 환경 메모
 - 표준 실행 환경은 WSL(Ubuntu)

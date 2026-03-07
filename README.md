@@ -4,7 +4,7 @@ React + Vite 기반 단일 페이지 포트폴리오.
 
 ## 문서
 - `README.md`: 프로젝트 개요, 실행, 배포, 구조
-- `AGENTS.md`: 저장소 작업 규칙
+- `AGENTS.md`: 저장소 작업 규칙과 이슈 lifecycle(등록 -> 업데이트 -> 종료) SSOT
 - `skills/portfolio/SKILL.md`: 포트폴리오 변경 라우팅과 작업 절차
 
 ## 구조
