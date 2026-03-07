@@ -1,89 +1,80 @@
 ---
 name: "portfolio"
-description: "Use when developing or extending the portfolio-site repository, including content edits, bilingual updates, section changes, component work, data-model extensions, and required validation."
+description: "Use for portfolio-site content, UI, structure, and debugging work."
 ---
 
 # Portfolio Skill
 
-## When to use
-- User asks to update portfolio content, bilingual copy, profile info, projects, experience, stack, or contact details.
-- User asks to add, remove, reorder, or redesign sections in the portfolio site.
-- User asks to extend the site's structure, such as new data fields, filters, cards, section-level behaviors, or PDF-related UI.
-- User asks to keep portfolio changes aligned with the repository's validation rules and current architecture.
+## Use when
+- 포트폴리오 콘텐츠, 이중언어 문구, 섹션, 카드, 레이아웃, 상호작용을 수정할 때
+- 데이터 필드, 프로젝트 분류, 섹션 구조, PDF 관련 UI를 확장할 때
+- 포트폴리오 버그를 분석하거나 수정할 때
 
-## First pass
-1. Read `AGENTS.md` and follow repository-wide rules without redefining them here.
-2. Classify the request:
-   - Content update
-   - UI or layout update
-   - Structural extension
-   - Validation or debugging
-3. Choose the smallest change path in this order:
-   - `src/data/*`
-   - `src/features/portfolio/usePortfolioHomeModel.js`
-   - `src/features/portfolio/components/*`
-   - `src/components/*`
-   - `src/App.tsx`
-   - `src/styles/*`
+## Route changes
+- 콘텐츠/경력/프로젝트/기술 데이터: `src/data/portfolioData.js`
+- UI 문구/라벨/aria/상태 메시지: `src/data/portfolioText.js`
+- 파생 데이터/로컬라이징/그룹핑: `src/features/portfolio/usePortfolioHomeModel.js`
+- 섹션 UI: `src/features/portfolio/components/*`
+- 공통 UI: `src/components/*`
+- 상위 구성/내비게이션/인트로: `src/App.tsx`
+- 스타일: `src/styles/*`
+- PDF 영향: `src/hooks/usePortfolioPdfExport.js`
 
-## Architecture map
-- Data source:
-  - `src/data/portfolioData.js`
-  - `src/data/portfolioText.js`
-- View-model:
-  - `src/features/portfolio/usePortfolioHomeModel.js`
-- Page composition:
-  - `src/App.tsx`
-- Portfolio sections:
-  - `src/features/portfolio/components/*`
-- Shared UI:
-  - `src/components/*`
-- Export behavior:
-  - `src/hooks/usePortfolioPdfExport.js`
+작업 순서는 가능한 한 `data -> model -> section component -> shared component -> App -> styles`를 따른다.
 
-## Working rules
-- Prefer data changes before component logic changes.
-- Preserve bilingual parity for all user-facing copy.
-- Keep names, dates, metrics, company names, and certification details aligned across languages.
-- Preserve import/export shape and current object conventions unless the task is a controlled schema change.
-- If adding a new field, wire it through data -> model -> UI in that order.
-- If adding a new section, update section id, navigation, active-section behavior, and layout entry together.
-- Keep the default scan flow intact unless the user asks to change it.
-- Favor concise, scannable copy and do not invent metrics or impact numbers.
+## Keep true
+- 사용자 노출 문구는 한/영 의미와 순서를 맞춘다
+- 이름, 날짜, 지표, 회사명, 자격 정보는 언어 간 불일치가 없어야 한다
+- 새 필드는 `data -> model -> UI` 순서로 연결한다
+- 새 섹션은 섹션 id, 내비게이션, active-section 동작, 레이아웃 등록을 함께 갱신한다
+- 기본 스캔 순서는 `Home -> Projects -> Capabilities -> Career -> Contact` 유지
+- 수치는 근거 없는 값으로 추가하지 않는다
 
-## Change playbooks
-- Content-only change:
-  - Edit `src/data/portfolioData.js` or `src/data/portfolioText.js` first.
-- New project attribute:
-  - Add the data field, localize it, map it in `usePortfolioHomeModel.js`, then render it in the target card or section.
-- New section:
-  - Add the section component, register it in `src/App.tsx`, connect navigation and anchors, then style minimally.
-- Shared UI refactor:
-  - Touch `src/components/*` only when reuse is real across multiple sections.
-- PDF-related UI change:
-  - Check `src/hooks/usePortfolioPdfExport.js` impact and keep export affordances working.
+## Data model essentials
+- `src/data/portfolioData.js` 주요 export:
+  - `PROFILE`
+  - `NAV_ITEMS`
+  - `SCAN_HIERARCHY`
+  - `SUMMARY_QUICK_MODEL`
+  - `METRICS`
+  - `HIGHLIGHTS`
+  - `STACK`
+  - `EXPERIENCE`
+  - `EDUCATION`
+  - `TRAINING`
+  - `AWARDS`
+  - `CERTIFICATIONS`
+  - `PROJECT_CATEGORY`
+  - `PROJECT_TRACK`
+  - `PROJECTS`
+- `src/data/portfolioText.js` export: `TEXT`
+- 이중언어 필드는 기본적으로 `field` / `fieldEn`
+- 타임라인 배열 항목은 `period`, `organization`, `title`, `bullets`와 각 `En` 쌍을 유지
+- 프로젝트는 최소한 `category`, `track`, `name/nameEn`, `period/periodEn`, `kind/kindEn`, `scope/scopeEn`, `tech/techEn`, `contributions/contributionsEn`, `metrics`, `isFeatured`, `isPending`을 유지
+- 새 프로젝트 표시 필드를 추가하면 raw data, model mapping, 소비 UI를 모두 함께 수정
 
-## References
-- Read `references/repo-map.md` to decide where a change belongs.
-- Read `references/content-schema.md` before changing exported data shapes or bilingual field pairs.
-- Read `references/extension-playbook.md` when adding sections, project views, or structural UI.
+## Extension patterns
+- 콘텐츠 수정: 데이터 파일 또는 `TEXT`만 먼저 수정
+- 새 필드: raw field 추가 -> 영어 쌍 추가 -> `usePortfolioHomeModel.js` 매핑 -> 필요한 카드/섹션만 렌더
+- 새 섹션: 섹션 컴포넌트 생성 -> `App.tsx` 등록 -> nav/anchor/active-section 확인 -> 필요한 최소 스타일만 추가
+- 새 프로젝트 grouping/filter: `PROJECTS`에 최소 signal 추가 -> model에서 파생 컬렉션 생성 -> 섹션 UI 연결
+- 공통 UI 승격: 실제 재사용이 2곳 이상일 때만 `src/components/*`로 이동
+- PDF 영향 변경: export 버튼 흐름과 섹션/card 래퍼가 PDF 출력에서 유지되는지 확인
 
 ## Validation
-For DEV work, run the commands required by `AGENTS.md`:
-- `npm run validate`
-- `npm run build`
+- `DEV` 작업 후:
+  - `npm run validate`
+  - `npm run build`
+- dev 서버가 이미 떠 있으면 `http://localhost:5173` 응답 확인
+- UI, 레이아웃, 애니메이션, 네비게이션, 상태 전환 변경 시 수동 테스트:
+  - 첫 진입과 새로고침 후 모두 확인
+  - 변경된 상호작용을 최소 1회 실행
+  - 언어 전환, 필터, 탭, 오버레이, sticky UI, 스크롤 연동 변경이면 해당 흐름 추가 확인
+  - 배포 사이트 버그 수정이면 배포 환경에서도 같은 시나리오 재확인, 불가 시 사유 기록
 
-If a dev server is already running, also verify `http://localhost:5173` responds.
-
-For UI, layout, animation, navigation, or state-transition changes, also run browser manual checks:
-- Confirm the changed view renders in the browser without hidden or overlapping content.
-- Exercise the affected interaction at least once after initial load and once after refresh.
-- If the change touches language switch, filters, tabs, overlays, sticky UI, or scroll-driven behavior, verify those specific flows.
-- If the bug was reported on a deployed site, verify the same scenario again on the deployed environment when available, or record why that check was skipped.
-
-## Done criteria
-- Requested portfolio change is implemented in the smallest reasonable diff.
-- Data, model, and UI stay aligned.
-- Korean and English content remain aligned where relevant.
-- validate and build pass.
-- Required browser manual checks are completed or explicitly marked as blocked.
+## Done
+- 요청 변경이 최소 diff로 반영됨
+- data/model/UI 정합성 유지
+- 한/영 정합성 유지
+- validate/build 통과
+- 필요한 수동 테스트 완료 또는 차단 사유 기록
