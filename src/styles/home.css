@@ -701,6 +701,50 @@
   grid-template-columns: minmax(0, 1fr) minmax(280px, 0.9fr);
 }
 
+.career-certifications-panel {
+  grid-column: 1 / -1;
+}
+
+.timeline-group-title {
+  margin: 0 0 0.55rem;
+  font-size: 1rem;
+}
+
+.timeline {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.timeline-card > span {
+  display: inline-flex;
+  min-height: 2rem;
+  padding: 0.22rem 0.58rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg-soft);
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.timeline-card h3 {
+  margin: 0.62rem 0 0.42rem;
+}
+
+.timeline-org {
+  margin: -0.1rem 0 0.5rem;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.timeline-card ul {
+  margin: 0;
+  padding-left: 1.05rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
 .timeline-card--featured span,
 .timeline-card--compact span {
   display: block;
@@ -811,7 +855,8 @@
 
   .home-metric-grid,
   .featured-project-metrics,
-  .contact-grid {
+  .contact-grid,
+  .timeline {
     grid-template-columns: 1fr;
   }
 

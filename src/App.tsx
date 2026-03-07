@@ -33,6 +33,7 @@ export default function App() {
     stackPreviewGroups,
     careerFeatured,
     careerSnapshot,
+    localizedCertifications,
     projectCardLabels
   } = usePortfolioHomeModel({ lang, t });
 
@@ -209,6 +210,7 @@ export default function App() {
           t={t}
           careerFeatured={careerFeatured}
           careerSnapshot={careerSnapshot}
+          localizedCertifications={localizedCertifications}
         />
         <ContactPanel
           t={t}

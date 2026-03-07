@@ -1,6 +1,9 @@
+import TimelineGroup from "../../../components/TimelineGroup";
 import PortfolioSection from "./PortfolioSection";
 
-export default function CareerSection({ t, careerFeatured, careerSnapshot }) {
+export default function CareerSection({ t, careerFeatured, careerSnapshot, localizedCertifications }) {
+  const snapshotCards = careerSnapshot.filter((item) => item.id !== "certification");
+
   return (
     <PortfolioSection
       id="career"
@@ -23,7 +26,7 @@ export default function CareerSection({ t, careerFeatured, careerSnapshot }) {
         ) : null}
 
         <div className="career-proof-grid">
-          {careerSnapshot.map((item) => (
+          {snapshotCards.map((item) => (
             <article key={item.id} className="timeline-card timeline-card--compact" data-breakpoint="true">
               <span>{item.label}</span>
               <h3>{item.title}</h3>
@@ -32,6 +35,16 @@ export default function CareerSection({ t, careerFeatured, careerSnapshot }) {
             </article>
           ))}
         </div>
+
+        {localizedCertifications.length ? (
+          <div className="career-certifications-panel" data-breakpoint="true">
+            <TimelineGroup
+              title={t.timelineTitles.certifications}
+              items={localizedCertifications}
+              showOrganizationInHeading={false}
+            />
+          </div>
+        ) : null}
       </div>
     </PortfolioSection>
   );
