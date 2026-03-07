@@ -56,7 +56,6 @@ export default function App() {
   const introStatus = t.introStatus;
   const isIntroActive = introPhase !== "done";
   const isIntroLeaving = introPhase === "leaving";
-  const isContentReady = introPhase === "done";
   const typedGreeting = introGreeting.slice(0, typedLength);
 
   useEffect(() => {
@@ -115,6 +114,16 @@ export default function App() {
   }, [introGreeting.length, introPhase, typedLength]);
 
   useEffect(() => {
+    if (typeof window === "undefined" || introPhase === "done") {
+      return undefined;
+    }
+
+    // Fail safe: never let the intro overlay hide the page indefinitely.
+    const failSafeTimer = window.setTimeout(() => setIntroPhase("done"), 2800);
+    return () => window.clearTimeout(failSafeTimer);
+  }, [introPhase]);
+
+  useEffect(() => {
     if (typeof document === "undefined") {
       return undefined;
     }
@@ -164,7 +173,7 @@ export default function App() {
       ) : null}
 
       <PortfolioTopBar
-        className={isContentReady ? "page-reveal is-visible" : "page-reveal"}
+        className="page-reveal is-visible"
         logoHomeAriaLabel={logoHomeAriaLabel}
         localizedProfile={localizedProfile}
         navItems={navItems}
@@ -177,7 +186,7 @@ export default function App() {
         switchLabel={t.switchLang}
       />
 
-      <main id="top" className={`page-shell page-reveal-group ${isContentReady ? "is-visible" : ""}`.trim()}>
+      <main id="top" className="page-shell page-reveal-group is-visible">
         <HomeOverviewSection
           t={t}
           localizedProfile={localizedProfile}
