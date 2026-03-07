@@ -26,6 +26,13 @@ npm run dev
 ```
 - 로컬 주소: `http://localhost:5173`
 
+## 배포
+- 운영 배포: GitHub Pages
+- 배포 방식: `main` 브랜치 push 시 `.github/workflows/deploy-pages.yml`로 자동 배포
+- 기본 운영 경로: `https://<GitHub 사용자명>.github.io/portfolio/`
+- 저장소가 `<user>.github.io` 형식이 아닌 경우 Vite build base는 저장소명을 기준으로 자동 계산
+- GitHub 저장소 설정에서 `Settings > Pages > Build and deployment > Source`를 `GitHub Actions`로 설정해야 함
+
 ## 수정 시 기준
 - 데이터/문구 수정: `src/data/*`
 - 포트폴리오 섹션 구조/레이아웃 수정: `src/features/portfolio/components/*`, `src/App.tsx`
