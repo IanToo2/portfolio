@@ -40,7 +40,7 @@ export default function CapabilitySection({ t, capabilityPillars, stackGroups })
                 {group.items.map((item) => (
                   <li key={item}>
                     <TechLogo name={item} />
-                    <span>{item}</span>
+                    <span className="stack-card-label">{item}</span>
                   </li>
                 ))}
               </ul>

@@ -642,6 +642,14 @@
   overflow-wrap: anywhere;
 }
 
+.tech-logo {
+  width: 1rem;
+  height: 1rem;
+  display: block;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
 .project-contrib-title,
 .project-metrics-title {
   margin: 0.8rem 0 0.28rem;
@@ -767,13 +775,20 @@
   list-style: none;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 0.45rem;
 }
 
 .stack-card li {
   width: 100%;
   justify-content: flex-start;
+}
+
+.stack-card-label {
+  min-width: 0;
+  line-height: 1.35;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 
 .stack-card-head h3,
