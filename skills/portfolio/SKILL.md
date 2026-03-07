@@ -75,8 +75,15 @@ For DEV work, run the commands required by `AGENTS.md`:
 
 If a dev server is already running, also verify `http://localhost:5173` responds.
 
+For UI, layout, animation, navigation, or state-transition changes, also run browser manual checks:
+- Confirm the changed view renders in the browser without hidden or overlapping content.
+- Exercise the affected interaction at least once after initial load and once after refresh.
+- If the change touches language switch, filters, tabs, overlays, sticky UI, or scroll-driven behavior, verify those specific flows.
+- If the bug was reported on a deployed site, verify the same scenario again on the deployed environment when available, or record why that check was skipped.
+
 ## Done criteria
 - Requested portfolio change is implemented in the smallest reasonable diff.
 - Data, model, and UI stay aligned.
 - Korean and English content remain aligned where relevant.
 - validate and build pass.
+- Required browser manual checks are completed or explicitly marked as blocked.

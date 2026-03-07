@@ -41,6 +41,8 @@
   - `npm run validate`
   - `npm run build`
 - dev 서버 실행 중이면 `http://localhost:5173` 응답 확인
+- UI, 인터랙션, 애니메이션, 상태 전환을 수정했으면 브라우저 수동 테스트를 추가로 수행한다.
+- 배포 환경에서 보고된 이슈를 수정한 경우, 가능해지는 즉시 배포 환경에서도 동일 시나리오를 다시 확인하고 미실시 시 사유를 남긴다.
 
 ---
 
@@ -67,7 +69,7 @@
 - [ ] 3줄 계획 작성
 - [ ] validate 실행
 - [ ] build 실행
-- [ ] DEV 작업이면 정상 동작 확인 후 커밋
+- [ ] DEV 작업이면 필요한 수동 테스트 수행 후 커밋
 
 ---
 
@@ -102,7 +104,7 @@ Validate: validate + build (+ localhost if needed)
 - DEV 작업은 기본적으로 아래 순서를 따른다.
   - 1) Issue: 작업 시작 시 GitHub 이슈를 먼저 등록한다. (한국어 작성)
   - 2) Plan: Goal / Scope / Done criteria를 명시한다.
-  - 3) Dev: 구현 후 검증(validate, build, 필요 시 localhost 확인)을 수행한다.
+  - 3) Dev: 구현 후 검증(validate, build, 필요 시 localhost 확인, UI 변경 시 브라우저 수동 테스트)을 수행한다.
 - 이슈 등록이 인증/네트워크 문제로 막히면 사유를 기록하고 Plan -> Dev를 먼저 진행한 뒤, 가능해지는 즉시 이슈를 등록/갱신한다.
 - 작업 완료 후 이슈에 결과(변경 요약, 검증 결과, 관련 커밋)를 반영한다.
 
