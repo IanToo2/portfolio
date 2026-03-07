@@ -127,8 +127,8 @@
   min-height: 2.4rem;
   padding: 0.42rem 0.8rem;
   border-radius: 999px;
-  border: 1px solid rgba(16, 26, 40, 0.08);
-  background: rgba(16, 26, 40, 0.05);
+  border: 1px solid rgba(58, 132, 222, 0.12);
+  background: rgba(58, 132, 222, 0.06);
   color: var(--ink);
   display: inline-flex;
   align-items: center;
@@ -190,7 +190,7 @@
   padding: 1.45rem;
   border: 1px solid rgba(184, 203, 224, 0.9);
   border-radius: var(--radius-lg);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(247, 250, 253, 0.96));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(250, 252, 254, 0.98));
   box-shadow: var(--shadow-card);
   scroll-margin-top: 6rem;
 }
