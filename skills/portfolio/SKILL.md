@@ -1,59 +1,75 @@
 ---
 name: "portfolio"
-description: "Use when working on the portfolio-site repository for content edits, section updates, UI changes, and required validation."
+description: "Use when developing or extending the portfolio-site repository, including content edits, bilingual updates, section changes, component work, data-model extensions, and required validation."
 ---
 
 # Portfolio Skill
 
 ## When to use
 - User asks to update portfolio content, bilingual copy, profile info, projects, experience, stack, or contact details.
-- User asks to add, remove, reorder, or retune sections in the portfolio site.
-- User asks to adjust portfolio UI while preserving the repository's current structure and validation rules.
+- User asks to add, remove, reorder, or redesign sections in the portfolio site.
+- User asks to extend the site's structure, such as new data fields, filters, cards, section-level behaviors, or PDF-related UI.
+- User asks to keep portfolio changes aligned with the repository's validation rules and current architecture.
 
-## Primary files
-- `src/data/portfolioData.js`
-- `src/data/portfolioText.js`
-- `src/App.tsx`
-- `src/features/portfolio/components/**`
-- `src/components/**`
-- `src/styles/*.css`
-- `AGENTS.md`
+## First pass
+1. Read `AGENTS.md` and follow repository-wide rules without redefining them here.
+2. Classify the request:
+   - Content update
+   - UI or layout update
+   - Structural extension
+   - Validation or debugging
+3. Choose the smallest change path in this order:
+   - `src/data/*`
+   - `src/features/portfolio/usePortfolioHomeModel.js`
+   - `src/features/portfolio/components/*`
+   - `src/components/*`
+   - `src/App.tsx`
+   - `src/styles/*`
 
-## Workflow
-1. Classify the request first.
-   - Content-first change: prefer editing `src/data/portfolioData.js` or `src/data/portfolioText.js`.
-   - Structure/UI change: edit section components or `src/App.tsx` only as much as needed.
-2. Keep diffs minimal.
-   - Do not rewrite whole files.
-   - Preserve import/export shape and existing data structures unless the task requires a controlled schema change.
-3. Keep bilingual content aligned.
-   - When updating Korean copy, check the matching English field.
-   - Keep names, dates, metrics, company names, and certification details consistent across languages.
-4. Preserve the site's scanning flow.
-   - Summary -> Highlights -> Projects -> Stack -> Experience -> Contact remains the default flow unless the user asks for a reordering.
-   - Favor concise, scannable copy over long prose.
-5. Follow `AGENTS.md` for repository-wide workflow and validation rules.
+## Architecture map
+- Data source:
+  - `src/data/portfolioData.js`
+  - `src/data/portfolioText.js`
+- View-model:
+  - `src/features/portfolio/usePortfolioHomeModel.js`
+- Page composition:
+  - `src/App.tsx`
+- Portfolio sections:
+  - `src/features/portfolio/components/*`
+- Shared UI:
+  - `src/components/*`
+- Export behavior:
+  - `src/hooks/usePortfolioPdfExport.js`
 
-## Copy rules
-- Prefer concrete role, domain, contribution, and outcome statements over vague self-description.
-- Do not invent metrics or impact numbers.
-- Keep bullet points short enough to scan in cards and timeline layouts.
-- If copy length grows, verify the layout still holds on the existing UI.
+## Working rules
+- Prefer data changes before component logic changes.
+- Preserve bilingual parity for all user-facing copy.
+- Keep names, dates, metrics, company names, and certification details aligned across languages.
+- Preserve import/export shape and current object conventions unless the task is a controlled schema change.
+- If adding a new field, wire it through data -> model -> UI in that order.
+- If adding a new section, update section id, navigation, active-section behavior, and layout entry together.
+- Keep the default scan flow intact unless the user asks to change it.
+- Favor concise, scannable copy and do not invent metrics or impact numbers.
 
-## UI and structure rules
-- Follow the repository's established visual language unless the user asks for a redesign.
-- If a change can be handled in data, avoid adding component logic.
-- If a new section is added, wire navigation, section id usage, and active-section behavior consistently.
-- Preserve accessibility behaviors already present in navigation, buttons, and skip links.
-- Portfolio feature work should prefer `src/features/portfolio/components/*` before touching shared `src/components/*`.
+## Change playbooks
+- Content-only change:
+  - Edit `src/data/portfolioData.js` or `src/data/portfolioText.js` first.
+- New project attribute:
+  - Add the data field, localize it, map it in `usePortfolioHomeModel.js`, then render it in the target card or section.
+- New section:
+  - Add the section component, register it in `src/App.tsx`, connect navigation and anchors, then style minimally.
+- Shared UI refactor:
+  - Touch `src/components/*` only when reuse is real across multiple sections.
+- PDF-related UI change:
+  - Check `src/hooks/usePortfolioPdfExport.js` impact and keep export affordances working.
 
-## Repo rules
-- Treat `AGENTS.md` as the SSOT for repository-wide rules.
-- Keep this skill focused on portfolio-specific editing guidance only.
+## References
+- Read `references/repo-map.md` to decide where a change belongs.
+- Read `references/content-schema.md` before changing exported data shapes or bilingual field pairs.
+- Read `references/extension-playbook.md` when adding sections, project views, or structural UI.
 
 ## Validation
 For DEV work, run the commands required by `AGENTS.md`:
-
 - `npm run validate`
 - `npm run build`
 
@@ -61,5 +77,6 @@ If a dev server is already running, also verify `http://localhost:5173` responds
 
 ## Done criteria
 - Requested portfolio change is implemented in the smallest reasonable diff.
+- Data, model, and UI stay aligned.
 - Korean and English content remain aligned where relevant.
 - validate and build pass.

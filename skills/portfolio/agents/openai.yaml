@@ -1,0 +1,4 @@
+interface:
+  display_name: "Portfolio Development"
+  short_description: "포트폴리오 사이트의 콘텐츠 수정과 구조 확장을 안내하는 스킬"
+  default_prompt: "Use $portfolio when working on this portfolio-site repository for content updates, section changes, data-model extensions, or portfolio UI development."
