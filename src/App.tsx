@@ -12,8 +12,6 @@ import usePortfolioPdfExport from "./hooks/usePortfolioPdfExport";
 import usePortfolioHomeModel from "./features/portfolio/usePortfolioHomeModel";
 import useViewportFlags from "./hooks/useViewportFlags";
 
-const INTRO_SESSION_KEY = "portfolio:intro-complete";
-
 export default function App() {
   const [lang, setLang] = useState<"ko" | "en">("ko");
   const [introPhase, setIntroPhase] = useState<"boot" | "active" | "leaving" | "done">("boot");
@@ -72,9 +70,8 @@ export default function App() {
     }
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const introCompleted = window.sessionStorage.getItem(INTRO_SESSION_KEY) === "1";
 
-    if (prefersReducedMotion || introCompleted) {
+    if (prefersReducedMotion) {
       setTypedLength(introGreeting.length);
       setIntroPhase("done");
       return undefined;
@@ -109,10 +106,7 @@ export default function App() {
     }
 
     const leaveTimer = window.setTimeout(() => setIntroPhase("leaving"), 520);
-    const doneTimer = window.setTimeout(() => {
-      window.sessionStorage.setItem(INTRO_SESSION_KEY, "1");
-      setIntroPhase("done");
-    }, 1040);
+    const doneTimer = window.setTimeout(() => setIntroPhase("done"), 1040);
 
     return () => {
       window.clearTimeout(leaveTimer);
