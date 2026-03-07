@@ -51,7 +51,8 @@ export default function App() {
     t.langSwitchAriaLabel ?? (lang === "ko" ? "Switch to English page" : "Switch to Korean page");
   const introGreeting = t.introGreeting;
   const introStatus = t.introStatus;
-  const isIntroActive = introPhase !== "done";
+  const isIntroVisible = introPhase !== "done";
+  const isIntroScrollLocked = introPhase === "boot" || introPhase === "active";
   const isIntroLeaving = introPhase === "leaving";
   const typedGreeting = introGreeting.slice(0, typedLength);
 
@@ -125,11 +126,11 @@ export default function App() {
       return undefined;
     }
 
-    document.body.classList.toggle("is-intro-active", isIntroActive);
+    document.body.classList.toggle("is-intro-active", isIntroScrollLocked);
     return () => document.body.classList.remove("is-intro-active");
-  }, [isIntroActive]);
+  }, [isIntroScrollLocked]);
 
-  usePortfolioScrollExperience({ enabled: introPhase === "done" });
+  usePortfolioScrollExperience({ enabled: introPhase === "leaving" || introPhase === "done" });
 
   const handleMenuKeyDown = useCallback((event: KeyboardEvent<HTMLAnchorElement>, index: number) => {
     const { key } = event;
@@ -162,7 +163,7 @@ export default function App() {
       <a className="skip-link" href="#home">{t.skipToMain}</a>
       <div className="page-bg" aria-hidden="true" />
       <div className="page-grain" aria-hidden="true" />
-      {isIntroActive ? (
+      {isIntroVisible ? (
         <PortfolioIntroOverlay
           greeting={introGreeting}
           typedGreeting={typedGreeting}

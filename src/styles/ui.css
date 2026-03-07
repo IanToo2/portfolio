@@ -109,6 +109,7 @@ html.lenis body {
 .portfolio-intro.is-leaving {
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
 }
 
 .portfolio-intro-panel {
