@@ -6,12 +6,12 @@ export default function ProjectsHubSection({
   t,
   primaryCaseStudies,
   supportingProjectGroups,
-  projectCardLabels,
-  isMobile
+  projectCardLabels
 }) {
   const [activeGroupId, setActiveGroupId] = useState(supportingProjectGroups[0]?.id ?? "scm");
-  const [isSupportingOpen, setIsSupportingOpen] = useState(false);
+  const [isSupportingOpen, setIsSupportingOpen] = useState(true);
   const [collapsedProjects, setCollapsedProjects] = useState({});
+  const [collapsedCaseStudies, setCollapsedCaseStudies] = useState({});
 
   const activeGroup = useMemo(
     () => supportingProjectGroups.find((group) => group.id === activeGroupId) ?? supportingProjectGroups[0],
@@ -19,10 +19,15 @@ export default function ProjectsHubSection({
   );
 
   const getProjectKey = (project) => project.id ?? `${project.name}|${project.period}`;
-  const isProjectCollapsed = (project) => (isMobile ? collapsedProjects[getProjectKey(project)] !== false : false);
+  const isProjectCollapsed = (project) => collapsedProjects[getProjectKey(project)] !== false;
   const toggleProjectCollapse = (project) => {
     const key = getProjectKey(project);
     setCollapsedProjects((prev) => ({ ...prev, [key]: !(prev[key] !== false) }));
+  };
+  const isCaseStudyCollapsed = (project) => collapsedCaseStudies[getProjectKey(project)] !== false;
+  const toggleCaseStudyCollapse = (project) => {
+    const key = getProjectKey(project);
+    setCollapsedCaseStudies((prev) => ({ ...prev, [key]: !(prev[key] !== false) }));
   };
 
   return (
@@ -69,6 +74,10 @@ export default function ProjectsHubSection({
                 <strong>{project.impactSummary}</strong>
               </div>
             </div>
+            <div className="case-study-meta">
+              <p>{projectCardLabels.scopeLabel}</p>
+              <strong>{project.scope.join(" / ")}</strong>
+            </div>
             <div className="featured-project-tags">
               {project.techPreview.map((item) => (
                 <span key={`${project.id}-${item}`}>{item}</span>
@@ -82,6 +91,48 @@ export default function ProjectsHubSection({
                 </div>
               ))}
             </div>
+            {project.hasHiddenDetails ? (
+              <>
+                <div
+                  id={`case-study-details-${project.id}`}
+                  className="case-study-details"
+                  hidden={isCaseStudyCollapsed(project)}
+                >
+                  {project.tech.length > project.techPreview.length ? (
+                    <div className="case-study-detail-block">
+                      <p>{projectCardLabels.technologiesLabel}</p>
+                      <ul className="project-tech project-tech--preview">
+                        {project.tech.map((item) => (
+                          <li key={`${project.id}-detail-tech-${item}`}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+                  {project.metrics?.length > project.metricPreview.length ? (
+                    <div className="project-metrics">
+                      <p className="project-metrics-title">{projectCardLabels.metricsLabel}</p>
+                      <div className="project-metrics-grid">
+                        {project.metrics.map((metric, index) => (
+                          <div key={`${project.id}-detail-metric-${index}`} className="project-metric-item">
+                            <span>{metric.label}</span>
+                            <strong>{metric.value}</strong>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+                <button
+                  type="button"
+                  className="ui-btn ui-btn-soft project-collapse-btn"
+                  aria-expanded={!isCaseStudyCollapsed(project)}
+                  aria-controls={`case-study-details-${project.id}`}
+                  onClick={() => toggleCaseStudyCollapse(project)}
+                >
+                  {isCaseStudyCollapsed(project) ? projectCardLabels.expandLabel : projectCardLabels.collapseLabel}
+                </button>
+              </>
+            ) : null}
           </article>
         ))}
       </div>
@@ -120,7 +171,7 @@ export default function ProjectsHubSection({
                     key={project.id}
                     project={project}
                     labels={projectCardLabels}
-                    collapsible={isMobile}
+                    collapsible={true}
                     collapsed={isProjectCollapsed(project)}
                     onToggleCollapse={() => toggleProjectCollapse(project)}
                   />

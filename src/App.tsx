@@ -37,7 +37,7 @@ export default function App() {
     projectCardLabels
   } = usePortfolioHomeModel({ lang, t });
 
-  const { showTopButton, isMobile } = useViewportFlags();
+  const { showTopButton } = useViewportFlags();
   const sectionIds = useMemo(() => navItems.map((item) => item.id), [navItems]);
   const { activeSection, setActiveSection } = useActiveSection(sectionIds);
   const handlePdfExportError = useCallback(() => {
@@ -199,7 +199,6 @@ export default function App() {
           primaryCaseStudies={primaryCaseStudies}
           supportingProjectGroups={supportingProjectGroups}
           projectCardLabels={projectCardLabels}
-          isMobile={isMobile}
         />
         <CapabilitySection
           t={t}

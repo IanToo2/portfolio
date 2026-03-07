@@ -298,6 +298,8 @@
 .case-study-card {
   padding: 1.25rem;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 249, 253, 0.96));
+  display: flex;
+  flex-direction: column;
 }
 
 .case-study-top {
@@ -349,6 +351,34 @@
   line-height: 1.55;
 }
 
+.case-study-meta {
+  margin-top: 0.9rem;
+  padding: 0.82rem 0.9rem;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.case-study-meta p,
+.case-study-meta strong {
+  margin: 0;
+  display: block;
+}
+
+.case-study-meta p,
+.case-study-detail-block p {
+  color: #6b8097;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.case-study-meta strong {
+  margin-top: 0.28rem;
+  line-height: 1.6;
+}
+
 .featured-project-tags {
   margin-top: 0.88rem;
   display: flex;
@@ -384,6 +414,18 @@
 .featured-project-metrics strong {
   margin-top: 0.24rem;
   font-size: 0.96rem;
+}
+
+.case-study-details {
+  margin-top: 0.92rem;
+  padding-top: 0.92rem;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 0.8rem;
+}
+
+.case-study-detail-block p {
+  margin: 0 0 0.42rem;
 }
 
 .supporting-work-card {
@@ -543,6 +585,17 @@
   line-height: 1.6;
 }
 
+.project-preview-block {
+  margin-top: 0.76rem;
+}
+
+.project-tech-preview-title {
+  margin: 0 0 0.32rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
 .project-tech-groups {
   margin-top: 0.76rem;
   display: grid;
@@ -565,8 +618,7 @@
   text-transform: uppercase;
 }
 
-.project-tech,
-.stack-card ul {
+.project-tech {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -585,12 +637,19 @@
   border-radius: 999px;
   background: #ffffff;
   font-size: 0.78rem;
+  max-width: 100%;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .project-contrib-title,
 .project-metrics-title {
   margin: 0.8rem 0 0.28rem;
   font-weight: 800;
+}
+
+.project-contrib-title--detail {
+  margin-top: 0.92rem;
 }
 
 .project-contrib {
@@ -604,6 +663,11 @@
   margin-top: 0.8rem;
   padding-top: 0.8rem;
   border-top: 1px solid var(--line);
+}
+
+.project-metrics--preview {
+  border-top: 0;
+  padding-top: 0;
 }
 
 .project-metrics-grid {
@@ -700,6 +764,16 @@
 
 .stack-card--lane ul {
   margin-top: 0.78rem;
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.45rem;
+}
+
+.stack-card li {
+  width: 100%;
+  justify-content: flex-start;
 }
 
 .stack-card-head h3,

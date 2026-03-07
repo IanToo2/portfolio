@@ -152,13 +152,18 @@ export default function usePortfolioHomeModel({ lang, t }) {
     () =>
       featuredProjects.map((project) => {
         const [problem, role, impact] = project.contributions ?? [];
+        const techPreview = (project.tech ?? []).slice(0, 4);
+        const metricPreview = (project.metrics ?? []).slice(0, 2);
         return {
           ...project,
           problem: stripContributionPrefix(problem),
           roleSummary: stripContributionPrefix(role),
           impactSummary: stripContributionPrefix(impact),
-          techPreview: (project.tech ?? []).slice(0, 4),
-          metricPreview: (project.metrics ?? []).slice(0, 2)
+          techPreview,
+          metricPreview,
+          hasHiddenDetails:
+            (project.tech?.length ?? 0) > techPreview.length ||
+            (project.metrics?.length ?? 0) > metricPreview.length
         };
       }),
     [featuredProjects]
@@ -284,11 +289,7 @@ export default function usePortfolioHomeModel({ lang, t }) {
   }, [localizedHighlights, localizedStack]);
 
   const stackGroups = useMemo(
-    () =>
-      localizedStack.map((group) => ({
-        ...group,
-        items: group.items.slice(0, 4)
-      })),
+    () => localizedStack,
     [localizedStack]
   );
 
