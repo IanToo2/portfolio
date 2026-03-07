@@ -42,7 +42,7 @@ export default function ProjectsSection({
   );
 
   const renderProjectGroup = ({ title, subtitle, projects }) => (
-    <>
+    <section className="project-module">
       <div className="project-subhead">
         <h3>{title}</h3>
         {subtitle ? <p>{subtitle}</p> : null}
@@ -52,7 +52,7 @@ export default function ProjectsSection({
       ) : (
         <p className="empty-state ui-card ui-card--muted">{t.projectEmpty}</p>
       )}
-    </>
+    </section>
   );
 
   return (
@@ -67,6 +67,20 @@ export default function ProjectsSection({
         icon: "box"
       }}
     >
+      <div className="projects-home-overview" aria-label={t.projectsLabel}>
+        <article className="projects-home-stat ui-card ui-card--muted">
+          <span>{t.featuredHead}</span>
+          <strong>{featuredProjects.length}</strong>
+        </article>
+        <article className="projects-home-stat ui-card ui-card--muted">
+          <span>{t.workHead}</span>
+          <strong>{workProjectTotal}</strong>
+        </article>
+        <article className="projects-home-stat ui-card ui-card--muted">
+          <span>{t.teamHead}</span>
+          <strong>{teamProjects.length}</strong>
+        </article>
+      </div>
       <div className="featured-head">
         <div>
           <h3>{t.featuredHead}</h3>
@@ -98,7 +112,7 @@ export default function ProjectsSection({
             <strong>{workQaProjects.length}</strong>
           </span>
         </div>
-        <div className="work-project-shell-body">
+        <div className="work-project-shell-body project-module-grid">
           {renderProjectGroup({
             title: t.scmHead,
             subtitle: t.scmSub,

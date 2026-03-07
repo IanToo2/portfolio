@@ -51,6 +51,7 @@ export default function App() {
   const workProjectTotal = workScmProjects.length + workQaProjects.length;
   const sectionIds = useMemo(() => localizedNavItems.map((item) => item.id), [localizedNavItems]);
   const heroHighlights = useMemo(() => summaryQuick.strengths.slice(0, 3), [summaryQuick.strengths]);
+  const heroFeaturedProjects = useMemo(() => featuredProjects.slice(0, 2), [featuredProjects]);
   const { activeSection, setActiveSection } = useActiveSection(sectionIds);
   const handlePdfExportError = useCallback(() => {
     window.alert(t.pdfExportError);
@@ -142,29 +143,24 @@ export default function App() {
       <main id="top" className="container">
         <section className="hero reveal d2">
           <div className="hero-main ui-card ui-card--strong">
-            <div className="hero-copy-area">
-              <div className="hero-kicker-row">
-                <p className="eyebrow">{localizedProfile.role} · {localizedProfile.domain}</p>
-                <span className="hero-status-pill">{t.summaryQuickFitLabel}</span>
-              </div>
-              <h1>
-                <span className="hero-name">{localizedProfile.name}</span>
-                <span className="hero-title">{t.navLabel}</span>
-              </h1>
-              <p className="hero-copy">{localizedProfile.intro}</p>
-              <div className="hero-highlight-list" aria-label={t.summaryQuickStrengthsLabel}>
-                {heroHighlights.map((item) => (
-                  <span key={item} className="hero-highlight-chip">
-                    {item}
-                  </span>
-                ))}
+            <div className="hero-copy-area hero-home-main">
+              <div className="hero-home-intro">
+                <div className="hero-kicker-row">
+                  <p className="eyebrow">{localizedProfile.role} · {localizedProfile.domain}</p>
+                  <span className="hero-status-pill">{t.summaryQuickFitLabel}</span>
+                </div>
+                <h1>
+                  <span className="hero-name">{localizedProfile.name}</span>
+                  <span className="hero-title">{summaryQuick.coreLine}</span>
+                </h1>
+                <p className="hero-copy">{localizedProfile.intro}</p>
               </div>
               <div className="hero-actions">
                 <a className="ui-btn ui-btn-primary" href="#projects">{t.heroActionProjects}</a>
                 <a className="ui-btn ui-btn-ghost" href="#experience">{t.heroActionExperience}</a>
-                <a className="ui-btn ui-btn-ghost" href="#stack">{t.heroActionStack}</a>
+                <a className="ui-btn ui-btn-ghost" href="#contact">{t.contactLabel}</a>
               </div>
-              <div className="hero-proof-strip" aria-label={t.summaryQuickImpactLabel}>
+              <div className="hero-proof-strip" aria-label={t.summaryQuickLabel}>
                 {localizedMetrics.map((item) => (
                   <div key={item.label} className="hero-proof-item">
                     <span>{item.label}</span>
@@ -174,36 +170,42 @@ export default function App() {
               </div>
             </div>
 
-            <aside className="hero-panel ui-card ui-card--strong">
-              <p className="panel-kicker">{t.panelSnapshot}</p>
-              <h2>{localizedProfile.name}</h2>
-              <p className="hero-panel-copy">{summaryQuick.coreLine}</p>
-              <ul className="hero-panel-list">
-                {localizedMetrics.map((item) => (
-                  <li key={item.label}>
-                    <span className="badge"><Icon type={item.icon} /></span>
-                    <div>
-                      <p>{item.label}</p>
-                      <strong>{item.value}</strong>
-                    </div>
-                  </li>
-                ))}
-                <li>
-                  <span className="badge"><Icon type="link" /></span>
-                  <div>
-                    <p>GitHub</p>
-                    <strong>
-                      <a className="hero-panel-link" href={localizedProfile.github} target="_blank" rel="noreferrer">
-                        {localizedProfile.github.replace("https://", "")}
-                      </a>
-                    </strong>
-                  </div>
-                </li>
-              </ul>
-              <div className="hero-panel-footer">
-                <span>{t.summaryQuickFitLabel}</span>
+            <aside className="hero-home-side" aria-label={t.panelSnapshot}>
+              <article className="hero-home-card hero-home-card--accent">
+                <p className="hero-home-card-label">{t.summaryQuickFitLabel}</p>
                 <strong>{summaryQuick.fit}</strong>
-              </div>
+                <span>{t.panelSnapshot}</span>
+              </article>
+              <article className="hero-home-card">
+                <p className="hero-home-card-label">{t.featuredHead}</p>
+                <ul className="hero-home-list">
+                  {heroFeaturedProjects.map((project) => (
+                    <li key={project.id}>
+                      <div>
+                        <strong>{project.name}</strong>
+                        <span>{project.period}</span>
+                      </div>
+                      <em>{project.kind}</em>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+              <article className="hero-home-card">
+                <p className="hero-home-card-label">{t.summaryQuickStrengthsLabel}</p>
+                <div className="hero-highlight-list" aria-label={t.summaryQuickStrengthsLabel}>
+                  {heroHighlights.map((item) => (
+                    <span key={item} className="hero-highlight-chip">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </article>
+              <article className="hero-home-card hero-home-card--link">
+                <p className="hero-home-card-label">GitHub</p>
+                <a className="hero-panel-link" href={localizedProfile.github} target="_blank" rel="noreferrer">
+                  {localizedProfile.github.replace("https://", "")}
+                </a>
+              </article>
             </aside>
           </div>
         </section>
