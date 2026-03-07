@@ -10,6 +10,13 @@ export default function CapabilitySection({ t, localizedHighlights, localizedSta
       subtitle={t.stackSubtitle}
       className="portfolio-capabilities"
     >
+      <div className="projects-console-bar capability-console-bar">
+        <div className="projects-console-copy">
+          <p>{t.stackSignalLabel}</p>
+          <strong>{t.stackSignalSummary}</strong>
+        </div>
+      </div>
+
       <div className="capability-layout">
         <div className="capability-column">
           {localizedHighlights.map((item) => (
@@ -22,7 +29,13 @@ export default function CapabilitySection({ t, localizedHighlights, localizedSta
         <div className="stack-grid">
           {localizedStack.map((group) => (
             <article key={group.title} className="stack-card" data-breakpoint="true">
-              <h3>{group.title}</h3>
+              <div className="stack-card-head">
+                <h3>{group.title}</h3>
+                <span>{t.stackProficiencyLabel}</span>
+              </div>
+              <div className="stack-meter" aria-label={`${group.title} ${group.proficiency}%`}>
+                <div className="stack-meter-bar" style={{ width: `${group.proficiency}%` }} />
+              </div>
               <ul>
                 {group.items.map((item) => (
                   <li key={item}>

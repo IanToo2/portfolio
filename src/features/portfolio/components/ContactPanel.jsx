@@ -44,6 +44,12 @@ export default function ContactPanel({ t, localizedProfile, year, onExportPdf, i
       className="portfolio-contact"
     >
       <article className="contact-card" data-breakpoint="true">
+        <div className="projects-console-bar contact-console-bar">
+          <div className="projects-console-copy">
+            <p>{t.contactConsoleLabel}</p>
+            <strong>{t.contactConsoleSummary}</strong>
+          </div>
+        </div>
         <div className="contact-grid">
           <a className="contact-link-card" href={`mailto:${localizedProfile.email}`}>
             <span>{t.contactMailLabel}</span>

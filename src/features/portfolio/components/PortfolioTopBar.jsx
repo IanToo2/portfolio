@@ -26,6 +26,10 @@ export default function PortfolioTopBar({
       </a>
 
       <div className="portfolio-topbar-right">
+        <span className="portfolio-status-pill" aria-label={`${localizedProfile.domain} ${localizedProfile.role}`}>
+          <span className="portfolio-status-dot" aria-hidden="true" />
+          {localizedProfile.domain} / {localizedProfile.role}
+        </span>
         <nav className="portfolio-nav" aria-label="Portfolio navigation">
           {navItems.map((item, index) => (
             <a

@@ -18,6 +18,7 @@ export default function ProjectsHubSection({
   }, [featuredProjects, workScmProjects]);
 
   const workProjectTotal = workScmProjects.length + workQaProjects.length;
+  const featuredMetricCount = featuredProjects.reduce((count, project) => count + (project.metrics?.length ?? 0), 0);
   const getProjectKey = (project) => project.id ?? `${project.name}|${project.period}`;
   const isProjectCollapsed = (project) => (isMobile ? collapsedProjects[getProjectKey(project)] !== false : false);
   const toggleProjectCollapse = (project) => {
@@ -58,6 +59,18 @@ export default function ProjectsHubSection({
       subtitle={t.projectsSubtitle}
       className="portfolio-projects"
     >
+      <div className="projects-console-bar">
+        <div className="projects-console-copy">
+          <p>{t.projectsConsoleLabel}</p>
+          <strong>{t.projectsConsoleSummary}</strong>
+        </div>
+        <div className="projects-console-stats">
+          <span>{featuredProjects.length} featured</span>
+          <span>{workProjectTotal} work</span>
+          <span>{featuredMetricCount} metrics</span>
+        </div>
+      </div>
+
       <div className="projects-summary-grid">
         <article className="home-stat-card">
           <span>{t.featuredHead}</span>
@@ -82,6 +95,11 @@ export default function ProjectsHubSection({
             </div>
             <h3>{project.name}</h3>
             <p>{project.contributions[0]}</p>
+            <div className="featured-project-tags">
+              {(project.scope ?? []).slice(0, 3).map((item) => (
+                <span key={`${project.id}-${item}`}>{item}</span>
+              ))}
+            </div>
             <div className="featured-project-metrics">
               {(project.metrics ?? []).slice(0, 2).map((metric) => (
                 <div key={`${project.id}-${metric.label}`}>
