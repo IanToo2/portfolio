@@ -53,43 +53,43 @@
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-size: 0.82rem;
+  font-size: 0.76rem;
 }
 
 .home-hero-topline span {
-  min-height: 2rem;
-  padding: 0.3rem 0.75rem;
+  min-height: 1.8rem;
+  padding: 0.24rem 0.68rem;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.12);
   color: rgba(255, 255, 255, 0.92);
-  font-size: 0.76rem;
+  font-size: 0.72rem;
   font-weight: 800;
 }
 
 .home-hero-card h3 {
-  margin: 0.8rem 0 0;
-  font-size: clamp(2.3rem, 5vw, 4.3rem);
-  letter-spacing: -0.05em;
-  line-height: 0.98;
+  margin: 0.68rem 0 0;
+  font-size: clamp(2rem, 4.2vw, 3.35rem);
+  letter-spacing: -0.045em;
+  line-height: 1.02;
 }
 
 .home-hero-copy {
-  margin: 1rem 0 0;
+  margin: 0.9rem 0 0;
   color: rgba(238, 247, 255, 0.84);
-  font-size: 1.02rem;
-  line-height: 1.72;
-  max-width: 60ch;
+  font-size: 0.95rem;
+  line-height: 1.66;
+  max-width: 56ch;
 }
 
 .home-action-row {
-  margin-top: 1.15rem;
+  margin-top: 1rem;
   display: flex;
   gap: 0.6rem;
   flex-wrap: wrap;
 }
 
 .home-metric-grid {
-  margin-top: 1.15rem;
+  margin-top: 1rem;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.7rem;
@@ -97,7 +97,7 @@
 
 .home-metric-card,
 .home-stat-card {
-  padding: 1rem;
+  padding: 0.88rem;
   background: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
@@ -106,16 +106,16 @@
 .home-stat-card span {
   display: block;
   color: rgba(238, 247, 255, 0.72);
-  font-size: 0.8rem;
+  font-size: 0.74rem;
   font-weight: 800;
 }
 
 .home-metric-card strong,
 .home-stat-card strong {
   display: block;
-  margin-top: 0.35rem;
+  margin-top: 0.28rem;
   color: #ffffff;
-  font-size: 1.2rem;
+  font-size: 1.04rem;
   letter-spacing: -0.03em;
 }
 
@@ -125,7 +125,7 @@
 }
 
 .hero-console-block {
-  padding: 0.9rem 1rem;
+  padding: 0.82rem 0.92rem;
   border-radius: 20px;
   background: rgba(8, 18, 32, 0.28);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -134,7 +134,7 @@
 .hero-console-block span {
   display: block;
   color: rgba(238, 247, 255, 0.64);
-  font-size: 0.76rem;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -142,16 +142,17 @@
 
 .hero-console-block strong {
   display: block;
-  margin-top: 0.34rem;
+  margin-top: 0.28rem;
   color: #ffffff;
-  font-size: 1rem;
+  font-size: 0.92rem;
   letter-spacing: -0.02em;
 }
 
 .hero-console-block p {
-  margin: 0.46rem 0 0;
+  margin: 0.4rem 0 0;
   color: rgba(238, 247, 255, 0.8);
-  line-height: 1.55;
+  font-size: 0.88rem;
+  line-height: 1.48;
 }
 
 .hero-signal-list {
@@ -163,11 +164,11 @@
 }
 
 .hero-signal-list li {
-  padding: 0.58rem 0.72rem;
+  padding: 0.5rem 0.66rem;
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.08);
   color: #ffffff;
-  font-size: 0.88rem;
+  font-size: 0.82rem;
 }
 
 .home-side-column {
@@ -832,7 +833,7 @@
   }
 
   .home-hero-card h3 {
-    font-size: clamp(2rem, 11vw, 3rem);
+    font-size: clamp(1.8rem, 9vw, 2.55rem);
   }
 
   .home-metric-grid,
