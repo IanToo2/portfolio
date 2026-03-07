@@ -302,7 +302,7 @@ body.is-intro-active {
   border-radius: var(--radius-lg);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(250, 252, 254, 0.98));
   box-shadow: var(--shadow-card);
-  scroll-margin-top: 6rem;
+  scroll-margin-top: calc(var(--snap-top-offset, 6rem) + 0.6rem);
 }
 
 .portfolio-section-head p {
@@ -409,6 +409,24 @@ body.is-exporting-pdf .project-card {
     width: 100%;
     justify-content: space-between;
     flex-wrap: wrap;
+  }
+}
+
+@media (min-width: 761px) and (prefers-reduced-motion: no-preference) {
+  html {
+    --snap-top-offset: 6.8rem;
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--snap-top-offset);
+    scroll-snap-type: y proximity;
+  }
+
+  body {
+    min-height: 100vh;
+  }
+
+  .portfolio-section {
+    min-height: calc(100svh - var(--snap-top-offset) - 1.8rem);
+    scroll-snap-align: start;
   }
 }
 

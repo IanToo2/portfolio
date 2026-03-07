@@ -18,8 +18,8 @@ export default function useActiveSection(sectionIds, initialSection = "home") {
         setActiveSection(nextId);
       },
       {
-        rootMargin: "-32% 0px -52% 0px",
-        threshold: [0.25, 0.45, 0.7]
+        rootMargin: "-20% 0px -58% 0px",
+        threshold: [0.2, 0.4, 0.6, 0.8]
       }
     );
 
