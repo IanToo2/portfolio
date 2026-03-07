@@ -83,17 +83,24 @@ export default function ProjectCard({
 
   return (
     <article className={`project-card ui-card ${collapsible ? "is-collapsible" : ""} ${collapsed ? "is-collapsed" : ""}`}>
-      <div className="project-top">
-        <strong>{project.name}</strong>
-        <div className="project-top-meta">
-          {trackLabel ? <span className={`project-track ${project.track}`}>{trackLabel}</span> : null}
-          <span className="project-period">{project.period}</span>
+      <div className="project-card-head">
+        <div className="project-top">
+          <strong>{project.name}</strong>
+          <div className="project-top-meta">
+            {trackLabel ? <span className={`project-track ${project.track}`}>{trackLabel}</span> : null}
+            <span className="project-period">{project.period}</span>
+          </div>
+        </div>
+        <div className="project-summary-row">
+          <p className="project-kind">
+            {labels.projectTypeLabel}: {project.kind}
+          </p>
+          <span className={`project-status ${project.isPending ? "pending" : "done"}`}>
+            {project.isPending ? labels.statusPending : labels.statusDone}
+          </span>
         </div>
       </div>
       <div className="project-meta">
-        <p className="project-kind">
-          {labels.projectTypeLabel}: {project.kind}
-        </p>
         <p className="project-kind">
           {labels.scopeLabel}: {project.scope.join(" / ")}
         </p>
@@ -132,11 +139,6 @@ export default function ProjectCard({
               </div>
             </div>
           ) : null}
-      </div>
-      <div className="project-status-wrap">
-        <span className={`project-status ${project.isPending ? "pending" : "done"}`}>
-          {project.isPending ? labels.statusPending : labels.statusDone}
-        </span>
       </div>
       {collapsible ? (
         <button

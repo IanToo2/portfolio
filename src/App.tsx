@@ -50,6 +50,7 @@ export default function App() {
   const { showTopButton, isMobile } = useViewportFlags();
   const workProjectTotal = workScmProjects.length + workQaProjects.length;
   const sectionIds = useMemo(() => localizedNavItems.map((item) => item.id), [localizedNavItems]);
+  const heroHighlights = useMemo(() => summaryQuick.strengths.slice(0, 3), [summaryQuick.strengths]);
   const { activeSection, setActiveSection } = useActiveSection(sectionIds);
   const handlePdfExportError = useCallback(() => {
     window.alert(t.pdfExportError);
@@ -140,24 +141,43 @@ export default function App() {
 
       <main id="top" className="container">
         <section className="hero reveal d2">
-          <div className="hero-main">
+          <div className="hero-main ui-card ui-card--strong">
             <div className="hero-copy-area">
-              <p className="eyebrow">{localizedProfile.role} · {localizedProfile.domain}</p>
+              <div className="hero-kicker-row">
+                <p className="eyebrow">{localizedProfile.role} · {localizedProfile.domain}</p>
+                <span className="hero-status-pill">{t.summaryQuickFitLabel}</span>
+              </div>
               <h1>
                 <span className="hero-name">{localizedProfile.name}</span>
                 <span className="hero-title">{t.navLabel}</span>
               </h1>
               <p className="hero-copy">{localizedProfile.intro}</p>
+              <div className="hero-highlight-list" aria-label={t.summaryQuickStrengthsLabel}>
+                {heroHighlights.map((item) => (
+                  <span key={item} className="hero-highlight-chip">
+                    {item}
+                  </span>
+                ))}
+              </div>
               <div className="hero-actions">
                 <a className="ui-btn ui-btn-primary" href="#projects">{t.heroActionProjects}</a>
                 <a className="ui-btn ui-btn-ghost" href="#experience">{t.heroActionExperience}</a>
                 <a className="ui-btn ui-btn-ghost" href="#stack">{t.heroActionStack}</a>
+              </div>
+              <div className="hero-proof-strip" aria-label={t.summaryQuickImpactLabel}>
+                {localizedMetrics.map((item) => (
+                  <div key={item.label} className="hero-proof-item">
+                    <span>{item.label}</span>
+                    <strong>{item.value}</strong>
+                  </div>
+                ))}
               </div>
             </div>
 
             <aside className="hero-panel ui-card ui-card--strong">
               <p className="panel-kicker">{t.panelSnapshot}</p>
               <h2>{localizedProfile.name}</h2>
+              <p className="hero-panel-copy">{summaryQuick.coreLine}</p>
               <ul className="hero-panel-list">
                 {localizedMetrics.map((item) => (
                   <li key={item.label}>
@@ -180,6 +200,10 @@ export default function App() {
                   </div>
                 </li>
               </ul>
+              <div className="hero-panel-footer">
+                <span>{t.summaryQuickFitLabel}</span>
+                <strong>{summaryQuick.fit}</strong>
+              </div>
             </aside>
           </div>
         </section>
