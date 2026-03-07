@@ -50,8 +50,10 @@ export default function usePortfolioHomeModel({ lang, t }) {
     () => [
       { id: "home", label: t.summaryLabel },
       { id: "projects", label: t.projectsTitle },
-      { id: "capabilities", label: t.stackTitle },
+      { id: "workstyle", label: t.workStyleTitle },
+      { id: "stack", label: t.stackTitle },
       { id: "career", label: t.experienceTitle },
+      { id: "learning", label: t.learningTitle },
       { id: "contact", label: t.contactTitle }
     ],
     [t]
@@ -293,42 +295,6 @@ export default function usePortfolioHomeModel({ lang, t }) {
     [localizedStack]
   );
 
-  const careerFeatured = useMemo(() => localizedExperience[0] ?? null, [localizedExperience]);
-
-  const careerSnapshot = useMemo(
-    () => [
-      {
-        id: "education",
-        label: t.timelineTitles.education,
-        title: localizedEducation[0]?.organization ?? "",
-        detail: localizedEducation[0]?.title ?? "",
-        period: localizedEducation[0]?.period ?? ""
-      },
-      {
-        id: "training",
-        label: t.timelineTitles.training,
-        title: localizedTraining[0]?.organization ?? "",
-        detail: localizedTraining[0]?.title ?? "",
-        period: localizedTraining[0]?.period ?? ""
-      },
-      {
-        id: "award",
-        label: t.timelineTitles.awards,
-        title: localizedAwards[0]?.title ?? "",
-        detail: localizedAwards[0]?.organization ?? "",
-        period: localizedAwards[0]?.period ?? ""
-      },
-      {
-        id: "certification",
-        label: t.timelineTitles.certifications,
-        title: localizedCertifications[0]?.title ?? "",
-        detail: localizedCertifications[0]?.organization ?? "",
-        period: localizedCertifications[0]?.period ?? ""
-      }
-    ].filter((item) => item.title),
-    [localizedAwards, localizedCertifications, localizedEducation, localizedTraining, t.timelineTitles]
-  );
-
   const projectCardLabels = useMemo(
     () => ({
       ...t.projectCard,
@@ -355,8 +321,6 @@ export default function usePortfolioHomeModel({ lang, t }) {
     localizedTraining,
     localizedAwards,
     localizedCertifications,
-    careerFeatured,
-    careerSnapshot,
     summaryQuick,
     featuredProjects,
     workScmProjects,

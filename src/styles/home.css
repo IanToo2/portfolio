@@ -14,7 +14,8 @@
 
 .home-reboot-grid,
 .capability-reboot-grid,
-.career-reboot-grid {
+.career-reboot-grid,
+.learning-reboot-grid {
   margin-top: 1.1rem;
   display: grid;
   gap: 1rem;
@@ -809,6 +810,11 @@
   grid-column: 1 / -1;
 }
 
+.learning-panel {
+  display: grid;
+  gap: 0.8rem;
+}
+
 .certification-card {
   padding: 1rem;
 }
@@ -822,6 +828,10 @@
   display: grid;
   gap: 0.8rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.portfolio-career .timeline {
+  grid-template-columns: 1fr;
 }
 
 .timeline-card > span {
@@ -943,6 +953,7 @@
   .home-reboot-grid,
   .capability-reboot-grid,
   .career-reboot-grid,
+  .learning-reboot-grid,
   .project-case-grid {
     grid-template-columns: 1fr;
   }

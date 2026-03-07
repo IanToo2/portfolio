@@ -1,12 +1,14 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { TEXT } from "./data/portfolioText";
-import CapabilitySection from "./features/portfolio/components/CapabilitySection";
 import CareerSection from "./features/portfolio/components/CareerSection";
 import ContactPanel from "./features/portfolio/components/ContactPanel";
 import HomeOverviewSection from "./features/portfolio/components/HomeOverviewSection";
+import LearningSection from "./features/portfolio/components/LearningSection";
 import PortfolioIntroOverlay from "./features/portfolio/components/PortfolioIntroOverlay";
 import PortfolioTopBar from "./features/portfolio/components/PortfolioTopBar";
 import ProjectsHubSection from "./features/portfolio/components/ProjectsHubSection";
+import StackSection from "./features/portfolio/components/StackSection";
+import WorkStyleSection from "./features/portfolio/components/WorkStyleSection";
 import useActiveSection from "./hooks/useActiveSection";
 import usePortfolioPdfExport from "./hooks/usePortfolioPdfExport";
 import usePortfolioScrollExperience from "./hooks/usePortfolioScrollExperience";
@@ -31,8 +33,10 @@ export default function App() {
     supportingProjectGroups,
     capabilityPillars,
     stackGroups,
-    careerFeatured,
-    careerSnapshot,
+    localizedExperience,
+    localizedEducation,
+    localizedTraining,
+    localizedAwards,
     localizedCertifications,
     projectCardLabels
   } = usePortfolioHomeModel({ lang, t });
@@ -201,15 +205,23 @@ export default function App() {
           supportingProjectGroups={supportingProjectGroups}
           projectCardLabels={projectCardLabels}
         />
-        <CapabilitySection
+        <WorkStyleSection
           t={t}
           capabilityPillars={capabilityPillars}
+        />
+        <StackSection
+          t={t}
           stackGroups={stackGroups}
         />
         <CareerSection
           t={t}
-          careerFeatured={careerFeatured}
-          careerSnapshot={careerSnapshot}
+          localizedExperience={localizedExperience}
+        />
+        <LearningSection
+          t={t}
+          localizedEducation={localizedEducation}
+          localizedTraining={localizedTraining}
+          localizedAwards={localizedAwards}
           localizedCertifications={localizedCertifications}
         />
         <ContactPanel
