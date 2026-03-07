@@ -4,6 +4,7 @@ import CapabilitySection from "./features/portfolio/components/CapabilitySection
 import CareerSection from "./features/portfolio/components/CareerSection";
 import ContactPanel from "./features/portfolio/components/ContactPanel";
 import HomeOverviewSection from "./features/portfolio/components/HomeOverviewSection";
+import PortfolioIntroOverlay from "./features/portfolio/components/PortfolioIntroOverlay";
 import PortfolioTopBar from "./features/portfolio/components/PortfolioTopBar";
 import ProjectsHubSection from "./features/portfolio/components/ProjectsHubSection";
 import useActiveSection from "./hooks/useActiveSection";
@@ -11,8 +12,12 @@ import usePortfolioPdfExport from "./hooks/usePortfolioPdfExport";
 import usePortfolioHomeModel from "./features/portfolio/usePortfolioHomeModel";
 import useViewportFlags from "./hooks/useViewportFlags";
 
+const INTRO_SESSION_KEY = "portfolio:intro-complete";
+
 export default function App() {
   const [lang, setLang] = useState<"ko" | "en">("ko");
+  const [introPhase, setIntroPhase] = useState<"boot" | "active" | "leaving" | "done">("boot");
+  const [typedLength, setTypedLength] = useState(0);
   const navLinkRefs = useRef<Array<HTMLAnchorElement | null>>([]);
   const year = useMemo(() => new Date().getFullYear(), []);
   const t = TEXT[lang];
@@ -49,10 +54,80 @@ export default function App() {
   const logoHomeAriaLabel = t.logoHomeAriaLabel ?? `${localizedProfile.name} portfolio home`;
   const langSwitchAriaLabel =
     t.langSwitchAriaLabel ?? (lang === "ko" ? "Switch to English page" : "Switch to Korean page");
+  const introGreeting = t.introGreeting;
+  const introStatus = t.introStatus;
+  const isIntroActive = introPhase !== "done";
+  const isIntroLeaving = introPhase === "leaving";
+  const isContentReady = introPhase === "done";
+  const typedGreeting = introGreeting.slice(0, typedLength);
 
   useEffect(() => {
     document.documentElement.lang = lang;
   }, [lang]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      setIntroPhase("done");
+      return undefined;
+    }
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const introCompleted = window.sessionStorage.getItem(INTRO_SESSION_KEY) === "1";
+
+    if (prefersReducedMotion || introCompleted) {
+      setTypedLength(introGreeting.length);
+      setIntroPhase("done");
+      return undefined;
+    }
+
+    setTypedLength(0);
+    setIntroPhase("active");
+    return undefined;
+  }, [introGreeting]);
+
+  useEffect(() => {
+    if (introPhase !== "active") {
+      return undefined;
+    }
+
+    const typeInterval = window.setInterval(() => {
+      setTypedLength((prev) => {
+        if (prev >= introGreeting.length) {
+          window.clearInterval(typeInterval);
+          return prev;
+        }
+        return prev + 1;
+      });
+    }, 72);
+
+    return () => window.clearInterval(typeInterval);
+  }, [introGreeting, introPhase]);
+
+  useEffect(() => {
+    if (introPhase !== "active" || typedLength < introGreeting.length) {
+      return undefined;
+    }
+
+    const leaveTimer = window.setTimeout(() => setIntroPhase("leaving"), 520);
+    const doneTimer = window.setTimeout(() => {
+      window.sessionStorage.setItem(INTRO_SESSION_KEY, "1");
+      setIntroPhase("done");
+    }, 1040);
+
+    return () => {
+      window.clearTimeout(leaveTimer);
+      window.clearTimeout(doneTimer);
+    };
+  }, [introGreeting.length, introPhase, typedLength]);
+
+  useEffect(() => {
+    if (typeof document === "undefined") {
+      return undefined;
+    }
+
+    document.body.classList.toggle("is-intro-active", isIntroActive);
+    return () => document.body.classList.remove("is-intro-active");
+  }, [isIntroActive]);
 
   const handleMenuKeyDown = useCallback((event: KeyboardEvent<HTMLAnchorElement>, index: number) => {
     const { key } = event;
@@ -85,8 +160,17 @@ export default function App() {
       <a className="skip-link" href="#home">{t.skipToMain}</a>
       <div className="page-bg" aria-hidden="true" />
       <div className="page-grain" aria-hidden="true" />
+      {isIntroActive ? (
+        <PortfolioIntroOverlay
+          greeting={introGreeting}
+          typedGreeting={typedGreeting}
+          status={introStatus}
+          isLeaving={isIntroLeaving}
+        />
+      ) : null}
 
       <PortfolioTopBar
+        className={isContentReady ? "page-reveal is-visible" : "page-reveal"}
         logoHomeAriaLabel={logoHomeAriaLabel}
         localizedProfile={localizedProfile}
         navItems={navItems}
@@ -99,7 +183,7 @@ export default function App() {
         switchLabel={t.switchLang}
       />
 
-      <main id="top" className="page-shell">
+      <main id="top" className={`page-shell page-reveal-group ${isContentReady ? "is-visible" : ""}`.trim()}>
         <HomeOverviewSection
           t={t}
           localizedProfile={localizedProfile}

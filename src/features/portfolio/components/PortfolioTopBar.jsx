@@ -1,4 +1,5 @@
 export default function PortfolioTopBar({
+  className = "",
   logoHomeAriaLabel,
   localizedProfile,
   navItems,
@@ -11,7 +12,7 @@ export default function PortfolioTopBar({
   switchLabel
 }) {
   return (
-    <header className="portfolio-topbar">
+    <header className={`portfolio-topbar ${className}`.trim()}>
       <a className="portfolio-brand" href="#home" aria-label={logoHomeAriaLabel}>
         <span className="portfolio-brand-mark" aria-hidden="true">
           <svg className="portfolio-brand-mark-svg" viewBox="0 0 24 24" fill="none">
