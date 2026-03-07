@@ -10,6 +10,7 @@ export default function HomeOverviewSection({
 }) {
   const topHighlights = localizedHighlights.slice(0, 3);
   const heroSignals = [t.heroSignalValue, ...summaryQuick.impacts.slice(0, 2)];
+  const introLines = String(localizedProfile.intro ?? "").split(/(?<=[.!?])\s+/);
 
   return (
     <PortfolioSection
@@ -28,7 +29,14 @@ export default function HomeOverviewSection({
                 <span>{t.summaryQuickFitLabel}</span>
               </div>
               <h3>{summaryQuick.fit}</h3>
-              <p className="home-hero-copy">{localizedProfile.intro}</p>
+              <p className="home-hero-copy">
+                {introLines.map((line, index) => (
+                  <span key={`${line}-${index}`}>
+                    {line}
+                    {index < introLines.length - 1 ? <br /> : null}
+                  </span>
+                ))}
+              </p>
               <div className="home-action-row">
                 <a className="ui-btn ui-btn-primary" href="#projects">{t.heroActionProjects}</a>
                 <a className="ui-btn ui-btn-ghost" href="#career">{t.heroActionExperience}</a>
