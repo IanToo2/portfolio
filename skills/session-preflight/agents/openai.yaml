@@ -1,0 +1,4 @@
+interface:
+  display_name: "Session Preflight"
+  short_description: "세션 시작 규칙 점검과 반복 보고 최소화 워크플로우"
+  default_prompt: "Use $session-preflight to run one startup rules check and keep later updates concise."
