@@ -30,7 +30,7 @@ export default function App() {
     primaryCaseStudies,
     supportingProjectGroups,
     capabilityPillars,
-    stackPreviewGroups,
+    stackGroups,
     careerFeatured,
     careerSnapshot,
     localizedCertifications,
@@ -204,7 +204,7 @@ export default function App() {
         <CapabilitySection
           t={t}
           capabilityPillars={capabilityPillars}
-          stackPreviewGroups={stackPreviewGroups}
+          stackGroups={stackGroups}
         />
         <CareerSection
           t={t}

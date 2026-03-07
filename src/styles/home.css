@@ -638,9 +638,16 @@
 
 .capability-pillar-grid,
 .stack-lane-grid,
-.career-proof-grid {
+.career-proof-grid,
+.career-certification-grid {
   display: grid;
   gap: 0.8rem;
+}
+
+.stack-lane-grid,
+.career-proof-grid,
+.career-certification-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .capability-card--pillar,
@@ -687,6 +694,14 @@
   margin-bottom: 0.8rem;
 }
 
+.stack-card--lane .stack-meter {
+  margin-top: 0;
+}
+
+.stack-card--lane ul {
+  margin-top: 0.78rem;
+}
+
 .stack-card-head h3,
 .stack-card-head span {
   margin: 0;
@@ -703,6 +718,10 @@
 
 .career-certifications-panel {
   grid-column: 1 / -1;
+}
+
+.certification-card {
+  padding: 1rem;
 }
 
 .timeline-group-title {
@@ -856,7 +875,10 @@
   .home-metric-grid,
   .featured-project-metrics,
   .contact-grid,
-  .timeline {
+  .timeline,
+  .stack-lane-grid,
+  .career-proof-grid,
+  .career-certification-grid {
     grid-template-columns: 1fr;
   }
 

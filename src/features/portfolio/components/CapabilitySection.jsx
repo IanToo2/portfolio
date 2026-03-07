@@ -1,7 +1,7 @@
 import TechLogo from "../../../components/TechLogo";
 import PortfolioSection from "./PortfolioSection";
 
-export default function CapabilitySection({ t, capabilityPillars, stackPreviewGroups }) {
+export default function CapabilitySection({ t, capabilityPillars, stackGroups }) {
   return (
     <PortfolioSection
       id="capabilities"
@@ -27,11 +27,14 @@ export default function CapabilitySection({ t, capabilityPillars, stackPreviewGr
         </div>
 
         <div className="stack-lane-grid">
-          {stackPreviewGroups.map((group) => (
+          {stackGroups.map((group) => (
             <article key={group.title} className="stack-card stack-card--lane" data-breakpoint="true">
               <div className="stack-card-head">
                 <h3>{group.title}</h3>
                 <span>{group.proficiency}%</span>
+              </div>
+              <div className="stack-meter" aria-label={`${group.title} ${group.proficiency}%`}>
+                <div className="stack-meter-bar" style={{ width: `${group.proficiency}%` }} />
               </div>
               <ul>
                 {group.items.map((item) => (

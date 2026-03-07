@@ -1,4 +1,3 @@
-import TimelineGroup from "../../../components/TimelineGroup";
 import PortfolioSection from "./PortfolioSection";
 
 export default function CareerSection({ t, careerFeatured, careerSnapshot, localizedCertifications }) {
@@ -38,11 +37,25 @@ export default function CareerSection({ t, careerFeatured, careerSnapshot, local
 
         {localizedCertifications.length ? (
           <div className="career-certifications-panel" data-breakpoint="true">
-            <TimelineGroup
-              title={t.timelineTitles.certifications}
-              items={localizedCertifications}
-              showOrganizationInHeading={false}
-            />
+            <h3 className="timeline-group-title">{t.timelineTitles.certifications}</h3>
+            <div className="career-certification-grid">
+              {localizedCertifications.map((item) => (
+                <article
+                  key={`${item.period}-${item.organization}-${item.title}`}
+                  className="timeline-card certification-card"
+                  data-breakpoint="true"
+                >
+                  <span>{item.period}</span>
+                  <h3>{item.title}</h3>
+                  <p className="timeline-org">{item.organization}</p>
+                  <ul>
+                    {item.bullets.map((bullet) => (
+                      <li key={`${item.title}-${bullet}`}>{bullet}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
           </div>
         ) : null}
       </div>

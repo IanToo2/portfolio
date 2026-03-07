@@ -283,9 +283,9 @@ export default function usePortfolioHomeModel({ lang, t }) {
     }));
   }, [localizedHighlights, localizedStack]);
 
-  const stackPreviewGroups = useMemo(
+  const stackGroups = useMemo(
     () =>
-      localizedStack.slice(0, 4).map((group) => ({
+      localizedStack.map((group) => ({
         ...group,
         items: group.items.slice(0, 4)
       })),
@@ -348,7 +348,7 @@ export default function usePortfolioHomeModel({ lang, t }) {
     primaryCaseStudies,
     supportingProjectGroups,
     capabilityPillars,
-    stackPreviewGroups,
+    stackGroups,
     localizedExperience,
     localizedEducation,
     localizedTraining,
