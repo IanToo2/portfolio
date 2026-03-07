@@ -43,13 +43,7 @@ export default function ContactPanel({ t, localizedProfile, year, onExportPdf, i
       subtitle={t.contactFooter}
       className="portfolio-contact"
     >
-      <article className="contact-card" data-breakpoint="true">
-        <div className="projects-console-bar contact-console-bar">
-          <div className="projects-console-copy">
-            <p>{t.contactConsoleLabel}</p>
-            <strong>{t.contactConsoleSummary}</strong>
-          </div>
-        </div>
+      <article className="contact-card contact-card--reboot" data-breakpoint="true">
         <div className="contact-grid">
           <a className="contact-link-card" href={`mailto:${localizedProfile.email}`}>
             <span>{t.contactMailLabel}</span>
@@ -61,10 +55,10 @@ export default function ContactPanel({ t, localizedProfile, year, onExportPdf, i
           </a>
         </div>
         <div className="contact-actions">
-          <button className="ui-btn ui-btn-ghost" type="button" onClick={copyEmail}>
+          <button className="ui-btn ui-btn-primary" type="button" onClick={copyEmail}>
             {copyState === "success" ? (t.contactCopiedLabel ?? "Copied") : (t.contactCopyLabel ?? "Copy Email")}
           </button>
-          <button className="ui-btn ui-btn-soft" type="button" onClick={onExportPdf} disabled={isExportingPdf}>
+          <button className="ui-btn ui-btn-ghost" type="button" onClick={onExportPdf} disabled={isExportingPdf}>
             {isExportingPdf ? t.pdfExportLoading : t.pdfExportLabel}
           </button>
         </div>
@@ -72,6 +66,7 @@ export default function ContactPanel({ t, localizedProfile, year, onExportPdf, i
           {copyState === "success" ? (t.contactCopiedLabel ?? "Copied") : ""}
           {copyState === "error" ? (t.contactCopyFailedLabel ?? "Copy failed. Please try again.") : ""}
         </p>
+        <small>{t.contactAvailability}</small>
         <small>{year}</small>
       </article>
     </PortfolioSection>

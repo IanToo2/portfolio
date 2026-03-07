@@ -6,7 +6,7 @@ export default function PortfolioSection({ id, label, title, subtitle, children,
         <h2 id={`${id}-title`}>{title}</h2>
         {subtitle ? <span>{subtitle}</span> : null}
       </div>
-      {children}
+      <div className="portfolio-section-body">{children}</div>
     </section>
   );
 }

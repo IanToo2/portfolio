@@ -25,6 +25,10 @@ import {
   resolveTenureYearLabel
 } from "./lib/modelHelpers";
 
+const CONTRIBUTION_PREFIX_PATTERN = /^(문제|역할|영향|Problem|Role|Impact)\s*:\s*/;
+
+const stripContributionPrefix = (value) => String(value ?? "").replace(CONTRIBUTION_PREFIX_PATTERN, "").trim();
+
 export default function usePortfolioHomeModel({ lang, t }) {
   const localize = useMemo(() => createLocalize(lang), [lang]);
   const localizeList = useMemo(() => createLocalizeList(localize), [localize]);
@@ -144,6 +148,51 @@ export default function usePortfolioHomeModel({ lang, t }) {
     [workProjects]
   );
 
+  const primaryCaseStudies = useMemo(
+    () =>
+      featuredProjects.map((project) => {
+        const [problem, role, impact] = project.contributions ?? [];
+        return {
+          ...project,
+          problem: stripContributionPrefix(problem),
+          roleSummary: stripContributionPrefix(role),
+          impactSummary: stripContributionPrefix(impact),
+          techPreview: (project.tech ?? []).slice(0, 4),
+          metricPreview: (project.metrics ?? []).slice(0, 2)
+        };
+      }),
+    [featuredProjects]
+  );
+
+  const supportingProjectGroups = useMemo(() => {
+    const featuredProjectIds = new Set(featuredProjects.map((project) => project.id));
+    const scmProjects = workScmProjects.filter((project) => !featuredProjectIds.has(project.id));
+
+    return [
+      {
+        id: "scm",
+        label: t.scmHead,
+        subtitle: t.scmSub,
+        count: scmProjects.length,
+        projects: scmProjects
+      },
+      {
+        id: "qa",
+        label: t.qaHead,
+        subtitle: t.qaSub,
+        count: workQaProjects.length,
+        projects: workQaProjects
+      },
+      {
+        id: "team",
+        label: t.teamHead,
+        subtitle: t.teamSub,
+        count: teamProjects.length,
+        projects: teamProjects
+      }
+    ];
+  }, [featuredProjects, t.qaHead, t.qaSub, t.scmHead, t.scmSub, t.teamHead, t.teamSub, teamProjects, workQaProjects, workScmProjects]);
+
   const localizedExperience = useMemo(() => {
     const scmCount = workProjects.filter((project) => project.track === "scm").length;
     const qaCount = workProjects.filter((project) => project.track === "qa").length;
@@ -200,6 +249,85 @@ export default function usePortfolioHomeModel({ lang, t }) {
     [featuredProjects, lang, localizedHighlights, localizedMetrics, localizedProfile, t]
   );
 
+  const heroProofs = useMemo(
+    () => [
+      ...summaryQuick.impacts.slice(0, 2).map((item, index) => ({
+        id: `impact-${index}`,
+        label: lang === "en" ? "Proof" : "핵심 근거",
+        value: item
+      })),
+      ...localizedMetrics.slice(0, 1).map((item) => ({
+        id: `metric-${item.label}`,
+        label: item.label,
+        value: item.value
+      }))
+    ],
+    [lang, localizedMetrics, summaryQuick.impacts]
+  );
+
+  const capabilityPillars = useMemo(() => {
+    const stackWindows = [
+      localizedStack.slice(0, 2),
+      localizedStack.slice(1, 4),
+      localizedStack.slice(3, 6)
+    ];
+
+    return localizedHighlights.slice(0, 3).map((item, index) => ({
+      id: `${item.title}-${index}`,
+      title: item.title,
+      text: item.text,
+      tools: stackWindows[index]
+        .flatMap((group) => group.items.slice(0, 2))
+        .filter((tool, toolIndex, array) => array.indexOf(tool) === toolIndex)
+        .slice(0, 6)
+    }));
+  }, [localizedHighlights, localizedStack]);
+
+  const stackPreviewGroups = useMemo(
+    () =>
+      localizedStack.slice(0, 4).map((group) => ({
+        ...group,
+        items: group.items.slice(0, 4)
+      })),
+    [localizedStack]
+  );
+
+  const careerFeatured = useMemo(() => localizedExperience[0] ?? null, [localizedExperience]);
+
+  const careerSnapshot = useMemo(
+    () => [
+      {
+        id: "education",
+        label: t.timelineTitles.education,
+        title: localizedEducation[0]?.organization ?? "",
+        detail: localizedEducation[0]?.title ?? "",
+        period: localizedEducation[0]?.period ?? ""
+      },
+      {
+        id: "training",
+        label: t.timelineTitles.training,
+        title: localizedTraining[0]?.organization ?? "",
+        detail: localizedTraining[0]?.title ?? "",
+        period: localizedTraining[0]?.period ?? ""
+      },
+      {
+        id: "award",
+        label: t.timelineTitles.awards,
+        title: localizedAwards[0]?.title ?? "",
+        detail: localizedAwards[0]?.organization ?? "",
+        period: localizedAwards[0]?.period ?? ""
+      },
+      {
+        id: "certification",
+        label: t.timelineTitles.certifications,
+        title: localizedCertifications[0]?.title ?? "",
+        detail: localizedCertifications[0]?.organization ?? "",
+        period: localizedCertifications[0]?.period ?? ""
+      }
+    ].filter((item) => item.title),
+    [localizedAwards, localizedCertifications, localizedEducation, localizedTraining, t.timelineTitles]
+  );
+
   const projectCardLabels = useMemo(
     () => ({
       ...t.projectCard,
@@ -216,11 +344,18 @@ export default function usePortfolioHomeModel({ lang, t }) {
     localizedMetrics,
     localizedHighlights,
     localizedStack,
+    heroProofs,
+    primaryCaseStudies,
+    supportingProjectGroups,
+    capabilityPillars,
+    stackPreviewGroups,
     localizedExperience,
     localizedEducation,
     localizedTraining,
     localizedAwards,
     localizedCertifications,
+    careerFeatured,
+    careerSnapshot,
     summaryQuick,
     featuredProjects,
     workScmProjects,

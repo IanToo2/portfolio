@@ -1,20 +1,6 @@
-import TimelineGroup from "../../../components/TimelineGroup";
 import PortfolioSection from "./PortfolioSection";
 
-export default function CareerSection({
-  t,
-  workProjectTotal,
-  localizedExperience,
-  localizedEducation,
-  localizedTraining,
-  localizedAwards,
-  localizedCertifications
-}) {
-  const workProjectCountText = t.workProjectCountText?.replace("{count}", String(workProjectTotal));
-  const workTimelineTitle = workProjectCountText
-    ? `${t.timelineTitles.work} · ${workProjectCountText}`
-    : t.timelineTitles.work;
-
+export default function CareerSection({ t, careerFeatured, careerSnapshot }) {
   return (
     <PortfolioSection
       id="career"
@@ -23,19 +9,28 @@ export default function CareerSection({
       subtitle={t.experienceSubtitle}
       className="portfolio-career"
     >
-      <div className="career-layout">
-        <div className="career-column">
-          <TimelineGroup title={workTimelineTitle} items={localizedExperience} />
-          <TimelineGroup title={t.timelineTitles.education} items={localizedEducation} />
-        </div>
-        <div className="career-column">
-          <TimelineGroup title={t.timelineTitles.training} items={localizedTraining} />
-          <TimelineGroup title={t.timelineTitles.awards} items={localizedAwards} showOrganizationInHeading={false} />
-          <TimelineGroup
-            title={t.timelineTitles.certifications}
-            items={localizedCertifications}
-            showOrganizationInHeading={false}
-          />
+      <div className="career-reboot-grid">
+        {careerFeatured ? (
+          <article className="timeline-card timeline-card--featured" data-breakpoint="true">
+            <span>{careerFeatured.period}</span>
+            <h3>{careerFeatured.organization} · {careerFeatured.title}</h3>
+            <ul>
+              {careerFeatured.bullets.slice(0, 3).map((bullet) => (
+                <li key={bullet}>{bullet}</li>
+              ))}
+            </ul>
+          </article>
+        ) : null}
+
+        <div className="career-proof-grid">
+          {careerSnapshot.map((item) => (
+            <article key={item.id} className="timeline-card timeline-card--compact" data-breakpoint="true">
+              <span>{item.label}</span>
+              <h3>{item.title}</h3>
+              <p>{item.detail}</p>
+              <strong>{item.period}</strong>
+            </article>
+          ))}
         </div>
       </div>
     </PortfolioSection>

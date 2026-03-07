@@ -1,7 +1,7 @@
 import TechLogo from "../../../components/TechLogo";
 import PortfolioSection from "./PortfolioSection";
 
-export default function CapabilitySection({ t, localizedHighlights, localizedStack }) {
+export default function CapabilitySection({ t, capabilityPillars, stackPreviewGroups }) {
   return (
     <PortfolioSection
       id="capabilities"
@@ -10,31 +10,28 @@ export default function CapabilitySection({ t, localizedHighlights, localizedSta
       subtitle={t.stackSubtitle}
       className="portfolio-capabilities"
     >
-      <div className="projects-console-bar capability-console-bar">
-        <div className="projects-console-copy">
-          <p>{t.stackSignalLabel}</p>
-          <strong>{t.stackSignalSummary}</strong>
-        </div>
-      </div>
-
-      <div className="capability-layout">
-        <div className="capability-column">
-          {localizedHighlights.map((item) => (
-            <article key={item.title} className="capability-card" data-breakpoint="true">
+      <div className="capability-reboot-grid">
+        <div className="capability-pillar-grid">
+          {capabilityPillars.map((item) => (
+            <article key={item.id} className="capability-card capability-card--pillar" data-breakpoint="true">
+              <p>{t.stackSignalLabel}</p>
               <h3>{item.title}</h3>
-              <p>{item.text}</p>
+              <strong>{item.text}</strong>
+              <div className="home-chip-list">
+                {item.tools.map((tool) => (
+                  <span key={`${item.id}-${tool}`}>{tool}</span>
+                ))}
+              </div>
             </article>
           ))}
         </div>
-        <div className="stack-grid">
-          {localizedStack.map((group) => (
-            <article key={group.title} className="stack-card" data-breakpoint="true">
+
+        <div className="stack-lane-grid">
+          {stackPreviewGroups.map((group) => (
+            <article key={group.title} className="stack-card stack-card--lane" data-breakpoint="true">
               <div className="stack-card-head">
                 <h3>{group.title}</h3>
-                <span>{t.stackProficiencyLabel}</span>
-              </div>
-              <div className="stack-meter" aria-label={`${group.title} ${group.proficiency}%`}>
-                <div className="stack-meter-bar" style={{ width: `${group.proficiency}%` }} />
+                <span>{group.proficiency}%</span>
               </div>
               <ul>
                 {group.items.map((item) => (

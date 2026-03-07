@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 
 const EXPORT_CLASS = "is-exporting-pdf";
-const TARGET_SELECTOR = "main.container";
+const TARGET_SELECTOR = "main.page-shell";
 const A4_WIDTH_MM = 210;
 const A4_HEIGHT_MM = 297;
 const PAGE_MARGIN_X_MM = 12;

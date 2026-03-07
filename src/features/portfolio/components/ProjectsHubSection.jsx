@@ -4,52 +4,26 @@ import PortfolioSection from "./PortfolioSection";
 
 export default function ProjectsHubSection({
   t,
-  featuredProjects,
-  workScmProjects,
-  workQaProjects,
-  teamProjects,
+  primaryCaseStudies,
+  supportingProjectGroups,
   projectCardLabels,
   isMobile
 }) {
+  const [activeGroupId, setActiveGroupId] = useState(supportingProjectGroups[0]?.id ?? "scm");
+  const [isSupportingOpen, setIsSupportingOpen] = useState(false);
   const [collapsedProjects, setCollapsedProjects] = useState({});
-  const filteredWorkScmProjects = useMemo(() => {
-    const featuredProjectIds = new Set(featuredProjects.map((project) => project.id));
-    return workScmProjects.filter((project) => !featuredProjectIds.has(project.id));
-  }, [featuredProjects, workScmProjects]);
 
-  const workProjectTotal = workScmProjects.length + workQaProjects.length;
-  const featuredMetricCount = featuredProjects.reduce((count, project) => count + (project.metrics?.length ?? 0), 0);
+  const activeGroup = useMemo(
+    () => supportingProjectGroups.find((group) => group.id === activeGroupId) ?? supportingProjectGroups[0],
+    [activeGroupId, supportingProjectGroups]
+  );
+
   const getProjectKey = (project) => project.id ?? `${project.name}|${project.period}`;
   const isProjectCollapsed = (project) => (isMobile ? collapsedProjects[getProjectKey(project)] !== false : false);
   const toggleProjectCollapse = (project) => {
     const key = getProjectKey(project);
     setCollapsedProjects((prev) => ({ ...prev, [key]: !(prev[key] !== false) }));
   };
-
-  const renderProjectCards = (projects, className) => (
-    <div className={className}>
-      {projects.map((project) => (
-        <ProjectCard
-          key={project.id}
-          project={project}
-          labels={projectCardLabels}
-          collapsible={isMobile}
-          collapsed={isProjectCollapsed(project)}
-          onToggleCollapse={() => toggleProjectCollapse(project)}
-        />
-      ))}
-    </div>
-  );
-
-  const renderGroup = (title, subtitle, projects) => (
-    <section className="project-group-card" data-breakpoint="true">
-      <div className="project-group-head">
-        <h3>{title}</h3>
-        <p>{subtitle}</p>
-      </div>
-      {projects.length ? renderProjectCards(projects, "project-grid") : <p className="empty-state">{t.projectEmpty}</p>}
-    </section>
-  );
 
   return (
     <PortfolioSection
@@ -59,49 +33,49 @@ export default function ProjectsHubSection({
       subtitle={t.projectsSubtitle}
       className="portfolio-projects"
     >
-      <div className="projects-console-bar">
+      <div className="projects-console-bar projects-console-bar--reboot">
         <div className="projects-console-copy">
           <p>{t.projectsConsoleLabel}</p>
           <strong>{t.projectsConsoleSummary}</strong>
         </div>
-        <div className="projects-console-stats">
-          <span>{featuredProjects.length} featured</span>
-          <span>{workProjectTotal} work</span>
-          <span>{featuredMetricCount} metrics</span>
-        </div>
+        <button
+          type="button"
+          className="ui-btn ui-btn-soft"
+          onClick={() => setIsSupportingOpen((prev) => !prev)}
+        >
+          {isSupportingOpen ? t.supportingWorkHide : t.supportingWorkShow}
+        </button>
       </div>
 
-      <div className="projects-summary-grid">
-        <article className="home-stat-card">
-          <span>{t.featuredHead}</span>
-          <strong>{featuredProjects.length}</strong>
-        </article>
-        <article className="home-stat-card">
-          <span>{t.workHead}</span>
-          <strong>{workProjectTotal}</strong>
-        </article>
-        <article className="home-stat-card">
-          <span>{t.teamHead}</span>
-          <strong>{teamProjects.length}</strong>
-        </article>
-      </div>
-
-      <div className="project-showcase-grid">
-        {featuredProjects.map((project) => (
-          <article key={project.id} className="featured-project-card" data-breakpoint="true">
-            <div className="featured-project-top">
+      <div className="project-case-grid">
+        {primaryCaseStudies.map((project) => (
+          <article key={project.id} className="case-study-card" data-breakpoint="true">
+            <div className="case-study-top">
               <span>{project.kind}</span>
               <strong>{project.period}</strong>
             </div>
             <h3>{project.name}</h3>
-            <p>{project.contributions[0]}</p>
+            <div className="case-study-story">
+              <div>
+                <p>{t.caseProblemLabel}</p>
+                <strong>{project.problem}</strong>
+              </div>
+              <div>
+                <p>{t.caseRoleLabel}</p>
+                <strong>{project.roleSummary}</strong>
+              </div>
+              <div>
+                <p>{t.caseImpactLabel}</p>
+                <strong>{project.impactSummary}</strong>
+              </div>
+            </div>
             <div className="featured-project-tags">
-              {(project.scope ?? []).slice(0, 3).map((item) => (
+              {project.techPreview.map((item) => (
                 <span key={`${project.id}-${item}`}>{item}</span>
               ))}
             </div>
             <div className="featured-project-metrics">
-              {(project.metrics ?? []).slice(0, 2).map((metric) => (
+              {project.metricPreview.map((metric) => (
                 <div key={`${project.id}-${metric.label}`}>
                   <span>{metric.label}</span>
                   <strong>{metric.value}</strong>
@@ -112,12 +86,54 @@ export default function ProjectsHubSection({
         ))}
       </div>
 
-      <div className="project-hub-grid">
-        {renderGroup(t.scmHead, t.scmSub, filteredWorkScmProjects)}
-        {renderGroup(t.qaHead, t.qaSub, workQaProjects)}
-      </div>
+      <section className="supporting-work-card" data-breakpoint="true">
+        <div className="supporting-work-head">
+          <div>
+            <p>{t.supportingWorkLabel}</p>
+            <strong>{t.supportingWorkSubtitle}</strong>
+          </div>
+          <div className="projects-console-stats">
+            {supportingProjectGroups.map((group) => (
+              <button
+                key={group.id}
+                type="button"
+                className={`supporting-work-tab ${activeGroup?.id === group.id ? "is-active" : ""}`}
+                onClick={() => setActiveGroupId(group.id)}
+              >
+                {group.label} <strong>{group.count}</strong>
+              </button>
+            ))}
+          </div>
+        </div>
 
-      {renderGroup(t.teamHead, t.teamSub, teamProjects)}
+        {isSupportingOpen ? (
+          <div className="supporting-work-panel">
+            <div className="project-group-head">
+              <h3>{activeGroup?.label}</h3>
+              <p>{activeGroup?.subtitle}</p>
+            </div>
+
+            {activeGroup?.projects?.length ? (
+              <div className="project-grid">
+                {activeGroup.projects.map((project) => (
+                  <ProjectCard
+                    key={project.id}
+                    project={project}
+                    labels={projectCardLabels}
+                    collapsible={isMobile}
+                    collapsed={isProjectCollapsed(project)}
+                    onToggleCollapse={() => toggleProjectCollapse(project)}
+                  />
+                ))}
+              </div>
+            ) : (
+              <p className="empty-state">{t.projectEmpty}</p>
+            )}
+          </div>
+        ) : (
+          <p className="supporting-work-collapsed">{t.supportingWorkCollapsed}</p>
+        )}
+      </section>
     </PortfolioSection>
   );
 }

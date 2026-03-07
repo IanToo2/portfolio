@@ -9,6 +9,7 @@ import PortfolioTopBar from "./features/portfolio/components/PortfolioTopBar";
 import ProjectsHubSection from "./features/portfolio/components/ProjectsHubSection";
 import useActiveSection from "./hooks/useActiveSection";
 import usePortfolioPdfExport from "./hooks/usePortfolioPdfExport";
+import usePortfolioScrollExperience from "./hooks/usePortfolioScrollExperience";
 import usePortfolioHomeModel from "./features/portfolio/usePortfolioHomeModel";
 import useViewportFlags from "./hooks/useViewportFlags";
 
@@ -24,23 +25,18 @@ export default function App() {
     localizedProfile,
     navItems,
     localizedMetrics,
-    localizedHighlights,
-    localizedStack,
-    localizedExperience,
-    localizedEducation,
-    localizedTraining,
-    localizedAwards,
-    localizedCertifications,
     summaryQuick,
-    featuredProjects,
-    workScmProjects,
-    workQaProjects,
-    teamProjects,
+    heroProofs,
+    primaryCaseStudies,
+    supportingProjectGroups,
+    capabilityPillars,
+    stackPreviewGroups,
+    careerFeatured,
+    careerSnapshot,
     projectCardLabels
   } = usePortfolioHomeModel({ lang, t });
 
   const { showTopButton, isMobile } = useViewportFlags();
-  const workProjectTotal = workScmProjects.length + workQaProjects.length;
   const sectionIds = useMemo(() => navItems.map((item) => item.id), [navItems]);
   const { activeSection, setActiveSection } = useActiveSection(sectionIds);
   const handlePdfExportError = useCallback(() => {
@@ -132,6 +128,8 @@ export default function App() {
     return () => document.body.classList.remove("is-intro-active");
   }, [isIntroActive]);
 
+  usePortfolioScrollExperience({ enabled: introPhase === "done" });
+
   const handleMenuKeyDown = useCallback((event: KeyboardEvent<HTMLAnchorElement>, index: number) => {
     const { key } = event;
     if (!["ArrowRight", "ArrowLeft", "Home", "End"].includes(key)) {
@@ -192,31 +190,25 @@ export default function App() {
           localizedProfile={localizedProfile}
           localizedMetrics={localizedMetrics}
           summaryQuick={summaryQuick}
-          featuredProjects={featuredProjects}
-          localizedHighlights={localizedHighlights}
+          primaryCaseStudies={primaryCaseStudies}
+          heroProofs={heroProofs}
         />
         <ProjectsHubSection
           t={t}
-          featuredProjects={featuredProjects}
-          workScmProjects={workScmProjects}
-          workQaProjects={workQaProjects}
-          teamProjects={teamProjects}
+          primaryCaseStudies={primaryCaseStudies}
+          supportingProjectGroups={supportingProjectGroups}
           projectCardLabels={projectCardLabels}
           isMobile={isMobile}
         />
         <CapabilitySection
           t={t}
-          localizedHighlights={localizedHighlights}
-          localizedStack={localizedStack}
+          capabilityPillars={capabilityPillars}
+          stackPreviewGroups={stackPreviewGroups}
         />
         <CareerSection
           t={t}
-          workProjectTotal={workProjectTotal}
-          localizedExperience={localizedExperience}
-          localizedEducation={localizedEducation}
-          localizedTraining={localizedTraining}
-          localizedAwards={localizedAwards}
-          localizedCertifications={localizedCertifications}
+          careerFeatured={careerFeatured}
+          careerSnapshot={careerSnapshot}
         />
         <ContactPanel
           t={t}
