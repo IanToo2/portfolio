@@ -13,14 +13,14 @@ const MAX_PAGE_STRETCH_RATIO = 1.15;
 const MIN_SLICE_PX = 80;
 
 const BREAKPOINT_SELECTORS = [
-  "section.section",
-  ".section-head",
-  ".metric-card",
-  ".focus-card",
-  ".stack-card",
-  ".project-subhead",
+  "[data-breakpoint='true']",
+  ".home-card",
+  ".home-stat-card",
+  ".featured-project-card",
   ".project-card",
-  ".work-project-shell",
+  ".project-group-card",
+  ".capability-card",
+  ".stack-card",
   ".timeline-card",
   ".contact-card"
 ];

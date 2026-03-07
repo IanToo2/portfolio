@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-base: #f6f8fb;
+  --bg-elev: #ffffff;
+  --ink: #191f28;
+  --muted: #6b7684;
+  --line: #e8edf3;
+  --line-strong: #d7e2ee;
+  --blue: #3182f6;
+  --blue-soft: rgba(49, 130, 246, 0.08);
+  --blue-strong: #1b64da;
+  --bg-soft: #f9fafb;
+  --shadow-soft: 0 16px 40px rgba(15, 23, 42, 0.06);
+  --shadow-card: 0 22px 48px rgba(15, 23, 42, 0.05);
+  --radius-xl: 34px;
+  --radius-lg: 28px;
+  --radius-md: 22px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: "Manrope", "Noto Sans KR", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(42rem 30rem at 0% 0%, rgba(49, 130, 246, 0.08) 0%, transparent 70%),
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 32%, var(--bg-base) 100%);
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid rgba(49, 130, 246, 0.6);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  background: #0f172a;
+  color: #ffffff;
+  border-radius: 0.7rem;
+  padding: 0.6rem 0.8rem;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+.page-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(30rem 22rem at 12% 8%, rgba(49, 130, 246, 0.08), transparent 70%),
+    radial-gradient(20rem 16rem at 88% 12%, rgba(49, 130, 246, 0.05), transparent 72%);
+  filter: blur(16px);
+  opacity: 0.8;
+}
+
+.page-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(15, 23, 42, 0.03) 0.7px, transparent 0.7px);
+  background-size: 3px 3px;
+  opacity: 0.04;
+}

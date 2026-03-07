@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
+import PortfolioSection from "./PortfolioSection";
 
-export default function ContactSection({ t, localizedProfile, year, onExportPdf, isExportingPdf }) {
+export default function ContactPanel({ t, localizedProfile, year, onExportPdf, isExportingPdf }) {
   const [copyState, setCopyState] = useState("idle");
 
   useEffect(() => {
@@ -35,34 +36,29 @@ export default function ContactSection({ t, localizedProfile, year, onExportPdf,
   }, [localizedProfile.email]);
 
   return (
-    <section id="contact" className="section section-contact reveal d6" aria-labelledby="contact-title">
-      <article className="contact-card ui-card ui-card--strong">
-        <div className="contact-shell">
-          <div className="contact-copy">
-            <p>{t.contactLabel}</p>
-            <h2 id="contact-title">{t.contactTitle}</h2>
-            <span className="contact-intro">{t.contactFooter}</span>
-          </div>
-          <div className="contact-hub">
-            <a className="contact-link" href={`mailto:${localizedProfile.email}`}>
-              <span className="contact-link-label">{t.contactMailLabel}</span>
-              <span className="contact-link-value">{localizedProfile.email}</span>
-            </a>
-            <a className="contact-link" href={localizedProfile.github} target="_blank" rel="noreferrer">
-              <span className="contact-link-label">{t.contactEmail}</span>
-              <span className="contact-link-value">{localizedProfile.github.replace("https://", "")}</span>
-            </a>
-          </div>
+    <PortfolioSection
+      id="contact"
+      label={t.contactLabel}
+      title={t.contactTitle}
+      subtitle={t.contactFooter}
+      className="portfolio-contact"
+    >
+      <article className="contact-card" data-breakpoint="true">
+        <div className="contact-grid">
+          <a className="contact-link-card" href={`mailto:${localizedProfile.email}`}>
+            <span>{t.contactMailLabel}</span>
+            <strong>{localizedProfile.email}</strong>
+          </a>
+          <a className="contact-link-card" href={localizedProfile.github} target="_blank" rel="noreferrer">
+            <span>{t.contactEmail}</span>
+            <strong>{localizedProfile.github.replace("https://", "")}</strong>
+          </a>
         </div>
         <div className="contact-actions">
-          <button
-            className="ui-btn ui-btn-ghost contact-copy-btn"
-            type="button"
-            onClick={copyEmail}
-          >
+          <button className="ui-btn ui-btn-ghost" type="button" onClick={copyEmail}>
             {copyState === "success" ? (t.contactCopiedLabel ?? "Copied") : (t.contactCopyLabel ?? "Copy Email")}
           </button>
-          <button className="ui-btn ui-btn-soft contact-pdf-btn" type="button" onClick={onExportPdf} disabled={isExportingPdf}>
+          <button className="ui-btn ui-btn-soft" type="button" onClick={onExportPdf} disabled={isExportingPdf}>
             {isExportingPdf ? t.pdfExportLoading : t.pdfExportLabel}
           </button>
         </div>
@@ -72,6 +68,6 @@ export default function ContactSection({ t, localizedProfile, year, onExportPdf,
         </p>
         <small>{year}</small>
       </article>
-    </section>
+    </PortfolioSection>
   );
 }

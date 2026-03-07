@@ -1,25 +1,15 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
-import Icon from "./components/Icon";
-import ContactSection from "./components/sections/ContactSection";
-import ExperienceSection from "./components/sections/ExperienceSection";
-import HighlightsSection from "./components/sections/HighlightsSection";
-import ProjectsSection from "./components/sections/ProjectsSection";
-import StackSection from "./components/sections/StackSection";
-import SummarySection from "./components/sections/SummarySection";
 import { TEXT } from "./data/portfolioText";
+import CapabilitySection from "./features/portfolio/components/CapabilitySection";
+import CareerSection from "./features/portfolio/components/CareerSection";
+import ContactPanel from "./features/portfolio/components/ContactPanel";
+import HomeOverviewSection from "./features/portfolio/components/HomeOverviewSection";
+import PortfolioTopBar from "./features/portfolio/components/PortfolioTopBar";
+import ProjectsHubSection from "./features/portfolio/components/ProjectsHubSection";
 import useActiveSection from "./hooks/useActiveSection";
 import usePortfolioPdfExport from "./hooks/usePortfolioPdfExport";
-import usePortfolioViewModel from "./hooks/usePortfolioViewModel";
+import usePortfolioHomeModel from "./features/portfolio/usePortfolioHomeModel";
 import useViewportFlags from "./hooks/useViewportFlags";
-
-const NAV_ICON_BY_SECTION: Record<string, string> = {
-  summary: "spark",
-  highlights: "target",
-  projects: "box",
-  stack: "layout",
-  experience: "timeline",
-  contact: "mail"
-};
 
 export default function App() {
   const [lang, setLang] = useState<"ko" | "en">("ko");
@@ -29,8 +19,7 @@ export default function App() {
 
   const {
     localizedProfile,
-    localizedNavItems,
-    scanHierarchy,
+    navItems,
     localizedMetrics,
     localizedHighlights,
     localizedStack,
@@ -45,13 +34,11 @@ export default function App() {
     workQaProjects,
     teamProjects,
     projectCardLabels
-  } = usePortfolioViewModel({ lang, t });
+  } = usePortfolioHomeModel({ lang, t });
 
   const { showTopButton, isMobile } = useViewportFlags();
   const workProjectTotal = workScmProjects.length + workQaProjects.length;
-  const sectionIds = useMemo(() => localizedNavItems.map((item) => item.id), [localizedNavItems]);
-  const heroHighlights = useMemo(() => summaryQuick.strengths.slice(0, 3), [summaryQuick.strengths]);
-  const heroFeaturedProjects = useMemo(() => featuredProjects.slice(0, 2), [featuredProjects]);
+  const sectionIds = useMemo(() => navItems.map((item) => item.id), [navItems]);
   const { activeSection, setActiveSection } = useActiveSection(sectionIds);
   const handlePdfExportError = useCallback(() => {
     window.alert(t.pdfExportError);
@@ -95,129 +82,33 @@ export default function App() {
 
   return (
     <>
-      <a className="skip-link" href="#summary">{t.skipToMain}</a>
-      <div className="bg-layer" aria-hidden="true" />
-      <div className="grain" aria-hidden="true" />
+      <a className="skip-link" href="#home">{t.skipToMain}</a>
+      <div className="page-bg" aria-hidden="true" />
+      <div className="page-grain" aria-hidden="true" />
 
-      <header className="topbar reveal d1">
-        <a className="logo" href="#top" aria-label={logoHomeAriaLabel}>
-          <span className="logo-mark" aria-hidden="true">
-            <svg className="logo-mark-svg" viewBox="0 0 24 24" fill="none">
-              <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
-              <path d="m8.2 15.8 3.1-7 3.1 7m-4.4-2.5h2.6M15.8 8.8v6.9m0 0h2.4" />
-            </svg>
-          </span>
-          <span className="logo-wordmark">
-            <strong>{localizedProfile.name}</strong>
-            <small>{localizedProfile.role} · {localizedProfile.domain}</small>
-          </span>
-        </a>
-        <div className="topbar-right">
-          <nav className="menu" aria-label={t.navLabel}>
-            {localizedNavItems.map((item, index) => (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                ref={(node) => {
-                  navLinkRefs.current[index] = node;
-                }}
-                className={activeSection === item.id ? "active" : ""}
-                aria-current={activeSection === item.id ? "page" : undefined}
-                aria-label={item.label}
-                onClick={() => setActiveSection(item.id)}
-                onKeyDown={(event) => handleMenuKeyDown(event, index)}
-              >
-                <span className="menu-icon" aria-hidden="true">
-                  <Icon type={NAV_ICON_BY_SECTION[item.id] ?? "spark"} />
-                </span>
-                <span className="menu-label">{item.label}</span>
-              </a>
-            ))}
-          </nav>
-          <button className="lang-switch" type="button" onClick={toggleLang} aria-label={langSwitchAriaLabel}>
-            {t.switchLang}
-          </button>
-        </div>
-      </header>
+      <PortfolioTopBar
+        logoHomeAriaLabel={logoHomeAriaLabel}
+        localizedProfile={localizedProfile}
+        navItems={navItems}
+        navLinkRefs={navLinkRefs}
+        activeSection={activeSection}
+        onSelectSection={setActiveSection}
+        onMenuKeyDown={handleMenuKeyDown}
+        langSwitchAriaLabel={langSwitchAriaLabel}
+        switchLang={toggleLang}
+        switchLabel={t.switchLang}
+      />
 
-      <main id="top" className="container">
-        <section className="hero reveal d2">
-          <div className="hero-main ui-card ui-card--strong">
-            <div className="hero-copy-area hero-home-main">
-              <div className="hero-home-intro">
-                <div className="hero-kicker-row">
-                  <p className="eyebrow">{localizedProfile.role} · {localizedProfile.domain}</p>
-                  <span className="hero-status-pill">{t.summaryQuickFitLabel}</span>
-                </div>
-                <h1>
-                  <span className="hero-name">{localizedProfile.name}</span>
-                  <span className="hero-title">{summaryQuick.coreLine}</span>
-                </h1>
-                <p className="hero-copy">{localizedProfile.intro}</p>
-              </div>
-              <div className="hero-actions">
-                <a className="ui-btn ui-btn-primary" href="#projects">{t.heroActionProjects}</a>
-                <a className="ui-btn ui-btn-ghost" href="#experience">{t.heroActionExperience}</a>
-                <a className="ui-btn ui-btn-ghost" href="#contact">{t.contactLabel}</a>
-              </div>
-              <div className="hero-proof-strip" aria-label={t.summaryQuickLabel}>
-                {localizedMetrics.map((item) => (
-                  <div key={item.label} className="hero-proof-item">
-                    <span>{item.label}</span>
-                    <strong>{item.value}</strong>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <aside className="hero-home-side" aria-label={t.panelSnapshot}>
-              <article className="hero-home-card hero-home-card--accent">
-                <p className="hero-home-card-label">{t.summaryQuickFitLabel}</p>
-                <strong>{summaryQuick.fit}</strong>
-                <span>{t.panelSnapshot}</span>
-              </article>
-              <article className="hero-home-card">
-                <p className="hero-home-card-label">{t.featuredHead}</p>
-                <ul className="hero-home-list">
-                  {heroFeaturedProjects.map((project) => (
-                    <li key={project.id}>
-                      <div>
-                        <strong>{project.name}</strong>
-                        <span>{project.period}</span>
-                      </div>
-                      <em>{project.kind}</em>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-              <article className="hero-home-card">
-                <p className="hero-home-card-label">{t.summaryQuickStrengthsLabel}</p>
-                <div className="hero-highlight-list" aria-label={t.summaryQuickStrengthsLabel}>
-                  {heroHighlights.map((item) => (
-                    <span key={item} className="hero-highlight-chip">
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </article>
-              <article className="hero-home-card hero-home-card--link">
-                <p className="hero-home-card-label">GitHub</p>
-                <a className="hero-panel-link" href={localizedProfile.github} target="_blank" rel="noreferrer">
-                  {localizedProfile.github.replace("https://", "")}
-                </a>
-              </article>
-            </aside>
-          </div>
-        </section>
-
-        <SummarySection
+      <main id="top" className="page-shell">
+        <HomeOverviewSection
           t={t}
+          localizedProfile={localizedProfile}
           localizedMetrics={localizedMetrics}
           summaryQuick={summaryQuick}
-          scanHierarchy={scanHierarchy}
+          featuredProjects={featuredProjects}
+          localizedHighlights={localizedHighlights}
         />
-        <HighlightsSection t={t} localizedHighlights={localizedHighlights} />
-        <ProjectsSection
+        <ProjectsHubSection
           t={t}
           featuredProjects={featuredProjects}
           workScmProjects={workScmProjects}
@@ -226,8 +117,12 @@ export default function App() {
           projectCardLabels={projectCardLabels}
           isMobile={isMobile}
         />
-        <StackSection t={t} localizedStack={localizedStack} />
-        <ExperienceSection
+        <CapabilitySection
+          t={t}
+          localizedHighlights={localizedHighlights}
+          localizedStack={localizedStack}
+        />
+        <CareerSection
           t={t}
           workProjectTotal={workProjectTotal}
           localizedExperience={localizedExperience}
@@ -236,7 +131,7 @@ export default function App() {
           localizedAwards={localizedAwards}
           localizedCertifications={localizedCertifications}
         />
-        <ContactSection
+        <ContactPanel
           t={t}
           localizedProfile={localizedProfile}
           year={year}

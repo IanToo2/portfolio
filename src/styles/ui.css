@@ -1,0 +1,305 @@
+.ui-btn {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  min-height: 3rem;
+  padding: 0.88rem 1.15rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.ui-btn:hover {
+  transform: translateY(-1px);
+}
+
+.ui-btn:disabled {
+  opacity: 0.66;
+  cursor: wait;
+  transform: none;
+}
+
+.ui-btn-primary {
+  color: #ffffff;
+  background: var(--blue);
+  box-shadow: 0 12px 24px rgba(49, 130, 246, 0.24);
+}
+
+.ui-btn-ghost {
+  color: var(--ink);
+  background: #ffffff;
+  border-color: var(--line);
+}
+
+.ui-btn-soft {
+  color: var(--blue-strong);
+  background: var(--blue-soft);
+  border-color: rgba(49, 130, 246, 0.14);
+}
+
+.page-shell {
+  width: min(1140px, 92vw);
+  margin: 0 auto;
+  padding: 1rem 0 4.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.portfolio-topbar {
+  width: min(1140px, 92vw);
+  margin: 1rem auto 0;
+  padding: 0.95rem 1rem;
+  position: sticky;
+  top: 1rem;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-soft);
+}
+
+.portfolio-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+}
+
+.portfolio-brand-mark {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.8rem;
+  border: 1px solid rgba(49, 130, 246, 0.2);
+  background: #eef5ff;
+  color: var(--blue);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portfolio-brand-mark-svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.portfolio-brand-copy {
+  display: inline-flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.portfolio-brand-copy strong {
+  color: var(--ink);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.portfolio-brand-copy small {
+  margin-top: 0.14rem;
+  color: var(--muted);
+  font-size: 0.64rem;
+  letter-spacing: 0.03em;
+}
+
+.portfolio-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.portfolio-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.portfolio-nav a {
+  min-height: 2.4rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.portfolio-nav a:hover,
+.portfolio-nav a:focus-visible {
+  background: rgba(25, 31, 40, 0.04);
+  color: var(--ink);
+}
+
+.portfolio-nav a.active {
+  background: rgba(49, 130, 246, 0.1);
+  color: var(--blue-strong);
+}
+
+.portfolio-lang-switch {
+  appearance: none;
+  min-height: 2.4rem;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--ink);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.portfolio-section {
+  margin-top: 1.4rem;
+  padding: 1.45rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: #ffffff;
+  box-shadow: var(--shadow-card);
+  scroll-margin-top: 6rem;
+}
+
+.portfolio-section-head p {
+  margin: 0;
+  color: #8b95a1;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.portfolio-section-head h2 {
+  margin: 0.28rem 0 0;
+  font-size: clamp(1.7rem, 3.2vw, 2.45rem);
+  letter-spacing: -0.03em;
+}
+
+.portfolio-section-head span {
+  margin-top: 0.42rem;
+  display: block;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.empty-state {
+  margin: 0.8rem 0 0;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--bg-soft);
+  color: var(--muted);
+}
+
+.to-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 30;
+  appearance: none;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--blue-strong);
+  font-weight: 800;
+  font-size: 0.8rem;
+  border-radius: 999px;
+  padding: 0.6rem 0.88rem;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.1);
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.to-top.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+body.is-exporting-pdf {
+  background: #ffffff;
+}
+
+body.is-exporting-pdf .portfolio-topbar,
+body.is-exporting-pdf .to-top,
+body.is-exporting-pdf .contact-actions {
+  display: none !important;
+}
+
+body.is-exporting-pdf .page-bg,
+body.is-exporting-pdf .page-grain {
+  opacity: 0 !important;
+}
+
+body.is-exporting-pdf * {
+  transition: none !important;
+}
+
+body.is-exporting-pdf .portfolio-section,
+body.is-exporting-pdf .home-card,
+body.is-exporting-pdf .featured-project-card,
+body.is-exporting-pdf .project-group-card,
+body.is-exporting-pdf .capability-card,
+body.is-exporting-pdf .stack-card,
+body.is-exporting-pdf .timeline-card,
+body.is-exporting-pdf .contact-card,
+body.is-exporting-pdf .home-stat-card,
+body.is-exporting-pdf .project-card {
+  background: #ffffff !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+@media (max-width: 960px) {
+  .portfolio-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .portfolio-topbar-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 760px) {
+  .page-shell {
+    width: 94vw;
+  }
+
+  .portfolio-topbar {
+    width: 94vw;
+    top: 0.6rem;
+    border-radius: 20px;
+    padding: 0.7rem;
+  }
+
+  .portfolio-nav {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+
+  .portfolio-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .portfolio-section {
+    padding: 1rem;
+    border-radius: 24px;
+  }
+}

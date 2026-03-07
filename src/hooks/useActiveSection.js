@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function useActiveSection(sectionIds, initialSection = "summary") {
+export default function useActiveSection(sectionIds, initialSection = "home") {
   const [activeSection, setActiveSection] = useState(initialSection);
 
   useEffect(() => {
