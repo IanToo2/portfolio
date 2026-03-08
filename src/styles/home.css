@@ -858,6 +858,10 @@
   grid-template-columns: 1fr;
 }
 
+.portfolio-career .timeline-card {
+  padding: 0.88rem 0.94rem;
+}
+
 .timeline-card > span {
   display: inline-flex;
   min-height: 2rem;
@@ -874,6 +878,10 @@
   margin: 0.62rem 0 0.42rem;
 }
 
+.portfolio-career .timeline-card h3 {
+  margin: 0.48rem 0 0.32rem;
+}
+
 .timeline-org {
   margin: -0.1rem 0 0.5rem;
   color: var(--muted);
@@ -885,6 +893,10 @@
   padding-left: 1.05rem;
   color: var(--muted);
   line-height: 1.6;
+}
+
+.portfolio-career .timeline-card ul {
+  line-height: 1.54;
 }
 
 .timeline-card--featured span,
@@ -927,6 +939,10 @@
   color: var(--muted);
 }
 
+.contact-card--reboot small:last-child {
+  margin-top: 0.32rem;
+}
+
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -966,11 +982,12 @@
 }
 
 .contact-copy-status {
-  min-height: 1.4rem;
-  margin: 0.75rem 0 0;
+  min-height: 1rem;
+  margin: 0.5rem 0 0;
   color: var(--blue-strong);
   font-size: 0.84rem;
   font-weight: 700;
+  line-height: 1.2;
 }
 
 @media (max-width: 1024px) {
