@@ -27,16 +27,16 @@ export default function ProjectCard({
   const expandLabel = labels.expandLabel ?? "Expand";
   const metricsLabel = labels.metricsLabel ?? "Impact Metrics";
   const trackLabel = project.track === "scm" ? "SCM" : project.track === "qa" ? "QA" : null;
-  const isTeamProject = project.track === "team";
+  const isUnifiedMetricProject = project.track === "team" || project.track === "qa";
   const projectMetrics = (project.metrics ?? []).filter((metric) => metric?.label || metric?.value);
   const techPreview = (project.tech ?? []).slice(0, TECH_PREVIEW_MAX);
   const contributionPreview = (project.contributions ?? []).slice(0, CONTRIBUTION_PREVIEW_MAX);
   const metricPreview = projectMetrics.slice(0, METRIC_PREVIEW_MAX);
   const metricDetail = projectMetrics.slice(METRIC_PREVIEW_MAX);
-  const visibleMetrics = isTeamProject && !collapsed ? projectMetrics : metricPreview;
+  const visibleMetrics = isUnifiedMetricProject && !collapsed ? projectMetrics : metricPreview;
   const hasDetailContent =
     (project.contributions?.length ?? 0) > contributionPreview.length ||
-    metricDetail.length > 0;
+    (!isUnifiedMetricProject && metricDetail.length > 0);
   const projectKey = (project.id ?? `${project.name}-${project.period}`).replace(/[^a-zA-Z0-9_-]/g, "-");
   const detailsId = `project-details-${projectKey}`;
 
@@ -101,7 +101,7 @@ export default function ProjectCard({
               </ul>
             </>
           ) : null}
-          {metricDetail.length && !isTeamProject ? (
+          {metricDetail.length && !isUnifiedMetricProject ? (
             <div className="project-metrics">
               <p className="project-metrics-title">{metricsLabel}</p>
               <div className="project-metrics-grid">
