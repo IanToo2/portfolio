@@ -1,4 +1,4 @@
-import TechLogo from "../../../components/TechLogo";
+import TechPillList from "../../../components/TechPillList";
 import PortfolioSection from "./PortfolioSection";
 
 export default function CapabilitySection({ t, capabilityPillars, stackGroups }) {
@@ -36,14 +36,7 @@ export default function CapabilitySection({ t, capabilityPillars, stackGroups })
               <div className="stack-meter" aria-label={`${group.title} ${group.proficiency}%`}>
                 <div className="stack-meter-bar" style={{ width: `${group.proficiency}%` }} />
               </div>
-              <ul>
-                {group.items.map((item) => (
-                  <li key={item}>
-                    <TechLogo name={item} />
-                    <span className="stack-card-label">{item}</span>
-                  </li>
-                ))}
-              </ul>
+              <TechPillList items={group.items} />
             </article>
           ))}
         </div>

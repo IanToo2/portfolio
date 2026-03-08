@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import ProjectCard from "../../../components/ProjectCard";
-import TechLogo from "../../../components/TechLogo";
+import TechPillList from "../../../components/TechPillList";
 import PortfolioSection from "./PortfolioSection";
 
 export default function ProjectsHubSection({
@@ -79,14 +79,7 @@ export default function ProjectsHubSection({
               <p>{projectCardLabels.scopeLabel}</p>
               <strong>{project.scope.join(" / ")}</strong>
             </div>
-            <ul className="tech-pill-list tech-pill-list--compact featured-project-tags">
-              {project.techPreview.map((item) => (
-                <li key={`${project.id}-${item}`}>
-                  <TechLogo name={item} />
-                  <span className="stack-card-label">{item}</span>
-                </li>
-              ))}
-            </ul>
+            <TechPillList items={project.techPreview} className="featured-project-tags" />
             <div className="featured-project-metrics">
               {project.metricPreview.map((metric) => (
                 <div key={`${project.id}-${metric.label}`}>
@@ -105,14 +98,7 @@ export default function ProjectsHubSection({
                   {project.tech.length > project.techPreview.length ? (
                     <div className="case-study-detail-block">
                       <p>{projectCardLabels.technologiesLabel}</p>
-                      <ul className="tech-pill-list tech-pill-list--compact">
-                        {project.tech.map((item) => (
-                          <li key={`${project.id}-detail-tech-${item}`}>
-                            <TechLogo name={item} />
-                            <span className="stack-card-label">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      <TechPillList items={project.tech} />
                     </div>
                   ) : null}
                   {project.metrics?.length > project.metricPreview.length ? (

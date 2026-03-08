@@ -1,4 +1,4 @@
-import TechLogo from "../../../components/TechLogo";
+import TechPillList from "../../../components/TechPillList";
 import PortfolioSection from "./PortfolioSection";
 
 export default function StackSection({ t, stackGroups }) {
@@ -20,14 +20,7 @@ export default function StackSection({ t, stackGroups }) {
             <div className="stack-meter" aria-label={`${group.title} ${group.proficiency}%`}>
               <div className="stack-meter-bar" style={{ width: `${group.proficiency}%` }} />
             </div>
-            <ul className="tech-pill-list">
-              {group.items.map((item) => (
-                <li key={item}>
-                  <TechLogo name={item} />
-                  <span className="stack-card-label">{item}</span>
-                </li>
-              ))}
-            </ul>
+            <TechPillList items={group.items} />
           </article>
         ))}
       </div>

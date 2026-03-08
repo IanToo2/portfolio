@@ -620,11 +620,11 @@
   list-style: none;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
   gap: 0.45rem;
 }
 
-.tech-pill-list li {
+.tech-pill {
   display: inline-flex;
   align-items: center;
   gap: 0.28rem;
@@ -638,13 +638,9 @@
   overflow-wrap: anywhere;
 }
 
-.tech-pill-list li {
+.tech-pill {
   width: 100%;
   justify-content: flex-start;
-}
-
-.tech-pill-list--compact {
-  grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
 }
 
 .tech-logo {
@@ -799,7 +795,7 @@
   margin-top: 0;
 }
 
-.stack-card-label {
+.tech-pill-label {
   min-width: 0;
   line-height: 1.35;
   word-break: keep-all;

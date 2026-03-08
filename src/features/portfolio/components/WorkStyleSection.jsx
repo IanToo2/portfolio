@@ -1,4 +1,4 @@
-import TechLogo from "../../../components/TechLogo";
+import TechPillList from "../../../components/TechPillList";
 import PortfolioSection from "./PortfolioSection";
 
 export default function WorkStyleSection({ t, capabilityPillars }) {
@@ -16,14 +16,7 @@ export default function WorkStyleSection({ t, capabilityPillars }) {
             <p>{t.stackSignalLabel}</p>
             <h3>{item.title}</h3>
             <strong>{item.text}</strong>
-            <ul className="tech-pill-list">
-              {item.tools.map((tool) => (
-                <li key={`${item.id}-${tool}`}>
-                  <TechLogo name={tool} />
-                  <span className="stack-card-label">{tool}</span>
-                </li>
-              ))}
-            </ul>
+            <TechPillList items={item.tools} />
           </article>
         ))}
       </div>
