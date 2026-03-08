@@ -365,8 +365,7 @@
   display: block;
 }
 
-.case-study-meta p,
-.case-study-detail-block p {
+.case-study-meta p {
   color: #6b8097;
   font-size: 0.74rem;
   font-weight: 800;
@@ -419,10 +418,6 @@
   border-top: 1px solid var(--line);
   display: grid;
   gap: 0.8rem;
-}
-
-.case-study-detail-block p {
-  margin: 0 0 0.42rem;
 }
 
 .supporting-work-card {
@@ -591,40 +586,6 @@
   color: var(--muted);
   font-size: 0.8rem;
   font-weight: 800;
-}
-
-.project-tech-groups {
-  margin-top: 0.68rem;
-  display: grid;
-  gap: 0.42rem;
-}
-
-.project-tech-group {
-  padding: 0.58rem 0.64rem;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background: linear-gradient(180deg, #f7fafc, #f2f7fb);
-}
-
-.project-tech-group-title {
-  margin: 0 0 0.32rem;
-  color: var(--muted);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.tech-pill-list.project-detail-tech-list {
-  margin-top: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-}
-
-.tech-pill-list.project-detail-tech-list .tech-pill {
-  width: auto;
-  max-width: 100%;
 }
 
 .tech-pill-list {

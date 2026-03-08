@@ -163,9 +163,7 @@ export default function usePortfolioHomeModel({ lang, t }) {
           impactSummary: stripContributionPrefix(impact),
           techPreview,
           metricPreview,
-          hasHiddenDetails:
-            (project.tech?.length ?? 0) > techPreview.length ||
-            (project.metrics?.length ?? 0) > metricPreview.length
+          hasHiddenDetails: (project.metrics?.length ?? 0) > metricPreview.length
         };
       }),
     [featuredProjects]

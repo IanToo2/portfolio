@@ -95,12 +95,6 @@ export default function ProjectsHubSection({
                   className="case-study-details"
                   hidden={isCaseStudyCollapsed(project)}
                 >
-                  {project.tech.length > project.techPreview.length ? (
-                    <div className="case-study-detail-block">
-                      <p>{projectCardLabels.technologiesLabel}</p>
-                      <TechPillList items={project.tech} className="project-detail-tech-list" />
-                    </div>
-                  ) : null}
                   {project.metrics?.length > project.metricPreview.length ? (
                     <div className="project-metrics">
                       <p className="project-metrics-title">{projectCardLabels.metricsLabel}</p>

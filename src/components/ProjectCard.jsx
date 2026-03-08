@@ -6,66 +6,15 @@ const DEFAULT_LABELS = {
   technologiesLabel: "Tech Stack",
   contributionsLabel: "Key Contributions",
   metricsLabel: "Impact Metrics",
-  techGroupLabels: {
-    frontend: "Frontend",
-    backend: "Backend",
-    database: "Database",
-    infra: "Infrastructure",
-    devops: "DevOps",
-    collaboration: "Collaboration",
-    other: "Other"
-  },
   statusDone: "Completed",
   statusPending: "In Progress",
   collapseLabel: "Collapse",
   expandLabel: "Expand"
 };
 
-const TECH_GROUP_ORDER = [
-  "frontend",
-  "backend",
-  "database",
-  "infra",
-  "devops",
-  "collaboration",
-  "other"
-];
-
-const TECH_GROUP_TOKENS = {
-  frontend: ["javascript", "typescript", "react", "vue", "angular", "polymer", "html", "css"],
-  backend: ["java", "spring", "node", "express", "nestjs", "jpa", "mybatis", "kotlin"],
-  database: ["oracle", "postgresql", "mysql", "mariadb", "sql", "mongodb", "redis", "rds"],
-  infra: ["aws", "docker", "kubernetes", "nginx", "minio", "ec2", "s3"],
-  devops: ["jenkins", "gradle", "maven", "ci", "cd", "github actions"],
-  collaboration: ["git", "github", "gitlab", "jira", "svn", "swagger"]
-};
-
 const TECH_PREVIEW_MAX = 6;
 const CONTRIBUTION_PREVIEW_MAX = 3;
 const METRIC_PREVIEW_MAX = 2;
-
-const normalizeTech = (value) => String(value ?? "").toLowerCase();
-
-const resolveTechGroup = (tech) => {
-  const normalized = normalizeTech(tech);
-  for (const group of TECH_GROUP_ORDER) {
-    const tokens = TECH_GROUP_TOKENS[group];
-    if (tokens?.some((token) => normalized.includes(token))) {
-      return group;
-    }
-  }
-  return "other";
-};
-
-const groupTechStack = (techStack) => {
-  const grouped = new Map(TECH_GROUP_ORDER.map((group) => [group, []]));
-  for (const tech of techStack ?? []) {
-    grouped.get(resolveTechGroup(tech)).push(tech);
-  }
-  return TECH_GROUP_ORDER
-    .filter((group) => grouped.get(group).length > 0)
-    .map((group) => ({ group, items: grouped.get(group) }));
-};
 
 export default function ProjectCard({
   project,
@@ -78,22 +27,16 @@ export default function ProjectCard({
   const expandLabel = labels.expandLabel ?? "Expand";
   const metricsLabel = labels.metricsLabel ?? "Impact Metrics";
   const trackLabel = project.track === "scm" ? "SCM" : project.track === "qa" ? "QA" : null;
-  const groupedTechStack = groupTechStack(project.tech);
   const projectMetrics = (project.metrics ?? []).filter((metric) => metric?.label || metric?.value);
   const techPreview = (project.tech ?? []).slice(0, TECH_PREVIEW_MAX);
   const contributionPreview = (project.contributions ?? []).slice(0, CONTRIBUTION_PREVIEW_MAX);
   const metricPreview = projectMetrics.slice(0, METRIC_PREVIEW_MAX);
   const metricDetail = projectMetrics.slice(METRIC_PREVIEW_MAX);
   const hasDetailContent =
-    (project.tech?.length ?? 0) > techPreview.length ||
     (project.contributions?.length ?? 0) > contributionPreview.length ||
     metricDetail.length > 0;
   const projectKey = (project.id ?? `${project.name}-${project.period}`).replace(/[^a-zA-Z0-9_-]/g, "-");
   const detailsId = `project-details-${projectKey}`;
-  const techGroupLabels = {
-    ...DEFAULT_LABELS.techGroupLabels,
-    ...(labels.techGroupLabels ?? {})
-  };
 
   return (
     <article className={`project-card ui-card ${hasDetailContent && collapsible ? "is-collapsible" : ""} ${collapsed ? "is-collapsed" : ""}`}>
@@ -146,18 +89,6 @@ export default function ProjectCard({
       ) : null}
       {hasDetailContent ? (
         <div id={detailsId} hidden={collapsed}>
-          {(project.tech?.length ?? 0) > techPreview.length ? (
-            <div className="project-tech-groups" aria-label={labels.technologiesLabel}>
-              {groupedTechStack.map(({ group, items }) => (
-                <div key={group} className="project-tech-group">
-                  <p className="project-tech-group-title">
-                    {techGroupLabels[group] ?? group}
-                  </p>
-                  <TechPillList items={items} className="project-detail-tech-list" />
-                </div>
-              ))}
-            </div>
-          ) : null}
           {(project.contributions?.length ?? 0) > contributionPreview.length ? (
             <>
               <p className="project-contrib-title project-contrib-title--detail">{labels.contributionsLabel}</p>
