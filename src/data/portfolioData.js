@@ -686,16 +686,16 @@ export const PROJECTS = [
     ],
     metrics: [
       {
-        label: "개인 리비전",
-        labelEn: "Personal revisions",
-        value: "r1113~r1312 구간 50건",
-        valueEn: "50 revisions in r1113-r1312"
+        label: "업무 화면 개선",
+        labelEn: "Workflow UI improvements",
+        value: "B/L·L/G·Invoice 관리·리스트·팝업 흐름 정비",
+        valueEn: "Managed, list, and popup flows refined across B/L, L/G, and Invoice screens"
       },
       {
-        label: "변경 파일",
-        labelEn: "Files touched",
-        value: "고유 29개 (UI 15 / Java 10 / Mapper 4)",
-        valueEn: "29 unique files (UI 15 / Java 10 / Mapper 4)"
+        label: "연계 안정화",
+        labelEn: "Integration stability",
+        value: "BL/LG/LC 전 계층 파라미터·조회 로직 안정화",
+        valueEn: "Parameter consistency and query behavior stabilized across BL/LG/LC layers"
       }
     ],
     isPending: true
