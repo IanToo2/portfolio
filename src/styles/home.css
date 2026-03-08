@@ -615,6 +615,18 @@
   text-transform: uppercase;
 }
 
+.tech-pill-list.project-detail-tech-list {
+  margin-top: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.tech-pill-list.project-detail-tech-list .tech-pill {
+  width: auto;
+  max-width: 100%;
+}
+
 .tech-pill-list {
   margin-top: 0.78rem;
   list-style: none;

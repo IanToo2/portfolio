@@ -153,7 +153,7 @@ export default function ProjectCard({
                   <p className="project-tech-group-title">
                     {techGroupLabels[group] ?? group}
                   </p>
-                  <TechPillList items={items} />
+                  <TechPillList items={items} className="project-detail-tech-list" />
                 </div>
               ))}
             </div>

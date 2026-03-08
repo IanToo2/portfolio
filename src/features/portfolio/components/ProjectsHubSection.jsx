@@ -98,7 +98,7 @@ export default function ProjectsHubSection({
                   {project.tech.length > project.techPreview.length ? (
                     <div className="case-study-detail-block">
                       <p>{projectCardLabels.technologiesLabel}</p>
-                      <TechPillList items={project.tech} />
+                      <TechPillList items={project.tech} className="project-detail-tech-list" />
                     </div>
                   ) : null}
                   {project.metrics?.length > project.metricPreview.length ? (
