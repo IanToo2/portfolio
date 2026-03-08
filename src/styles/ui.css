@@ -154,22 +154,6 @@ html.lenis body {
   animation: intro-cursor-blink 900ms steps(1) infinite;
 }
 
-.portfolio-intro-progress {
-  margin-top: 1rem;
-  height: 0.42rem;
-  border-radius: 999px;
-  overflow: hidden;
-  background: rgba(58, 132, 222, 0.12);
-}
-
-.portfolio-intro-progress span {
-  display: block;
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, var(--blue-strong), var(--cyan-strong));
-  transition: width 120ms ease;
-}
-
 body.is-intro-active {
   overflow: hidden;
 }
@@ -499,8 +483,7 @@ body.is-exporting-pdf .project-card {
 @media (prefers-reduced-motion: reduce) {
   .page-reveal,
   .page-reveal-group > *,
-  .portfolio-intro,
-  .portfolio-intro-progress span {
+  .portfolio-intro {
     transition: none !important;
   }
 

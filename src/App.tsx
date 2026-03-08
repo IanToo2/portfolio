@@ -169,7 +169,6 @@ export default function App() {
       <div className="page-grain" aria-hidden="true" />
       {isIntroVisible ? (
         <PortfolioIntroOverlay
-          greeting={introGreeting}
           typedGreeting={typedGreeting}
           status={introStatus}
           isLeaving={isIntroLeaving}
