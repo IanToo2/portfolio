@@ -723,6 +723,30 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.home-metric-grid,
+.project-case-grid,
+.featured-project-metrics,
+.capability-pillar-grid,
+.stack-lane-grid,
+.career-proof-grid,
+.career-certification-grid,
+.timeline,
+.contact-grid {
+  align-items: start;
+}
+
+.home-metric-grid > *,
+.project-case-grid > *,
+.featured-project-metrics > *,
+.capability-pillar-grid > *,
+.stack-lane-grid > *,
+.career-proof-grid > *,
+.career-certification-grid > *,
+.timeline > *,
+.contact-grid > * {
+  align-self: start;
+}
+
 .capability-card--pillar,
 .stack-card--lane,
 .timeline-card--featured,
