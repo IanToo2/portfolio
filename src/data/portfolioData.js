@@ -554,15 +554,15 @@ export const PROJECTS = [
     kindEn: "QA_HOTFIX Validation & Handoff",
     scope: ["요건 검토", "핫픽스 QA", "결함 전달", "수정 검증"],
     scopeEn: ["Requirement Review", "Hotfix QA", "Defect Handoff", "Fix Verification"],
-    tech: ["Notion", "QA 프로세스 운영"],
-    techEn: ["Notion", "QA Process Operations"],
+    tech: [],
+    techEn: [],
     contributions: [
-      "QA_HOTFIX 운영 규칙(High 우선순위, 접수일+3일 마감)을 기준으로 릴리즈 검증 항목을 관리",
+      "QA_HOTFIX 운영 규칙(High 우선순위, 접수일+3일 마감)을 기준으로 직접 블랙박스 테스트를 수행",
       "핫픽스 이슈별 재현 조건과 영향 범위를 정리해 개발팀 전달 품질을 표준화",
       "메인 업무-실행 TODO-산출물 연결 구조를 유지해 QA 이력 추적성과 후속 검증 효율을 강화"
     ],
     contributionsEn: [
-      "Managed release validation tasks under the QA_HOTFIX policy (High priority with a +3-day due window from intake).",
+      "Executed hands-on black-box testing under the QA_HOTFIX policy (High priority with a +3-day due window from intake).",
       "Standardized developer handoff quality by documenting reproducible conditions and impact scope per hotfix issue.",
       "Improved traceability and follow-up verification efficiency by maintaining links across main tasks, execution TODOs, and deliverables."
     ],
