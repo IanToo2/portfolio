@@ -65,16 +65,9 @@ description: "Use for portfolio-site content, UI, structure, and debugging work.
 - `DEV` 작업 후:
   - `npm run validate`
   - `npm run build`
-- dev 서버가 이미 떠 있으면 `http://localhost:5173` 응답 확인
-- UI, 레이아웃, 애니메이션, 네비게이션, 상태 전환 변경 시 수동 테스트:
-  - 첫 진입과 새로고침 후 모두 확인
-  - 변경된 상호작용을 최소 1회 실행
-  - 언어 전환, 필터, 탭, 오버레이, sticky UI, 스크롤 연동 변경이면 해당 흐름 추가 확인
-  - 배포 사이트 버그 수정이면 배포 환경에서도 같은 시나리오 재확인, 불가 시 사유 기록
 
 ## Done
 - 요청 변경이 최소 diff로 반영됨
 - data/model/UI 정합성 유지
 - 한/영 정합성 유지
 - validate/build 통과
-- 필요한 수동 테스트 완료 또는 차단 사유 기록

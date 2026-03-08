@@ -11,7 +11,7 @@
   - Scope
   - Done criteria
 - `DEV`는 기본 순서를 따른다.
-  - Issue 등록(한국어) -> Plan -> Dev -> Validate -> Manual check(if needed) -> Commit -> Push -> Issue update -> Issue close(if resolved)
+  - Issue 등록(한국어) -> Plan -> Dev -> Validate -> Commit -> Push -> Issue update -> Issue close(if resolved)
 - 위험 작업은 실행 전에 확인한다.
   - 파일 삭제
   - 외부 네트워크
@@ -33,15 +33,12 @@
 - `DEV` 작업 후 반드시 실행:
   - `npm run validate`
   - `npm run build`
-- dev 서버가 떠 있으면 `http://localhost:5173` 응답 확인
-- UI, 인터랙션, 애니메이션, 상태 전환 변경 시 브라우저 수동 테스트 필수
-- 배포 환경에서 보고된 버그는 가능해지는 즉시 배포 환경에서도 같은 시나리오 재확인
 - 테스트/검증을 못 했으면 이유를 남긴다
 
 ## 5. DEV / ANALYSIS
 - `DEV`
   - 깨진 상태로 커밋 금지
-  - 검증과 필요한 수동 테스트가 끝나면 커밋 후 기본적으로 `push`까지 진행
+  - 검증이 끝나면 커밋 후 기본적으로 `push`까지 진행
   - `push`를 못 했으면 인증/네트워크/사용자 지시 사유를 남긴다
   - 작업 완료 후 이슈에 변경 요약, 검증 결과, 커밋/푸시 상태를 남긴다
   - 이슈가 해결 상태면 마지막 업데이트 후 닫고, 남은 작업이나 차단 사유가 있으면 닫지 않는다
