@@ -31,6 +31,16 @@ export default function HomeOverviewSection({
               <strong>{localizedProfile.role} · {localizedProfile.domain}</strong>
             </div>
             <p className="home-hero-copy">{localizedProfile.intro}</p>
+            <div className="home-signal-row">
+              <div className="home-signal-chip">
+                <span>{t.heroSignalLabel}</span>
+                <strong>{t.heroSignalValue}</strong>
+              </div>
+              <div className="home-signal-chip">
+                <span>{t.panelSnapshot}</span>
+                <strong>{summaryQuick.coreLine}</strong>
+              </div>
+            </div>
           </div>
 
           <div className="home-action-row">

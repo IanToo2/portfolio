@@ -23,7 +23,12 @@ export default function ProjectCard({
   collapsed = false,
   onToggleCollapse
 }) {
-  const trackLabel = project.track === "scm" ? "SCM" : project.track === "qa" ? "QA" : "TEAM";
+  const trackLabel =
+    project.track === "scm"
+      ? labels.trackScm ?? "SCM"
+      : project.track === "qa"
+        ? labels.trackQa ?? "QA"
+        : labels.trackTeam ?? "TEAM";
   const projectMetrics = (project.metrics ?? []).filter((metric) => metric?.label || metric?.value);
   const techPreview = (project.tech ?? []).slice(0, TECH_PREVIEW_MAX);
   const contributionPreview = (project.contributions ?? []).slice(0, CONTRIBUTION_PREVIEW_MAX);

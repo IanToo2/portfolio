@@ -14,8 +14,7 @@ export default function useActiveSection(sectionIds, initialSection = "home") {
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
         if (!visible.length) return;
-        const nextId = visible[0].target.id === "qa" ? "projects" : visible[0].target.id;
-        setActiveSection(nextId);
+        setActiveSection(visible[0].target.id);
       },
       {
         rootMargin: "-20% 0px -58% 0px",

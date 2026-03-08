@@ -112,6 +112,9 @@ export const TEXT = {
       statusPending: "진행 중",
       collapseLabel: "접기",
       expandLabel: "더 보기",
+      trackScm: "SCM",
+      trackQa: "QA",
+      trackTeam: "팀",
       copySubject: "포트폴리오 문의드립니다",
       copyBody: "안녕하세요, 포트폴리오를 보고 연락드립니다."
     },
@@ -236,6 +239,9 @@ export const TEXT = {
       statusPending: "In Progress",
       collapseLabel: "Collapse",
       expandLabel: "Show more",
+      trackScm: "SCM",
+      trackQa: "QA",
+      trackTeam: "TEAM",
       copySubject: "Portfolio Inquiry",
       copyBody: "Hello, I read your portfolio and would like to discuss a potential opportunity."
     },
