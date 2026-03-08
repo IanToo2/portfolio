@@ -38,12 +38,6 @@ export default function usePortfolioScrollExperience({ enabled }) {
     gsap.ticker.lagSmoothing(0);
 
     const sections = gsap.utils.toArray(".portfolio-section");
-    let snapPoints = [];
-
-    const refreshSnapPoints = () => {
-      const maxScroll = Math.max(1, ScrollTrigger.maxScroll(window));
-      snapPoints = sections.map((section) => Math.min(1, section.offsetTop / maxScroll));
-    };
 
     const context = gsap.context(() => {
       sections.forEach((section) => {
@@ -98,25 +92,6 @@ export default function usePortfolioScrollExperience({ enabled }) {
         }
       );
 
-      refreshSnapPoints();
-      ScrollTrigger.addEventListener("refreshInit", refreshSnapPoints);
-
-      ScrollTrigger.create({
-        trigger: document.documentElement,
-        start: 0,
-        end: "max",
-        snap: {
-          snapTo: (progress) => {
-            if (!snapPoints.length) {
-              return progress;
-            }
-            return gsap.utils.snap(snapPoints, progress);
-          },
-          duration: { min: 0.16, max: 0.42 },
-          delay: 0.04,
-          ease: "power1.inOut"
-        }
-      });
     });
 
     ScrollTrigger.refresh();
@@ -126,7 +101,6 @@ export default function usePortfolioScrollExperience({ enabled }) {
 
     return () => {
       window.removeEventListener("resize", handleResize);
-      ScrollTrigger.removeEventListener("refreshInit", refreshSnapPoints);
       context.revert();
       lenis.off("scroll", ScrollTrigger.update);
       gsap.ticker.remove(updateLenis);
