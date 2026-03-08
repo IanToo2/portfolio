@@ -1,4 +1,6 @@
 import awsLogo from "../assets/logos/tech/aws.svg";
+import claudeCodeLogo from "../assets/logos/tech/claude-code.svg";
+import codexLogo from "../assets/logos/tech/codex.svg";
 import dockerLogo from "../assets/logos/tech/docker.svg";
 import gradleLogo from "../assets/logos/tech/gradle.svg";
 import genericTechLogo from "../assets/logos/tech/generic-tech.svg";
@@ -18,14 +20,18 @@ import mysqlLogo from "../assets/logos/tech/mysql.svg";
 import nginxLogo from "../assets/logos/tech/nginx.svg";
 import oauth2Logo from "../assets/logos/tech/oauth2.svg";
 import oracleLogo from "../assets/logos/tech/oracle.svg";
+import playwrightLogo from "../assets/logos/tech/playwright.svg";
 import polymerLogo from "../assets/logos/tech/polymer.svg";
 import postgresqlLogo from "../assets/logos/tech/postgresql.svg";
 import reactLogo from "../assets/logos/tech/react.svg";
 import springBootLogo from "../assets/logos/tech/springboot.svg";
 import swaggerLogo from "../assets/logos/tech/swagger.svg";
 import svnLogo from "../assets/logos/tech/svn.svg";
+import nodejsLogo from "../assets/logos/tech/nodejs.svg";
 
 const TECH_LOGO_MAP = {
+  "Claude Code": claudeCodeLogo,
+  Codex: codexLogo,
   Java: javaLogo,
   "Java 21": javaLogo,
   "Spring Boot": springBootLogo,
@@ -57,7 +63,9 @@ const TECH_LOGO_MAP = {
   OAuth2: oauth2Logo,
   Swagger: swaggerLogo,
   Nginx: nginxLogo,
-  MinIO: minioLogo
+  MinIO: minioLogo,
+  "Node.js": nodejsLogo,
+  Playwright: playwrightLogo
 };
 
 export default function TechLogo({ name, className = "" }) {

@@ -600,15 +600,15 @@ export const PROJECTS = [
     kindEn: "Vibe-Coding-Based QA Automation Development",
     scope: ["구조 설계", "실행 스크립트 정비", "결과 리포트 검증", "운영 문서화"],
     scopeEn: ["Structure Design", "Runner Script Setup", "Report Validation", "Operational Documentation"],
-    tech: ["Node.js", "Playwright", "Notion", "Chrome", "Microsoft Edge"],
-    techEn: ["Node.js", "Playwright", "Notion", "Chrome", "Microsoft Edge"],
+    tech: ["Claude Code", "Codex", "Node.js", "Playwright"],
+    techEn: ["Claude Code", "Codex", "Node.js", "Playwright"],
     contributions: [
-      "바이브 코딩 워크플로우로 QA 테스트 자동화 운영 허브를 구축하고 프로그램 사용법/데일리/TODO 구조를 표준화",
+      "Claude Code와 Codex를 활용한 바이브 코딩 워크플로우로 실무자용 QA 테스트 자동화 운영 허브를 구축",
       "로컬 Playwright 기반 `qa:unit`, `qa:discover-menus` 실행 절차와 환경변수 가이드를 정립",
       "리포트 산출물(JSON/HTML) 생성 경로와 종료 로그 검증 기준을 정의해 결과 확인 절차를 명확화"
     ],
     contributionsEn: [
-      "Built a QA automation operations hub through a vibe-coding workflow, and standardized usage docs, daily logs, and TODO tracking.",
+      "Built a practitioner-facing QA automation operations hub through a vibe-coding workflow with Claude Code and Codex.",
       "Established execution procedures and environment variable guidance for local Playwright runners (`qa:unit`, `qa:discover-menus`).",
       "Defined validation standards for JSON/HTML report outputs and completion logs to make result checks consistent."
     ],
