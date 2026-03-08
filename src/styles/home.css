@@ -628,8 +628,17 @@
   gap: 0.4rem;
 }
 
+.tech-pill-list {
+  margin-top: 0.78rem;
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.45rem;
+}
+
 .project-tech li,
-.stack-card li {
+.tech-pill-list li {
   display: inline-flex;
   align-items: center;
   gap: 0.36rem;
@@ -641,6 +650,11 @@
   max-width: 100%;
   min-width: 0;
   overflow-wrap: anywhere;
+}
+
+.tech-pill-list li {
+  width: 100%;
+  justify-content: flex-start;
 }
 
 .tech-logo {
@@ -793,20 +807,6 @@
 
 .stack-card--lane .stack-meter {
   margin-top: 0;
-}
-
-.stack-card--lane ul {
-  margin-top: 0.78rem;
-  list-style: none;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 0.45rem;
-}
-
-.stack-card li {
-  width: 100%;
-  justify-content: flex-start;
 }
 
 .stack-card-label {

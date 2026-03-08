@@ -20,7 +20,7 @@ export default function StackSection({ t, stackGroups }) {
             <div className="stack-meter" aria-label={`${group.title} ${group.proficiency}%`}>
               <div className="stack-meter-bar" style={{ width: `${group.proficiency}%` }} />
             </div>
-            <ul>
+            <ul className="tech-pill-list">
               {group.items.map((item) => (
                 <li key={item}>
                   <TechLogo name={item} />
