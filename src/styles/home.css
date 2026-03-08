@@ -545,11 +545,16 @@
   background: var(--bg-soft);
 }
 
-.project-track.scm,
-.project-status.done {
+.project-track.scm {
   color: var(--blue-strong);
   border: 1px solid rgba(49, 130, 246, 0.14);
   background: #eef5ff;
+}
+
+.project-status.done {
+  color: #166534;
+  border: 1px solid rgba(22, 163, 74, 0.18);
+  background: rgba(22, 163, 74, 0.08);
 }
 
 .project-track.qa,
