@@ -54,7 +54,6 @@ export default function App() {
   const langSwitchAriaLabel =
     t.langSwitchAriaLabel ?? (lang === "ko" ? "Switch to English page" : "Switch to Korean page");
   const introGreeting = t.introGreeting;
-  const introStatus = t.introStatus;
   const isIntroVisible = introPhase !== "done";
   const isIntroScrollLocked = introPhase === "boot" || introPhase === "active";
   const isIntroLeaving = introPhase === "leaving";
@@ -170,7 +169,6 @@ export default function App() {
       {isIntroVisible ? (
         <PortfolioIntroOverlay
           typedGreeting={typedGreeting}
-          status={introStatus}
           isLeaving={isIntroLeaving}
         />
       ) : null}
