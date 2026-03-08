@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-base: #f4f8fb;
+  --bg-elev: #fbfdff;
+  --ink: #101a28;
+  --muted: #607084;
+  --line: #dbe7f1;
+  --line-strong: #c9d8e6;
+  --blue: #3a84de;
+  --blue-soft: rgba(58, 132, 222, 0.1);
+  --blue-strong: #0d4aa6;
+  --cyan-soft: rgba(55, 161, 196, 0.12);
+  --cyan-strong: #0f6f8f;
+  --panel: rgba(244, 249, 253, 0.96);
+  --panel-ink: #15314f;
+  --bg-soft: #f7fbfe;
+  --shadow-soft: 0 16px 36px rgba(16, 26, 40, 0.05);
+  --shadow-card: 0 22px 46px rgba(16, 26, 40, 0.06);
+  --radius-xl: 34px;
+  --radius-lg: 28px;
+  --radius-md: 22px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: "Manrope", "Noto Sans KR", sans-serif;
+  color: var(--ink);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)),
+    linear-gradient(90deg, rgba(58, 132, 222, 0.03) 1px, transparent 1px),
+    linear-gradient(rgba(58, 132, 222, 0.03) 1px, transparent 1px),
+    linear-gradient(180deg, #fbfdff 0%, #f7fbfe 34%, var(--bg-base) 100%);
+  background-size: auto, 44px 44px, 44px 44px, auto;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid rgba(49, 130, 246, 0.6);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  background: #0f172a;
+  color: #ffffff;
+  border-radius: 0.7rem;
+  padding: 0.6rem 0.8rem;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+.page-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(26rem 18rem at 12% 10%, rgba(58, 132, 222, 0.1), transparent 72%),
+    radial-gradient(18rem 14rem at 90% 8%, rgba(55, 161, 196, 0.08), transparent 74%),
+    radial-gradient(30rem 20rem at 50% 100%, rgba(58, 132, 222, 0.05), transparent 80%);
+  filter: blur(10px);
+  opacity: 0.92;
+}
+
+.page-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(58, 132, 222, 0.03) 0.7px, transparent 0.7px),
+    linear-gradient(120deg, transparent 0%, rgba(58, 132, 222, 0.012) 44%, transparent 100%);
+  background-size: 3px 3px, 100% 100%;
+  opacity: 0.06;
+}

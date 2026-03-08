@@ -1,0 +1,11 @@
+export default function PortfolioSection({ id, label, title, children, className = "" }) {
+  return (
+    <section id={id} className={`portfolio-section ${className}`.trim()} aria-labelledby={`${id}-title`} data-breakpoint="true">
+      <div className="portfolio-section-head">
+        <p>{label}</p>
+        <h2 id={`${id}-title`}>{title}</h2>
+      </div>
+      <div className="portfolio-section-body">{children}</div>
+    </section>
+  );
+}

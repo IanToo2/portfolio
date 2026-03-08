@@ -15,6 +15,7 @@ export default function ContactPanel({ t, localizedProfile, year, onExportPdf, i
 
   const copyEmail = useCallback(async () => {
     const email = localizedProfile.email;
+
     try {
       if (navigator.clipboard?.writeText) {
         await navigator.clipboard.writeText(email);
@@ -29,6 +30,7 @@ export default function ContactPanel({ t, localizedProfile, year, onExportPdf, i
         document.execCommand("copy");
         document.body.removeChild(tempInput);
       }
+
       setCopyState("success");
     } catch {
       setCopyState("error");
@@ -43,31 +45,49 @@ export default function ContactPanel({ t, localizedProfile, year, onExportPdf, i
       subtitle={t.contactFooter}
       className="portfolio-contact"
     >
-      <article className="contact-card contact-card--reboot" data-breakpoint="true">
-        <div className="contact-grid">
-          <a className="contact-link-card" href={`mailto:${localizedProfile.email}`}>
-            <span>{t.contactMailLabel}</span>
-            <strong>{localizedProfile.email}</strong>
-          </a>
-          <a className="contact-link-card" href={localizedProfile.github} target="_blank" rel="noreferrer">
-            <span>{t.contactEmail}</span>
-            <strong>{localizedProfile.github.replace("https://", "")}</strong>
-          </a>
+      <article className="contact-card" data-breakpoint="true">
+        <div className="contact-shell">
+          <div className="contact-copy-block">
+            <p>{t.contactConsoleLabel}</p>
+            <h3>{localizedProfile.name}</h3>
+            <strong>{localizedProfile.role} · {localizedProfile.domain}</strong>
+            <span>{t.contactConsoleSummary}</span>
+          </div>
+
+          <div className="contact-grid">
+            <a className="contact-link-card" href={`mailto:${localizedProfile.email}`}>
+              <span>{t.contactMailLabel}</span>
+              <strong>{localizedProfile.email}</strong>
+            </a>
+            <a className="contact-link-card" href={localizedProfile.github} target="_blank" rel="noreferrer">
+              <span>{t.contactEmail}</span>
+              <strong>{localizedProfile.github.replace("https://", "")}</strong>
+            </a>
+            <div className="contact-link-card contact-link-card--status">
+              <span>{t.contactAvailabilityLabel}</span>
+              <strong>{t.contactAvailabilityValue}</strong>
+            </div>
+          </div>
         </div>
+
         <div className="contact-actions">
           <button className="ui-btn ui-btn-primary" type="button" onClick={copyEmail}>
-            {copyState === "success" ? (t.contactCopiedLabel ?? "Copied") : (t.contactCopyLabel ?? "Copy Email")}
+            {copyState === "success" ? t.contactCopiedLabel : t.contactCopyLabel}
           </button>
           <button className="ui-btn ui-btn-ghost" type="button" onClick={onExportPdf} disabled={isExportingPdf}>
             {isExportingPdf ? t.pdfExportLoading : t.pdfExportLabel}
           </button>
         </div>
+
         <p className="contact-copy-status" role="status" aria-live="polite">
-          {copyState === "success" ? (t.contactCopiedLabel ?? "Copied") : ""}
-          {copyState === "error" ? (t.contactCopyFailedLabel ?? "Copy failed. Please try again.") : ""}
+          {copyState === "success" ? t.contactCopiedLabel : ""}
+          {copyState === "error" ? t.contactCopyFailedLabel : ""}
         </p>
-        <small>{t.contactAvailability}</small>
-        <small>{year}</small>
+
+        <div className="contact-footnote">
+          <small>{t.contactAvailability}</small>
+          <small>{year}</small>
+        </div>
       </article>
     </PortfolioSection>
   );

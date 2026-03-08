@@ -14,13 +14,16 @@ const MIN_SLICE_PX = 80;
 
 const BREAKPOINT_SELECTORS = [
   "[data-breakpoint='true']",
+  ".home-hero-card",
   ".home-card",
-  ".home-stat-card",
-  ".featured-project-card",
+  ".home-snapshot-panel",
+  ".home-scan-panel",
+  ".case-study-card",
+  ".supporting-work-card",
   ".project-card",
-  ".project-group-card",
   ".capability-card",
   ".stack-card",
+  ".career-column-card",
   ".timeline-card",
   ".contact-card"
 ];
@@ -74,6 +77,7 @@ function collectBreakpoints(target) {
       if (top > 0 && top < maxHeight) {
         points.add(top);
       }
+
       if (bottom > 0 && bottom < maxHeight) {
         points.add(bottom);
       }
@@ -86,6 +90,7 @@ function collectBreakpoints(target) {
 
 function resolveSliceEnd({ startPx, pageHeightPx, maxCanvasHeightPx, breakpointsPx }) {
   const idealEnd = Math.min(startPx + pageHeightPx, maxCanvasHeightPx);
+
   if (idealEnd >= maxCanvasHeightPx) {
     return maxCanvasHeightPx;
   }
@@ -135,11 +140,12 @@ export default function usePortfolioPdfExport({ onError }) {
       if (document.fonts?.ready) {
         await document.fonts.ready;
       }
+
       await waitForImages(target);
       await nextPaint();
+
       const sourceBreakpoints = collectBreakpoints(target);
       const sourceHeightPx = Math.max(1, Math.round(target.getBoundingClientRect().height));
-
       const [{ default: html2canvas }, { jsPDF }] = await Promise.all([
         import("html2canvas"),
         import("jspdf")

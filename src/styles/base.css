@@ -3,25 +3,27 @@
 @tailwind utilities;
 
 :root {
-  --bg-base: #f4f8fb;
-  --bg-elev: #fbfdff;
-  --ink: #101a28;
-  --muted: #607084;
-  --line: #dbe7f1;
-  --line-strong: #c9d8e6;
-  --blue: #3a84de;
-  --blue-soft: rgba(58, 132, 222, 0.1);
-  --blue-strong: #0d4aa6;
-  --cyan-soft: rgba(55, 161, 196, 0.12);
-  --cyan-strong: #0f6f8f;
-  --panel: rgba(244, 249, 253, 0.96);
-  --panel-ink: #15314f;
-  --bg-soft: #f7fbfe;
-  --shadow-soft: 0 16px 36px rgba(16, 26, 40, 0.05);
-  --shadow-card: 0 22px 46px rgba(16, 26, 40, 0.06);
-  --radius-xl: 34px;
-  --radius-lg: 28px;
-  --radius-md: 22px;
+  --bg-base: #f6f8fb;
+  --bg-elev: rgba(255, 255, 255, 0.82);
+  --bg-soft: #eef4fb;
+  --bg-strong: #fdfefe;
+  --ink: #111827;
+  --ink-soft: #314055;
+  --muted: #607089;
+  --line: rgba(148, 163, 184, 0.22);
+  --line-strong: rgba(125, 149, 179, 0.3);
+  --blue: #3182f6;
+  --blue-strong: #1b64da;
+  --blue-soft: rgba(49, 130, 246, 0.1);
+  --mint-soft: rgba(16, 185, 129, 0.1);
+  --panel: rgba(255, 255, 255, 0.7);
+  --panel-ink: #173052;
+  --shadow-soft: 0 18px 48px rgba(15, 23, 42, 0.06);
+  --shadow-card: 0 24px 60px rgba(15, 23, 42, 0.08);
+  --radius-2xl: 40px;
+  --radius-xl: 32px;
+  --radius-lg: 24px;
+  --radius-md: 18px;
 }
 
 * {
@@ -35,15 +37,17 @@ body,
   margin: 0;
 }
 
+html {
+  scroll-padding-top: 7rem;
+}
+
 body {
-  font-family: "Manrope", "Noto Sans KR", sans-serif;
+  font-family: "SF Pro Display", "Pretendard Variable", "Noto Sans KR", sans-serif;
   color: var(--ink);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)),
-    linear-gradient(90deg, rgba(58, 132, 222, 0.03) 1px, transparent 1px),
-    linear-gradient(rgba(58, 132, 222, 0.03) 1px, transparent 1px),
-    linear-gradient(180deg, #fbfdff 0%, #f7fbfe 34%, var(--bg-base) 100%);
-  background-size: auto, 44px 44px, 44px 44px, auto;
+    radial-gradient(44rem 26rem at 0% 0%, rgba(49, 130, 246, 0.09), transparent 58%),
+    radial-gradient(28rem 18rem at 100% 4%, rgba(110, 231, 183, 0.08), transparent 48%),
+    linear-gradient(180deg, #ffffff 0%, #fbfdff 38%, #f6f8fb 100%);
   overflow-x: hidden;
 }
 
@@ -51,8 +55,13 @@ a {
   color: inherit;
 }
 
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
 :focus-visible {
-  outline: 2px solid rgba(49, 130, 246, 0.6);
+  outline: 2px solid rgba(49, 130, 246, 0.45);
   outline-offset: 2px;
 }
 
@@ -63,8 +72,8 @@ a {
   z-index: 200;
   background: #0f172a;
   color: #ffffff;
-  border-radius: 0.7rem;
-  padding: 0.6rem 0.8rem;
+  border-radius: 0.9rem;
+  padding: 0.7rem 0.95rem;
   text-decoration: none;
 }
 
@@ -78,11 +87,11 @@ a {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(26rem 18rem at 12% 10%, rgba(58, 132, 222, 0.1), transparent 72%),
-    radial-gradient(18rem 14rem at 90% 8%, rgba(55, 161, 196, 0.08), transparent 74%),
-    radial-gradient(30rem 20rem at 50% 100%, rgba(58, 132, 222, 0.05), transparent 80%);
+    radial-gradient(28rem 20rem at 16% 14%, rgba(49, 130, 246, 0.08), transparent 72%),
+    radial-gradient(22rem 18rem at 82% 10%, rgba(59, 130, 246, 0.06), transparent 70%),
+    radial-gradient(40rem 20rem at 50% 100%, rgba(191, 219, 254, 0.2), transparent 68%);
   filter: blur(10px);
-  opacity: 0.92;
+  opacity: 0.95;
 }
 
 .page-grain {
@@ -90,8 +99,8 @@ a {
   inset: 0;
   pointer-events: none;
   background-image:
-    radial-gradient(rgba(58, 132, 222, 0.03) 0.7px, transparent 0.7px),
-    linear-gradient(120deg, transparent 0%, rgba(58, 132, 222, 0.012) 44%, transparent 100%);
-  background-size: 3px 3px, 100% 100%;
-  opacity: 0.06;
+    radial-gradient(rgba(148, 163, 184, 0.1) 0.6px, transparent 0.6px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.4), transparent);
+  background-size: 4px 4px, 100% 100%;
+  opacity: 0.08;
 }

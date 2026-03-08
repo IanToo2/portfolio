@@ -49,20 +49,15 @@ export default function usePortfolioHomeModel({ lang, t }) {
   const navItems = useMemo(
     () => [
       { id: "home", label: t.summaryLabel },
-      { id: "projects", label: t.projectsTitle },
-      { id: "workstyle", label: t.workStyleTitle },
-      { id: "stack", label: t.stackTitle },
-      { id: "career", label: t.experienceTitle },
-      { id: "learning", label: t.learningTitle },
-      { id: "contact", label: t.contactTitle }
+      { id: "projects", label: t.projectsLabel },
+      { id: "capabilities", label: t.highlightsLabel },
+      { id: "career", label: t.careerLabel ?? t.experienceLabel },
+      { id: "contact", label: t.contactLabel }
     ],
     [t]
   );
 
-  const scanHierarchy = useMemo(
-    () => buildScanHierarchy(lang, localize),
-    [lang, localize]
-  );
+  const scanHierarchy = useMemo(() => buildScanHierarchy(lang, localize), [lang, localize]);
 
   const localizedMetrics = useMemo(
     () =>
@@ -93,6 +88,7 @@ export default function usePortfolioHomeModel({ lang, t }) {
       PROJECTS.map((project) => {
         const category = resolveProjectCategory(project);
         const track = resolveProjectTrack(project, category);
+
         return {
           ...project,
           id: createProjectId(project),
@@ -125,13 +121,13 @@ export default function usePortfolioHomeModel({ lang, t }) {
     [localize, localizeList]
   );
 
-  const teamProjects = useMemo(
-    () => localizedProjects.filter((project) => project.category === "team").sort(byLatestPeriod),
+  const workProjects = useMemo(
+    () => localizedProjects.filter((project) => project.category === "work"),
     [localizedProjects]
   );
 
-  const workProjects = useMemo(
-    () => localizedProjects.filter((project) => project.category === "work"),
+  const teamProjects = useMemo(
+    () => localizedProjects.filter((project) => project.category === "team").sort(byLatestPeriod),
     [localizedProjects]
   );
 
@@ -154,8 +150,9 @@ export default function usePortfolioHomeModel({ lang, t }) {
     () =>
       featuredProjects.map((project) => {
         const [problem, role, impact] = project.contributions ?? [];
-        const techPreview = (project.tech ?? []).slice(0, 4);
+        const techPreview = (project.tech ?? []).slice(0, 5);
         const metricPreview = (project.metrics ?? []).slice(0, 2);
+
         return {
           ...project,
           problem: stripContributionPrefix(problem),
@@ -163,7 +160,9 @@ export default function usePortfolioHomeModel({ lang, t }) {
           impactSummary: stripContributionPrefix(impact),
           techPreview,
           metricPreview,
-          hasHiddenDetails: (project.metrics?.length ?? 0) > metricPreview.length
+          hasHiddenDetails:
+            (project.metrics?.length ?? 0) > metricPreview.length ||
+            (project.contributions?.length ?? 0) > 3
         };
       }),
     [featuredProjects]
@@ -241,6 +240,16 @@ export default function usePortfolioHomeModel({ lang, t }) {
     [localize, localizeList]
   );
 
+  const learningGroups = useMemo(
+    () => [
+      { id: "education", title: t.timelineTitles.education, items: localizedEducation },
+      { id: "training", title: t.timelineTitles.training, items: localizedTraining },
+      { id: "awards", title: t.timelineTitles.awards, items: localizedAwards },
+      { id: "certifications", title: t.timelineTitles.certifications, items: localizedCertifications }
+    ].filter((group) => group.items.length),
+    [localizedAwards, localizedCertifications, localizedEducation, localizedTraining, t.timelineTitles]
+  );
+
   const summaryQuick = useMemo(
     () =>
       buildSummaryQuick({
@@ -256,18 +265,18 @@ export default function usePortfolioHomeModel({ lang, t }) {
 
   const heroProofs = useMemo(
     () => [
+      {
+        id: "fit",
+        label: t.summaryQuickFitLabel,
+        value: summaryQuick.fit
+      },
       ...summaryQuick.impacts.slice(0, 2).map((item, index) => ({
         id: `impact-${index}`,
-        label: lang === "en" ? "Proof" : "핵심 근거",
+        label: t.heroProofLabel,
         value: item
-      })),
-      ...localizedMetrics.slice(0, 1).map((item) => ({
-        id: `metric-${item.label}`,
-        label: item.label,
-        value: item.value
       }))
     ],
-    [lang, localizedMetrics, summaryQuick.impacts]
+    [summaryQuick.fit, summaryQuick.impacts, t.heroProofLabel, t.summaryQuickFitLabel]
   );
 
   const capabilityPillars = useMemo(() => {
@@ -282,24 +291,19 @@ export default function usePortfolioHomeModel({ lang, t }) {
       title: item.title,
       text: item.text,
       tools: stackWindows[index]
-        .flatMap((group) => group.items.slice(0, 2))
+        .flatMap((group) => group.items.slice(0, 3))
         .filter((tool, toolIndex, array) => array.indexOf(tool) === toolIndex)
-        .slice(0, 6)
+        .slice(0, 7)
     }));
   }, [localizedHighlights, localizedStack]);
 
-  const stackGroups = useMemo(
-    () => localizedStack,
-    [localizedStack]
-  );
+  const stackGroups = useMemo(() => localizedStack, [localizedStack]);
 
   const projectCardLabels = useMemo(
     () => ({
-      ...t.projectCard,
-      collapseLabel: lang === "ko" ? "접기" : "Collapse",
-      expandLabel: lang === "ko" ? "펼치기" : "Expand"
+      ...t.projectCard
     }),
-    [lang, t]
+    [t.projectCard]
   );
 
   return {
@@ -307,23 +311,14 @@ export default function usePortfolioHomeModel({ lang, t }) {
     navItems,
     scanHierarchy,
     localizedMetrics,
-    localizedHighlights,
-    localizedStack,
     heroProofs,
     primaryCaseStudies,
     supportingProjectGroups,
     capabilityPillars,
     stackGroups,
     localizedExperience,
-    localizedEducation,
-    localizedTraining,
-    localizedAwards,
-    localizedCertifications,
+    learningGroups,
     summaryQuick,
-    featuredProjects,
-    workScmProjects,
-    workQaProjects,
-    teamProjects,
     projectCardLabels
   };
 }

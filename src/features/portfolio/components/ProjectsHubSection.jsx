@@ -39,7 +39,7 @@ export default function ProjectsHubSection({
       subtitle={t.projectsSubtitle}
       className="portfolio-projects"
     >
-      <div className="projects-console-bar projects-console-bar--reboot">
+      <div className="projects-console-bar" data-breakpoint="true">
         <div className="projects-console-copy">
           <p>{t.projectsConsoleLabel}</p>
           <strong>{t.projectsConsoleSummary}</strong>
@@ -60,7 +60,12 @@ export default function ProjectsHubSection({
               <span>{project.kind}</span>
               <strong>{project.period}</strong>
             </div>
-            <h3>{project.name}</h3>
+
+            <div className="case-study-heading">
+              <h3>{project.name}</h3>
+              <p>{project.scope.join(" / ")}</p>
+            </div>
+
             <div className="case-study-story">
               <div>
                 <p>{t.caseProblemLabel}</p>
@@ -75,11 +80,9 @@ export default function ProjectsHubSection({
                 <strong>{project.impactSummary}</strong>
               </div>
             </div>
-            <div className="case-study-meta">
-              <p>{projectCardLabels.scopeLabel}</p>
-              <strong>{project.scope.join(" / ")}</strong>
-            </div>
+
             <TechPillList items={project.techPreview} className="featured-project-tags" />
+
             <div className="featured-project-metrics">
               {project.metricPreview.map((metric) => (
                 <div key={`${project.id}-${metric.label}`}>
@@ -88,6 +91,7 @@ export default function ProjectsHubSection({
                 </div>
               ))}
             </div>
+
             {project.hasHiddenDetails ? (
               <>
                 <div
@@ -95,23 +99,16 @@ export default function ProjectsHubSection({
                   className="case-study-details"
                   hidden={isCaseStudyCollapsed(project)}
                 >
-                  {project.metrics?.length > project.metricPreview.length ? (
-                    <div className="project-metrics">
-                      <p className="project-metrics-title">{projectCardLabels.metricsLabel}</p>
-                      <div className="project-metrics-grid">
-                        {project.metrics.map((metric, index) => (
-                          <div key={`${project.id}-detail-metric-${index}`} className="project-metric-item">
-                            <span>{metric.label}</span>
-                            <strong>{metric.value}</strong>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ) : null}
+                  <ProjectCard
+                    project={project}
+                    labels={projectCardLabels}
+                    collapsible={false}
+                    collapsed={false}
+                  />
                 </div>
                 <button
                   type="button"
-                  className="ui-btn ui-btn-soft project-collapse-btn"
+                  className="ui-btn ui-btn-ghost project-collapse-btn"
                   aria-expanded={!isCaseStudyCollapsed(project)}
                   aria-controls={`case-study-details-${project.id}`}
                   onClick={() => toggleCaseStudyCollapse(project)}

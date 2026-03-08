@@ -1,14 +1,12 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { TEXT } from "./data/portfolioText";
+import CapabilitySection from "./features/portfolio/components/CapabilitySection";
 import CareerSection from "./features/portfolio/components/CareerSection";
 import ContactPanel from "./features/portfolio/components/ContactPanel";
 import HomeOverviewSection from "./features/portfolio/components/HomeOverviewSection";
-import LearningSection from "./features/portfolio/components/LearningSection";
 import PortfolioIntroOverlay from "./features/portfolio/components/PortfolioIntroOverlay";
 import PortfolioTopBar from "./features/portfolio/components/PortfolioTopBar";
 import ProjectsHubSection from "./features/portfolio/components/ProjectsHubSection";
-import StackSection from "./features/portfolio/components/StackSection";
-import WorkStyleSection from "./features/portfolio/components/WorkStyleSection";
 import useActiveSection from "./hooks/useActiveSection";
 import usePortfolioPdfExport from "./hooks/usePortfolioPdfExport";
 import usePortfolioScrollExperience from "./hooks/usePortfolioScrollExperience";
@@ -26,6 +24,7 @@ export default function App() {
   const {
     localizedProfile,
     navItems,
+    scanHierarchy,
     localizedMetrics,
     summaryQuick,
     heroProofs,
@@ -34,10 +33,7 @@ export default function App() {
     capabilityPillars,
     stackGroups,
     localizedExperience,
-    localizedEducation,
-    localizedTraining,
-    localizedAwards,
-    localizedCertifications,
+    learningGroups,
     projectCardLabels
   } = usePortfolioHomeModel({ lang, t });
 
@@ -95,7 +91,7 @@ export default function App() {
         }
         return prev + 1;
       });
-    }, 72);
+    }, 70);
 
     return () => window.clearInterval(typeInterval);
   }, [introGreeting, introPhase]);
@@ -105,8 +101,8 @@ export default function App() {
       return undefined;
     }
 
-    const leaveTimer = window.setTimeout(() => setIntroPhase("leaving"), 520);
-    const doneTimer = window.setTimeout(() => setIntroPhase("done"), 1040);
+    const leaveTimer = window.setTimeout(() => setIntroPhase("leaving"), 480);
+    const doneTimer = window.setTimeout(() => setIntroPhase("done"), 980);
 
     return () => {
       window.clearTimeout(leaveTimer);
@@ -119,8 +115,7 @@ export default function App() {
       return undefined;
     }
 
-    // Fail safe: never let the intro overlay hide the page indefinitely.
-    const failSafeTimer = window.setTimeout(() => setIntroPhase("done"), 2800);
+    const failSafeTimer = window.setTimeout(() => setIntroPhase("done"), 2600);
     return () => window.clearTimeout(failSafeTimer);
   }, [introPhase]);
 
@@ -148,6 +143,7 @@ export default function App() {
 
     event.preventDefault();
     let nextIndex = index;
+
     if (key === "ArrowRight") {
       nextIndex = (index + 1) % total;
     } else if (key === "ArrowLeft") {
@@ -166,11 +162,9 @@ export default function App() {
       <a className="skip-link" href="#home">{t.skipToMain}</a>
       <div className="page-bg" aria-hidden="true" />
       <div className="page-grain" aria-hidden="true" />
+
       {isIntroVisible ? (
-        <PortfolioIntroOverlay
-          typedGreeting={typedGreeting}
-          isLeaving={isIntroLeaving}
-        />
+        <PortfolioIntroOverlay typedGreeting={typedGreeting} isLeaving={isIntroLeaving} />
       ) : null}
 
       <PortfolioTopBar
@@ -185,6 +179,7 @@ export default function App() {
         langSwitchAriaLabel={langSwitchAriaLabel}
         switchLang={toggleLang}
         switchLabel={t.switchLang}
+        statusLabel={t.navStatus}
       />
 
       <main id="top" className="page-shell page-reveal-group is-visible">
@@ -195,6 +190,7 @@ export default function App() {
           summaryQuick={summaryQuick}
           primaryCaseStudies={primaryCaseStudies}
           heroProofs={heroProofs}
+          scanHierarchy={scanHierarchy}
         />
         <ProjectsHubSection
           t={t}
@@ -202,24 +198,15 @@ export default function App() {
           supportingProjectGroups={supportingProjectGroups}
           projectCardLabels={projectCardLabels}
         />
-        <WorkStyleSection
+        <CapabilitySection
           t={t}
           capabilityPillars={capabilityPillars}
-        />
-        <StackSection
-          t={t}
           stackGroups={stackGroups}
         />
         <CareerSection
           t={t}
           localizedExperience={localizedExperience}
-        />
-        <LearningSection
-          t={t}
-          localizedEducation={localizedEducation}
-          localizedTraining={localizedTraining}
-          localizedAwards={localizedAwards}
-          localizedCertifications={localizedCertifications}
+          learningGroups={learningGroups}
         />
         <ContactPanel
           t={t}
@@ -229,6 +216,7 @@ export default function App() {
           isExportingPdf={isExportingPdf}
         />
       </main>
+
       <button
         type="button"
         className={`to-top ${showTopButton ? "show" : ""}`}

@@ -19,13 +19,13 @@ export default function usePortfolioScrollExperience({ enabled }) {
     document.documentElement.classList.add("is-scroll-enhanced");
 
     const lenis = new Lenis({
-      duration: 1.05,
+      duration: 1.02,
       smoothWheel: true,
       smoothTouch: true,
       syncTouch: true,
       touchMultiplier: 1.02,
       anchors: {
-        offset: -118
+        offset: -112
       }
     });
 
@@ -45,7 +45,7 @@ export default function usePortfolioScrollExperience({ enabled }) {
 
         gsap.fromTo(
           body,
-          { y: 72, opacity: 0.38, scale: 0.985 },
+          { y: 64, opacity: 0.42, scale: 0.988 },
           {
             y: 0,
             opacity: 1,
@@ -53,8 +53,8 @@ export default function usePortfolioScrollExperience({ enabled }) {
             ease: "none",
             scrollTrigger: {
               trigger: section,
-              start: "top 84%",
-              end: "top 24%",
+              start: "top 82%",
+              end: "top 26%",
               scrub: true
             }
           }
@@ -65,8 +65,8 @@ export default function usePortfolioScrollExperience({ enabled }) {
         ".home-hero-card",
         { y: 0, scale: 1 },
         {
-          y: -32,
-          scale: 0.985,
+          y: -24,
+          scale: 0.992,
           ease: "none",
           scrollTrigger: {
             trigger: "#home",
@@ -81,7 +81,7 @@ export default function usePortfolioScrollExperience({ enabled }) {
         ".project-case-grid",
         { y: 0 },
         {
-          y: -28,
+          y: -18,
           ease: "none",
           scrollTrigger: {
             trigger: "#projects",
@@ -91,7 +91,6 @@ export default function usePortfolioScrollExperience({ enabled }) {
           }
         }
       );
-
     });
 
     ScrollTrigger.refresh();

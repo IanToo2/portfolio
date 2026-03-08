@@ -7,26 +7,39 @@ export default function HomeOverviewSection({
   localizedMetrics,
   summaryQuick,
   primaryCaseStudies,
-  heroProofs
+  heroProofs,
+  scanHierarchy
 }) {
   return (
     <PortfolioSection
       id="home"
       label={t.summaryLabel}
-      title={localizedProfile.name}
-      subtitle={summaryQuick.coreLine}
+      title={t.summaryTitle}
+      subtitle={t.summarySubtitle}
       className="portfolio-home"
     >
-      <div className="home-reboot-grid">
-        <article className="home-hero-card home-card">
+      <div className="home-stage">
+        <article className="home-hero-card" data-breakpoint="true">
           <div className="home-hero-topline">
             <p>{t.heroConsoleLabel}</p>
             <span>{summaryQuick.fit}</span>
           </div>
-          <h3>{localizedProfile.role} · {localizedProfile.domain}</h3>
-          <p className="home-hero-copy">{localizedProfile.intro}</p>
 
-          <div className="home-proof-rail">
+          <div className="home-hero-copy-wrap">
+            <div className="home-hero-title-block">
+              <h3>{localizedProfile.name}</h3>
+              <strong>{localizedProfile.role} · {localizedProfile.domain}</strong>
+            </div>
+            <p className="home-hero-copy">{localizedProfile.intro}</p>
+          </div>
+
+          <div className="home-action-row">
+            <a className="ui-btn ui-btn-primary" href="#projects">{t.heroActionProjects}</a>
+            <a className="ui-btn ui-btn-ghost" href="#career">{t.heroActionExperience}</a>
+            <a className="ui-btn ui-btn-soft" href="#contact">{t.heroActionContact}</a>
+          </div>
+
+          <div className="home-proof-grid">
             {heroProofs.map((item) => (
               <div key={item.id} className="home-proof-chip">
                 <span>{item.label}</span>
@@ -34,26 +47,14 @@ export default function HomeOverviewSection({
               </div>
             ))}
           </div>
-
-          <div className="home-action-row">
-            <a className="ui-btn ui-btn-primary" href="#projects">{t.heroActionProjects}</a>
-            <a className="ui-btn ui-btn-ghost" href="#career">{t.heroActionExperience}</a>
-            <a className="ui-btn ui-btn-ghost" href="#contact">{t.contactLabel}</a>
-          </div>
-
-          <div className="home-metric-grid">
-            {localizedMetrics.map((item) => (
-              <div key={item.label} className="home-metric-card">
-                <span>{item.label}</span>
-                <strong>{item.value}</strong>
-              </div>
-            ))}
-          </div>
         </article>
 
-        <aside className="home-sidebar-stack" aria-label={t.featuredHead}>
-          <article className="home-card home-card--accent">
-            <p>{t.summaryQuickStrengthsLabel}</p>
+        <aside className="home-sidebar-stack" aria-label={t.summaryProofTitle}>
+          <article className="home-card home-card--accent" data-breakpoint="true">
+            <div className="home-card-head">
+              <p>{t.summaryQuickStrengthsLabel}</p>
+              <Icon type="spark" />
+            </div>
             <ul className="home-impact-list">
               {summaryQuick.strengths.map((item) => (
                 <li key={item}>{item}</li>
@@ -61,10 +62,10 @@ export default function HomeOverviewSection({
             </ul>
           </article>
 
-          <article className="home-card home-card--selected">
+          <article className="home-card home-card--selected" data-breakpoint="true">
             <div className="home-selected-head">
-              <p>{t.heroFeaturedLinkLabel}</p>
-              <a href="#projects">{t.projectsTitle}</a>
+              <p>{t.summaryCaseStudyTitle}</p>
+              <a href="#projects">{t.heroFeaturedLinkLabel}</a>
             </div>
             <ul className="home-selected-work-list">
               {primaryCaseStudies.map((project) => (
@@ -79,6 +80,38 @@ export default function HomeOverviewSection({
             </ul>
           </article>
         </aside>
+      </div>
+
+      <div className="home-detail-grid">
+        <article className="home-snapshot-panel" data-breakpoint="true">
+          <div className="home-panel-head">
+            <p>{t.summaryMetricsLabel}</p>
+            <strong>{t.summaryProofTitle}</strong>
+          </div>
+          <div className="home-metric-grid">
+            {localizedMetrics.map((item) => (
+              <div key={item.label} className="home-metric-card">
+                <span>{item.label}</span>
+                <strong>{item.value}</strong>
+              </div>
+            ))}
+          </div>
+        </article>
+
+        <article className="home-scan-panel" data-breakpoint="true">
+          <div className="home-panel-head">
+            <p>{t.summaryScanOrderLabel}</p>
+            <strong>{scanHierarchy.sectionOrder.join(" → ")}</strong>
+          </div>
+          <ol className="home-scan-list">
+            {scanHierarchy.stages.map((item) => (
+              <li key={item.id}>
+                <strong>{item.label}</strong>
+                <span>{item.detail}</span>
+              </li>
+            ))}
+          </ol>
+        </article>
       </div>
     </PortfolioSection>
   );
