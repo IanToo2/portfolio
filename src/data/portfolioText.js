@@ -6,7 +6,7 @@ export const TEXT = {
     heroActionExperience: "경력",
     heroActionStack: "기술 스택",
     panelSnapshot: "빠른 요약",
-    introGreeting: "안녕하세요, 김정인입니다.",
+    introGreeting: "안녕하세요, 김정인입니다..!",
     introStatus: "portfolio boot sequence",
     heroConsoleLabel: "SCM Delivery Console",
     heroFocusLabel: "현재 포커스",
