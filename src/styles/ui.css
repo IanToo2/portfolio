@@ -447,6 +447,11 @@ body.is-exporting-pdf .project-card {
   .is-scroll-enhanced .portfolio-section {
     min-height: calc(100svh - var(--snap-top-offset) - 1.8rem);
   }
+
+  .is-scroll-enhanced .portfolio-career,
+  .is-scroll-enhanced .portfolio-contact {
+    min-height: auto;
+  }
 }
 
 @media (max-width: 760px) {
