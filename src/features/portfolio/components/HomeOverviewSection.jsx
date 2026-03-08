@@ -6,7 +6,6 @@ export default function HomeOverviewSection({
   localizedProfile,
   localizedMetrics,
   summaryQuick,
-  primaryCaseStudies,
   heroProofs,
   scanHierarchy
 }) {
@@ -83,24 +82,6 @@ export default function HomeOverviewSection({
               </div>
             ))}
           </div>
-
-          <div className="home-panel-divider" />
-
-          <div className="home-panel-head home-panel-head--compact">
-            <p>{t.summaryCaseStudyTitle}</p>
-            <strong>{t.heroFeaturedLinkLabel}</strong>
-          </div>
-          <ul className="home-selected-work-list home-selected-work-list--compact">
-            {primaryCaseStudies.map((project) => (
-              <li key={project.id}>
-                <div>
-                  <strong>{project.name}</strong>
-                  <span>{project.period}</span>
-                </div>
-                <Icon type="link" />
-              </li>
-            ))}
-          </ul>
         </article>
 
         <article className="home-scan-panel" data-breakpoint="true">

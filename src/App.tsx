@@ -28,8 +28,7 @@ export default function App() {
     localizedMetrics,
     summaryQuick,
     heroProofs,
-    primaryCaseStudies,
-    supportingProjectGroups,
+    projectGroups,
     capabilityPillars,
     stackGroups,
     localizedExperience,
@@ -188,14 +187,12 @@ export default function App() {
           localizedProfile={localizedProfile}
           localizedMetrics={localizedMetrics}
           summaryQuick={summaryQuick}
-          primaryCaseStudies={primaryCaseStudies}
           heroProofs={heroProofs}
           scanHierarchy={scanHierarchy}
         />
         <ProjectsHubSection
           t={t}
-          primaryCaseStudies={primaryCaseStudies}
-          supportingProjectGroups={supportingProjectGroups}
+          projectGroups={projectGroups}
           projectCardLabels={projectCardLabels}
         />
         <CapabilitySection

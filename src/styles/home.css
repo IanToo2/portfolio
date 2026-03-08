@@ -1,8 +1,7 @@
 .home-hero-card,
 .home-snapshot-panel,
 .home-scan-panel,
-.case-study-card,
-.supporting-work-card,
+.projects-group-panel,
 .capability-story-panel,
 .capability-tool-panel,
 .career-column-card,
@@ -18,7 +17,8 @@
 .home-detail-grid,
 .capability-reboot-grid,
 .career-reboot-grid,
-.contact-grid {
+.contact-grid,
+.project-grid {
   display: grid;
   gap: 1rem;
 }
@@ -147,9 +147,9 @@
 
 .home-inline-list,
 .home-scan-list,
-.supporting-project-list,
 .timeline-row ul,
-.career-summary-group ul {
+.career-summary-group ul,
+.project-contrib {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -164,21 +164,29 @@
   line-height: 1.65;
 }
 
-.home-inline-list--proof li {
-  padding-bottom: 0.7rem;
+.home-inline-list--proof li,
+.home-scan-list li,
+.home-fact-row,
+.career-summary-group,
+.timeline-row {
+  padding-bottom: 0.85rem;
   border-bottom: 1px solid rgba(148, 163, 184, 0.12);
 }
 
-.home-inline-list--proof li:last-child {
+.home-inline-list--proof li:last-child,
+.home-scan-list li:last-child,
+.home-fact-row:last-child,
+.career-summary-group:last-child,
+.timeline-row:last-child {
   padding-bottom: 0;
   border-bottom: 0;
 }
 
 .home-inline-list--proof span,
 .home-fact-row span,
-.case-study-meta-strip span,
 .contact-row span,
-.career-summary-group li span {
+.career-summary-group li span,
+.project-metric-item span {
   color: var(--muted);
   font-size: 0.76rem;
   font-weight: 700;
@@ -187,9 +195,9 @@
 
 .home-inline-list--proof strong,
 .home-fact-row strong,
-.case-study-meta-strip strong,
 .contact-row strong,
 .career-summary-group li strong,
+.project-metric-item strong,
 .contact-copy-block h3,
 .contact-copy-block strong,
 .project-group-head h3,
@@ -201,9 +209,9 @@
 
 .home-inline-list--proof strong,
 .home-fact-row strong,
-.case-study-meta-strip strong,
 .contact-row strong,
-.career-summary-group li strong {
+.career-summary-group li strong,
+.project-metric-item strong {
   margin-top: 0.28rem;
   font-size: 0.96rem;
   line-height: 1.5;
@@ -216,7 +224,7 @@
 .home-snapshot-panel,
 .home-scan-panel,
 .projects-console-bar,
-.supporting-work-card,
+.projects-group-panel,
 .capability-story-panel,
 .capability-tool-panel,
 .career-column-card,
@@ -229,206 +237,17 @@
   gap: 0.7rem;
 }
 
-.home-fact-row {
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
-}
-
-.home-fact-row:last-child {
-  padding-bottom: 0;
-  border-bottom: 0;
-}
-
-.home-panel-divider {
-  height: 1px;
-  background: rgba(148, 163, 184, 0.12);
-  margin: 1rem 0;
-}
-
-.home-panel-head--compact {
-  margin-bottom: 0.8rem;
-}
-
-.home-selected-work-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  gap: 0.8rem;
-}
-
-.home-selected-work-list li {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.8rem;
-  padding-bottom: 0.8rem;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
-}
-
-.home-selected-work-list li:last-child {
-  padding-bottom: 0;
-  border-bottom: 0;
-}
-
-.home-selected-work-list strong {
-  color: var(--ink);
-  font-size: 0.95rem;
-  display: block;
-}
-
-.home-selected-work-list span {
-  margin-top: 0.18rem;
-  color: var(--muted);
-  font-size: 0.8rem;
-  display: block;
-}
-
-.home-selected-work-list .icon-svg {
-  width: 1.2rem;
-  height: 1.2rem;
-  color: rgba(27, 100, 218, 0.48);
-}
-
-.home-scan-list li {
-  padding-bottom: 0.85rem;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
-  display: grid;
-  gap: 0.24rem;
-}
-
-.home-scan-list li:last-child {
-  padding-bottom: 0;
-  border-bottom: 0;
-}
-
-.home-scan-list strong {
-  color: var(--ink);
-  font-size: 0.94rem;
-}
-
-.home-scan-list span {
-  color: var(--muted);
-  font-size: 0.86rem;
-  line-height: 1.55;
-}
-
 .projects-console-bar,
-.supporting-work-head {
-  display: grid;
-  gap: 1rem;
-}
-
+.projects-group-panel,
+.supporting-work-head,
+.supporting-work-panel,
 .projects-console-copy {
   display: grid;
-  gap: 0.35rem;
-}
-
-.project-case-list {
-  display: grid;
-  gap: 0.9rem;
-}
-
-.case-study-card {
-  padding: 1.3rem;
-  display: grid;
   gap: 1rem;
 }
 
-.case-study-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.8rem;
-}
-
-.case-study-top span {
-  display: inline-flex;
-  align-items: center;
-  min-height: 2rem;
-  padding: 0.3rem 0.7rem;
-  border-radius: 999px;
-  background: rgba(49, 130, 246, 0.08);
-  color: var(--blue-strong);
-  font-size: 0.78rem;
-  font-weight: 700;
-}
-
-.case-study-top strong,
-.case-study-heading p,
-.supporting-work-collapsed,
-.contact-copy-block span,
-.contact-footnote small,
-.supporting-project-main span,
-.supporting-project-row p,
-.timeline-row span {
-  color: var(--muted);
-}
-
-.case-study-heading {
-  display: grid;
-  gap: 0.45rem;
-}
-
-.case-study-heading h3,
-.timeline-row h3,
-.career-summary-group h3 {
-  margin: 0;
-  color: var(--ink);
-  font-size: 1rem;
-}
-
-.case-study-heading h3 {
-  font-size: 1.2rem;
-  line-height: 1.35;
-  letter-spacing: -0.03em;
-}
-
-.case-study-heading p,
-.project-group-head p,
-.contact-copy-block span,
-.supporting-project-row p {
-  margin: 0;
-  font-size: 0.92rem;
-  line-height: 1.65;
-}
-
-.case-story-flow {
-  display: grid;
-  gap: 0.75rem;
-}
-
-.case-story-flow p {
-  margin: 0;
-  display: grid;
-  gap: 0.28rem;
-}
-
-.case-story-flow strong {
-  color: var(--blue-strong);
-  font-size: 0.74rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.case-story-flow span {
-  color: var(--ink);
-  font-size: 0.96rem;
-  line-height: 1.65;
-}
-
-.case-study-meta-strip {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.7rem;
-}
-
-.case-study-meta-strip > div {
-  padding: 0.9rem;
-  border-radius: 1.2rem;
-  background: rgba(248, 250, 252, 0.95);
-  border: 1px solid rgba(148, 163, 184, 0.1);
+.projects-group-panel {
+  margin-top: 1rem;
 }
 
 .projects-console-stats {
@@ -461,28 +280,21 @@
   border-color: rgba(49, 130, 246, 0.14);
 }
 
-.supporting-work-panel {
-  display: grid;
-  gap: 1rem;
+.project-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.supporting-project-list {
-  gap: 0.8rem;
-}
-
-.supporting-project-row {
-  padding-bottom: 0.8rem;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+.project-card {
+  padding: 1.1rem;
   display: grid;
   gap: 0.95rem;
 }
 
-.supporting-project-row:last-child {
-  padding-bottom: 0;
-  border-bottom: 0;
-}
-
-.supporting-project-main {
+.project-card-head,
+.project-top,
+.project-summary-row,
+.project-top-meta,
+.project-meta {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -490,10 +302,97 @@
   flex-wrap: wrap;
 }
 
-.supporting-project-main strong {
+.project-top strong {
   margin: 0;
   color: var(--ink);
   font-size: 1rem;
+  line-height: 1.35;
+}
+
+.project-track,
+.project-status {
+  min-height: 1.9rem;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+.project-track {
+  background: rgba(49, 130, 246, 0.08);
+  color: var(--blue-strong);
+}
+
+.project-status.done {
+  background: rgba(16, 185, 129, 0.1);
+  color: #047857;
+}
+
+.project-status.pending {
+  background: rgba(245, 158, 11, 0.12);
+  color: #b45309;
+}
+
+.project-kind,
+.project-contrib li,
+.timeline-row li {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.project-preview-block,
+.project-detail-block,
+.project-metrics {
+  padding-top: 0.95rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.project-contrib-title,
+.project-metrics-title,
+.project-tech-preview-title {
+  margin: 0 0 0.55rem;
+  color: var(--blue-strong);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.project-contrib li,
+.timeline-row li {
+  position: relative;
+  padding-left: 1rem;
+  color: var(--ink-soft);
+}
+
+.project-contrib li::before,
+.timeline-row li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72rem;
+  width: 0.34rem;
+  height: 0.34rem;
+  border-radius: 50%;
+  background: rgba(49, 130, 246, 0.45);
+}
+
+.project-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.project-metric-item {
+  padding: 0.9rem;
+  border-radius: 1.2rem;
+  background: rgba(248, 250, 252, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.project-collapse-btn {
+  justify-self: flex-start;
 }
 
 .capability-reboot-grid--condensed {
@@ -508,21 +407,23 @@
 }
 
 .capability-story-item,
-.stack-row,
-.career-summary-group {
+.stack-row {
   padding-bottom: 1rem;
   border-bottom: 1px solid rgba(148, 163, 184, 0.12);
 }
 
 .capability-story-item:last-child,
-.stack-row:last-child,
-.career-summary-group:last-child {
+.stack-row:last-child {
   padding-bottom: 0;
   border-bottom: 0;
 }
 
-.capability-story-item h3 {
+.capability-story-item h3,
+.stack-row-head h3,
+.timeline-row h3,
+.career-summary-group h3 {
   margin: 0;
+  color: var(--ink);
   font-size: 1rem;
 }
 
@@ -555,11 +456,6 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.6rem;
-}
-
-.stack-row-head h3 {
-  margin: 0;
-  font-size: 1rem;
 }
 
 .stack-row-head span {
@@ -595,42 +491,17 @@
   display: grid;
   grid-template-columns: 132px minmax(0, 1fr);
   gap: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
 }
 
-.timeline-row:last-child {
-  padding-bottom: 0;
-  border-bottom: 0;
+.timeline-row span,
+.contact-copy-block span,
+.contact-footnote small {
+  color: var(--muted);
 }
 
 .timeline-row span {
   font-size: 0.84rem;
   font-weight: 700;
-}
-
-.timeline-row ul,
-.career-summary-group ul {
-  margin-top: 0.75rem;
-}
-
-.timeline-row li {
-  position: relative;
-  padding-left: 1rem;
-  color: var(--ink-soft);
-  font-size: 0.92rem;
-  line-height: 1.65;
-}
-
-.timeline-row li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.72rem;
-  width: 0.34rem;
-  height: 0.34rem;
-  border-radius: 50%;
-  background: rgba(49, 130, 246, 0.45);
 }
 
 .contact-card {
@@ -703,7 +574,8 @@
   .home-detail-grid,
   .capability-reboot-grid--condensed,
   .career-reboot-grid,
-  .contact-shell {
+  .contact-shell,
+  .project-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -712,8 +584,7 @@
   .home-hero-card,
   .home-snapshot-panel,
   .home-scan-panel,
-  .case-study-card,
-  .supporting-work-card,
+  .projects-group-panel,
   .capability-story-panel,
   .capability-tool-panel,
   .career-column-card,
@@ -726,7 +597,7 @@
   .home-snapshot-panel,
   .home-scan-panel,
   .projects-console-bar,
-  .supporting-work-card,
+  .projects-group-panel,
   .capability-story-panel,
   .capability-tool-panel,
   .career-column-card,
@@ -735,13 +606,13 @@
   }
 
   .home-summary-band,
-  .case-study-meta-strip,
-  .timeline-row {
+  .timeline-row,
+  .project-metrics-grid {
     grid-template-columns: 1fr;
   }
 
-  .case-study-top,
-  .supporting-project-main,
+  .project-top,
+  .project-summary-row,
   .contact-footnote {
     align-items: flex-start;
   }

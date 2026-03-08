@@ -1,16 +1,17 @@
 import { useMemo, useState } from "react";
+import ProjectCard from "../../../components/ProjectCard";
 import PortfolioSection from "./PortfolioSection";
 
 export default function ProjectsHubSection({
   t,
-  primaryCaseStudies,
-  supportingProjectGroups
+  projectGroups,
+  projectCardLabels
 }) {
-  const [activeGroupId, setActiveGroupId] = useState(supportingProjectGroups[0]?.id ?? "scm");
+  const [activeGroupId, setActiveGroupId] = useState(projectGroups[0]?.id ?? "scm");
 
   const activeGroup = useMemo(
-    () => supportingProjectGroups.find((group) => group.id === activeGroupId) ?? supportingProjectGroups[0],
-    [activeGroupId, supportingProjectGroups]
+    () => projectGroups.find((group) => group.id === activeGroupId) ?? projectGroups[0],
+    [activeGroupId, projectGroups]
   );
 
   return (
@@ -28,54 +29,14 @@ export default function ProjectsHubSection({
         </div>
       </div>
 
-      <div className="project-case-list">
-        {primaryCaseStudies.map((project) => (
-          <article key={project.id} className="case-study-card case-study-card--narrative" data-breakpoint="true">
-            <div className="case-study-top">
-              <span>{project.kind}</span>
-              <strong>{project.period}</strong>
-            </div>
-
-            <div className="case-study-heading">
-              <h3>{project.name}</h3>
-              <p>{project.scope.join(" / ")}</p>
-            </div>
-
-            <div className="case-story-flow">
-              <p>
-                <strong>{t.caseProblemLabel}</strong>
-                <span>{project.problem}</span>
-              </p>
-              <p>
-                <strong>{t.caseRoleLabel}</strong>
-                <span>{project.roleSummary}</span>
-              </p>
-              <p>
-                <strong>{t.caseImpactLabel}</strong>
-                <span>{project.impactSummary}</span>
-              </p>
-            </div>
-
-            <div className="case-study-meta-strip">
-              {project.metricPreview.map((metric) => (
-                <div key={`${project.id}-${metric.label}`}>
-                  <span>{metric.label}</span>
-                  <strong>{metric.value}</strong>
-                </div>
-              ))}
-            </div>
-          </article>
-        ))}
-      </div>
-
-      <section className="supporting-work-card" data-breakpoint="true">
+      <section className="projects-group-panel" data-breakpoint="true">
         <div className="supporting-work-head">
           <div>
             <p>{t.supportingWorkLabel}</p>
             <strong>{t.supportingWorkSubtitle}</strong>
           </div>
           <div className="projects-console-stats">
-            {supportingProjectGroups.map((group) => (
+            {projectGroups.map((group) => (
               <button
                 key={group.id}
                 type="button"
@@ -89,23 +50,23 @@ export default function ProjectsHubSection({
         </div>
 
         {activeGroup?.projects?.length ? (
-          <div className="supporting-work-panel supporting-work-panel--condensed">
+          <div className="supporting-work-panel">
             <div className="project-group-head">
               <h3>{activeGroup?.label}</h3>
               <p>{activeGroup?.subtitle}</p>
             </div>
 
-            <ul className="supporting-project-list">
+            <div className="project-grid project-grid--full">
               {activeGroup.projects.map((project) => (
-                <li key={project.id} className="supporting-project-row">
-                  <div className="supporting-project-main">
-                    <strong>{project.name}</strong>
-                    <span>{project.period} · {project.kind}</span>
-                  </div>
-                  <p>{project.contributions?.[0] ?? project.scope.join(" / ")}</p>
-                </li>
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  labels={projectCardLabels}
+                  collapsible={false}
+                  collapsed={false}
+                />
               ))}
-            </ul>
+            </div>
           </div>
         ) : (
           <p className="empty-state">{t.projectEmpty}</p>

@@ -90,7 +90,7 @@ export const buildScanHierarchy = (lang, localize) => ({
 });
 
 export const buildSummaryQuick = ({
-  featuredProjects,
+  highlightedProjects,
   localizedHighlights,
   localizedMetrics,
   localizedProfile,
@@ -100,7 +100,7 @@ export const buildSummaryQuick = ({
   const strengths = localizedHighlights
     .slice(0, SUMMARY_QUICK_MODEL.strengthsMax)
     .map((item) => item.title);
-  const impacts = featuredProjects
+  const impacts = highlightedProjects
     .flatMap((project) =>
       (project.metrics ?? []).slice(0, 1).map((metric) => `${metric.label}: ${metric.value}`)
     )

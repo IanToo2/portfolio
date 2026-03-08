@@ -126,59 +126,37 @@ export default function usePortfolioHomeModel({ lang, t }) {
     [localizedProjects]
   );
 
+  const sortProjects = (projects) =>
+    [...projects].sort((a, b) => Number(b.isFeatured) - Number(a.isFeatured) || byLatestPeriod(a, b));
+
   const teamProjects = useMemo(
-    () => localizedProjects.filter((project) => project.category === "team").sort(byLatestPeriod),
+    () => sortProjects(localizedProjects.filter((project) => project.category === "team")),
     [localizedProjects]
   );
 
   const workScmProjects = useMemo(
-    () => workProjects.filter((project) => project.track === "scm").sort(byLatestPeriod),
+    () => sortProjects(workProjects.filter((project) => project.track === "scm")),
     [workProjects]
   );
 
   const workQaProjects = useMemo(
-    () => workProjects.filter((project) => project.track === "qa").sort(byLatestPeriod),
+    () => sortProjects(workProjects.filter((project) => project.track === "qa")),
     [workProjects]
   );
 
-  const featuredProjects = useMemo(
-    () => workProjects.filter((project) => project.isFeatured).sort(byLatestPeriod).slice(0, 2),
+  const highlightedProjects = useMemo(
+    () => sortProjects(workProjects).slice(0, 2),
     [workProjects]
   );
 
-  const primaryCaseStudies = useMemo(
-    () =>
-      featuredProjects.map((project) => {
-        const [problem, role, impact] = project.contributions ?? [];
-        const techPreview = (project.tech ?? []).slice(0, 5);
-        const metricPreview = (project.metrics ?? []).slice(0, 2);
-
-        return {
-          ...project,
-          problem: stripContributionPrefix(problem),
-          roleSummary: stripContributionPrefix(role),
-          impactSummary: stripContributionPrefix(impact),
-          techPreview,
-          metricPreview,
-          hasHiddenDetails:
-            (project.metrics?.length ?? 0) > metricPreview.length ||
-            (project.contributions?.length ?? 0) > 3
-        };
-      }),
-    [featuredProjects]
-  );
-
-  const supportingProjectGroups = useMemo(() => {
-    const featuredProjectIds = new Set(featuredProjects.map((project) => project.id));
-    const scmProjects = workScmProjects.filter((project) => !featuredProjectIds.has(project.id));
-
-    return [
+  const projectGroups = useMemo(
+    () => [
       {
         id: "scm",
         label: t.scmHead,
         subtitle: t.scmSub,
-        count: scmProjects.length,
-        projects: scmProjects
+        count: workScmProjects.length,
+        projects: workScmProjects
       },
       {
         id: "qa",
@@ -194,8 +172,9 @@ export default function usePortfolioHomeModel({ lang, t }) {
         count: teamProjects.length,
         projects: teamProjects
       }
-    ];
-  }, [featuredProjects, t.qaHead, t.qaSub, t.scmHead, t.scmSub, t.teamHead, t.teamSub, teamProjects, workQaProjects, workScmProjects]);
+    ],
+    [t.qaHead, t.qaSub, t.scmHead, t.scmSub, t.teamHead, t.teamSub, teamProjects, workQaProjects, workScmProjects]
+  );
 
   const localizedExperience = useMemo(() => {
     const scmCount = workProjects.filter((project) => project.track === "scm").length;
@@ -253,14 +232,14 @@ export default function usePortfolioHomeModel({ lang, t }) {
   const summaryQuick = useMemo(
     () =>
       buildSummaryQuick({
-        featuredProjects,
+        highlightedProjects,
         localizedHighlights,
         localizedMetrics,
         localizedProfile,
         lang,
         t
       }),
-    [featuredProjects, lang, localizedHighlights, localizedMetrics, localizedProfile, t]
+    [highlightedProjects, lang, localizedHighlights, localizedMetrics, localizedProfile, t]
   );
 
   const heroProofs = useMemo(
@@ -312,8 +291,7 @@ export default function usePortfolioHomeModel({ lang, t }) {
     scanHierarchy,
     localizedMetrics,
     heroProofs,
-    primaryCaseStudies,
-    supportingProjectGroups,
+    projectGroups,
     capabilityPillars,
     stackGroups,
     localizedExperience,
