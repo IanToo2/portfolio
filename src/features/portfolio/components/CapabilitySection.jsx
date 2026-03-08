@@ -10,47 +10,49 @@ export default function CapabilitySection({ t, capabilityPillars, stackGroups })
       subtitle={t.highlightsSubtitle}
       className="portfolio-capabilities"
     >
-      <div className="capability-reboot-grid">
-        <div className="capability-pillar-grid">
-          {capabilityPillars.map((item) => (
-            <article key={item.id} className="capability-card capability-card--pillar" data-breakpoint="true">
-              <div className="capability-card-head">
-                <p>{t.capabilityPillarsLabel}</p>
+      <div className="capability-reboot-grid capability-reboot-grid--condensed">
+        <article className="capability-story-panel" data-breakpoint="true">
+          <div className="stack-showcase-head">
+            <p>{t.capabilityPillarsLabel}</p>
+            <strong>{t.highlightsSubtitle}</strong>
+          </div>
+
+          <div className="capability-story-list">
+            {capabilityPillars.map((item) => (
+              <section key={item.id} className="capability-story-item">
                 <h3>{item.title}</h3>
-              </div>
-              <strong>{item.text}</strong>
-              <div className="capability-tool-box">
-                <span>{t.capabilityToolsLabel}</span>
-                <div className="home-chip-list">
+                <p>{item.text}</p>
+                <div className="capability-story-tools">
                   {item.tools.map((tool) => (
                     <span key={`${item.id}-${tool}`}>{tool}</span>
                   ))}
                 </div>
-              </div>
-            </article>
-          ))}
-        </div>
+              </section>
+            ))}
+          </div>
+        </article>
 
-        <div className="stack-showcase">
-          <div className="stack-showcase-head" data-breakpoint="true">
+        <article className="capability-tool-panel" data-breakpoint="true">
+          <div className="stack-showcase-head">
             <p>{t.capabilityStackLabel}</p>
             <strong>{t.capabilityStackSummary}</strong>
           </div>
-          <div className="stack-lane-grid">
+
+          <div className="stack-row-list">
             {stackGroups.map((group) => (
-              <article key={group.title} className="stack-card stack-card--lane" data-breakpoint="true">
-                <div className="stack-card-head">
+              <div key={group.title} className="stack-row">
+                <div className="stack-row-head">
                   <h3>{group.title}</h3>
                   <span>{group.proficiency}%</span>
                 </div>
                 <div className="stack-meter" aria-label={`${group.title} ${group.proficiency}%`}>
                   <div className="stack-meter-bar" style={{ width: `${group.proficiency}%` }} />
                 </div>
-                <TechPillList items={group.items} />
-              </article>
+                <TechPillList items={group.items.slice(0, 5)} />
+              </div>
             ))}
           </div>
-        </div>
+        </article>
       </div>
     </PortfolioSection>
   );

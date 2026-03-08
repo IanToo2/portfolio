@@ -52,31 +52,31 @@ export default function ContactPanel({ t, localizedProfile, year, onExportPdf, i
             <h3>{localizedProfile.name}</h3>
             <strong>{localizedProfile.role} · {localizedProfile.domain}</strong>
             <span>{t.contactConsoleSummary}</span>
+
+            <div className="contact-actions">
+              <button className="ui-btn ui-btn-primary" type="button" onClick={copyEmail}>
+                {copyState === "success" ? t.contactCopiedLabel : t.contactCopyLabel}
+              </button>
+              <button className="ui-btn ui-btn-ghost" type="button" onClick={onExportPdf} disabled={isExportingPdf}>
+                {isExportingPdf ? t.pdfExportLoading : t.pdfExportLabel}
+              </button>
+            </div>
           </div>
 
-          <div className="contact-grid">
-            <a className="contact-link-card" href={`mailto:${localizedProfile.email}`}>
+          <div className="contact-grid contact-grid--condensed">
+            <div className="contact-row">
               <span>{t.contactMailLabel}</span>
               <strong>{localizedProfile.email}</strong>
-            </a>
-            <a className="contact-link-card" href={localizedProfile.github} target="_blank" rel="noreferrer">
+            </div>
+            <div className="contact-row">
               <span>{t.contactEmail}</span>
               <strong>{localizedProfile.github.replace("https://", "")}</strong>
-            </a>
-            <div className="contact-link-card contact-link-card--status">
+            </div>
+            <div className="contact-row">
               <span>{t.contactAvailabilityLabel}</span>
               <strong>{t.contactAvailabilityValue}</strong>
             </div>
           </div>
-        </div>
-
-        <div className="contact-actions">
-          <button className="ui-btn ui-btn-primary" type="button" onClick={copyEmail}>
-            {copyState === "success" ? t.contactCopiedLabel : t.contactCopyLabel}
-          </button>
-          <button className="ui-btn ui-btn-ghost" type="button" onClick={onExportPdf} disabled={isExportingPdf}>
-            {isExportingPdf ? t.pdfExportLoading : t.pdfExportLabel}
-          </button>
         </div>
 
         <p className="contact-copy-status" role="status" aria-live="polite">

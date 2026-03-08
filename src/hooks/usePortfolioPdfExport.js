@@ -15,16 +15,17 @@ const MIN_SLICE_PX = 80;
 const BREAKPOINT_SELECTORS = [
   "[data-breakpoint='true']",
   ".home-hero-card",
-  ".home-card",
   ".home-snapshot-panel",
   ".home-scan-panel",
   ".case-study-card",
   ".supporting-work-card",
-  ".project-card",
-  ".capability-card",
-  ".stack-card",
+  ".supporting-project-row",
+  ".capability-story-panel",
+  ".capability-tool-panel",
+  ".stack-row",
   ".career-column-card",
-  ".timeline-card",
+  ".timeline-row",
+  ".career-summary-group",
   ".contact-card"
 ];
 

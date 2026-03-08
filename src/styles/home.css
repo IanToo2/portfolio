@@ -1,14 +1,11 @@
 .home-hero-card,
-.home-card,
 .home-snapshot-panel,
 .home-scan-panel,
 .case-study-card,
 .supporting-work-card,
-.capability-card,
-.stack-showcase-head,
-.stack-card,
+.capability-story-panel,
+.capability-tool-panel,
 .career-column-card,
-.timeline-card,
 .contact-card,
 .project-card {
   border: 1px solid rgba(148, 163, 184, 0.14);
@@ -18,23 +15,12 @@
   box-shadow: var(--shadow-soft);
 }
 
-.home-stage,
 .home-detail-grid,
-.project-case-grid,
 .capability-reboot-grid,
-.capability-pillar-grid,
-.stack-lane-grid,
 .career-reboot-grid,
-.career-learning-grid,
-.project-grid,
 .contact-grid {
   display: grid;
   gap: 1rem;
-}
-
-.home-stage {
-  grid-template-columns: minmax(0, 1.55fr) minmax(320px, 0.82fr);
-  align-items: start;
 }
 
 .home-hero-card {
@@ -67,12 +53,10 @@
 .home-hero-topline p,
 .home-hero-topline span,
 .home-card-head p,
-.home-selected-head p,
 .home-panel-head p,
 .projects-console-copy p,
 .supporting-work-head p,
 .project-group-head p,
-.capability-card-head p,
 .stack-showcase-head p,
 .career-column-head p,
 .contact-copy-block p {
@@ -98,37 +82,6 @@
   max-width: 64ch;
   display: grid;
   gap: 0.85rem;
-}
-
-.home-signal-row {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.7rem;
-}
-
-.home-signal-chip {
-  padding: 0.9rem;
-  border-radius: 1.2rem;
-  background: rgba(248, 250, 252, 0.9);
-  border: 1px solid rgba(148, 163, 184, 0.1);
-}
-
-.home-signal-chip span,
-.home-signal-chip strong {
-  display: block;
-}
-
-.home-signal-chip span {
-  color: var(--muted);
-  font-size: 0.76rem;
-  font-weight: 700;
-}
-
-.home-signal-chip strong {
-  margin-top: 0.28rem;
-  color: var(--ink);
-  font-size: 0.94rem;
-  line-height: 1.55;
 }
 
 .home-hero-title-block h3 {
@@ -160,74 +113,28 @@
   gap: 0.6rem;
 }
 
-.home-proof-grid {
-  margin-top: 1.45rem;
+.home-summary-band {
+  margin-top: 1.5rem;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.7rem;
-  position: relative;
-  z-index: 1;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
 }
 
-.home-proof-chip {
-  padding: 0.95rem;
-  border-radius: 1.35rem;
+.home-summary-block {
+  padding: 1rem;
+  border-radius: 1.3rem;
   border: 1px solid rgba(148, 163, 184, 0.14);
   background: rgba(255, 255, 255, 0.76);
-}
-
-.home-proof-chip span,
-.home-proof-chip strong,
-.home-metric-card span,
-.home-metric-card strong,
-.featured-project-metrics span,
-.featured-project-metrics strong,
-.project-metric-item span,
-.project-metric-item strong {
-  display: block;
-}
-
-.home-proof-chip span,
-.home-metric-card span,
-.featured-project-metrics span,
-.project-metric-item span {
-  color: var(--muted);
-  font-size: 0.76rem;
-  font-weight: 700;
-}
-
-.home-proof-chip strong,
-.home-metric-card strong,
-.featured-project-metrics strong,
-.project-metric-item strong {
-  margin-top: 0.28rem;
-  color: var(--ink);
-  font-size: 0.96rem;
-  line-height: 1.5;
-}
-
-.home-sidebar-stack {
   display: grid;
-  gap: 1rem;
-}
-
-.home-card,
-.home-snapshot-panel,
-.home-scan-panel,
-.projects-console-bar,
-.supporting-work-card,
-.stack-showcase-head,
-.career-column-card,
-.contact-card {
-  padding: 1.2rem;
+  gap: 0.8rem;
 }
 
 .home-card-head,
 .home-panel-head,
 .career-column-head,
-.case-study-top,
 .project-group-head,
-.contact-copy-block {
+.contact-copy-block,
+.stack-showcase-head {
   display: grid;
   gap: 0.4rem;
 }
@@ -238,17 +145,11 @@
   color: rgba(27, 100, 218, 0.7);
 }
 
-.home-card--accent {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(242, 248, 255, 0.88)),
-    linear-gradient(135deg, rgba(49, 130, 246, 0.04), transparent);
-}
-
-.home-impact-list,
-.home-selected-work-list,
+.home-inline-list,
 .home-scan-list,
-.project-contrib,
-.timeline-card ul {
+.supporting-project-list,
+.timeline-row ul,
+.career-summary-group ul {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -256,27 +157,104 @@
   gap: 0.7rem;
 }
 
-.home-impact-list li,
-.home-selected-work-list li,
+.home-inline-list li,
 .home-scan-list li {
-  padding: 0.85rem 0.9rem;
-  border-radius: 1.25rem;
-  background: rgba(247, 249, 252, 0.92);
-  border: 1px solid rgba(148, 163, 184, 0.1);
+  color: var(--ink-soft);
+  font-size: 0.94rem;
+  line-height: 1.65;
 }
 
-.home-selected-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.8rem;
+.home-inline-list--proof li {
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
 }
 
-.home-selected-head a {
-  color: var(--blue-strong);
-  font-size: 0.82rem;
+.home-inline-list--proof li:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.home-inline-list--proof span,
+.home-fact-row span,
+.case-study-meta-strip span,
+.contact-row span,
+.career-summary-group li span {
+  color: var(--muted);
+  font-size: 0.76rem;
   font-weight: 700;
-  text-decoration: none;
+  display: block;
+}
+
+.home-inline-list--proof strong,
+.home-fact-row strong,
+.case-study-meta-strip strong,
+.contact-row strong,
+.career-summary-group li strong,
+.contact-copy-block h3,
+.contact-copy-block strong,
+.project-group-head h3,
+.stack-showcase-head strong,
+.career-column-head strong {
+  color: var(--ink);
+  display: block;
+}
+
+.home-inline-list--proof strong,
+.home-fact-row strong,
+.case-study-meta-strip strong,
+.contact-row strong,
+.career-summary-group li strong {
+  margin-top: 0.28rem;
+  font-size: 0.96rem;
+  line-height: 1.5;
+}
+
+.home-detail-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.home-snapshot-panel,
+.home-scan-panel,
+.projects-console-bar,
+.supporting-work-card,
+.capability-story-panel,
+.capability-tool-panel,
+.career-column-card,
+.contact-card {
+  padding: 1.2rem;
+}
+
+.home-fact-list {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.home-fact-row {
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.home-fact-row:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.home-panel-divider {
+  height: 1px;
+  background: rgba(148, 163, 184, 0.12);
+  margin: 1rem 0;
+}
+
+.home-panel-head--compact {
+  margin-bottom: 0.8rem;
+}
+
+.home-selected-work-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.8rem;
 }
 
 .home-selected-work-list li {
@@ -284,22 +262,26 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.8rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
 }
 
-.home-selected-work-list strong,
-.home-selected-work-list span {
-  display: block;
+.home-selected-work-list li:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 
 .home-selected-work-list strong {
   color: var(--ink);
   font-size: 0.95rem;
+  display: block;
 }
 
 .home-selected-work-list span {
   margin-top: 0.18rem;
   color: var(--muted);
   font-size: 0.8rem;
+  display: block;
 }
 
 .home-selected-work-list .icon-svg {
@@ -308,47 +290,16 @@
   color: rgba(27, 100, 218, 0.48);
 }
 
-.home-detail-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.home-panel-head strong,
-.projects-console-copy strong,
-.supporting-work-head strong,
-.project-group-head h3,
-.capability-card-head h3,
-.stack-showcase-head strong,
-.career-column-head strong,
-.contact-copy-block h3,
-.contact-copy-block strong {
-  margin: 0;
-  color: var(--ink);
-}
-
-.home-metric-grid,
-.featured-project-metrics,
-.project-metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.7rem;
-}
-
-.home-metric-card,
-.featured-project-metrics > div,
-.project-metric-item {
-  padding: 0.9rem;
-  border-radius: 1.2rem;
-  background: rgba(248, 250, 252, 0.95);
-  border: 1px solid rgba(148, 163, 184, 0.1);
-}
-
-.home-scan-list {
-  counter-reset: scan;
-}
-
 .home-scan-list li {
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
   display: grid;
   gap: 0.24rem;
+}
+
+.home-scan-list li:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 
 .home-scan-list strong {
@@ -362,10 +313,9 @@
   line-height: 1.55;
 }
 
-.projects-console-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.projects-console-bar,
+.supporting-work-head {
+  display: grid;
   gap: 1rem;
 }
 
@@ -374,8 +324,9 @@
   gap: 0.35rem;
 }
 
-.project-case-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+.project-case-list {
+  display: grid;
+  gap: 0.9rem;
 }
 
 .case-study-card {
@@ -406,11 +357,11 @@
 .case-study-top strong,
 .case-study-heading p,
 .supporting-work-collapsed,
-.project-period,
-.project-kind,
-.timeline-card span,
 .contact-copy-block span,
-.contact-footnote small {
+.contact-footnote small,
+.supporting-project-main span,
+.supporting-project-row p,
+.timeline-row span {
   color: var(--muted);
 }
 
@@ -420,9 +371,14 @@
 }
 
 .case-study-heading h3,
-.project-top strong,
-.timeline-card h3 {
+.timeline-row h3,
+.career-summary-group h3 {
   margin: 0;
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.case-study-heading h3 {
   font-size: 1.2rem;
   line-height: 1.35;
   letter-spacing: -0.03em;
@@ -430,28 +386,25 @@
 
 .case-study-heading p,
 .project-group-head p,
-.contact-copy-block span {
+.contact-copy-block span,
+.supporting-project-row p {
   margin: 0;
   font-size: 0.92rem;
   line-height: 1.65;
 }
 
-.case-study-story {
+.case-story-flow {
   display: grid;
   gap: 0.75rem;
 }
 
-.case-study-story > div,
-.project-detail-block {
-  padding-top: 0.95rem;
-  border-top: 1px solid rgba(148, 163, 184, 0.12);
+.case-story-flow p {
+  margin: 0;
+  display: grid;
+  gap: 0.28rem;
 }
 
-.case-study-story p,
-.project-contrib-title,
-.project-metrics-title,
-.project-tech-preview-title {
-  margin: 0 0 0.55rem;
+.case-story-flow strong {
   color: var(--blue-strong);
   font-size: 0.74rem;
   font-weight: 800;
@@ -459,24 +412,23 @@
   text-transform: uppercase;
 }
 
-.case-study-story strong {
+.case-story-flow span {
   color: var(--ink);
   font-size: 0.96rem;
   line-height: 1.65;
 }
 
-.featured-project-tags {
-  padding-top: 0.2rem;
-}
-
-.case-study-details {
-  padding-top: 0.2rem;
-}
-
-.supporting-work-card,
-.supporting-work-head {
+.case-study-meta-strip {
   display: grid;
-  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.case-study-meta-strip > div {
+  padding: 0.9rem;
+  border-radius: 1.2rem;
+  background: rgba(248, 250, 252, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.1);
 }
 
 .projects-console-stats {
@@ -514,20 +466,23 @@
   gap: 1rem;
 }
 
-.project-grid,
-.stack-lane-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+.supporting-project-list {
+  gap: 0.8rem;
 }
 
-.project-card {
-  padding: 1.1rem;
+.supporting-project-row {
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
   display: grid;
   gap: 0.95rem;
 }
 
-.project-top,
-.project-summary-row,
-.project-top-meta {
+.supporting-project-row:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.supporting-project-main {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -535,97 +490,57 @@
   flex-wrap: wrap;
 }
 
-.project-track,
-.project-status {
-  min-height: 1.9rem;
-  padding: 0.28rem 0.65rem;
-  border-radius: 999px;
-  font-size: 0.74rem;
-  font-weight: 800;
-}
-
-.project-track {
-  background: rgba(49, 130, 246, 0.08);
-  color: var(--blue-strong);
-}
-
-.project-status.done {
-  background: rgba(16, 185, 129, 0.1);
-  color: #047857;
-}
-
-.project-status.pending {
-  background: rgba(245, 158, 11, 0.12);
-  color: #b45309;
-}
-
-.project-kind,
-.project-contrib li,
-.timeline-card li {
+.supporting-project-main strong {
   margin: 0;
-  font-size: 0.92rem;
-  line-height: 1.65;
+  color: var(--ink);
+  font-size: 1rem;
 }
 
-.project-contrib li,
-.timeline-card li {
-  position: relative;
-  padding-left: 1rem;
-  color: var(--ink-soft);
+.capability-reboot-grid--condensed {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.project-contrib li::before,
-.timeline-card li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.72rem;
-  width: 0.34rem;
-  height: 0.34rem;
-  border-radius: 50%;
-  background: rgba(49, 130, 246, 0.45);
-}
-
-.capability-reboot-grid,
-.career-reboot-grid {
-  gap: 1.1rem;
-}
-
-.capability-pillar-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.capability-card {
-  padding: 1.25rem;
+.capability-story-list,
+.stack-row-list,
+.career-summary-groups {
   display: grid;
   gap: 1rem;
 }
 
-.capability-card strong {
-  color: var(--ink);
+.capability-story-item,
+.stack-row,
+.career-summary-group {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.capability-story-item:last-child,
+.stack-row:last-child,
+.career-summary-group:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.capability-story-item h3 {
+  margin: 0;
   font-size: 1rem;
+}
+
+.capability-story-item p {
+  margin: 0.45rem 0 0;
+  color: var(--ink);
+  font-size: 0.96rem;
   line-height: 1.75;
-  font-weight: 600;
 }
 
-.capability-tool-box {
-  display: grid;
-  gap: 0.6rem;
-}
-
-.capability-tool-box > span {
-  color: var(--muted);
-  font-size: 0.82rem;
-  font-weight: 700;
-}
-
-.home-chip-list {
+.capability-story-tools {
+  margin-top: 0.75rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
 }
 
-.home-chip-list span {
+.capability-story-tools span {
   min-height: 2rem;
   padding: 0.36rem 0.7rem;
   border-radius: 999px;
@@ -635,36 +550,26 @@
   font-weight: 700;
 }
 
-.stack-showcase {
-  display: grid;
-  gap: 1rem;
-}
-
-.stack-card {
-  padding: 1.15rem;
-  display: grid;
-  gap: 0.9rem;
-}
-
-.stack-card-head {
+.stack-row-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.6rem;
 }
 
-.stack-card-head h3 {
+.stack-row-head h3 {
   margin: 0;
   font-size: 1rem;
 }
 
-.stack-card-head span {
+.stack-row-head span {
   color: var(--blue-strong);
   font-size: 0.92rem;
   font-weight: 800;
 }
 
 .stack-meter {
+  margin: 0.7rem 0;
   height: 0.5rem;
   border-radius: 999px;
   background: rgba(148, 163, 184, 0.16);
@@ -678,30 +583,54 @@
 }
 
 .career-reboot-grid {
-  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
 }
 
-.career-column-card {
-  display: grid;
-  gap: 1rem;
-}
-
-.career-learning-grid {
-  align-content: start;
-}
-
-.career-proof-grid,
 .timeline {
   display: grid;
   gap: 0.8rem;
 }
 
-.timeline-card {
-  padding: 1rem;
+.timeline-row {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
 }
 
-.timeline-card ul {
-  margin-top: 0.8rem;
+.timeline-row:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.timeline-row span {
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.timeline-row ul,
+.career-summary-group ul {
+  margin-top: 0.75rem;
+}
+
+.timeline-row li {
+  position: relative;
+  padding-left: 1rem;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.timeline-row li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72rem;
+  width: 0.34rem;
+  height: 0.34rem;
+  border-radius: 50%;
+  background: rgba(49, 130, 246, 0.45);
 }
 
 .contact-card {
@@ -713,7 +642,7 @@
 
 .contact-shell {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.82fr);
   gap: 1rem;
 }
 
@@ -726,40 +655,18 @@
   font-size: 1.05rem;
 }
 
-.contact-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+.contact-grid--condensed {
+  gap: 0.9rem;
 }
 
-.contact-link-card {
-  min-height: 9rem;
-  padding: 1rem;
-  border-radius: 1.45rem;
-  border: 1px solid rgba(148, 163, 184, 0.14);
-  background: rgba(255, 255, 255, 0.78);
-  text-decoration: none;
-  display: grid;
-  align-content: space-between;
-  gap: 0.8rem;
+.contact-row {
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
 }
 
-.contact-link-card span {
-  color: var(--muted);
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.contact-link-card strong {
-  color: var(--ink);
-  font-size: 1rem;
-  line-height: 1.55;
-  word-break: break-word;
-}
-
-.contact-link-card--status {
-  grid-column: 1 / -1;
-  min-height: auto;
+.contact-row:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 
 .contact-actions {
@@ -786,82 +693,60 @@
   flex-wrap: wrap;
 }
 
-.empty-state,
-.supporting-work-collapsed {
+.empty-state {
   margin: 0;
   font-size: 0.94rem;
   line-height: 1.7;
 }
 
 @media (max-width: 1080px) {
-  .home-stage,
   .home-detail-grid,
+  .capability-reboot-grid--condensed,
   .career-reboot-grid,
   .contact-shell {
-    grid-template-columns: 1fr;
-  }
-
-  .capability-pillar-grid,
-  .project-case-grid,
-  .project-grid,
-  .stack-lane-grid,
-  .contact-grid {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 760px) {
   .home-hero-card,
-  .home-card,
   .home-snapshot-panel,
   .home-scan-panel,
   .case-study-card,
   .supporting-work-card,
-  .capability-card,
-  .stack-showcase-head,
-  .stack-card,
+  .capability-story-panel,
+  .capability-tool-panel,
   .career-column-card,
-  .timeline-card,
   .contact-card,
   .project-card {
     border-radius: 1.55rem;
   }
 
   .home-hero-card,
-  .home-card,
   .home-snapshot-panel,
   .home-scan-panel,
   .projects-console-bar,
   .supporting-work-card,
+  .capability-story-panel,
+  .capability-tool-panel,
   .career-column-card,
   .contact-card {
     padding: 1rem;
   }
 
-  .home-proof-grid,
-  .home-signal-row,
-  .home-metric-grid,
-  .featured-project-metrics,
-  .project-metrics-grid {
+  .home-summary-band,
+  .case-study-meta-strip,
+  .timeline-row {
     grid-template-columns: 1fr;
   }
 
-  .projects-console-bar,
-  .supporting-work-head,
-  .project-top,
-  .project-summary-row,
+  .case-study-top,
+  .supporting-project-main,
   .contact-footnote {
     align-items: flex-start;
   }
 
-  .projects-console-bar,
-  .project-top,
-  .project-summary-row,
   .contact-actions {
     flex-direction: column;
-  }
-
-  .contact-grid {
-    grid-template-columns: 1fr;
   }
 }

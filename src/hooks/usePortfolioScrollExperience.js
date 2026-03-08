@@ -78,7 +78,7 @@ export default function usePortfolioScrollExperience({ enabled }) {
       );
 
       gsap.fromTo(
-        ".project-case-grid",
+        ".project-case-list",
         { y: 0 },
         {
           y: -18,

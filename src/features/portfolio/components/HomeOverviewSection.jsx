@@ -18,94 +18,89 @@ export default function HomeOverviewSection({
       subtitle={t.summarySubtitle}
       className="portfolio-home"
     >
-      <div className="home-stage">
-        <article className="home-hero-card" data-breakpoint="true">
-          <div className="home-hero-topline">
-            <p>{t.heroConsoleLabel}</p>
-            <span>{summaryQuick.fit}</span>
-          </div>
+      <article className="home-hero-card home-hero-card--condensed" data-breakpoint="true">
+        <div className="home-hero-topline">
+          <p>{t.heroConsoleLabel}</p>
+          <span>{summaryQuick.fit}</span>
+        </div>
 
-          <div className="home-hero-copy-wrap">
-            <div className="home-hero-title-block">
-              <h3>{localizedProfile.name}</h3>
-              <strong>{localizedProfile.role} · {localizedProfile.domain}</strong>
-            </div>
-            <p className="home-hero-copy">{localizedProfile.intro}</p>
-            <div className="home-signal-row">
-              <div className="home-signal-chip">
-                <span>{t.heroSignalLabel}</span>
-                <strong>{t.heroSignalValue}</strong>
-              </div>
-              <div className="home-signal-chip">
-                <span>{t.panelSnapshot}</span>
-                <strong>{summaryQuick.coreLine}</strong>
-              </div>
-            </div>
+        <div className="home-hero-copy-wrap">
+          <div className="home-hero-title-block">
+            <h3>{localizedProfile.name}</h3>
+            <strong>{localizedProfile.role} · {localizedProfile.domain}</strong>
           </div>
+          <p className="home-hero-copy">{localizedProfile.intro}</p>
+        </div>
 
-          <div className="home-action-row">
-            <a className="ui-btn ui-btn-primary" href="#projects">{t.heroActionProjects}</a>
-            <a className="ui-btn ui-btn-ghost" href="#career">{t.heroActionExperience}</a>
-            <a className="ui-btn ui-btn-soft" href="#contact">{t.heroActionContact}</a>
-          </div>
+        <div className="home-action-row">
+          <a className="ui-btn ui-btn-primary" href="#projects">{t.heroActionProjects}</a>
+          <a className="ui-btn ui-btn-ghost" href="#career">{t.heroActionExperience}</a>
+          <a className="ui-btn ui-btn-soft" href="#contact">{t.heroActionContact}</a>
+        </div>
 
-          <div className="home-proof-grid">
-            {heroProofs.map((item) => (
-              <div key={item.id} className="home-proof-chip">
-                <span>{item.label}</span>
-                <strong>{item.value}</strong>
-              </div>
-            ))}
-          </div>
-        </article>
-
-        <aside className="home-sidebar-stack" aria-label={t.summaryProofTitle}>
-          <article className="home-card home-card--accent" data-breakpoint="true">
+        <div className="home-summary-band">
+          <section className="home-summary-block">
             <div className="home-card-head">
               <p>{t.summaryQuickStrengthsLabel}</p>
               <Icon type="spark" />
             </div>
-            <ul className="home-impact-list">
+            <ul className="home-inline-list">
               {summaryQuick.strengths.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
-          </article>
+          </section>
 
-          <article className="home-card home-card--selected" data-breakpoint="true">
-            <div className="home-selected-head">
-              <p>{t.summaryCaseStudyTitle}</p>
-              <a href="#projects">{t.heroFeaturedLinkLabel}</a>
+          <section className="home-summary-block">
+            <div className="home-card-head">
+              <p>{t.summaryProofTitle}</p>
+              <Icon type="target" />
             </div>
-            <ul className="home-selected-work-list">
-              {primaryCaseStudies.map((project) => (
-                <li key={project.id}>
-                  <div>
-                    <strong>{project.name}</strong>
-                    <span>{project.period}</span>
-                  </div>
-                  <Icon type="link" />
+            <ul className="home-inline-list home-inline-list--proof">
+              {heroProofs.map((item) => (
+                <li key={item.id}>
+                  <span>{item.label}</span>
+                  <strong>{item.value}</strong>
                 </li>
               ))}
             </ul>
-          </article>
-        </aside>
-      </div>
+          </section>
+        </div>
+      </article>
 
-      <div className="home-detail-grid">
+      <div className="home-detail-grid home-detail-grid--condensed">
         <article className="home-snapshot-panel" data-breakpoint="true">
           <div className="home-panel-head">
             <p>{t.summaryMetricsLabel}</p>
-            <strong>{t.summaryProofTitle}</strong>
+            <strong>{summaryQuick.coreLine}</strong>
           </div>
-          <div className="home-metric-grid">
+
+          <div className="home-fact-list">
             {localizedMetrics.map((item) => (
-              <div key={item.label} className="home-metric-card">
+              <div key={item.label} className="home-fact-row">
                 <span>{item.label}</span>
                 <strong>{item.value}</strong>
               </div>
             ))}
           </div>
+
+          <div className="home-panel-divider" />
+
+          <div className="home-panel-head home-panel-head--compact">
+            <p>{t.summaryCaseStudyTitle}</p>
+            <strong>{t.heroFeaturedLinkLabel}</strong>
+          </div>
+          <ul className="home-selected-work-list home-selected-work-list--compact">
+            {primaryCaseStudies.map((project) => (
+              <li key={project.id}>
+                <div>
+                  <strong>{project.name}</strong>
+                  <span>{project.period}</span>
+                </div>
+                <Icon type="link" />
+              </li>
+            ))}
+          </ul>
         </article>
 
         <article className="home-scan-panel" data-breakpoint="true">
