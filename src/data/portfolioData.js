@@ -428,10 +428,10 @@ export const PROJECTS = [
     ],
     metrics: [
       {
-        label: "개인 커밋",
-        labelEn: "Personal commits",
-        value: "131개 (no-merge, alias 합산)",
-        valueEn: "131 commits (no-merge, aliases combined)"
+        label: "운영 자동화",
+        labelEn: "Operational automation",
+        value: "6시간 주기 문제 스케줄링, 일일 결산 API 고도화",
+        valueEn: "6-hour quiz scheduling and daily settlement API improvements"
       },
       {
         label: "주요 기여 도메인",
@@ -482,10 +482,10 @@ export const PROJECTS = [
     ],
     metrics: [
       {
-        label: "개인 커밋",
-        labelEn: "Personal commits",
-        value: "47개 (no-merge)",
-        valueEn: "47 commits (no-merge)"
+        label: "성능 개선",
+        labelEn: "Performance improvement",
+        value: "이미지 로딩 약 2.0초 → 0.2초",
+        valueEn: "Image loading improved from about 2.0s to 0.2s"
       },
       {
         label: "주요 기여 도메인",
