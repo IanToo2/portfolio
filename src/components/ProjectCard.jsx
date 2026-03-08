@@ -27,11 +27,13 @@ export default function ProjectCard({
   const expandLabel = labels.expandLabel ?? "Expand";
   const metricsLabel = labels.metricsLabel ?? "Impact Metrics";
   const trackLabel = project.track === "scm" ? "SCM" : project.track === "qa" ? "QA" : null;
+  const isTeamProject = project.track === "team";
   const projectMetrics = (project.metrics ?? []).filter((metric) => metric?.label || metric?.value);
   const techPreview = (project.tech ?? []).slice(0, TECH_PREVIEW_MAX);
   const contributionPreview = (project.contributions ?? []).slice(0, CONTRIBUTION_PREVIEW_MAX);
   const metricPreview = projectMetrics.slice(0, METRIC_PREVIEW_MAX);
   const metricDetail = projectMetrics.slice(METRIC_PREVIEW_MAX);
+  const visibleMetrics = isTeamProject && !collapsed ? projectMetrics : metricPreview;
   const hasDetailContent =
     (project.contributions?.length ?? 0) > contributionPreview.length ||
     metricDetail.length > 0;
@@ -74,11 +76,11 @@ export default function ProjectCard({
           <li key={contribution}>{contribution}</li>
         ))}
       </ul>
-      {metricPreview.length ? (
+      {visibleMetrics.length ? (
         <div className="project-metrics project-metrics--preview">
           <p className="project-metrics-title">{metricsLabel}</p>
           <div className="project-metrics-grid">
-            {metricPreview.map((metric, index) => (
+            {visibleMetrics.map((metric, index) => (
               <div key={`${projectKey}-metric-preview-${index}`} className="project-metric-item">
                 <span>{metric.label}</span>
                 <strong>{metric.value}</strong>
@@ -99,7 +101,7 @@ export default function ProjectCard({
               </ul>
             </>
           ) : null}
-          {metricDetail.length ? (
+          {metricDetail.length && !isTeamProject ? (
             <div className="project-metrics">
               <p className="project-metrics-title">{metricsLabel}</p>
               <div className="project-metrics-grid">
