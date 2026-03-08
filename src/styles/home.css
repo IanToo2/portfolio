@@ -312,6 +312,10 @@
   font-weight: 800;
 }
 
+.case-study-top strong {
+  color: var(--cyan-strong);
+}
+
 .case-study-card h3 {
   margin: 0.72rem 0 0;
   font-size: 1.34rem;
@@ -540,9 +544,9 @@
 }
 
 .project-period {
-  color: var(--muted);
-  border: 1px solid var(--line);
-  background: var(--bg-soft);
+  color: var(--cyan-strong);
+  border: 1px solid rgba(15, 111, 143, 0.18);
+  background: var(--cyan-soft);
 }
 
 .project-track.scm {
@@ -832,9 +836,9 @@
   min-height: 2rem;
   padding: 0.22rem 0.58rem;
   border-radius: 999px;
-  border: 1px solid var(--line);
-  background: var(--bg-soft);
-  color: var(--muted);
+  border: 1px solid rgba(15, 111, 143, 0.18);
+  background: var(--cyan-soft);
+  color: var(--cyan-strong);
   font-size: 0.76rem;
   font-weight: 800;
 }
@@ -869,7 +873,7 @@
 .timeline-card--featured span,
 .timeline-card--compact span {
   display: block;
-  color: #6b8097;
+  color: var(--cyan-strong);
   font-size: 0.76rem;
   font-weight: 800;
 }
