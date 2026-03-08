@@ -1,3 +1,5 @@
+import TechLogo from "./TechLogo";
+
 const DEFAULT_LABELS = {
   projectTypeLabel: "Project Type",
   scopeLabel: "Scope",
@@ -120,9 +122,12 @@ export default function ProjectCard({
       {techPreview.length ? (
         <div className="project-preview-block">
           <p className="project-tech-preview-title">{labels.technologiesLabel}</p>
-          <ul className="project-tech project-tech--preview">
+          <ul className="tech-pill-list tech-pill-list--compact">
             {techPreview.map((tech) => (
-              <li key={`${projectKey}-preview-${tech}`}>{tech}</li>
+              <li key={`${projectKey}-preview-${tech}`}>
+                <TechLogo name={tech} />
+                <span className="stack-card-label">{tech}</span>
+              </li>
             ))}
           </ul>
         </div>
@@ -155,9 +160,12 @@ export default function ProjectCard({
                   <p className="project-tech-group-title">
                     {techGroupLabels[group] ?? group}
                   </p>
-                  <ul className="project-tech">
+                  <ul className="tech-pill-list tech-pill-list--compact">
                     {items.map((tech) => (
-                      <li key={`${group}-${tech}`}>{tech}</li>
+                      <li key={`${group}-${tech}`}>
+                        <TechLogo name={tech} />
+                        <span className="stack-card-label">{tech}</span>
+                      </li>
                     ))}
                   </ul>
                 </div>

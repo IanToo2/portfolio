@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import ProjectCard from "../../../components/ProjectCard";
+import TechLogo from "../../../components/TechLogo";
 import PortfolioSection from "./PortfolioSection";
 
 export default function ProjectsHubSection({
@@ -78,11 +79,14 @@ export default function ProjectsHubSection({
               <p>{projectCardLabels.scopeLabel}</p>
               <strong>{project.scope.join(" / ")}</strong>
             </div>
-            <div className="featured-project-tags">
+            <ul className="tech-pill-list tech-pill-list--compact featured-project-tags">
               {project.techPreview.map((item) => (
-                <span key={`${project.id}-${item}`}>{item}</span>
+                <li key={`${project.id}-${item}`}>
+                  <TechLogo name={item} />
+                  <span className="stack-card-label">{item}</span>
+                </li>
               ))}
-            </div>
+            </ul>
             <div className="featured-project-metrics">
               {project.metricPreview.map((metric) => (
                 <div key={`${project.id}-${metric.label}`}>
@@ -101,9 +105,12 @@ export default function ProjectsHubSection({
                   {project.tech.length > project.techPreview.length ? (
                     <div className="case-study-detail-block">
                       <p>{projectCardLabels.technologiesLabel}</p>
-                      <ul className="project-tech project-tech--preview">
+                      <ul className="tech-pill-list tech-pill-list--compact">
                         {project.tech.map((item) => (
-                          <li key={`${project.id}-detail-tech-${item}`}>{item}</li>
+                          <li key={`${project.id}-detail-tech-${item}`}>
+                            <TechLogo name={item} />
+                            <span className="stack-card-label">{item}</span>
+                          </li>
                         ))}
                       </ul>
                     </div>
