@@ -592,61 +592,63 @@ export const PROJECTS = [
     category: PROJECT_CATEGORY.WORK,
     track: PROJECT_TRACK.QA,
     isFeatured: true,
-    name: "QA 자동화 툴 개발",
-    nameEn: "QA Automation Tool Development",
+    name: "Agent AI 기반 QA 자동화 운영 도구 구축",
+    nameEn: "Agent-AI-Based QA Automation Operations Tool",
     period: "2026.02 - 2026.04",
     periodEn: "Feb 2026 - Apr 2026",
-    kind: "Agent AI 기반 QA 자동화 도구 개발",
-    kindEn: "Agent-AI-Based QA Automation Tool Development",
+    kind: "표준 솔루션 릴리즈 QA 자동화",
+    kindEn: "Standard Solution Release QA Automation",
     scope: ["기획", "설계", "개발", "운영", "교육", "고도화"],
     scopeEn: ["Planning", "Design", "Development", "Operations", "Training", "Enhancement"],
     tech: ["Claude Code", "Codex", "Node.js", "Playwright", "Web UI"],
     techEn: ["Claude Code", "Codex", "Node.js", "Playwright", "Web UI"],
     contributions: [
-      "문제: 정기 릴리즈와 빈번한 패치 환경에서 QA 공수가 크고 문서화된 테스트 자산이 부족해 오픈 전 품질 검증 일정이 항상 촉박했음",
-      "역할: 아이디어 수립부터 목표 정의, 개발, 유지보수까지 전 과정을 단독 수행하며 Playwright MCP와 Agent AI를 활용한 Web UI 기반 QA 자동화 도구를 구축",
-      "역할: SCM 솔루션 전체 모듈을 대상으로 메뉴 수집, 메뉴별 단위 테스트, 구매 프로세스 시나리오 테스트 기능을 구현하고 JSON/HTML 리포트와 직군별 맞춤형 보고 양식을 설계",
-      "역할: 비개발 직군도 사용할 수 있도록 UI/UX와 사용 언어를 전면 커스텀하고 로컬 서버 실행 후 웹에서 버튼으로 테스트를 수행하는 운영 방식으로 정리",
       "영향: 정기 릴리즈 QA 테스트 공수를 약 70% 절감하고 500 에러 발생 시 재현 가능한 자료를 자동으로 남길 수 있는 검증 체계를 마련",
+      "역할: SCM 솔루션 전체 모듈을 대상으로 메뉴 수집, 메뉴별 단위 테스트, 구매 프로세스 시나리오 테스트 기능을 구현",
+      "역할: 비개발 직군도 사용할 수 있도록 Web UI, 맞춤형 언어 체계, 직군별 리포트를 설계해 운영 가능한 자동화 도구로 정착",
+      "문제: 정기 릴리즈와 빈번한 패치 환경에서 QA 공수가 크고 문서화된 테스트 자산이 부족해 오픈 전 품질 검증 일정이 항상 촉박했음",
+      "역할: 아이디어 수립부터 목표 정의, 개발, 유지보수까지 전 과정을 단독 수행하며 Playwright MCP와 Agent AI를 활용한 QA 자동화 운영 도구를 구축",
+      "역할: JSON/HTML 리포트와 직군별 맞춤형 보고 양식을 설계하고 로컬 서버 실행 후 웹에서 버튼으로 테스트를 수행하는 운영 방식으로 정리",
       "영향: 릴리즈 전 1개월 동안 주 30건 이상 발생하던 이슈·개선 확인 작업을 야간 자동 실행과 아침 리포트 확인 방식으로 전환해 부서 실적 개선에 기여",
       "영향: 개발직군, 비개발직군, 관리직이 각자 필요한 방식으로 결과를 확인할 수 있도록 운영 체계를 만들고 2개월간 주 1회 이상, 회당 1시간 이상 Agent AI 활용 교육을 진행해 사내 확산을 지원"
     ],
     contributionsEn: [
-      "Problem: QA effort was high under regular releases and frequent patches, while documented test assets were limited, making pre-release quality validation consistently time-constrained.",
-      "Role: Solely led the project end-to-end from idea and goal setting to development and maintenance, building a Web-UI-based QA automation tool powered by Playwright MCP and Agent AI.",
-      "Role: Implemented menu discovery, menu-level unit testing, and purchase-process scenario testing across the SCM solution, while designing JSON/HTML reports and audience-specific report formats.",
-      "Role: Customized the UI/UX and product language so non-developers could use it easily, and organized the workflow so users could run tests from the web after starting a local server.",
       "Impact: Reduced recurring release QA effort by about 70% and established a reproducible reporting flow for HTTP 500 errors.",
+      "Role: Implemented menu discovery, menu-level unit testing, and purchase-process scenario testing across the SCM solution.",
+      "Role: Designed Web UI workflows, customized language, and audience-specific reports so non-developers could operate the tool in real release work.",
+      "Problem: QA effort was high under regular releases and frequent patches, while documented test assets were limited, making pre-release quality validation consistently time-constrained.",
+      "Role: Solely led the project end-to-end from idea and goal setting to development and maintenance, building an AI-assisted QA automation operations tool powered by Playwright MCP and Agent AI.",
+      "Role: Designed JSON/HTML reports and audience-specific reporting formats, then organized a web-based operating flow triggered after launching a local server.",
       "Impact: Replaced manual issue and improvement checks, which exceeded 30 items per week during the month before release, with overnight automated runs and morning-ready reports, contributing to team performance.",
       "Impact: Created an operating model that served developers, non-developers, and managers with separate reporting views, and supported company-wide adoption through Agent AI training sessions held at least once a week for two months."
     ],
     metrics: [
       {
-        label: "테스트 공수 절감",
+        label: "릴리즈 QA 공수",
         labelEn: "QA Effort Reduction",
         value: "약 70%",
         valueEn: "About 70%"
       },
       {
-        label: "이슈 확인 규모",
+        label: "릴리즈 직전 점검량",
         labelEn: "Issue Review Volume",
         value: "릴리즈 전 1개월간 주 30건 이상",
         valueEn: "30+ issues per week during the month before release"
       },
       {
-        label: "재현 자료 자동화",
+        label: "장애 재현 가능성",
         labelEn: "Reproducible Error Reporting",
         value: "500 에러 발생 시 재현 가능한 자료 자동 작성",
         valueEn: "Automatically generates reproducible materials for HTTP 500 errors"
       },
       {
-        label: "교육 확산",
+        label: "사내 확산",
         labelEn: "Internal Enablement",
         value: "2개월간 주 1회 이상, 회당 1시간 이상 교육 진행",
         valueEn: "1+ session per week for 2 months, 1+ hour each"
       },
       {
-        label: "운영 대상",
+        label: "현재 적용 범위",
         labelEn: "Current Application",
         value: "표준 솔루션 릴리즈 QA 적용 중",
         valueEn: "Currently used for standard solution release QA"
