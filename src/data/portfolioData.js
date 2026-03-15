@@ -591,45 +591,65 @@ export const PROJECTS = [
   {
     category: PROJECT_CATEGORY.WORK,
     track: PROJECT_TRACK.QA,
-    isFeatured: false,
+    isFeatured: true,
     name: "QA 자동화 툴 개발",
-    nameEn: "QA Automation Tooling",
+    nameEn: "QA Automation Tool Development",
     period: "2026.02 - 2026.04",
     periodEn: "Feb 2026 - Apr 2026",
-    kind: "바이브 코딩 기반 QA 자동화 개발",
-    kindEn: "Vibe-Coding-Based QA Automation Development",
-    scope: ["구조 설계", "실행 스크립트 정비", "결과 리포트 검증", "운영 문서화"],
-    scopeEn: ["Structure Design", "Runner Script Setup", "Report Validation", "Operational Documentation"],
-    tech: ["Claude Code", "Codex", "Node.js", "Playwright"],
-    techEn: ["Claude Code", "Codex", "Node.js", "Playwright"],
+    kind: "Agent AI 기반 QA 자동화 도구 개발",
+    kindEn: "Agent-AI-Based QA Automation Tool Development",
+    scope: ["기획", "설계", "개발", "운영", "교육", "고도화"],
+    scopeEn: ["Planning", "Design", "Development", "Operations", "Training", "Enhancement"],
+    tech: ["Claude Code", "Codex", "Node.js", "Playwright", "Web UI"],
+    techEn: ["Claude Code", "Codex", "Node.js", "Playwright", "Web UI"],
     contributions: [
-      "Claude Code와 Codex를 활용한 바이브 코딩 워크플로우로 실무자용 QA 테스트 자동화 운영 허브를 구축",
-      "로컬 Playwright 기반 `qa:unit`, `qa:discover-menus` 실행 절차와 환경변수 가이드를 정립",
-      "리포트 산출물(JSON/HTML) 생성 경로와 종료 로그 검증 기준을 정의해 결과 확인 절차를 명확화"
+      "문제: 정기 릴리즈와 빈번한 패치 환경에서 QA 공수가 크고 문서화된 테스트 자산이 부족해 오픈 전 품질 검증 일정이 항상 촉박했음",
+      "역할: 아이디어 수립부터 목표 정의, 개발, 유지보수까지 전 과정을 단독 수행하며 Playwright MCP와 Agent AI를 활용한 Web UI 기반 QA 자동화 도구를 구축",
+      "역할: SCM 솔루션 전체 모듈을 대상으로 메뉴 수집, 메뉴별 단위 테스트, 구매 프로세스 시나리오 테스트 기능을 구현하고 JSON/HTML 리포트와 직군별 맞춤형 보고 양식을 설계",
+      "역할: 비개발 직군도 사용할 수 있도록 UI/UX와 사용 언어를 전면 커스텀하고 로컬 서버 실행 후 웹에서 버튼으로 테스트를 수행하는 운영 방식으로 정리",
+      "영향: 정기 릴리즈 QA 테스트 공수를 약 70% 절감하고 500 에러 발생 시 재현 가능한 자료를 자동으로 남길 수 있는 검증 체계를 마련",
+      "영향: 릴리즈 전 1개월 동안 주 30건 이상 발생하던 이슈·개선 확인 작업을 야간 자동 실행과 아침 리포트 확인 방식으로 전환해 부서 실적 개선에 기여",
+      "영향: 개발직군, 비개발직군, 관리직이 각자 필요한 방식으로 결과를 확인할 수 있도록 운영 체계를 만들고 2개월간 주 1회 이상, 회당 1시간 이상 Agent AI 활용 교육을 진행해 사내 확산을 지원"
     ],
     contributionsEn: [
-      "Built a practitioner-facing QA automation operations hub through a vibe-coding workflow with Claude Code and Codex.",
-      "Established execution procedures and environment variable guidance for local Playwright runners (`qa:unit`, `qa:discover-menus`).",
-      "Defined validation standards for JSON/HTML report outputs and completion logs to make result checks consistent."
+      "Problem: QA effort was high under regular releases and frequent patches, while documented test assets were limited, making pre-release quality validation consistently time-constrained.",
+      "Role: Solely led the project end-to-end from idea and goal setting to development and maintenance, building a Web-UI-based QA automation tool powered by Playwright MCP and Agent AI.",
+      "Role: Implemented menu discovery, menu-level unit testing, and purchase-process scenario testing across the SCM solution, while designing JSON/HTML reports and audience-specific report formats.",
+      "Role: Customized the UI/UX and product language so non-developers could use it easily, and organized the workflow so users could run tests from the web after starting a local server.",
+      "Impact: Reduced recurring release QA effort by about 70% and established a reproducible reporting flow for HTTP 500 errors.",
+      "Impact: Replaced manual issue and improvement checks, which exceeded 30 items per week during the month before release, with overnight automated runs and morning-ready reports, contributing to team performance.",
+      "Impact: Created an operating model that served developers, non-developers, and managers with separate reporting views, and supported company-wide adoption through Agent AI training sessions held at least once a week for two months."
     ],
     metrics: [
       {
-        label: "개발 방식",
-        labelEn: "Development Approach",
-        value: "바이브 코딩 기반 반복 개선",
-        valueEn: "Iterative improvement with vibe coding"
+        label: "테스트 공수 절감",
+        labelEn: "QA Effort Reduction",
+        value: "약 70%",
+        valueEn: "About 70%"
       },
       {
-        label: "자동화 실행 커맨드",
-        labelEn: "Automation Commands",
-        value: "qa:unit, qa:discover-menus",
-        valueEn: "qa:unit, qa:discover-menus"
+        label: "이슈 확인 규모",
+        labelEn: "Issue Review Volume",
+        value: "릴리즈 전 1개월간 주 30건 이상",
+        valueEn: "30+ issues per week during the month before release"
       },
       {
-        label: "결과 검증 기준",
-        labelEn: "Result Validation Standard",
-        value: "JSON/HTML 리포트 + 종료 메시지 확인",
-        valueEn: "JSON/HTML reports + completion summary check"
+        label: "재현 자료 자동화",
+        labelEn: "Reproducible Error Reporting",
+        value: "500 에러 발생 시 재현 가능한 자료 자동 작성",
+        valueEn: "Automatically generates reproducible materials for HTTP 500 errors"
+      },
+      {
+        label: "교육 확산",
+        labelEn: "Internal Enablement",
+        value: "2개월간 주 1회 이상, 회당 1시간 이상 교육 진행",
+        valueEn: "1+ session per week for 2 months, 1+ hour each"
+      },
+      {
+        label: "운영 대상",
+        labelEn: "Current Application",
+        value: "표준 솔루션 릴리즈 QA 적용 중",
+        valueEn: "Currently used for standard solution release QA"
       }
     ],
     isPending: true
