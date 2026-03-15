@@ -28,6 +28,7 @@ export default function App() {
     localizedMetrics,
     summaryQuick,
     heroProofs,
+    featuredProjects,
     projectGroups,
     capabilityPillars,
     stackGroups,
@@ -188,10 +189,12 @@ export default function App() {
           localizedMetrics={localizedMetrics}
           summaryQuick={summaryQuick}
           heroProofs={heroProofs}
+          featuredProjects={featuredProjects}
           scanHierarchy={scanHierarchy}
         />
         <ProjectsHubSection
           t={t}
+          featuredProjects={featuredProjects}
           projectGroups={projectGroups}
           projectCardLabels={projectCardLabels}
         />

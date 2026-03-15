@@ -22,12 +22,11 @@ import {
   resolvePendingStatus,
   resolveProjectCategory,
   resolveProjectTrack,
-  resolveTenureYearLabel
+  resolveTenureYearLabel,
+  splitProjectNarrative,
+  stripContributionPrefix
 } from "./lib/modelHelpers";
-
-const CONTRIBUTION_PREFIX_PATTERN = /^(문제|역할|영향|Problem|Role|Impact)\s*:\s*/;
-
-const stripContributionPrefix = (value) => String(value ?? "").replace(CONTRIBUTION_PREFIX_PATTERN, "").trim();
+const FEATURED_TRACK_ORDER = { scm: 0, qa: 1, team: 2 };
 
 export default function usePortfolioHomeModel({ lang, t }) {
   const localize = useMemo(() => createLocalize(lang), [lang]);
@@ -121,7 +120,7 @@ export default function usePortfolioHomeModel({ lang, t }) {
     [localize, localizeList]
   );
 
-  const workProjects = useMemo(
+  const allWorkProjects = useMemo(
     () => localizedProjects.filter((project) => project.category === "work"),
     [localizedProjects]
   );
@@ -129,8 +128,39 @@ export default function usePortfolioHomeModel({ lang, t }) {
   const sortProjects = (projects) =>
     [...projects].sort((a, b) => Number(b.isFeatured) - Number(a.isFeatured) || byLatestPeriod(a, b));
 
+  const featuredProjects = useMemo(
+    () =>
+      [...localizedProjects]
+        .filter((project) => project.isFeatured)
+        .sort(
+          (a, b) =>
+            (FEATURED_TRACK_ORDER[a.track] ?? Number.MAX_SAFE_INTEGER) -
+              (FEATURED_TRACK_ORDER[b.track] ?? Number.MAX_SAFE_INTEGER) ||
+            byLatestPeriod(a, b)
+        )
+        .map((project) => {
+          const narrative = splitProjectNarrative(project.contributions);
+          const normalizedContributions = project.contributions.map(stripContributionPrefix).filter(Boolean);
+
+          return {
+            ...project,
+            caseStudy: {
+              problem: narrative.problem ?? normalizedContributions[0] ?? "",
+              roles: narrative.roles.length ? narrative.roles : normalizedContributions.slice(0, 2),
+              impacts: narrative.impacts.length ? narrative.impacts : normalizedContributions.slice(2, 4)
+            }
+          };
+        }),
+    [localizedProjects]
+  );
+
+  const workProjects = useMemo(
+    () => allWorkProjects.filter((project) => !project.isFeatured),
+    [allWorkProjects]
+  );
+
   const teamProjects = useMemo(
-    () => sortProjects(localizedProjects.filter((project) => project.category === "team")),
+    () => sortProjects(localizedProjects.filter((project) => project.category === "team" && !project.isFeatured)),
     [localizedProjects]
   );
 
@@ -145,8 +175,8 @@ export default function usePortfolioHomeModel({ lang, t }) {
   );
 
   const highlightedProjects = useMemo(
-    () => sortProjects(workProjects).slice(0, 2),
-    [workProjects]
+    () => featuredProjects.slice(0, 2),
+    [featuredProjects]
   );
 
   const projectGroups = useMemo(
@@ -177,8 +207,8 @@ export default function usePortfolioHomeModel({ lang, t }) {
   );
 
   const localizedExperience = useMemo(() => {
-    const scmCount = workProjects.filter((project) => project.track === "scm").length;
-    const qaCount = workProjects.filter((project) => project.track === "qa").length;
+    const scmCount = allWorkProjects.filter((project) => project.track === "scm").length;
+    const qaCount = allWorkProjects.filter((project) => project.track === "qa").length;
     const mixTemplate =
       t.workProjectMixText ??
       (lang === "en"
@@ -197,7 +227,7 @@ export default function usePortfolioHomeModel({ lang, t }) {
         bullets: bullets[0] === mixText ? bullets : [mixText, ...bullets]
       };
     });
-  }, [lang, localize, localizeList, t.workProjectMixText, workProjects]);
+  }, [allWorkProjects, lang, localize, localizeList, t.workProjectMixText]);
 
   const localizedEducation = useMemo(
     () => localizeTimelineItems(EDUCATION, localize, localizeList),
@@ -280,9 +310,12 @@ export default function usePortfolioHomeModel({ lang, t }) {
 
   const projectCardLabels = useMemo(
     () => ({
-      ...t.projectCard
+      ...t.projectCard,
+      caseProblemLabel: t.caseProblemLabel,
+      caseRoleLabel: t.caseRoleLabel,
+      caseImpactLabel: t.caseImpactLabel
     }),
-    [t.projectCard]
+    [t.caseImpactLabel, t.caseProblemLabel, t.caseRoleLabel, t.projectCard]
   );
 
   return {
@@ -291,6 +324,7 @@ export default function usePortfolioHomeModel({ lang, t }) {
     scanHierarchy,
     localizedMetrics,
     heroProofs,
+    featuredProjects,
     projectGroups,
     capabilityPillars,
     stackGroups,

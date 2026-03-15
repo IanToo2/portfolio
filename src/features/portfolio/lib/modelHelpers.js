@@ -6,6 +6,15 @@ import {
 } from "../../../data/portfolioData";
 
 const DATE_PATTERN = /(20\d{2})\.(0[1-9]|1[0-2])/g;
+const CONTRIBUTION_PREFIX_PATTERN = /^(문제|역할|영향|Problem|Role|Impact)\s*:\s*/;
+const CONTRIBUTION_BUCKET_BY_PREFIX = {
+  문제: "problem",
+  Problem: "problem",
+  역할: "roles",
+  Role: "roles",
+  영향: "impacts",
+  Impact: "impacts"
+};
 
 export const normalizeToken = (value) =>
   String(value ?? "")
@@ -17,6 +26,35 @@ export const createProjectId = (project) => {
   const periodToken = normalizeToken(project.periodEn ?? project.period ?? "period");
   return `${nameToken}-${periodToken}`;
 };
+
+export const stripContributionPrefix = (value) =>
+  String(value ?? "").replace(CONTRIBUTION_PREFIX_PATTERN, "").trim();
+
+export const splitProjectNarrative = (contributions = []) =>
+  contributions.reduce(
+    (acc, contribution) => {
+      const text = String(contribution ?? "").trim();
+      const matchedPrefix = text.match(/^(문제|역할|영향|Problem|Role|Impact)\s*:/)?.[1];
+      const normalizedText = stripContributionPrefix(text);
+
+      if (!matchedPrefix || !normalizedText) {
+        if (normalizedText) {
+          acc.notes.push(normalizedText);
+        }
+        return acc;
+      }
+
+      const bucket = CONTRIBUTION_BUCKET_BY_PREFIX[matchedPrefix];
+      if (bucket === "problem") {
+        acc.problem = acc.problem ?? normalizedText;
+        return acc;
+      }
+
+      acc[bucket].push(normalizedText);
+      return acc;
+    },
+    { problem: null, roles: [], impacts: [], notes: [] }
+  );
 
 export const periodOrderKey = (periodText) => {
   const matches = [...String(periodText ?? "").matchAll(DATE_PATTERN)];

@@ -1,9 +1,11 @@
 import { useMemo, useState } from "react";
 import ProjectCard from "../../../components/ProjectCard";
+import FeaturedCaseStudyCard from "./FeaturedCaseStudyCard";
 import PortfolioSection from "./PortfolioSection";
 
 export default function ProjectsHubSection({
   t,
+  featuredProjects,
   projectGroups,
   projectCardLabels
 }) {
@@ -28,6 +30,23 @@ export default function ProjectsHubSection({
           <strong>{t.projectsConsoleSummary}</strong>
         </div>
       </div>
+
+      {featuredProjects.length ? (
+        <section className="featured-case-panel" data-breakpoint="true">
+          <div className="featured-case-panel-head">
+            <div className="project-group-head">
+              <p>{t.featuredHead}</p>
+              <strong>{t.featuredSub}</strong>
+            </div>
+          </div>
+
+          <div className="featured-case-grid">
+            {featuredProjects.map((project) => (
+              <FeaturedCaseStudyCard key={project.id} project={project} labels={projectCardLabels} />
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section className="projects-group-panel" data-breakpoint="true">
         <div className="supporting-work-head">

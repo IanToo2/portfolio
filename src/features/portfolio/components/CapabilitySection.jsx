@@ -43,7 +43,6 @@ export default function CapabilitySection({ t, capabilityPillars, stackGroups })
               <div key={group.title} className="stack-row">
                 <div className="stack-row-head">
                   <h3>{group.title}</h3>
-                  <span>{group.proficiency}%</span>
                 </div>
                 <div className="stack-meter" aria-label={`${group.title} ${group.proficiency}%`}>
                   <div className="stack-meter-bar" style={{ width: `${group.proficiency}%` }} />

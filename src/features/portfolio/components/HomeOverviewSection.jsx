@@ -7,6 +7,7 @@ export default function HomeOverviewSection({
   localizedMetrics,
   summaryQuick,
   heroProofs,
+  featuredProjects,
   scanHierarchy
 }) {
   return (
@@ -62,6 +63,25 @@ export default function HomeOverviewSection({
                   <strong>{item.value}</strong>
                 </li>
               ))}
+            </ul>
+          </section>
+
+          <section className="home-summary-block">
+            <div className="home-card-head">
+              <p>{t.summaryCaseStudyTitle}</p>
+              <Icon type="route" />
+            </div>
+            <ul className="home-inline-list home-inline-list--featured">
+              {featuredProjects.slice(0, 2).map((project) => {
+                const leadMetric = project.metrics?.[0];
+
+                return (
+                  <li key={project.id}>
+                    <span>{project.name}</span>
+                    <strong>{leadMetric ? `${leadMetric.label}: ${leadMetric.value}` : project.period}</strong>
+                  </li>
+                );
+              })}
             </ul>
           </section>
         </div>

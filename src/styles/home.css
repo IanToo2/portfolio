@@ -1,12 +1,14 @@
 .home-hero-card,
 .home-snapshot-panel,
 .home-scan-panel,
+.featured-case-panel,
 .projects-group-panel,
 .capability-story-panel,
 .capability-tool-panel,
 .career-column-card,
 .contact-card,
-.project-card {
+.project-card,
+.featured-case-card {
   border: 1px solid rgba(148, 163, 184, 0.14);
   border-radius: var(--radius-xl);
   background: rgba(255, 255, 255, 0.72);
@@ -116,7 +118,7 @@
 .home-summary-band {
   margin-top: 1.5rem;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.8rem;
 }
 
@@ -194,6 +196,7 @@
 }
 
 .home-inline-list--proof strong,
+.home-inline-list--featured strong,
 .home-fact-row strong,
 .contact-row strong,
 .career-summary-group li strong,
@@ -208,6 +211,7 @@
 }
 
 .home-inline-list--proof strong,
+.home-inline-list--featured strong,
 .home-fact-row strong,
 .contact-row strong,
 .career-summary-group li strong,
@@ -223,6 +227,7 @@
 
 .home-snapshot-panel,
 .home-scan-panel,
+.featured-case-panel,
 .projects-console-bar,
 .projects-group-panel,
 .capability-story-panel,
@@ -238,6 +243,7 @@
 }
 
 .projects-console-bar,
+.featured-case-panel,
 .projects-group-panel,
 .supporting-work-head,
 .supporting-work-panel,
@@ -246,8 +252,64 @@
   gap: 1rem;
 }
 
+.featured-case-panel,
 .projects-group-panel {
   margin-top: 1rem;
+}
+
+.home-inline-list--featured li {
+  display: grid;
+  gap: 0.28rem;
+}
+
+.home-inline-list--featured span {
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.featured-case-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.featured-case-card {
+  padding: 1.2rem;
+  display: grid;
+  gap: 1rem;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(241, 246, 255, 0.92)),
+    radial-gradient(22rem 18rem at 0% 0%, rgba(49, 130, 246, 0.08), transparent 65%);
+}
+
+.featured-case-headline,
+.featured-case-body {
+  display: grid;
+  gap: 0.95rem;
+}
+
+.featured-case-body {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.featured-case-section {
+  padding: 1rem;
+  border-radius: 1.2rem;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.featured-case-problem {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.94rem;
+  line-height: 1.7;
+}
+
+.featured-case-scope {
+  color: var(--ink-soft);
 }
 
 .projects-console-stats {
@@ -382,6 +444,10 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.7rem;
+}
+
+.project-metrics--featured .project-metrics-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .project-metric-item {
@@ -571,6 +637,12 @@
 }
 
 @media (max-width: 1080px) {
+  .home-summary-band {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .featured-case-grid,
+  .featured-case-body,
   .home-detail-grid,
   .capability-reboot-grid--condensed,
   .career-reboot-grid,
@@ -584,18 +656,21 @@
   .home-hero-card,
   .home-snapshot-panel,
   .home-scan-panel,
+  .featured-case-panel,
   .projects-group-panel,
   .capability-story-panel,
   .capability-tool-panel,
   .career-column-card,
   .contact-card,
-  .project-card {
+  .project-card,
+  .featured-case-card {
     border-radius: 1.55rem;
   }
 
   .home-hero-card,
   .home-snapshot-panel,
   .home-scan-panel,
+  .featured-case-panel,
   .projects-console-bar,
   .projects-group-panel,
   .capability-story-panel,
@@ -607,6 +682,7 @@
 
   .home-summary-band,
   .timeline-row,
+  .project-metrics--featured .project-metrics-grid,
   .project-metrics-grid {
     grid-template-columns: 1fr;
   }
