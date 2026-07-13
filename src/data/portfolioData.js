@@ -682,11 +682,11 @@ export const PROJECTS = [
       {
         label: "진행 상태",
         labelEn: "Current Status",
-        value: "릴리즈 QA 진행중",
-        valueEn: "Release QA in progress"
+        value: "4월 릴리즈 QA 완료",
+        valueEn: "April release QA completed"
       }
     ],
-    isPending: true
+    isPending: false
   },
   {
     category: PROJECT_CATEGORY.WORK,
