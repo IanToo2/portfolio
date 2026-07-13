@@ -10,7 +10,10 @@ export default function PortfolioTopBar({
   langSwitchAriaLabel,
   switchLang,
   switchLabel,
-  statusLabel
+  statusLabel,
+  resumeHref,
+  resumeLabel,
+  resumeAriaLabel
 }) {
   return (
     <header className={`portfolio-topbar ${className}`.trim()}>
@@ -50,6 +53,11 @@ export default function PortfolioTopBar({
           <span className="portfolio-status-dot" aria-hidden="true" />
           {statusLabel}
         </span>
+        {resumeHref ? (
+          <a className="portfolio-resume-link" href={resumeHref} aria-label={resumeAriaLabel}>
+            {resumeLabel}
+          </a>
+        ) : null}
         <button className="portfolio-lang-switch" type="button" onClick={switchLang} aria-label={langSwitchAriaLabel}>
           {switchLabel}
         </button>

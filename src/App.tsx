@@ -7,10 +7,12 @@ import HomeOverviewSection from "./features/portfolio/components/HomeOverviewSec
 import PortfolioIntroOverlay from "./features/portfolio/components/PortfolioIntroOverlay";
 import PortfolioTopBar from "./features/portfolio/components/PortfolioTopBar";
 import ProjectsHubSection from "./features/portfolio/components/ProjectsHubSection";
+import ResumeDocument from "./features/portfolio/document/ResumeDocument";
 import useActiveSection from "./hooks/useActiveSection";
 import usePortfolioPdfExport from "./hooks/usePortfolioPdfExport";
 import usePortfolioScrollExperience from "./hooks/usePortfolioScrollExperience";
 import usePortfolioHomeModel from "./features/portfolio/usePortfolioHomeModel";
+import useViewMode from "./hooks/useViewMode";
 import useViewportFlags from "./hooks/useViewportFlags";
 
 export default function App() {
@@ -37,6 +39,8 @@ export default function App() {
     projectCardLabels
   } = usePortfolioHomeModel({ lang, t });
 
+  const { viewMode, resumeHref, showCard } = useViewMode();
+  const isDocument = viewMode === "document";
   const { showTopButton } = useViewportFlags();
   const sectionIds = useMemo(() => navItems.map((item) => item.id), [navItems]);
   const { activeSection, setActiveSection } = useActiveSection(sectionIds);
@@ -124,11 +128,22 @@ export default function App() {
       return undefined;
     }
 
-    document.body.classList.toggle("is-intro-active", isIntroScrollLocked);
+    document.body.classList.toggle("is-intro-active", !isDocument && isIntroScrollLocked);
     return () => document.body.classList.remove("is-intro-active");
-  }, [isIntroScrollLocked]);
+  }, [isDocument, isIntroScrollLocked]);
 
-  usePortfolioScrollExperience({ enabled: introPhase === "leaving" || introPhase === "done" });
+  useEffect(() => {
+    if (typeof document === "undefined") {
+      return undefined;
+    }
+
+    document.body.classList.toggle("is-resume-view", isDocument);
+    return () => document.body.classList.remove("is-resume-view");
+  }, [isDocument]);
+
+  usePortfolioScrollExperience({
+    enabled: !isDocument && (introPhase === "leaving" || introPhase === "done")
+  });
 
   const handleMenuKeyDown = useCallback((event: KeyboardEvent<HTMLAnchorElement>, index: number) => {
     const { key } = event;
@@ -157,6 +172,32 @@ export default function App() {
     navLinkRefs.current[nextIndex]?.focus();
   }, []);
 
+  if (isDocument) {
+    return (
+      <>
+        <a className="skip-link" href="#home">{t.skipToMain}</a>
+        <ResumeDocument
+          t={t}
+          localizedProfile={localizedProfile}
+          summaryQuick={summaryQuick}
+          featuredProjects={featuredProjects}
+          projectGroups={projectGroups}
+          stackGroups={stackGroups}
+          localizedExperience={localizedExperience}
+          learningGroups={learningGroups}
+          projectCardLabels={projectCardLabels}
+          year={year}
+          switchLang={toggleLang}
+          switchLabel={t.switchLang}
+          langSwitchAriaLabel={langSwitchAriaLabel}
+          onExportPdf={exportPortfolioPdf}
+          isExportingPdf={isExportingPdf}
+          onShowCard={showCard}
+        />
+      </>
+    );
+  }
+
   return (
     <>
       <a className="skip-link" href="#home">{t.skipToMain}</a>
@@ -180,6 +221,9 @@ export default function App() {
         switchLang={toggleLang}
         switchLabel={t.switchLang}
         statusLabel={t.navStatus}
+        resumeHref={resumeHref}
+        resumeLabel={t.resumeViewLabel}
+        resumeAriaLabel={t.resumeViewAriaLabel}
       />
 
       <main id="top" className="page-shell page-reveal-group is-visible">

@@ -25,7 +25,12 @@ const BREAKPOINT_SELECTORS = [
   ".career-column-card",
   ".timeline-row",
   ".career-summary-group",
-  ".contact-card"
+  ".contact-card",
+  ".resume-header",
+  ".resume-section",
+  ".resume-subgroup",
+  ".resume-entry",
+  ".resume-project"
 ];
 
 function formatDatePart(value) {

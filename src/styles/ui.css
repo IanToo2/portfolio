@@ -297,6 +297,27 @@ body.is-intro-active {
   background: rgba(255, 255, 255, 0.92);
 }
 
+.portfolio-resume-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.6rem;
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(49, 130, 246, 0.22);
+  background: rgba(49, 130, 246, 0.08);
+  color: var(--blue-strong);
+  font-weight: 800;
+  font-size: 0.82rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform 180ms ease, background-color 180ms ease;
+}
+
+.portfolio-resume-link:hover {
+  transform: translateY(-1px);
+  background: rgba(49, 130, 246, 0.14);
+}
+
 .portfolio-section {
   padding: 1.2rem 0 0;
 }
