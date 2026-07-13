@@ -572,17 +572,17 @@ export const PROJECTS = [
     periodEn: "Jun 2026",
     kind: "납품 QA 검증/전달",
     kindEn: "Delivery QA Validation & Handoff",
-    scope: ["납품 전 검증", "기능 검증", "결함 전달"],
-    scopeEn: ["Pre-delivery Validation", "Functional Testing", "Defect Handoff"],
+    scope: ["시나리오 테스트", "단위 테스트", "결함 전달"],
+    scopeEn: ["Scenario Testing", "Unit Testing", "Defect Handoff"],
     tech: [],
     techEn: [],
     contributions: [
-      "SK하이닉스 납품 대상 Cadentia 2.0의 기능·시나리오 기반 QA 검증을 수행",
+      "SK하이닉스 납품 대상 Cadentia 2.0에 대해 시나리오 테스트와 단위 테스트를 수행",
       "납품 전 결함 재현 조건과 영향 범위를 정리해 개발팀에 전달하고 수정 검증을 지원",
       "납품 품질 기준에 맞춰 검증 결과를 문서화해 릴리즈 판단 근거를 제공"
     ],
     contributionsEn: [
-      "Performed scenario-based QA validation for Cadentia 2.0 delivered to SK hynix.",
+      "Performed scenario testing and unit testing for Cadentia 2.0 delivered to SK hynix.",
       "Documented reproducible defect conditions and impact scope before delivery, then handed off to developers and supported fix verification.",
       "Documented validation results against delivery quality criteria to support release decisions."
     ],
@@ -590,8 +590,8 @@ export const PROJECTS = [
       {
         label: "테스트 운영 방식",
         labelEn: "Test Operation Model",
-        value: "시나리오 + 기능 검증 + 개발 전달",
-        valueEn: "Scenario + Functional Test + Developer Handoff"
+        value: "시나리오 + 단위 테스트 + 개발 전달",
+        valueEn: "Scenario + Unit Test + Developer Handoff"
       },
       {
         label: "검증 목적",
@@ -612,26 +612,26 @@ export const PROJECTS = [
     periodEn: "Jul 2026",
     kind: "QA 검증/전달",
     kindEn: "QA Validation & Handoff",
-    scope: ["테스트 시나리오 작성", "기능 검증", "결함 전달"],
-    scopeEn: ["Scenario Design", "Functional Testing", "Defect Handoff"],
+    scope: ["시나리오 테스트", "단위 테스트", "결함 전달"],
+    scopeEn: ["Scenario Testing", "Unit Testing", "Defect Handoff"],
     tech: [],
     techEn: [],
     contributions: [
       "o9 플랫폼 기반 SCM 솔루션의 기능별 테스트 시나리오를 설계하고 검증 케이스를 정리",
-      "시나리오 기반 기능 검증을 수행해 결함 재현 조건과 영향 범위를 명확화",
+      "시나리오 테스트와 단위 테스트를 수행해 결함 재현 조건과 영향 범위를 명확화",
       "결함 원인/재현 절차/영향 범위를 문서화해 개발자에게 전달하고 수정 검증을 지원"
     ],
     contributionsEn: [
       "Designed feature-level test scenarios and organized validation cases for the o9-platform SCM solution.",
-      "Executed scenario-based functional tests, clarifying reproducible defect conditions and impact scope.",
+      "Executed scenario testing and unit testing, clarifying reproducible defect conditions and impact scope.",
       "Documented root cause, reproduction steps, and impact, then handed off findings to developers and supported fix verification."
     ],
     metrics: [
       {
         label: "테스트 운영 방식",
         labelEn: "Test Operation Model",
-        value: "시나리오 + 기능 검증 + 개발 전달",
-        valueEn: "Scenario + Functional Test + Developer Handoff"
+        value: "시나리오 + 단위 테스트 + 개발 전달",
+        valueEn: "Scenario + Unit Test + Developer Handoff"
       },
       {
         label: "대상 플랫폼",
@@ -650,19 +650,21 @@ export const PROJECTS = [
     nameEn: "Cadentia New Release QA",
     period: "2026.02 - 2026.04",
     periodEn: "Feb 2026 - Apr 2026",
-    kind: "QA_HOTFIX 검증/전달",
-    kindEn: "QA_HOTFIX Validation & Handoff",
-    scope: ["요건 검토", "핫픽스 QA", "결함 전달", "수정 검증"],
-    scopeEn: ["Requirement Review", "Hotfix QA", "Defect Handoff", "Fix Verification"],
+    kind: "신규 릴리즈 QA + 핫픽스 검증",
+    kindEn: "New Release QA + Hotfix Validation",
+    scope: ["시나리오 테스트", "단위 테스트", "핫픽스 QA", "결함 전달", "수정 검증"],
+    scopeEn: ["Scenario Testing", "Unit Testing", "Hotfix QA", "Defect Handoff", "Fix Verification"],
     tech: [],
     techEn: [],
     contributions: [
-      "QA_HOTFIX 운영 규칙(High 우선순위, 접수일+3일 마감)을 기준으로 직접 블랙박스 테스트를 수행",
+      "신규 릴리즈 기능에 대해 시나리오 테스트와 단위 테스트를 수행해 결함을 사전 식별",
+      "QA_HOTFIX 운영 규칙(High 우선순위, 접수일+3일 마감)을 기준으로 핫픽스 블랙박스 테스트를 수행",
       "핫픽스 이슈별 재현 조건과 영향 범위를 정리해 개발팀 전달 품질을 표준화",
       "메인 업무-실행 TODO-산출물 연결 구조를 유지해 QA 이력 추적성과 후속 검증 효율을 강화"
     ],
     contributionsEn: [
-      "Executed hands-on black-box testing under the QA_HOTFIX policy (High priority with a +3-day due window from intake).",
+      "Performed scenario testing and unit testing on new release features to identify defects early.",
+      "Executed hotfix black-box testing under the QA_HOTFIX policy (High priority with a +3-day due window from intake).",
       "Standardized developer handoff quality by documenting reproducible conditions and impact scope per hotfix issue.",
       "Improved traceability and follow-up verification efficiency by maintaining links across main tasks, execution TODOs, and deliverables."
     ],
