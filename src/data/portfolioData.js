@@ -160,12 +160,14 @@ export const EXPERIENCE = [
     bullets: [
       "SCM 기능 신규 개발 및 운영 고도화",
       "SAP 연동 데이터 처리 로직 설계 및 안정화",
-      "Oracle 기반 쿼리 최적화와 배치 성능 개선"
+      "Oracle 기반 쿼리 최적화와 배치 성능 개선",
+      "SCHNEIDER POC 참여 (영업 제안용 SCM PoC)"
     ],
     bulletsEn: [
       "Built and stabilized new SCM features.",
       "Designed and stabilized SAP integration and data processing.",
-      "Optimized Oracle queries and improved batch performance."
+      "Optimized Oracle queries and improved batch performance.",
+      "Participated in the SCHNEIDER PoC (pre-sales SCM PoC)."
     ]
   },
   {
@@ -762,40 +764,14 @@ export const PROJECTS = [
     category: PROJECT_CATEGORY.WORK,
     track: PROJECT_TRACK.SCM,
     isFeatured: false,
-    name: "SCHNEIDER POC 프로젝트",
-    nameEn: "SCHNEIDER PoC Project",
-    period: "2025.10 - 2025.11",
-    periodEn: "Oct 2025 - Nov 2025",
-    kind: "영업 제안용 PoC",
-    kindEn: "Pre-sales PoC",
-    scope: ["역할/범위 입력 예정"],
-    scopeEn: ["To be defined"],
-    tech: ["Java", "Spring", "MyBatis", "Jenkins", "Git", "GitLab", "Polymer", "JavaScript", "PostgreSQL"],
-    techEn: ["Java", "Spring", "MyBatis", "Jenkins", "Git", "GitLab", "Polymer", "JavaScript", "PostgreSQL"],
-    contributions: ["핵심 기여 입력 예정"],
-    contributionsEn: ["Key contributions to be updated."],
-    metrics: [
-      {
-        label: "상태",
-        labelEn: "Status",
-        value: "제안 단계",
-        valueEn: "Proposal phase"
-      }
-    ],
-    isPending: true
-  },
-  {
-    category: PROJECT_CATEGORY.WORK,
-    track: PROJECT_TRACK.SCM,
-    isFeatured: false,
     name: "SMARTSUITE 1.0 수출입 모듈 개발",
     nameEn: "SMARTSUITE 1.0 Import/Export Module",
     period: "2025.12 - 2026.02",
     periodEn: "Dec 2025 - Feb 2026",
     kind: "수출입 모듈 프로젝트",
     kindEn: "Import/Export Module Project",
-    scope: ["역할/범위 입력 예정"],
-    scopeEn: ["To be defined"],
+    scope: ["B/L·L/G·Invoice 모듈 개발", "프론트엔드·백엔드"],
+    scopeEn: ["B/L, L/G, Invoice module development", "Frontend & Backend"],
     tech: ["JavaScript", "Java", "Spring", "MyBatis", "Polymer", "SVN", "PostgreSQL"],
     techEn: ["JavaScript", "Java", "Spring", "MyBatis", "Polymer", "SVN", "PostgreSQL"],
     contributions: [
