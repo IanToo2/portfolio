@@ -400,21 +400,21 @@ export const PROJECTS = [
     tech: ["Java", "Spring", "MyBatis", "Jenkins", "Git", "GitLab", "Polymer", "JavaScript", "PostgreSQL"],
     techEn: ["Java", "Spring", "MyBatis", "Jenkins", "Git", "GitLab", "Polymer", "JavaScript", "PostgreSQL"],
     contributions: [
-      "문제: SCM v7→v9 전환에서 DB 이관, SQL 차이, 연계 영향도를 동시에 통제해야 했음",
-      "역할: Oracle→PostgreSQL 전환 작업, 회귀 테스트, 운영 체크리스트 정리를 수행",
-      "영향: 메이저 도메인 4개를 안정적으로 전환하고 개발~운영 전달 흐름에 기여"
+      "문제: SCM v7→v9 전환에서 담당 모듈의 DB 이관, SQL 차이, 연계 영향도를 함께 통제해야 했음",
+      "역할: 담당한 입고/마감 모듈의 Oracle→PostgreSQL 전환 작업, 회귀 테스트, 운영 체크리스트 정리를 수행",
+      "영향: 담당한 입고/마감 모듈을 안정적으로 전환하고 개발~운영 전달 흐름에 기여"
     ],
     contributionsEn: [
-      "Problem: SCM v7 to v9 migration demanded simultaneous control of DB migration, SQL differences, and integration impact.",
-      "Role: Performed Oracle-to-PostgreSQL migration, regression testing, and ops checklist preparation.",
-      "Impact: Delivered stable migration across four core domains and contributed to the development-to-operations handoff flow."
+      "Problem: The SCM v7-to-v9 migration required controlling DB migration, SQL differences, and integration impact for the module in scope.",
+      "Role: Performed Oracle-to-PostgreSQL migration, regression testing, and ops checklist preparation for the inbound/closing module I owned.",
+      "Impact: Delivered a stable migration of the inbound/closing module I owned and contributed to the development-to-operations handoff flow."
     ],
     metrics: [
       {
-        label: "시스템 전환 범위",
-        labelEn: "Migration scope",
-        value: "메이저 도메인 4개",
-        valueEn: "4 core domains migrated"
+        label: "전환 담당 모듈",
+        labelEn: "Module owned",
+        value: "입고/마감 (Oracle→PostgreSQL)",
+        valueEn: "Inbound/Closing (Oracle→PostgreSQL)"
       },
       {
         label: "기여 단계",
