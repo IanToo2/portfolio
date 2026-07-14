@@ -542,118 +542,36 @@ export const PROJECTS = [
     category: PROJECT_CATEGORY.WORK,
     track: PROJECT_TRACK.QA,
     isFeatured: false,
-    name: "S-OIL SCM QA 테스트",
-    nameEn: "S-OIL SCM QA Testing",
-    period: "2025.11",
-    periodEn: "Nov 2025",
+    name: "고객사 SCM 솔루션 릴리즈·납품 QA (S-OIL · SK하이닉스 · o9)",
+    nameEn: "Client SCM Solution Release & Delivery QA (S-OIL · SK hynix · o9)",
+    period: "2025.11 - 2026.07",
+    periodEn: "Nov 2025 - Jul 2026",
     kind: "QA 검증/전달",
     kindEn: "QA Validation & Handoff",
-    scope: ["시나리오 테스트", "단위 테스트", "결함 전달"],
-    scopeEn: ["Scenario Testing", "Unit Testing", "Defect Handoff"],
+    scope: ["시나리오 테스트", "단위 테스트", "결함 전달", "수정 검증"],
+    scopeEn: ["Scenario Testing", "Unit Testing", "Defect Handoff", "Fix Verification"],
     tech: [],
     techEn: [],
     contributions: [
-      "개발된 모듈을 대상으로 기능별 시나리오 테스트와 단위 테스트를 수행",
-      "테스트 과정에서 결함 재현 조건과 영향 범위를 명확화",
-      "결함 원인/재현 절차/영향 범위를 문서화해 개발자에게 전달하고 수정 검증을 지원"
+      "다수 고객사 SCM 솔루션의 기능별 시나리오 테스트와 단위 테스트를 수행하고, 결함 재현 조건·영향 범위를 문서화해 개발팀에 전달하고 수정 검증을 지원",
+      "SK하이닉스 Cadentia 2.0은 납품 QA로 진행해 납품 품질 기준에 맞춘 검증 결과로 릴리즈 판단 근거를 제공"
     ],
     contributionsEn: [
-      "Executed feature-level scenario tests and unit tests across implemented modules.",
-      "Clarified reproducible defect conditions and impact scope during testing.",
-      "Documented root cause, reproduction steps, and impact, then handed off findings to developers and supported fix verification."
+      "Performed feature-level scenario and unit testing across multiple clients' SCM solutions, documenting reproducible conditions and impact scope for developer handoff and fix verification.",
+      "Ran the SK hynix Cadentia 2.0 engagement as delivery QA, providing validation results against delivery quality criteria to support release decisions."
     ],
     metrics: [
+      {
+        label: "검증 고객사",
+        labelEn: "Clients validated",
+        value: "S-OIL · SK하이닉스(납품) · o9",
+        valueEn: "S-OIL · SK hynix (delivery) · o9"
+      },
       {
         label: "테스트 운영 방식",
         labelEn: "Test Operation Model",
         value: "시나리오 + 단위 테스트 + 개발 전달",
         valueEn: "Scenario + Unit Test + Developer Handoff"
-      },
-      {
-        label: "결함 전달 기준",
-        labelEn: "Defect Handoff Standard",
-        value: "재현 절차/영향 범위 문서화",
-        valueEn: "Reproduction Steps and Impact Documented"
-      }
-    ],
-    isPending: false
-  },
-  {
-    category: PROJECT_CATEGORY.WORK,
-    track: PROJECT_TRACK.QA,
-    isFeatured: false,
-    name: "SK하이닉스 Cadentia 2.0 납품 QA",
-    nameEn: "SK hynix Cadentia 2.0 Delivery QA",
-    period: "2026.06",
-    periodEn: "Jun 2026",
-    kind: "납품 QA 검증/전달",
-    kindEn: "Delivery QA Validation & Handoff",
-    scope: ["시나리오 테스트", "단위 테스트", "결함 전달"],
-    scopeEn: ["Scenario Testing", "Unit Testing", "Defect Handoff"],
-    tech: [],
-    techEn: [],
-    contributions: [
-      "SK하이닉스 납품 대상 Cadentia 2.0에 대해 시나리오 테스트와 단위 테스트를 수행",
-      "납품 전 결함 재현 조건과 영향 범위를 정리해 개발팀에 전달하고 수정 검증을 지원",
-      "납품 품질 기준에 맞춰 검증 결과를 문서화해 릴리즈 판단 근거를 제공"
-    ],
-    contributionsEn: [
-      "Performed scenario testing and unit testing for Cadentia 2.0 delivered to SK hynix.",
-      "Documented reproducible defect conditions and impact scope before delivery, then handed off to developers and supported fix verification.",
-      "Documented validation results against delivery quality criteria to support release decisions."
-    ],
-    metrics: [
-      {
-        label: "테스트 운영 방식",
-        labelEn: "Test Operation Model",
-        value: "시나리오 + 단위 테스트 + 개발 전달",
-        valueEn: "Scenario + Unit Test + Developer Handoff"
-      },
-      {
-        label: "검증 목적",
-        labelEn: "Validation Purpose",
-        value: "납품 전 품질 검증",
-        valueEn: "Pre-delivery quality validation"
-      }
-    ],
-    isPending: false
-  },
-  {
-    category: PROJECT_CATEGORY.WORK,
-    track: PROJECT_TRACK.QA,
-    isFeatured: false,
-    name: "o9 플랫폼 SCM 솔루션 QA",
-    nameEn: "o9 Platform SCM Solution QA",
-    period: "2026.07",
-    periodEn: "Jul 2026",
-    kind: "QA 검증/전달",
-    kindEn: "QA Validation & Handoff",
-    scope: ["시나리오 테스트", "단위 테스트", "결함 전달"],
-    scopeEn: ["Scenario Testing", "Unit Testing", "Defect Handoff"],
-    tech: [],
-    techEn: [],
-    contributions: [
-      "o9 플랫폼 기반 SCM 솔루션의 기능별 시나리오 테스트와 단위 테스트를 수행",
-      "테스트 과정에서 결함 재현 조건과 영향 범위를 명확화",
-      "결함 원인/재현 절차/영향 범위를 문서화해 개발자에게 전달하고 수정 검증을 지원"
-    ],
-    contributionsEn: [
-      "Executed feature-level scenario tests and unit tests for the o9-platform SCM solution.",
-      "Clarified reproducible defect conditions and impact scope during testing.",
-      "Documented root cause, reproduction steps, and impact, then handed off findings to developers and supported fix verification."
-    ],
-    metrics: [
-      {
-        label: "테스트 운영 방식",
-        labelEn: "Test Operation Model",
-        value: "시나리오 + 단위 테스트 + 개발 전달",
-        valueEn: "Scenario + Unit Test + Developer Handoff"
-      },
-      {
-        label: "대상 플랫폼",
-        labelEn: "Target Platform",
-        value: "o9 기반 SCM 솔루션",
-        valueEn: "o9-based SCM solution"
       }
     ],
     isPending: false
