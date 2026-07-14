@@ -362,19 +362,19 @@ export const PROJECTS = [
     contributions: [
       "문제: 인터페이스 중복 데이터와 연계 오류로 장애 재발 위험이 높았음",
       "역할: SAP MM11/MM18 연동·적재 로직, 중복 데이터 처리, 결재 연동 설정을 개발",
-      "영향: 핵심 인터페이스 중단 이슈를 제거하고 계약 단가 모니터링 기능 4개를 운영에 안착"
+      "영향: 담당한 SAP MM 인터페이스 연동을 안정화하고 계약 단가 모니터링 기능 4개를 운영에 반영"
     ],
     contributionsEn: [
       "Problem: Repeated failures were likely due to duplicated interface data and integration errors.",
       "Role: Implemented SAP MM11/MM18 integration/load logic, deduplication handling, and approval integration settings.",
-      "Impact: Removed major interface interruption issues and stabilized four contract-price monitoring capabilities."
+      "Impact: Stabilized the SAP MM interface integration I owned and delivered four contract-price monitoring capabilities into operations."
     ],
     metrics: [
       {
-        label: "인터페이스 중단 장애",
-        labelEn: "Interface incidents",
-        value: "0회 수준으로 감소",
-        valueEn: "Reduced interface incidents"
+        label: "SAP MM 인터페이스 연동",
+        labelEn: "SAP MM interface integration",
+        value: "중복 데이터·연계 오류 해소",
+        valueEn: "Resolved duplicate data and integration errors"
       },
       {
         label: "고도화 항목",
