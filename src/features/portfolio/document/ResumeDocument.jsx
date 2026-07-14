@@ -85,7 +85,7 @@ export default function ResumeDocument({
   featuredProjects,
   projectGroups,
   stackGroups,
-  localizedExperience,
+  experienceGroups,
   learningGroups,
   projectCardLabels,
   year,
@@ -186,17 +186,22 @@ export default function ResumeDocument({
             </div>
           </section>
 
-          {localizedExperience.length ? (
+          {experienceGroups.length ? (
             <section className="resume-section">
               <h2 className="resume-section-title">{t.timelineTitles.work}</h2>
-              {localizedExperience.map((entry, index) => (
-                <ResumeEntry
-                  key={index}
-                  period={entry.period}
-                  primary={entry.organization}
-                  secondary={entry.title}
-                  bullets={entry.bullets}
-                />
+              {experienceGroups.map((group) => (
+                <div className="resume-company-group" key={group.company}>
+                  <h3 className="resume-company-name">{group.company}</h3>
+                  {group.items.map((entry, index) => (
+                    <ResumeEntry
+                      key={index}
+                      period={entry.period}
+                      primary={entry.department}
+                      secondary={entry.title}
+                      bullets={entry.bullets}
+                    />
+                  ))}
+                </div>
               ))}
             </section>
           ) : null}

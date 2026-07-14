@@ -216,18 +216,46 @@ export default function usePortfolioHomeModel({ lang, t }) {
         : "SCM 프로젝트 {scm}건 · QA 프로젝트 {qa}건");
     const mixText = mixTemplate.replace("{scm}", String(scmCount)).replace("{qa}", String(qaCount));
 
-    return localizeTimelineItems(EXPERIENCE, localize, localizeList).map((item) => {
+    return EXPERIENCE.map((item) => {
+      const company = localize(item, "company");
+      const department = localize(item, "department");
+      const localized = {
+        ...item,
+        period: localize(item, "period"),
+        company,
+        department,
+        organization: [company, department].filter(Boolean).join(" "),
+        title: localize(item, "title"),
+        bullets: localizeList(item, "bullets")
+      };
+
       if (!item.injectProjectMix) {
-        return item;
+        return localized;
       }
 
-      const bullets = Array.isArray(item.bullets) ? item.bullets : [];
+      const bullets = Array.isArray(localized.bullets) ? localized.bullets : [];
       return {
-        ...item,
+        ...localized,
         bullets: bullets[0] === mixText ? bullets : [mixText, ...bullets]
       };
     });
   }, [allWorkProjects, lang, localize, localizeList, t.workProjectMixText]);
+
+  const experienceGroups = useMemo(() => {
+    const order = [];
+    const byCompany = new Map();
+
+    localizedExperience.forEach((item) => {
+      const key = item.company ?? "";
+      if (!byCompany.has(key)) {
+        byCompany.set(key, { company: item.company, items: [] });
+        order.push(key);
+      }
+      byCompany.get(key).items.push(item);
+    });
+
+    return order.map((key) => byCompany.get(key));
+  }, [localizedExperience]);
 
   const localizedEducation = useMemo(
     () => localizeTimelineItems(EDUCATION, localize, localizeList),
@@ -329,6 +357,7 @@ export default function usePortfolioHomeModel({ lang, t }) {
     capabilityPillars,
     stackGroups,
     localizedExperience,
+    experienceGroups,
     learningGroups,
     summaryQuick,
     projectCardLabels

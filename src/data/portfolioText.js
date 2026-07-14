@@ -122,7 +122,7 @@ export const TEXT = {
       copyBody: "안녕하세요, 포트폴리오를 보고 연락드립니다."
     },
     timelineTitles: {
-      work: "실무 경력",
+      work: "경력",
       education: "학력",
       training: "교육 이력",
       awards: "수상 이력",
@@ -252,7 +252,7 @@ export const TEXT = {
       copyBody: "Hello, I read your portfolio and would like to discuss a potential opportunity."
     },
     timelineTitles: {
-      work: "Work Experience",
+      work: "Experience",
       education: "Education",
       training: "Training",
       awards: "Awards",

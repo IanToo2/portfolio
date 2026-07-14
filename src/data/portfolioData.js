@@ -153,8 +153,10 @@ export const EXPERIENCE = [
   {
     period: "2024.09 - 현재",
     periodEn: "Sep 2024 - Present",
-    organization: "EMRO 솔루션사업본부",
-    organizationEn: "EMRO Solution Business Division",
+    company: "EMRO",
+    companyEn: "EMRO",
+    department: "솔루션사업본부",
+    departmentEn: "Solution Business Division",
     title: "SCM Developer",
     titleEn: "SCM Developer",
     injectProjectMix: true,
@@ -174,8 +176,10 @@ export const EXPERIENCE = [
   {
     period: "2026.02 - 2026.10",
     periodEn: "Feb 2026 - Oct 2026",
-    organization: "EMRO 솔루션개발본부",
-    organizationEn: "EMRO Solution Development Division",
+    company: "EMRO",
+    companyEn: "EMRO",
+    department: "솔루션개발본부",
+    departmentEn: "Solution Development Division",
     title: "QA 품질그룹 지원",
     titleEn: "QA Quality Group Support",
     bullets: [

@@ -35,6 +35,7 @@ export default function App() {
     capabilityPillars,
     stackGroups,
     localizedExperience,
+    experienceGroups,
     learningGroups,
     projectCardLabels
   } = usePortfolioHomeModel({ lang, t });
@@ -183,7 +184,7 @@ export default function App() {
           featuredProjects={featuredProjects}
           projectGroups={projectGroups}
           stackGroups={stackGroups}
-          localizedExperience={localizedExperience}
+          experienceGroups={experienceGroups}
           learningGroups={learningGroups}
           projectCardLabels={projectCardLabels}
           year={year}
