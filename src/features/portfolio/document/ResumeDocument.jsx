@@ -134,9 +134,6 @@ export default function ResumeDocument({
           <header className="resume-header">
             <h1 className="resume-name">{localizedProfile.name}</h1>
             <p className="resume-role">{localizedProfile.role} · {localizedProfile.domain}</p>
-            {localizedProfile.tagline ? (
-              <p className="resume-tagline">{localizedProfile.tagline}</p>
-            ) : null}
             <ul className="resume-contact">
               {localizedProfile.email ? (
                 <li>
