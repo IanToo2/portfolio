@@ -8,9 +8,9 @@ export const PROFILE = {
   tagline: "업무 맥락으로 빠르게 구현하고 안정적으로 운영합니다.",
   taglineEn: "I build systems quickly from business context and keep operations stable.",
   intro:
-    "EMRO에서 SCM 도메인 솔루션 개발을 담당하고 있습니다. 구축·전환·운영 전 과정에서 비즈니스 로직을 명확히 설계하고, 테스트와 검증을 통해 현업이 바로 체감할 수 있는 개선을 만듭니다.",
+    "EMRO에서 SCM 도메인 솔루션 개발을 담당하고 있습니다. 구축·전환·운영 전 과정에서 비즈니스 로직을 정확히 이해해 구현하고, 테스트와 검증을 통해 현업이 바로 체감할 수 있는 개선을 만듭니다.",
   introEn:
-    "I handle solution development in the SCM domain at EMRO. Across implementation, migration, and operations, I design business logic clearly and deliver practical improvements through testing and validation.",
+    "I handle solution development in the SCM domain at EMRO. Across implementation, migration, and operations, I turn business logic into working code and deliver practical improvements through testing and validation.",
   email: "rlawjddla0203@gmail.com",
   github: "https://github.com/IanToo2"
 };
@@ -162,13 +162,13 @@ export const EXPERIENCE = [
     injectProjectMix: true,
     bullets: [
       "SCM 기능 신규 개발 및 운영 고도화",
-      "SAP 연동 데이터 처리 로직 설계 및 안정화",
+      "SAP 연동 데이터 처리 로직 개발 및 안정화",
       "Oracle → PostgreSQL DB 마이그레이션을 프로젝트별로 수행하며 스키마·쿼리 전환과 성능·정합성 검증을 담당",
       "SCHNEIDER POC 참여 (영업 제안용 SCM PoC)"
     ],
     bulletsEn: [
       "Built and stabilized new SCM features.",
-      "Designed and stabilized SAP integration and data processing.",
+      "Developed and stabilized SAP integration and data processing.",
       "Performed Oracle-to-PostgreSQL DB migration across projects, covering schema and query conversion with performance and consistency validation.",
       "Participated in the SCHNEIDER PoC (pre-sales SCM PoC)."
     ]
@@ -361,12 +361,12 @@ export const PROJECTS = [
     techEn: ["Java", "Spring", "MyBatis", "Jenkins", "Git", "GitHub", "Polymer", "JavaScript", "PostgreSQL"],
     contributions: [
       "문제: 인터페이스 중복 데이터와 연계 오류로 장애 재발 위험이 높았음",
-      "역할: SAP MM11/MM18 연동·적재 로직, 중복 데이터 처리, 결재 연동 설정을 설계·구현",
+      "역할: SAP MM11/MM18 연동·적재 로직, 중복 데이터 처리, 결재 연동 설정을 개발",
       "영향: 핵심 인터페이스 중단 이슈를 제거하고 계약 단가 모니터링 기능 4개를 운영에 안착"
     ],
     contributionsEn: [
       "Problem: Repeated failures were likely due to duplicated interface data and integration errors.",
-      "Role: Designed and implemented SAP MM11/MM18 integration/load logic, deduplication handling, and approval integration settings.",
+      "Role: Implemented SAP MM11/MM18 integration/load logic, deduplication handling, and approval integration settings.",
       "Impact: Removed major interface interruption issues and stabilized four contract-price monitoring capabilities."
     ],
     metrics: [
@@ -401,13 +401,13 @@ export const PROJECTS = [
     techEn: ["Java", "Spring", "MyBatis", "Jenkins", "Git", "GitLab", "Polymer", "JavaScript", "PostgreSQL"],
     contributions: [
       "문제: SCM v7→v9 전환에서 DB 이관, SQL 차이, 연계 영향도를 동시에 통제해야 했음",
-      "역할: 전환 로드맵 수립, Oracle→PostgreSQL 검증, 회귀 테스트, 운영 체크리스트 표준화를 주도",
-      "영향: 메이저 도메인 4개를 안정적으로 전환하고 기획~운영 4단계 전달 흐름을 정착"
+      "역할: Oracle→PostgreSQL 전환 작업, 회귀 테스트, 운영 체크리스트 정리를 수행",
+      "영향: 메이저 도메인 4개를 안정적으로 전환하고 개발~운영 전달 흐름에 기여"
     ],
     contributionsEn: [
       "Problem: SCM v7 to v9 migration demanded simultaneous control of DB migration, SQL differences, and integration impact.",
-      "Role: Led migration roadmap planning, Oracle-to-PostgreSQL validation, regression QA, and ops checklist standardization.",
-      "Impact: Delivered stable migration across four core domains and established a four-stage handoff flow from planning to operations."
+      "Role: Performed Oracle-to-PostgreSQL migration, regression testing, and ops checklist preparation.",
+      "Impact: Delivered stable migration across four core domains and contributed to the development-to-operations handoff flow."
     ],
     metrics: [
       {
@@ -419,8 +419,8 @@ export const PROJECTS = [
       {
         label: "기여 단계",
         labelEn: "Delivery stages",
-        value: "기획~운영 4단계",
-        valueEn: "4-stage pipeline: plan~ops"
+        value: "개발~운영",
+        valueEn: "Development to operations"
       }
     ],
     isPending: false
