@@ -219,20 +219,25 @@ export default function ResumeDocument({
             </section>
           ) : null}
 
-          {learningGroups.map((group) => (
-            <section className="resume-section" key={group.id}>
-              <h2 className="resume-section-title">{group.title}</h2>
-              {group.items.map((item, index) => (
-                <ResumeEntry
-                  key={index}
-                  period={item.period}
-                  primary={item.organization || item.title}
-                  secondary={item.organization ? item.title : null}
-                  bullets={item.bullets}
-                />
-              ))}
-            </section>
-          ))}
+          {learningGroups.map((group) => {
+            const titleFirst = group.id === "awards" || group.id === "certifications";
+            return (
+              <section className="resume-section" key={group.id}>
+                <h2 className="resume-section-title">{group.title}</h2>
+                {group.items.map((item, index) => (
+                  <ResumeEntry
+                    key={index}
+                    period={item.period}
+                    primary={titleFirst ? item.title : item.organization || item.title}
+                    secondary={
+                      titleFirst ? item.organization : item.organization ? item.title : null
+                    }
+                    bullets={item.bullets}
+                  />
+                ))}
+              </section>
+            );
+          })}
 
           {localizedProfile.email || localizedProfile.github ? (
             <section className="resume-section">
