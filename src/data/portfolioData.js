@@ -216,17 +216,19 @@ export const TRAINING = [
     periodEn: "Jan 2024 - Sep 2024",
     organization: "삼성청년소프트웨어아카데미(SSAFY)",
     organizationEn: "Samsung Youth Software Academy (SSAFY)",
-    title: "교육과정",
-    titleEn: "Software Education Program",
+    title: "SW 개발자 양성 과정 (Java 트랙)",
+    titleEn: "SW Developer Program (Java Track)",
     bullets: [
       "2024년 1월 ~ 9월 수료",
-      "2회 수상",
-      "팀 프로젝트 2회 진행"
+      "Java 트랙으로 알고리즘·Spring 프레임워크·DB 중심 실무 교육 이수",
+      "팀 프로젝트 2회 진행",
+      "2회 수상"
     ],
     bulletsEn: [
       "Completed in Jan 2024 - Sep 2024",
-      "Received two awards.",
-      "Completed two team projects."
+      "Completed the Java track covering algorithms, the Spring framework, and databases through hands-on training.",
+      "Completed two team projects.",
+      "Received two awards."
     ]
   }
 ];
