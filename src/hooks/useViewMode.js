@@ -1,14 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
 
 const RESUME_HASH = "#/resume";
+const CARD_HASH = "#/card";
 
 function readViewMode() {
   if (typeof window === "undefined") {
-    return "card";
+    return "document";
   }
 
   const hash = window.location.hash.replace(/^#\/?/, "").toLowerCase();
-  return hash.startsWith("resume") ? "document" : "card";
+  // Default entry is the document (resume) view; the card view is opt-in via #/card.
+  return hash.startsWith("card") ? "card" : "document";
 }
 
 export default function useViewMode() {
@@ -29,9 +31,10 @@ export default function useViewMode() {
       return;
     }
 
-    if (window.location.hash !== RESUME_HASH) {
-      window.location.hash = RESUME_HASH;
-    }
+    // Document is the default view, so clear the hash to return to the clean URL.
+    const { pathname, search } = window.location;
+    window.history.replaceState(null, "", pathname + search);
+    setViewMode("document");
   }, []);
 
   const showCard = useCallback(() => {
@@ -39,10 +42,10 @@ export default function useViewMode() {
       return;
     }
 
-    const { pathname, search } = window.location;
-    window.history.replaceState(null, "", pathname + search);
-    setViewMode("card");
+    if (window.location.hash !== CARD_HASH) {
+      window.location.hash = CARD_HASH;
+    }
   }, []);
 
-  return { viewMode, resumeHref: RESUME_HASH, showResume, showCard };
+  return { viewMode, resumeHref: RESUME_HASH, cardHref: CARD_HASH, showResume, showCard };
 }
