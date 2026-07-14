@@ -96,10 +96,10 @@ export const HIGHLIGHTS = [
     icon: "database"
   },
   {
-    title: "팀 프로젝트 백엔드 리드 경험",
-    titleEn: "Backend Leadership in Team Projects",
-    text: "팀 프로젝트에서 백엔드 리드로 API 설계, 인증 체계, 배포 파이프라인을 정비해 개발-배포 흐름을 안정화했습니다.",
-    textEn: "As backend lead, I standardized API design, auth flow, and deployment pipeline to stabilize delivery.",
+    title: "팀 프로젝트 리드 경험",
+    titleEn: "Team Project Leadership",
+    text: "팀 프로젝트 리드로 API 설계, 인증 체계, 배포 파이프라인을 정비해 개발-배포 흐름을 안정화했습니다.",
+    textEn: "As team project lead, I standardized API design, auth flow, and deployment pipeline to stabilize delivery.",
     icon: "route"
   }
 ];
