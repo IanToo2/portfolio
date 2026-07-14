@@ -175,7 +175,7 @@ export default function usePortfolioHomeModel({ lang, t }) {
   );
 
   const highlightedProjects = useMemo(
-    () => featuredProjects.slice(0, 2),
+    () => featuredProjects.slice(0, 3),
     [featuredProjects]
   );
 

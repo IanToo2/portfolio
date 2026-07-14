@@ -729,7 +729,7 @@ export const PROJECTS = [
     ],
     metrics: [
       {
-        label: "릴리즈 QA 공수",
+        label: "릴리즈 QA 공수 절감",
         labelEn: "QA Effort Reduction",
         value: "약 70%",
         valueEn: "About 70%"
