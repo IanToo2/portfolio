@@ -395,19 +395,19 @@ export const PROJECTS = [
     periodEn: "May 2025 - Sep 2025",
     kind: "대규모 전환 프로젝트",
     kindEn: "Enterprise Conversion",
-    scope: ["개발", "테스트", "배포", "운영"],
-    scopeEn: ["Development", "Testing", "Release", "Operations"],
+    scope: ["개발", "테스트"],
+    scopeEn: ["Development", "Testing"],
     tech: ["Java", "Spring", "MyBatis", "Jenkins", "Git", "GitLab", "Polymer", "JavaScript", "PostgreSQL"],
     techEn: ["Java", "Spring", "MyBatis", "Jenkins", "Git", "GitLab", "Polymer", "JavaScript", "PostgreSQL"],
     contributions: [
       "문제: SCM v7→v9 전환에서 담당 모듈의 DB 이관, SQL 차이, 연계 영향도를 함께 통제해야 했음",
-      "역할: 담당한 입고/마감 모듈의 Oracle→PostgreSQL 전환 작업, 회귀 테스트, 운영 체크리스트 정리를 수행",
-      "영향: 담당한 입고/마감 모듈을 안정적으로 전환하고 개발~운영 전달 흐름에 기여"
+      "역할: 담당한 입고/마감 모듈의 Oracle→PostgreSQL 전환 작업과 회귀 테스트를 수행하고 운영 인계용 체크리스트를 정리",
+      "영향: 담당한 입고/마감 모듈을 안정적으로 전환하고 개발·테스트에서 운영 인계까지 전달 흐름에 기여"
     ],
     contributionsEn: [
       "Problem: The SCM v7-to-v9 migration required controlling DB migration, SQL differences, and integration impact for the module in scope.",
-      "Role: Performed Oracle-to-PostgreSQL migration, regression testing, and ops checklist preparation for the inbound/closing module I owned.",
-      "Impact: Delivered a stable migration of the inbound/closing module I owned and contributed to the development-to-operations handoff flow."
+      "Role: Performed Oracle-to-PostgreSQL migration and regression testing for the inbound/closing module I owned, and prepared a handoff checklist for operations.",
+      "Impact: Delivered a stable migration of the inbound/closing module I owned and contributed to the handoff flow from development and testing to operations."
     ],
     metrics: [
       {
@@ -419,8 +419,8 @@ export const PROJECTS = [
       {
         label: "기여 단계",
         labelEn: "Delivery stages",
-        value: "개발~운영",
-        valueEn: "Development to operations"
+        value: "개발·테스트 → 운영 인계",
+        valueEn: "Dev/Test to ops handoff"
       }
     ],
     isPending: false
