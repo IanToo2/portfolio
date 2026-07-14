@@ -134,22 +134,6 @@ export default function ResumeDocument({
           <header className="resume-header">
             <h1 className="resume-name">{localizedProfile.name}</h1>
             <p className="resume-role">{localizedProfile.role} · {localizedProfile.domain}</p>
-            <ul className="resume-contact">
-              {localizedProfile.email ? (
-                <li>
-                  <span>Email</span>
-                  <a href={`mailto:${localizedProfile.email}`}>{localizedProfile.email}</a>
-                </li>
-              ) : null}
-              {localizedProfile.github ? (
-                <li>
-                  <span>GitHub</span>
-                  <a href={localizedProfile.github} target="_blank" rel="noreferrer noopener">
-                    {githubDisplay}
-                  </a>
-                </li>
-              ) : null}
-            </ul>
           </header>
 
           <section className="resume-section">
@@ -258,6 +242,28 @@ export default function ResumeDocument({
               ))}
             </section>
           ))}
+
+          {localizedProfile.email || localizedProfile.github ? (
+            <section className="resume-section">
+              <h2 className="resume-section-title">{t.contactLabel}</h2>
+              <ul className="resume-contact">
+                {localizedProfile.email ? (
+                  <li>
+                    <span>Email</span>
+                    <a href={`mailto:${localizedProfile.email}`}>{localizedProfile.email}</a>
+                  </li>
+                ) : null}
+                {localizedProfile.github ? (
+                  <li>
+                    <span>GitHub</span>
+                    <a href={localizedProfile.github} target="_blank" rel="noreferrer noopener">
+                      {githubDisplay}
+                    </a>
+                  </li>
+                ) : null}
+              </ul>
+            </section>
+          ) : null}
 
           <footer className="resume-footer">
             <span>© {year} {localizedProfile.name}</span>
