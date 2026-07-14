@@ -101,6 +101,13 @@ export const HIGHLIGHTS = [
     text: "팀 프로젝트 리드로 API 설계, 인증 체계, 배포 파이프라인을 정비해 개발-배포 흐름을 안정화했습니다.",
     textEn: "As team project lead, I standardized API design, auth flow, and deployment pipeline to stabilize delivery.",
     icon: "route"
+  },
+  {
+    title: "Agent AI 기반 QA 자동화",
+    titleEn: "Agent-AI-Based QA Automation",
+    text: "Playwright MCP와 Agent AI로 릴리즈 QA 자동화 도구를 단독 구축해 정기 릴리즈 QA 공수를 약 70% 절감하고 사내 확산까지 이끌었습니다.",
+    textEn: "Solely built a release-QA automation tool with Playwright MCP and Agent AI, cutting recurring release QA effort by about 70% and driving company-wide adoption.",
+    icon: "gear"
   }
 ];
 

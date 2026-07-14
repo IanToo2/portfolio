@@ -33,6 +33,7 @@ export default function App() {
     featuredProjects,
     projectGroups,
     resumeProjectGroups,
+    resumeStrengths,
     capabilityPillars,
     stackGroups,
     localizedExperience,
@@ -182,6 +183,7 @@ export default function App() {
           t={t}
           localizedProfile={localizedProfile}
           summaryQuick={summaryQuick}
+          resumeStrengths={resumeStrengths}
           resumeProjectGroups={resumeProjectGroups}
           stackGroups={stackGroups}
           experienceGroups={experienceGroups}

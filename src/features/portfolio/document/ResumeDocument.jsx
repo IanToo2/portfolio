@@ -82,6 +82,7 @@ export default function ResumeDocument({
   t,
   localizedProfile,
   summaryQuick,
+  resumeStrengths,
   resumeProjectGroups,
   stackGroups,
   experienceGroups,
@@ -143,11 +144,11 @@ export default function ResumeDocument({
                 <h3>{t.summaryQuickFitLabel}</h3>
                 <p>{summaryQuick.fit}</p>
               </div>
-              {summaryQuick.strengths.length ? (
+              {resumeStrengths.length ? (
                 <div className="resume-summary-cell">
                   <h3>{t.summaryQuickStrengthsLabel}</h3>
                   <ul>
-                    {summaryQuick.strengths.map((strength, index) => (
+                    {resumeStrengths.map((strength, index) => (
                       <li key={index}>{strength}</li>
                     ))}
                   </ul>

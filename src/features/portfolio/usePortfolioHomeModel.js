@@ -356,6 +356,11 @@ export default function usePortfolioHomeModel({ lang, t }) {
 
   const stackGroups = useMemo(() => localizedStack, [localizedStack]);
 
+  const resumeStrengths = useMemo(
+    () => localizedHighlights.slice(0, 4).map((item) => item.title),
+    [localizedHighlights]
+  );
+
   const projectCardLabels = useMemo(
     () => ({
       ...t.projectCard,
@@ -375,6 +380,7 @@ export default function usePortfolioHomeModel({ lang, t }) {
     featuredProjects,
     projectGroups,
     resumeProjectGroups,
+    resumeStrengths,
     capabilityPillars,
     stackGroups,
     localizedExperience,
