@@ -2,11 +2,11 @@ function ResumeEntry({ period, primary, secondary, bullets }) {
   return (
     <div className="resume-entry">
       <div className="resume-entry-head">
-        {period ? <span className="resume-entry-period">{period}</span> : null}
         <div className="resume-entry-title">
           {primary ? <strong>{primary}</strong> : null}
           {secondary ? <span>{secondary}</span> : null}
         </div>
+        {period ? <span className="resume-entry-period">{period}</span> : null}
       </div>
       {Array.isArray(bullets) && bullets.length ? (
         <ul className="resume-bullets">
