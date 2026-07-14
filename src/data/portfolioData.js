@@ -153,20 +153,21 @@ export const EXPERIENCE = [
   {
     period: "2024.09 - 현재",
     periodEn: "Sep 2024 - Present",
-    organization: "EMRO",
-    organizationEn: "EMRO",
+    organization: "EMRO 솔루션사업본부",
+    organizationEn: "EMRO Solution Business Division",
     title: "SCM Developer",
     titleEn: "SCM Developer",
+    injectProjectMix: true,
     bullets: [
       "SCM 기능 신규 개발 및 운영 고도화",
       "SAP 연동 데이터 처리 로직 설계 및 안정화",
-      "Oracle 기반 쿼리 최적화와 배치 성능 개선",
+      "Oracle → PostgreSQL DB 마이그레이션을 프로젝트별로 수행하며 스키마·쿼리 전환과 성능·정합성 검증을 담당",
       "SCHNEIDER POC 참여 (영업 제안용 SCM PoC)"
     ],
     bulletsEn: [
       "Built and stabilized new SCM features.",
       "Designed and stabilized SAP integration and data processing.",
-      "Optimized Oracle queries and improved batch performance.",
+      "Performed Oracle-to-PostgreSQL DB migration across projects, covering schema and query conversion with performance and consistency validation.",
       "Participated in the SCHNEIDER PoC (pre-sales SCM PoC)."
     ]
   },
@@ -534,18 +535,18 @@ export const PROJECTS = [
     periodEn: "Nov 2025",
     kind: "QA 검증/전달",
     kindEn: "QA Validation & Handoff",
-    scope: ["테스트 시나리오 작성", "단위 테스트", "결함 전달"],
-    scopeEn: ["Scenario Design", "Unit Testing", "Defect Handoff"],
+    scope: ["시나리오 테스트", "단위 테스트", "결함 전달"],
+    scopeEn: ["Scenario Testing", "Unit Testing", "Defect Handoff"],
     tech: [],
     techEn: [],
     contributions: [
-      "개발된 모듈 기준으로 기능별 테스트 시나리오를 설계하고 검증 케이스를 정리",
-      "시나리오 기반 기능 테스트와 단위 테스트를 수행해 결함 재현 조건을 명확화",
+      "개발된 모듈을 대상으로 기능별 시나리오 테스트와 단위 테스트를 수행",
+      "테스트 과정에서 결함 재현 조건과 영향 범위를 명확화",
       "결함 원인/재현 절차/영향 범위를 문서화해 개발자에게 전달하고 수정 검증을 지원"
     ],
     contributionsEn: [
-      "Designed module-level test scenarios and organized validation cases for implemented features.",
-      "Executed scenario-based functional tests and unit tests, clarifying reproducible defect conditions.",
+      "Executed feature-level scenario tests and unit tests across implemented modules.",
+      "Clarified reproducible defect conditions and impact scope during testing.",
       "Documented root cause, reproduction steps, and impact, then handed off findings to developers and supported fix verification."
     ],
     metrics: [
@@ -619,13 +620,13 @@ export const PROJECTS = [
     tech: [],
     techEn: [],
     contributions: [
-      "o9 플랫폼 기반 SCM 솔루션의 기능별 테스트 시나리오를 설계하고 검증 케이스를 정리",
-      "시나리오 테스트와 단위 테스트를 수행해 결함 재현 조건과 영향 범위를 명확화",
+      "o9 플랫폼 기반 SCM 솔루션의 기능별 시나리오 테스트와 단위 테스트를 수행",
+      "테스트 과정에서 결함 재현 조건과 영향 범위를 명확화",
       "결함 원인/재현 절차/영향 범위를 문서화해 개발자에게 전달하고 수정 검증을 지원"
     ],
     contributionsEn: [
-      "Designed feature-level test scenarios and organized validation cases for the o9-platform SCM solution.",
-      "Executed scenario testing and unit testing, clarifying reproducible defect conditions and impact scope.",
+      "Executed feature-level scenario tests and unit tests for the o9-platform SCM solution.",
+      "Clarified reproducible defect conditions and impact scope during testing.",
       "Documented root cause, reproduction steps, and impact, then handed off findings to developers and supported fix verification."
     ],
     metrics: [

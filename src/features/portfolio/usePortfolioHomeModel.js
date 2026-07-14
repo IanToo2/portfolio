@@ -217,7 +217,7 @@ export default function usePortfolioHomeModel({ lang, t }) {
     const mixText = mixTemplate.replace("{scm}", String(scmCount)).replace("{qa}", String(qaCount));
 
     return localizeTimelineItems(EXPERIENCE, localize, localizeList).map((item) => {
-      if (String(item.organization ?? "").toLowerCase() !== "emro") {
+      if (!item.injectProjectMix) {
         return item;
       }
 
