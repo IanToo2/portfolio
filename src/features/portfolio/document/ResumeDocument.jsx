@@ -82,8 +82,7 @@ export default function ResumeDocument({
   t,
   localizedProfile,
   summaryQuick,
-  featuredProjects,
-  projectGroups,
+  resumeProjectGroups,
   stackGroups,
   experienceGroups,
   learningGroups,
@@ -97,7 +96,7 @@ export default function ResumeDocument({
   onShowCard
 }) {
   const githubDisplay = String(localizedProfile.github ?? "").replace(/^https?:\/\//, "");
-  const projectGroupsWithItems = projectGroups.filter((group) => group.projects.length);
+  const projectGroupsWithItems = resumeProjectGroups.filter((group) => group.projects.length);
 
   return (
     <>
@@ -189,26 +188,18 @@ export default function ResumeDocument({
 
           <section className="resume-section">
             <h2 className="resume-section-title">{t.projectsLabel}</h2>
-            {featuredProjects.length ? (
-              <div className="resume-subgroup">
-                <h3 className="resume-subgroup-title">{t.featuredHead}</h3>
-                {featuredProjects.map((project) => (
-                  <ResumeProject
-                    key={project.id}
-                    project={project}
-                    labels={projectCardLabels}
-                    featured
-                  />
-                ))}
-              </div>
-            ) : null}
             {projectGroupsWithItems.map((group) => (
               <div className="resume-subgroup" key={group.id}>
                 <h3 className="resume-subgroup-title">
                   {group.label} <span className="resume-subgroup-count">({group.count})</span>
                 </h3>
                 {group.projects.map((project) => (
-                  <ResumeProject key={project.id} project={project} labels={projectCardLabels} />
+                  <ResumeProject
+                    key={project.id}
+                    project={project}
+                    labels={projectCardLabels}
+                    featured={Boolean(project.caseStudy)}
+                  />
                 ))}
               </div>
             ))}

@@ -206,6 +206,26 @@ export default function usePortfolioHomeModel({ lang, t }) {
     [t.qaHead, t.qaSub, t.scmHead, t.scmSub, t.teamHead, t.teamSub, teamProjects, workQaProjects, workScmProjects]
   );
 
+  const resumeProjectGroups = useMemo(() => {
+    const caseById = new Map(featuredProjects.map((project) => [project.id, project.caseStudy]));
+    const decorate = (projects) =>
+      [...projects]
+        .sort(byLatestPeriod)
+        .map((project) =>
+          caseById.has(project.id) ? { ...project, caseStudy: caseById.get(project.id) } : project
+        );
+
+    const scm = decorate(allWorkProjects.filter((project) => project.track === "scm"));
+    const qa = decorate(allWorkProjects.filter((project) => project.track === "qa"));
+    const team = decorate(localizedProjects.filter((project) => project.category === "team"));
+
+    return [
+      { id: "scm", label: t.scmHead, count: scm.length, projects: scm },
+      { id: "qa", label: t.qaHead, count: qa.length, projects: qa },
+      { id: "team", label: t.teamHead, count: team.length, projects: team }
+    ];
+  }, [allWorkProjects, featuredProjects, localizedProjects, t.qaHead, t.scmHead, t.teamHead]);
+
   const localizedExperience = useMemo(() => {
     const scmCount = allWorkProjects.filter((project) => project.track === "scm").length;
     const qaCount = allWorkProjects.filter((project) => project.track === "qa").length;
@@ -354,6 +374,7 @@ export default function usePortfolioHomeModel({ lang, t }) {
     heroProofs,
     featuredProjects,
     projectGroups,
+    resumeProjectGroups,
     capabilityPillars,
     stackGroups,
     localizedExperience,

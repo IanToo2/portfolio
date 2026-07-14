@@ -32,6 +32,7 @@ export default function App() {
     heroProofs,
     featuredProjects,
     projectGroups,
+    resumeProjectGroups,
     capabilityPillars,
     stackGroups,
     localizedExperience,
@@ -181,8 +182,7 @@ export default function App() {
           t={t}
           localizedProfile={localizedProfile}
           summaryQuick={summaryQuick}
-          featuredProjects={featuredProjects}
-          projectGroups={projectGroups}
+          resumeProjectGroups={resumeProjectGroups}
           stackGroups={stackGroups}
           experienceGroups={experienceGroups}
           learningGroups={learningGroups}
