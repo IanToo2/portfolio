@@ -192,14 +192,12 @@ export const EXPERIENCE = [
     bullets: [
       "QA 품질그룹에 지원 인력으로 합류해 표준 솔루션 릴리즈 품질 검증을 담당",
       "Cadentia 신규 릴리즈(2~4월), SK하이닉스 Cadentia 2.0 납품(6월), o9 플랫폼 SCM 솔루션(7월) QA 검증·결함 전달·수정 검증을 수행",
-      "Agent AI 기반 QA 자동화 운영 도구를 구축해 릴리즈 QA 공수를 절감하고 사내 확산을 지원",
-      "10월 정기 릴리즈 QA 대응 예정"
+      "Agent AI 기반 QA 자동화 운영 도구를 구축해 릴리즈 QA 공수를 절감하고 사내 확산을 지원"
     ],
     bulletsEn: [
       "Joined the QA Quality Group as support, owning release quality validation for the standard solution.",
       "Performed QA validation, defect handoff, and fix verification for the Cadentia release (Feb-Apr), the SK hynix Cadentia 2.0 delivery (Jun), and the o9-platform SCM solution (Jul).",
-      "Built an Agent-AI-based QA automation operations tool, cutting release QA effort and supporting company-wide adoption.",
-      "Scheduled to support the October regular-release QA cycle."
+      "Built an Agent-AI-based QA automation operations tool, cutting release QA effort and supporting company-wide adoption."
     ]
   }
 ];
