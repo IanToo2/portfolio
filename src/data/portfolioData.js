@@ -612,31 +612,39 @@ export const PROJECTS = [
     nameEn: "Agent-AI-Based QA Automation Operations Tool",
     period: "2026.02 - 2026.10",
     periodEn: "Feb 2026 - Oct 2026",
-    kind: "표준 솔루션 릴리즈 QA 자동화",
-    kindEn: "Standard Solution Release QA Automation",
-    scope: ["기획", "설계", "개발", "운영", "교육", "고도화"],
-    scopeEn: ["Planning", "Design", "Development", "Operations", "Training", "Enhancement"],
-    tech: ["Claude Code", "Codex", "Node.js", "Playwright", "Web UI"],
-    techEn: ["Claude Code", "Codex", "Node.js", "Playwright", "Web UI"],
+    kind: "릴리즈 QA 자동화 + 조달 E2E 관통 테스트",
+    kindEn: "Release QA Automation + Procurement E2E Testing",
+    scope: ["기획", "설계", "개발", "운영", "교육", "고도화", "인수인계"],
+    scopeEn: ["Planning", "Design", "Development", "Operations", "Training", "Enhancement", "Handover"],
+    tech: ["Claude Code", "Codex", "TypeScript", "Node.js", "Playwright", "GitLab CI", "Web UI"],
+    techEn: ["Claude Code", "Codex", "TypeScript", "Node.js", "Playwright", "GitLab CI", "Web UI"],
     contributions: [
       "영향: 정기 릴리즈 QA 테스트 공수를 약 70% 절감하고 500 에러 발생 시 재현 가능한 자료를 자동으로 남길 수 있는 검증 체계를 마련",
-      "역할: SCM 솔루션 전체 모듈을 대상으로 메뉴 수집, 메뉴별 단위 테스트, 구매 프로세스 시나리오 테스트 기능을 구현",
-      "역할: 비개발 직군도 사용할 수 있도록 Web UI, 맞춤형 언어 체계, 직군별 리포트를 설계해 운영 가능한 자동화 도구로 정착",
-      "문제: 정기 릴리즈와 빈번한 패치 환경에서 QA 공수가 크고 문서화된 테스트 자산이 부족해 오픈 전 품질 검증 일정이 항상 촉박했음",
+      "문제: 정기 릴리즈와 빈번한 패치 환경에서 QA 공수가 크고 문서화된 테스트 자산이 부족해 오픈 전 품질 검증 일정이 항상 촉박했으며, 메뉴 단위 점검만으로는 구매요청부터 송장까지 이어지는 조달 흐름의 연계 결함을 잡기 어려웠음",
       "역할: 아이디어 수립부터 목표 정의, 개발, 유지보수까지 전 과정을 단독 수행하며 Playwright MCP와 Agent AI를 활용한 QA 자동화 운영 도구를 구축",
-      "역할: JSON/HTML 리포트와 직군별 맞춤형 보고 양식을 설계하고 로컬 서버 실행 후 웹에서 버튼으로 테스트를 수행하는 운영 방식으로 정리",
+      "역할: SCM 솔루션 전체 모듈을 대상으로 메뉴 수집, 메뉴별 단위 테스트, 구매 프로세스 시나리오 테스트 기능을 구현",
+      "역할: 비개발 직군도 사용할 수 있도록 Web UI, 맞춤형 언어 체계, JSON/HTML 리포트와 직군별 보고 양식을 설계하고 웹에서 버튼으로 테스트를 수행하는 운영 방식으로 정착",
+      "역할: 구매요청 → RFX 발신 → 협력사 투찰 → 선정 → 발주 → 협력사 발주접수 → 납품예정(ASN) → 입고·결재 → 송장 확정까지 실제 문서로 이어 검증하는 관통 파이프라인을 설계·구현 (구매사·협력사 두 계정 흐름, 단가계약·계약 분기, 다중 투찰 포함)",
+      "역할: 기본은 조회만 허용하고 승인된 시나리오에 한해 화면·버튼 단위로 저장·발신·결재를 여는 20종의 계층형 안전 게이트를 설계하고, 개발 서버 허용 목록과 자동 생성 문서 표식을 함께 적용",
+      "역할: 그리드 입력·팝업 선택·일괄 적용 액션과 전 메뉴 일괄 실행, 상류 파이프라인 자동 선행 실행으로 시나리오 엔진을 확장하고, DRM 엑셀 테스트케이스를 시나리오 초안으로 변환해 검토·승인 후 실행하는 흐름을 구현",
+      "역할: 파이프라인 시간의 63%를 차지하던 CI 캐시 병목을 개선하고, nightly 파이프라인·불안정 테스트 격리·UI 문구 변경 감지 MR 차단을 도입",
       "영향: 릴리즈 전 1개월 동안 주 30건 이상 발생하던 이슈·개선 확인 작업을 야간 자동 실행과 아침 리포트 확인 방식으로 전환해 부서 실적 개선에 기여",
-      "영향: 개발직군, 비개발직군, 관리직이 각자 필요한 방식으로 결과를 확인할 수 있도록 운영 체계를 만들고 2개월간 주 1회 이상, 회당 1시간 이상 Agent AI 활용 교육을 진행해 사내 확산을 지원"
+      "영향: 화면 규칙 69개 중 43개를 자동 판정하고 29개 메뉴, 75개 승인 시나리오를 운영하는 체계로 확장",
+      "영향: 2개월간 주 1회 이상, 회당 1시간 이상 Agent AI 활용 교육으로 사내 확산을 지원하고, Confluence 문서 자동 발행과 비개발 직군용 인수인계 자료·4주 로드맵으로 운영을 이관"
     ],
     contributionsEn: [
       "Impact: Reduced recurring release QA effort by about 70% and established a reproducible reporting flow for HTTP 500 errors.",
-      "Role: Implemented menu discovery, menu-level unit testing, and purchase-process scenario testing across the SCM solution.",
-      "Role: Designed Web UI workflows, customized language, and audience-specific reports so non-developers could operate the tool in real release work.",
-      "Problem: QA effort was high under regular releases and frequent patches, while documented test assets were limited, making pre-release quality validation consistently time-constrained.",
+      "Problem: QA effort was high under regular releases and frequent patches, documented test assets were limited, and menu-level checks alone could not catch cross-step defects across the procurement flow from purchase request to invoice.",
       "Role: Solely led the project end-to-end from idea and goal setting to development and maintenance, building an AI-assisted QA automation operations tool powered by Playwright MCP and Agent AI.",
-      "Role: Designed JSON/HTML reports and audience-specific reporting formats, then organized a web-based operating flow triggered after launching a local server.",
+      "Role: Implemented menu discovery, menu-level unit testing, and purchase-process scenario testing across the SCM solution.",
+      "Role: Designed a Web UI, customized language, JSON/HTML reports, and audience-specific reporting formats so non-developers could run tests from a browser in real release work.",
+      "Role: Designed and built an end-to-end pipeline that validates the full procurement flow with real documents—purchase request, RFX, supplier bidding, selection, PO, supplier PO acceptance, ASN, goods receipt and approval, through invoice confirmation—including buyer/supplier dual-account flows, unit-price contract and contract branches, and multi-bid selection.",
+      "Role: Designed 20 layered safety gates that keep automation read-only by default and open save/send/approve actions per screen and button only for approved scenarios, combined with a dev-server allowlist and auto-generated document markers.",
+      "Role: Extended the scenario engine with grid input, popup selection, batch apply, run-all across menus, and automatic upstream pipeline runs, and built a flow that converts DRM-protected Excel test cases into scenario drafts run after review and approval.",
+      "Role: Fixed a CI cache bottleneck that took 63% of pipeline time, and introduced a nightly pipeline, flaky-test quarantine, and MR blocking on UI text drift.",
       "Impact: Replaced manual issue and improvement checks, which exceeded 30 items per week during the month before release, with overnight automated runs and morning-ready reports, contributing to team performance.",
-      "Impact: Created an operating model that served developers, non-developers, and managers with separate reporting views, and supported company-wide adoption through Agent AI training sessions held at least once a week for two months."
+      "Impact: Scaled the tool to auto-judge 43 of 69 screen rules and run 75 approved scenarios across 29 menus.",
+      "Impact: Supported company-wide adoption through weekly 1+ hour Agent AI training for two months, and handed over operations through auto-published Confluence docs and a 4-week handover roadmap for non-developer owners."
     ],
     metrics: [
       {
@@ -651,62 +659,6 @@ export const PROJECTS = [
         value: "릴리즈 전 1개월간 주 30건 이상",
         valueEn: "30+ issues per week during the month before release"
       },
-      {
-        label: "장애 재현 가능성",
-        labelEn: "Reproducible Error Reporting",
-        value: "500 에러 발생 시 재현 가능한 자료 자동 작성",
-        valueEn: "Automatically generates reproducible materials for HTTP 500 errors"
-      },
-      {
-        label: "사내 확산",
-        labelEn: "Internal Enablement",
-        value: "2개월간 주 1회 이상, 회당 1시간 이상 교육 진행",
-        valueEn: "1+ session per week for 2 months, 1+ hour each"
-      },
-      {
-        label: "현재 적용 범위",
-        labelEn: "Current Application",
-        value: "표준 솔루션 릴리즈 QA 적용 중",
-        valueEn: "Currently used for standard solution release QA"
-      }
-    ],
-    isPending: true
-  },
-  {
-    category: PROJECT_CATEGORY.WORK,
-    track: PROJECT_TRACK.QA,
-    isFeatured: false,
-    name: "QA 자동화 도구 고도화: 조달 E2E 관통 테스트·안전 게이트",
-    nameEn: "QA Automation Tool Expansion: Procurement E2E Pipeline & Safety Gates",
-    period: "2026.05 - 2026.10",
-    periodEn: "May 2026 - Oct 2026",
-    kind: "E2E 시나리오 자동화 + 운영 이관",
-    kindEn: "E2E Scenario Automation + Operations Handover",
-    scope: ["E2E 시나리오", "안전 게이트", "대시보드", "CI/CD", "문서화", "인수인계"],
-    scopeEn: ["E2E Scenarios", "Safety Gates", "Dashboard", "CI/CD", "Documentation", "Handover"],
-    tech: ["Claude Code", "TypeScript", "Playwright", "GitLab CI", "Confluence"],
-    techEn: ["Claude Code", "TypeScript", "Playwright", "GitLab CI", "Confluence"],
-    contributions: [
-      "문제: 메뉴 단위 조회 점검만으로는 구매요청부터 송장까지 이어지는 조달 흐름의 단계 간 연계 결함을 잡기 어려웠고, 자동화가 데이터를 쓰면 개발 서버 데이터가 오염될 위험이 있었음",
-      "역할: 구매요청 → RFX 발신 → 협력사 투찰 → 선정 → 발주 → 협력사 발주접수 → 납품예정(ASN) → 입고·결재 → 송장 확정까지 실제 문서로 이어 검증하는 관통 파이프라인을 설계·구현 (구매사·협력사 두 계정 흐름, 단가계약·계약 분기, 다중 투찰 포함)",
-      "역할: 기본은 조회만 허용하고 승인된 시나리오에 한해 화면·버튼 단위로 저장·발신·결재를 여는 20종의 계층형 안전 게이트를 설계하고, 개발 서버 허용 목록과 자동 생성 문서 표식을 함께 적용",
-      "역할: 그리드 셀 입력·팝업 선택·일괄 적용·행 단위 검증 액션과 전 메뉴 일괄 실행을 추가하고, 선행 단계가 없으면 상류 파이프라인을 자동으로 먼저 실행하도록 시나리오 엔진을 확장",
-      "역할: DRM 엑셀 테스트케이스를 시나리오 초안으로 변환하고 대시보드에서 검토·승인 후 실행하는 흐름을 구현",
-      "역할: 파이프라인 시간의 63%를 차지하던 CI 캐시 병목을 개선하고, nightly 파이프라인·불안정 테스트 격리·UI 문구 변경 감지 MR 차단을 도입",
-      "영향: 화면 규칙 69개 중 43개를 자동 판정하고 29개 메뉴, 75개 승인 시나리오를 운영하는 체계로 확장",
-      "영향: Confluence 문서 자동 발행과 비개발 직군용 인수인계 자료·4주 로드맵을 작성해 운영을 이관"
-    ],
-    contributionsEn: [
-      "Problem: Menu-level read-only checks could not catch cross-step defects across the procurement flow from purchase request to invoice, and letting automation write data risked polluting the dev server.",
-      "Role: Designed and built an end-to-end pipeline that validates the full procurement flow with real documents—purchase request, RFX, supplier bidding, selection, PO, supplier PO acceptance, ASN, goods receipt and approval, through invoice confirmation—including buyer/supplier dual-account flows, unit-price contract and contract branches, and multi-bid selection.",
-      "Role: Designed 20 layered safety gates that keep automation read-only by default and open save/send/approve actions per screen and button only for approved scenarios, combined with a dev-server allowlist and auto-generated document markers.",
-      "Role: Extended the scenario engine with grid-cell input, popup selection, batch apply, and row-level assertions, added run-all across menus, and auto-ran upstream pipelines when prerequisites were missing.",
-      "Role: Implemented a flow that converts DRM-protected Excel test cases into scenario drafts, then runs them after review and approval in the dashboard.",
-      "Role: Fixed a CI cache bottleneck that took 63% of pipeline time, and introduced a nightly pipeline, flaky-test quarantine, and MR blocking on UI text drift.",
-      "Impact: Scaled the tool to auto-judge 43 of 69 screen rules and run 75 approved scenarios across 29 menus.",
-      "Impact: Handed over operations through auto-published Confluence docs and a handover guide with a 4-week roadmap for non-developer owners."
-    ],
-    metrics: [
       {
         label: "관통 범위",
         labelEn: "Pipeline Coverage",
@@ -730,6 +682,12 @@ export const PROJECTS = [
         labelEn: "Approved Scenarios",
         value: "29개 메뉴, 75개",
         valueEn: "75 across 29 menus"
+      },
+      {
+        label: "사내 확산",
+        labelEn: "Internal Enablement",
+        value: "2개월간 주 1회 이상, 회당 1시간 이상 교육 진행",
+        valueEn: "1+ session per week for 2 months, 1+ hour each"
       }
     ],
     isPending: true
