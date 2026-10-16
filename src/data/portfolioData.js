@@ -192,12 +192,14 @@ export const EXPERIENCE = [
     bullets: [
       "QA 품질그룹에 지원 인력으로 합류해 표준 솔루션 릴리즈 품질 검증을 담당",
       "Cadentia 신규 릴리즈(2~4월), SK하이닉스 Cadentia 2.0 납품(6월), o9 플랫폼 SCM 솔루션(7월) QA 검증·결함 전달·수정 검증을 수행",
-      "Agent AI 기반 QA 자동화 운영 도구를 구축해 릴리즈 QA 공수를 절감하고 사내 확산을 지원"
+      "Agent AI 기반 QA 자동화 운영 도구를 구축해 릴리즈 QA 공수를 절감하고 사내 확산을 지원",
+      "구매요청부터 송장 확정까지 조달 흐름을 실제 문서로 이어 검증하는 E2E 관통 테스트와 20종의 쓰기 안전 게이트로 도구를 고도화하고, 비개발 직군에게 운영을 이관"
     ],
     bulletsEn: [
       "Joined the QA Quality Group as support, owning release quality validation for the standard solution.",
       "Performed QA validation, defect handoff, and fix verification for the Cadentia release (Feb-Apr), the SK hynix Cadentia 2.0 delivery (Jun), and the o9-platform SCM solution (Jul).",
-      "Built an Agent-AI-based QA automation operations tool, cutting release QA effort and supporting company-wide adoption."
+      "Built an Agent-AI-based QA automation operations tool, cutting release QA effort and supporting company-wide adoption.",
+      "Expanded the tool with end-to-end procurement tests from purchase request to invoice confirmation and 20 write-safety gates, then handed operations over to non-developer owners."
     ]
   }
 ];
@@ -666,6 +668,68 @@ export const PROJECTS = [
         labelEn: "Current Application",
         value: "표준 솔루션 릴리즈 QA 적용 중",
         valueEn: "Currently used for standard solution release QA"
+      }
+    ],
+    isPending: true
+  },
+  {
+    category: PROJECT_CATEGORY.WORK,
+    track: PROJECT_TRACK.QA,
+    isFeatured: false,
+    name: "QA 자동화 도구 고도화: 조달 E2E 관통 테스트·안전 게이트",
+    nameEn: "QA Automation Tool Expansion: Procurement E2E Pipeline & Safety Gates",
+    period: "2026.05 - 2026.10",
+    periodEn: "May 2026 - Oct 2026",
+    kind: "E2E 시나리오 자동화 + 운영 이관",
+    kindEn: "E2E Scenario Automation + Operations Handover",
+    scope: ["E2E 시나리오", "안전 게이트", "대시보드", "CI/CD", "문서화", "인수인계"],
+    scopeEn: ["E2E Scenarios", "Safety Gates", "Dashboard", "CI/CD", "Documentation", "Handover"],
+    tech: ["Claude Code", "TypeScript", "Playwright", "GitLab CI", "Confluence"],
+    techEn: ["Claude Code", "TypeScript", "Playwright", "GitLab CI", "Confluence"],
+    contributions: [
+      "문제: 메뉴 단위 조회 점검만으로는 구매요청부터 송장까지 이어지는 조달 흐름의 단계 간 연계 결함을 잡기 어려웠고, 자동화가 데이터를 쓰면 개발 서버 데이터가 오염될 위험이 있었음",
+      "역할: 구매요청 → RFX 발신 → 협력사 투찰 → 선정 → 발주 → 협력사 발주접수 → 납품예정(ASN) → 입고·결재 → 송장 확정까지 실제 문서로 이어 검증하는 관통 파이프라인을 설계·구현 (구매사·협력사 두 계정 흐름, 단가계약·계약 분기, 다중 투찰 포함)",
+      "역할: 기본은 조회만 허용하고 승인된 시나리오에 한해 화면·버튼 단위로 저장·발신·결재를 여는 20종의 계층형 안전 게이트를 설계하고, 개발 서버 허용 목록과 자동 생성 문서 표식을 함께 적용",
+      "역할: 그리드 셀 입력·팝업 선택·일괄 적용·행 단위 검증 액션과 전 메뉴 일괄 실행을 추가하고, 선행 단계가 없으면 상류 파이프라인을 자동으로 먼저 실행하도록 시나리오 엔진을 확장",
+      "역할: DRM 엑셀 테스트케이스를 시나리오 초안으로 변환하고 대시보드에서 검토·승인 후 실행하는 흐름을 구현",
+      "역할: 파이프라인 시간의 63%를 차지하던 CI 캐시 병목을 개선하고, nightly 파이프라인·불안정 테스트 격리·UI 문구 변경 감지 MR 차단을 도입",
+      "영향: 화면 규칙 69개 중 43개를 자동 판정하고 29개 메뉴, 75개 승인 시나리오를 운영하는 체계로 확장",
+      "영향: Confluence 문서 자동 발행과 비개발 직군용 인수인계 자료·4주 로드맵을 작성해 운영을 이관"
+    ],
+    contributionsEn: [
+      "Problem: Menu-level read-only checks could not catch cross-step defects across the procurement flow from purchase request to invoice, and letting automation write data risked polluting the dev server.",
+      "Role: Designed and built an end-to-end pipeline that validates the full procurement flow with real documents—purchase request, RFX, supplier bidding, selection, PO, supplier PO acceptance, ASN, goods receipt and approval, through invoice confirmation—including buyer/supplier dual-account flows, unit-price contract and contract branches, and multi-bid selection.",
+      "Role: Designed 20 layered safety gates that keep automation read-only by default and open save/send/approve actions per screen and button only for approved scenarios, combined with a dev-server allowlist and auto-generated document markers.",
+      "Role: Extended the scenario engine with grid-cell input, popup selection, batch apply, and row-level assertions, added run-all across menus, and auto-ran upstream pipelines when prerequisites were missing.",
+      "Role: Implemented a flow that converts DRM-protected Excel test cases into scenario drafts, then runs them after review and approval in the dashboard.",
+      "Role: Fixed a CI cache bottleneck that took 63% of pipeline time, and introduced a nightly pipeline, flaky-test quarantine, and MR blocking on UI text drift.",
+      "Impact: Scaled the tool to auto-judge 43 of 69 screen rules and run 75 approved scenarios across 29 menus.",
+      "Impact: Handed over operations through auto-published Confluence docs and a handover guide with a 4-week roadmap for non-developer owners."
+    ],
+    metrics: [
+      {
+        label: "관통 범위",
+        labelEn: "Pipeline Coverage",
+        value: "구매요청 → 송장 확정",
+        valueEn: "Purchase request → invoice confirmation"
+      },
+      {
+        label: "안전 게이트",
+        labelEn: "Safety Gates",
+        value: "20종",
+        valueEn: "20 gates"
+      },
+      {
+        label: "자동 판정 규칙",
+        labelEn: "Auto-Judged Rules",
+        value: "69개 중 43개",
+        valueEn: "43 of 69"
+      },
+      {
+        label: "운영 시나리오",
+        labelEn: "Approved Scenarios",
+        value: "29개 메뉴, 75개",
+        valueEn: "75 across 29 menus"
       }
     ],
     isPending: true
