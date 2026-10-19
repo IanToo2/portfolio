@@ -121,6 +121,18 @@ export const TEXT = {
       copySubject: "포트폴리오 문의드립니다",
       copyBody: "안녕하세요, 포트폴리오를 보고 연락드립니다."
     },
+    web: {
+      nowTitle: "요즘 하는 일",
+      workTitle: "업무 프로젝트",
+      teamTitle: "팀 프로젝트",
+      historyTitle: "이력",
+      stackTitle: "쓰는 기술",
+      detailsLabel: "맡은 일",
+      resumeLink: "이력서 · PDF",
+      contactLine: "연락은 {email}로 주세요.",
+      updatedNote: "2026년 10월에 고쳐 씀",
+      certificationsLabel: "자격"
+    },
     timelineTitles: {
       work: "경력",
       education: "학력",
@@ -250,6 +262,18 @@ export const TEXT = {
       trackTeam: "TEAM",
       copySubject: "Portfolio Inquiry",
       copyBody: "Hello, I read your portfolio and would like to discuss a potential opportunity."
+    },
+    web: {
+      nowTitle: "What I've been doing",
+      workTitle: "Work projects",
+      teamTitle: "Team projects",
+      historyTitle: "History",
+      stackTitle: "Tools I use",
+      detailsLabel: "What I did",
+      resumeLink: "Resume · PDF",
+      contactLine: "Reach me at {email}.",
+      updatedNote: "Updated October 2026",
+      certificationsLabel: "Certifications"
     },
     timelineTitles: {
       work: "Experience",

@@ -1,7 +1,6 @@
 import {
   PROJECT_CATEGORY,
   PROJECT_TRACK,
-  SCAN_HIERARCHY,
   SUMMARY_QUICK_MODEL
 } from "../../../data/portfolioData";
 
@@ -113,19 +112,6 @@ export const resolveProjectTrack = (project, category) => {
   if (project.track) return project.track;
   return category === PROJECT_CATEGORY.TEAM ? PROJECT_TRACK.TEAM : PROJECT_TRACK.SCM;
 };
-
-export const buildScanHierarchy = (lang, localize) => ({
-  stages: SCAN_HIERARCHY.stages.map((stage) => ({
-    id: stage.id,
-    label: localize(stage, "label"),
-    detail: localize(stage, "detail")
-  })),
-  sectionOrder: SCAN_HIERARCHY.sectionOrder.map((item) => localize(item, "label")),
-  textRules: {
-    subtitle: lang === "en" ? SCAN_HIERARCHY.textRules.subtitleEn : SCAN_HIERARCHY.textRules.subtitle,
-    contribution: lang === "en" ? SCAN_HIERARCHY.textRules.contributionEn : SCAN_HIERARCHY.textRules.contribution
-  }
-});
 
 export const buildSummaryQuick = ({
   highlightedProjects,

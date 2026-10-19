@@ -12,7 +12,6 @@ import {
   TRAINING
 } from "../../data/portfolioData";
 import {
-  buildScanHierarchy,
   buildSummaryQuick,
   byLatestPeriod,
   createLocalize,
@@ -39,24 +38,13 @@ export default function usePortfolioHomeModel({ lang, t }) {
       domain: localize(PROFILE, "domain"),
       tagline: localize(PROFILE, "tagline"),
       intro: localize(PROFILE, "intro"),
+      webIntro: localize(PROFILE, "webIntro"),
+      now: localize(PROFILE, "now"),
       email: PROFILE.email,
       github: PROFILE.github
     }),
     [localize]
   );
-
-  const navItems = useMemo(
-    () => [
-      { id: "home", label: t.summaryLabel },
-      { id: "projects", label: t.projectsLabel },
-      { id: "capabilities", label: t.highlightsLabel },
-      { id: "career", label: t.careerLabel ?? t.experienceLabel },
-      { id: "contact", label: t.contactLabel }
-    ],
-    [t]
-  );
-
-  const scanHierarchy = useMemo(() => buildScanHierarchy(lang, localize), [lang, localize]);
 
   const localizedMetrics = useMemo(
     () =>
@@ -97,6 +85,7 @@ export default function usePortfolioHomeModel({ lang, t }) {
           name: localize(project, "name"),
           period: localize(project, "period"),
           kind: localize(project, "kind"),
+          summary: localize(project, "summary"),
           isPending: resolvePendingStatus(project),
           scope: localizeList(project, "scope"),
           tech: localizeList(project, "tech"),
@@ -125,9 +114,6 @@ export default function usePortfolioHomeModel({ lang, t }) {
     [localizedProjects]
   );
 
-  const sortProjects = (projects) =>
-    [...projects].sort((a, b) => Number(b.isFeatured) - Number(a.isFeatured) || byLatestPeriod(a, b));
-
   const featuredProjects = useMemo(
     () =>
       [...localizedProjects]
@@ -154,56 +140,9 @@ export default function usePortfolioHomeModel({ lang, t }) {
     [localizedProjects]
   );
 
-  const workProjects = useMemo(
-    () => allWorkProjects.filter((project) => !project.isFeatured),
-    [allWorkProjects]
-  );
-
-  const teamProjects = useMemo(
-    () => sortProjects(localizedProjects.filter((project) => project.category === "team" && !project.isFeatured)),
-    [localizedProjects]
-  );
-
-  const workScmProjects = useMemo(
-    () => sortProjects(workProjects.filter((project) => project.track === "scm")),
-    [workProjects]
-  );
-
-  const workQaProjects = useMemo(
-    () => sortProjects(workProjects.filter((project) => project.track === "qa")),
-    [workProjects]
-  );
-
   const highlightedProjects = useMemo(
     () => featuredProjects.slice(0, 3),
     [featuredProjects]
-  );
-
-  const projectGroups = useMemo(
-    () => [
-      {
-        id: "scm",
-        label: t.scmHead,
-        subtitle: t.scmSub,
-        count: workScmProjects.length,
-        projects: workScmProjects
-      },
-      {
-        id: "qa",
-        label: t.qaHead,
-        subtitle: t.qaSub,
-        count: workQaProjects.length,
-        projects: workQaProjects
-      },
-      {
-        id: "team",
-        label: t.teamHead,
-        subtitle: t.teamSub,
-        count: teamProjects.length,
-        projects: teamProjects
-      }
-    ],
-    [t.qaHead, t.qaSub, t.scmHead, t.scmSub, t.teamHead, t.teamSub, teamProjects, workQaProjects, workScmProjects]
   );
 
   const resumeProjectGroups = useMemo(() => {
@@ -320,46 +259,64 @@ export default function usePortfolioHomeModel({ lang, t }) {
     [highlightedProjects, lang, localizedHighlights, localizedMetrics, localizedProfile, t]
   );
 
-  const heroProofs = useMemo(
-    () => [
-      {
-        id: "fit",
-        label: t.summaryQuickFitLabel,
-        value: summaryQuick.fit
-      },
-      ...summaryQuick.impacts.slice(0, 2).map((item, index) => ({
-        id: `impact-${index}`,
-        label: t.heroProofLabel,
-        value: item
-      }))
-    ],
-    [summaryQuick.fit, summaryQuick.impacts, t.heroProofLabel, t.summaryQuickFitLabel]
-  );
-
-  const capabilityPillars = useMemo(() => {
-    const stackWindows = [
-      localizedStack.slice(0, 2),
-      localizedStack.slice(1, 4),
-      localizedStack.slice(3, 6)
-    ];
-
-    return localizedHighlights.slice(0, 3).map((item, index) => ({
-      id: `${item.title}-${index}`,
-      title: item.title,
-      text: item.text,
-      tools: stackWindows[index]
-        .flatMap((group) => group.items.slice(0, 3))
-        .filter((tool, toolIndex, array) => array.indexOf(tool) === toolIndex)
-        .slice(0, 7)
-    }));
-  }, [localizedHighlights, localizedStack]);
-
   const stackGroups = useMemo(() => localizedStack, [localizedStack]);
 
   const resumeStrengths = useMemo(
     () => localizedHighlights.slice(0, 4).map((item) => item.title),
     [localizedHighlights]
   );
+
+  const webProjectGroups = useMemo(() => {
+    const decorate = (projects) =>
+      [...projects].sort(byLatestPeriod).map((project) => ({
+        ...project,
+        details: project.contributions.map(stripContributionPrefix).filter(Boolean)
+      }));
+
+    return [
+      { id: "work", title: t.web.workTitle, projects: decorate(allWorkProjects) },
+      {
+        id: "team",
+        title: t.web.teamTitle,
+        projects: decorate(localizedProjects.filter((project) => project.category === "team"))
+      }
+    ].filter((group) => group.projects.length);
+  }, [allWorkProjects, localizedProjects, t.web.teamTitle, t.web.workTitle]);
+
+  const webHistory = useMemo(() => {
+    const lines = [
+      ...localizedExperience.map((item) => ({
+        period: item.period,
+        text: [item.organization, item.title].filter(Boolean).join(", ")
+      })),
+      ...localizedTraining.map((item) => ({
+        period: item.period,
+        text: [item.organization, item.title].filter(Boolean).join(", ")
+      })),
+      ...localizedEducation.map((item) => ({
+        period: item.period,
+        text: [item.organization, item.bullets?.[1] ?? item.title].filter(Boolean).join(", ")
+      })),
+      ...localizedAwards.map((item) => ({
+        period: item.period,
+        text: [item.organization, item.title].filter(Boolean).join(" ")
+      }))
+    ];
+    if (localizedCertifications.length) {
+      lines.push({
+        period: t.web.certificationsLabel,
+        text: localizedCertifications.map((item) => item.title).join(", ")
+      });
+    }
+    return lines;
+  }, [
+    localizedAwards,
+    localizedCertifications,
+    localizedEducation,
+    localizedExperience,
+    localizedTraining,
+    t.web.certificationsLabel
+  ]);
 
   const projectCardLabels = useMemo(
     () => ({
@@ -373,20 +330,14 @@ export default function usePortfolioHomeModel({ lang, t }) {
 
   return {
     localizedProfile,
-    navItems,
-    scanHierarchy,
-    localizedMetrics,
-    heroProofs,
-    featuredProjects,
-    projectGroups,
     resumeProjectGroups,
     resumeStrengths,
-    capabilityPillars,
     stackGroups,
-    localizedExperience,
     experienceGroups,
     learningGroups,
     summaryQuick,
-    projectCardLabels
+    projectCardLabels,
+    webProjectGroups,
+    webHistory
   };
 }

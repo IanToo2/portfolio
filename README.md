@@ -9,8 +9,7 @@ React + Vite 기반 단일 페이지 포트폴리오.
 
 ## 구조
 - 진입점: `src/main.tsx` -> `src/App.tsx`
-- 포트폴리오 기능/섹션: `src/features/portfolio/*`
-- 공통 UI: `src/components/*`
+- 화면 2개(해시 라우팅): 문서 뷰 `#/resume`(기본, 이력서·PDF 정본) `src/features/portfolio/document/*`, 웹 뷰 `#/card`(개인 홈페이지형) `src/features/portfolio/web/*`
 - 데이터/문구: `src/data/portfolioData.js`, `src/data/portfolioText.js`
 - 훅/모델: `src/hooks/*`, `src/features/portfolio/usePortfolioHomeModel.js`
 - 스타일: `src/styles/*.css`

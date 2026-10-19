@@ -14,18 +14,6 @@ const MIN_SLICE_PX = 80;
 
 const BREAKPOINT_SELECTORS = [
   "[data-breakpoint='true']",
-  ".home-hero-card",
-  ".home-snapshot-panel",
-  ".home-scan-panel",
-  ".projects-group-panel",
-  ".project-card",
-  ".capability-story-panel",
-  ".capability-tool-panel",
-  ".stack-row",
-  ".career-column-card",
-  ".timeline-row",
-  ".career-summary-group",
-  ".contact-card",
   ".resume-header",
   ".resume-section",
   ".resume-subgroup",

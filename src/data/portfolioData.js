@@ -11,61 +11,16 @@ export const PROFILE = {
     "EMRO에서 SCM 도메인 솔루션 개발을 담당하고 있습니다. 구축·전환·운영 전 과정에서 비즈니스 로직을 정확히 이해해 구현하고, 테스트와 검증을 통해 현업이 바로 체감할 수 있는 개선을 만듭니다.",
   introEn:
     "I handle solution development in the SCM domain at EMRO. Across implementation, migration, and operations, I turn business logic into working code and deliver practical improvements through testing and validation.",
+  webIntro:
+    "SCM 솔루션을 만드는 백엔드 개발자입니다. 2024년 9월부터 EMRO에서 고객사 SCM 구축과 전환 프로젝트를 하고 있고, 2026년에는 QA 품질그룹을 지원하면서 QA 자동화 도구를 혼자 만들어 운영했습니다.",
+  webIntroEn:
+    "I'm a backend developer building SCM solutions. Since September 2024 I've worked on client SCM implementation and migration projects at EMRO, and in 2026 I supported the QA Quality Group while building and running a QA automation tool on my own.",
+  now:
+    "조달 업무는 구매요청에서 시작해 발주와 입고를 거쳐 송장으로 끝납니다. 이 흐름을 개발 서버에서 실제 문서로 끝까지 흘려보내며 검증하는 테스트를 만들었습니다. 자동화가 데이터를 함부로 바꾸지 않도록, 승인된 시나리오에서만 저장과 결재 버튼을 누를 수 있게 하는 장치를 20종 두었습니다. 10월 말 QA 지원이 끝나서, 지금은 비개발 직군 동료에게 운영을 넘기고 있습니다.",
+  nowEn:
+    "Procurement starts with a purchase request and ends with an invoice, passing through orders and goods receipt. I built tests that push real documents through that whole flow on the dev server. To keep automation from changing data carelessly, I added 20 safety gates that only allow save and approval buttons in approved scenarios. My QA support ends in late October 2026, so I am now handing operations over to a non-developer colleague.",
   email: "rlawjddla0203@gmail.com",
   github: "https://github.com/IanToo2"
-};
-
-export const NAV_ITEMS = [
-  { id: "summary", label: "소개", labelEn: "Summary" },
-  { id: "highlights", label: "중점 업무", labelEn: "Focus" },
-  { id: "projects", label: "프로젝트", labelEn: "Projects" },
-  { id: "stack", label: "기술 스택", labelEn: "Skill Set" },
-  { id: "experience", label: "경력", labelEn: "Experience" },
-  { id: "contact", label: "연락", labelEn: "Contact" }
-];
-
-export const SCAN_HIERARCHY = {
-  stages: [
-    {
-      id: "role",
-      label: "역할/도메인 확인",
-      labelEn: "Role/Domain First",
-      detail: "현재 수행 직무와 도메인을 먼저 노출",
-      detailEn: "Show current role and domain before details."
-    },
-    {
-      id: "strength",
-      label: "핵심 강점 3개 스캔",
-      labelEn: "Scan 3 Strengths",
-      detail: "Summary 바로 아래 강점 3개를 한 번에 확인",
-      detailEn: "Expose three strengths right under Summary."
-    },
-    {
-      id: "impact",
-      label: "대표 성과 2~3개 확인",
-      labelEn: "Check 2-3 Impacts",
-      detail: "성과 지표 중심으로 대표 결과를 우선 배치",
-      detailEn: "Prioritize key outcomes with impact metrics."
-    },
-    {
-      id: "fit",
-      label: "적합 포지션 판단",
-      labelEn: "Fit Position Check",
-      detail: "요약 블록 마지막에 적합 포지션을 명시",
-      detailEn: "State best-fit position at the end of the quick summary."
-    }
-  ],
-  sectionOrder: [
-    { id: "summary", label: "Summary", labelEn: "Summary" },
-    { id: "highlights", label: "Highlights", labelEn: "Highlights" },
-    { id: "projects", label: "Projects", labelEn: "Projects" }
-  ],
-  textRules: {
-    subtitle: "1-2문장",
-    subtitleEn: "1-2 sentences",
-    contribution: "3-5줄",
-    contributionEn: "3-5 lines"
-  }
 };
 
 export const SUMMARY_QUICK_MODEL = {
@@ -342,6 +297,8 @@ export const PROJECTS = [
     nameEn: "Spigen Korea New SCM Development",
     period: "2024.10 - 2025.03",
     periodEn: "Oct 2024 - Mar 2025",
+    summary: "첫 프로젝트입니다. SAP와 주고받는 구매 데이터가 중복되거나 연계가 끊기던 문제를 맡아 인터페이스 연동을 안정화했습니다.",
+    summaryEn: "My first project. I took on duplicated purchase data and broken links in the SAP interface and stabilized the integration.",
     kind: "신규 구축",
     kindEn: "New Setup",
     scope: ["개발", "테스트", "배포", "운영"],
@@ -382,6 +339,8 @@ export const PROJECTS = [
     nameEn: "CJ Freshway SCM Conversion Project",
     period: "2025.05 - 2025.09",
     periodEn: "May 2025 - Sep 2025",
+    summary: "SCM v7에서 v9로 넘어가는 프로젝트에서 입고·마감 모듈의 DB를 Oracle에서 PostgreSQL로 옮기고 회귀 테스트까지 맡았습니다.",
+    summaryEn: "In the SCM v7-to-v9 migration, I moved the inbound and closing modules from Oracle to PostgreSQL and ran the regression tests.",
     kind: "대규모 전환 프로젝트",
     kindEn: "Enterprise Conversion",
     scope: ["개발", "테스트"],
@@ -422,6 +381,8 @@ export const PROJECTS = [
     nameEn: "Mallang",
     period: "2024.07 - 2024.08",
     periodEn: "Jul 2024 - Aug 2024",
+    summary: "SSAFY 팀 프로젝트로, 백엔드 팀장을 맡아 퀴즈·학습·영역 점령 기능의 API를 설계하고 구현했습니다.",
+    summaryEn: "An SSAFY team project where I led the backend and designed the APIs for quiz, study, and territory features.",
     kind: "팀 프로젝트",
     kindEn: "Team Project",
     scope: ["기획", "설계", "개발", "배포", "운영"],
@@ -472,6 +433,8 @@ export const PROJECTS = [
     nameEn: "TravelLog",
     period: "2024.05 - 2024.05",
     periodEn: "May 2024 - May 2024",
+    summary: "SSAFY 팀 프로젝트로, DB 설계와 Docker·Jenkins 배포 환경을 혼자 맡고 회원·리뷰 API를 만들었습니다.",
+    summaryEn: "An SSAFY team project where I owned the DB design and the Docker/Jenkins deployment, and built the member and review APIs.",
     kind: "팀 프로젝트",
     kindEn: "Team Project",
     scope: ["설계", "개발", "테스트", "배포", "운영"],
@@ -526,6 +489,8 @@ export const PROJECTS = [
     nameEn: "Client SCM Solution Release & Delivery QA (S-OIL · SK hynix · o9)",
     period: "2025.11 - 2026.07",
     periodEn: "Nov 2025 - Jul 2026",
+    summary: "S-OIL, SK하이닉스, o9 플랫폼 SCM 솔루션의 기능을 시나리오대로 테스트하고, 결함을 개발팀에 전달한 뒤 수정 결과를 검증했습니다.",
+    summaryEn: "I tested S-OIL, SK hynix, and o9-platform SCM solutions against scenarios, handed defects to developers, and verified the fixes.",
     kind: "QA 검증/전달",
     kindEn: "QA Validation & Handoff",
     scope: ["시나리오 테스트", "단위 테스트", "결함 전달", "수정 검증"],
@@ -564,6 +529,8 @@ export const PROJECTS = [
     nameEn: "Cadentia New Release QA",
     period: "2026.02 - 2026.04",
     periodEn: "Feb 2026 - Apr 2026",
+    summary: "신규 릴리즈 기능을 테스트하고, 핫픽스는 접수 후 3일 안에 블랙박스 테스트로 확인했습니다.",
+    summaryEn: "I tested new release features and checked each hotfix with black-box tests within three days of intake.",
     kind: "신규 릴리즈 QA + 핫픽스 검증",
     kindEn: "New Release QA + Hotfix Validation",
     scope: ["시나리오 테스트", "단위 테스트", "핫픽스 QA", "결함 전달", "수정 검증"],
@@ -612,6 +579,8 @@ export const PROJECTS = [
     nameEn: "Agent-AI-Based QA Automation Operations Tool",
     period: "2026.02 - 2026.10",
     periodEn: "Feb 2026 - Oct 2026",
+    summary: "정기 릴리즈 때마다 사람이 반복하던 점검을 밤사이 자동으로 돌리고 아침에 리포트로 확인하는 도구입니다. 구매요청부터 송장 확정까지 조달 흐름을 실제 문서로 이어 검증하며, 기획부터 운영 이관까지 혼자 맡았습니다.",
+    summaryEn: "A tool that runs the checks people used to repeat every release overnight and reports results by morning. It validates the procurement flow from purchase request to invoice with real documents. I owned it from planning to handover.",
     kind: "릴리즈 QA 자동화 + 조달 E2E 관통 테스트",
     kindEn: "Release QA Automation + Procurement E2E Testing",
     scope: ["기획", "설계", "개발", "운영", "교육", "고도화", "인수인계"],
@@ -700,6 +669,8 @@ export const PROJECTS = [
     nameEn: "SMARTSUITE 1.0 Import/Export Module",
     period: "2025.12 - 2026.02",
     periodEn: "Dec 2025 - Feb 2026",
+    summary: "B/L, L/G, Invoice 화면과 백엔드를 함께 고쳐 조회와 입력이 어긋나던 부분을 바로잡았습니다.",
+    summaryEn: "I fixed the B/L, L/G, and Invoice screens together with their backend so queries and inputs stayed consistent.",
     kind: "수출입 모듈 프로젝트",
     kindEn: "Import/Export Module Project",
     scope: ["B/L·L/G·Invoice 모듈 개발", "프론트엔드·백엔드"],

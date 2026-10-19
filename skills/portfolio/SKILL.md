@@ -14,8 +14,8 @@ description: "Use for portfolio-site content, UI, structure, and debugging work.
 - 콘텐츠/경력/프로젝트/기술 데이터: `src/data/portfolioData.js`
 - UI 문구/라벨/aria/상태 메시지: `src/data/portfolioText.js`
 - 파생 데이터/로컬라이징/그룹핑: `src/features/portfolio/usePortfolioHomeModel.js`
-- 섹션 UI: `src/features/portfolio/components/*`
-- 공통 UI: `src/components/*`
+- 웹 뷰(개인 홈페이지형): `src/features/portfolio/web/WebHome.jsx`, `src/styles/web.css`
+- 문서 뷰(이력서·PDF 정본): `src/features/portfolio/document/ResumeDocument.jsx`, `src/styles/resume.css`
 - 상위 구성/내비게이션/인트로: `src/App.tsx`
 - 스타일: `src/styles/*`
 - PDF 영향: `src/hooks/usePortfolioPdfExport.js`
@@ -58,7 +58,7 @@ description: "Use for portfolio-site content, UI, structure, and debugging work.
 - 새 필드: raw field 추가 -> 영어 쌍 추가 -> `usePortfolioHomeModel.js` 매핑 -> 필요한 카드/섹션만 렌더
 - 새 섹션: 섹션 컴포넌트 생성 -> `App.tsx` 등록 -> nav/anchor/active-section 확인 -> 필요한 최소 스타일만 추가
 - 새 프로젝트 grouping/filter: `PROJECTS`에 최소 signal 추가 -> model에서 파생 컬렉션 생성 -> 섹션 UI 연결
-- 공통 UI 승격: 실제 재사용이 2곳 이상일 때만 `src/components/*`로 이동
+- 공통 UI 승격: 실제 재사용이 2곳 이상일 때만 `src/components/*`(필요 시 생성)로 이동
 - PDF 영향 변경: export 버튼 흐름과 섹션/card 래퍼가 PDF 출력에서 유지되는지 확인
 
 ## Validation
