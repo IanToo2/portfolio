@@ -295,8 +295,8 @@ export const PROJECT_TRACK = Object.freeze({
 // 상세 서술 없이 프로젝트 이력 표에만 나오는 투입 이력
 export const EXTRA_PROJECT_HISTORY = [
   {
-    period: "2025.09 - 2025.11 중",
-    periodEn: "Within Sep 2025 - Nov 2025",
+    period: "2025.10 - 2025.10",
+    periodEn: "Oct 2025 - Oct 2025",
     name: "SCM PoC (영업 제안용)",
     nameEn: "SCM PoC (Pre-sales)",
     kind: "PoC",
