@@ -634,7 +634,7 @@ export const PROJECTS = [
     tech: ["Claude Code", "Codex", "TypeScript", "Node.js", "Playwright", "GitLab CI", "Web UI"],
     techEn: ["Claude Code", "Codex", "TypeScript", "Node.js", "Playwright", "GitLab CI", "Web UI"],
     contributions: [
-      "영향: 정기 릴리즈 QA 테스트 공수를 약 70% 절감하고 500 에러 발생 시 재현 가능한 자료를 자동으로 남길 수 있는 검증 체계를 마련",
+      "영향: 수작업 점검 자동화, 개발 부서 소통 프로세스, Confluence 문서화, 주간보고 자료 생성까지 포함한 정기 릴리즈 QA 업무 공수를 약 70% 절감하고 500 에러 발생 시 재현 가능한 자료를 자동으로 남길 수 있는 검증 체계를 마련",
       "문제: 정기 릴리즈와 빈번한 패치 환경에서 QA 공수가 크고 문서화된 테스트 자산이 부족해 오픈 전 품질 검증 일정이 항상 촉박했으며, 메뉴 단위 점검만으로는 구매요청부터 송장까지 이어지는 조달 흐름의 연계 결함을 잡기 어려웠음",
       "역할: 아이디어 수립부터 목표 정의, 개발, 유지보수까지 전 과정을 단독 수행하며 Playwright MCP와 Agent AI를 활용한 QA 자동화 운영 도구를 구축",
       "역할: SCM 솔루션 전체 모듈을 대상으로 메뉴 수집, 메뉴별 단위 테스트, 구매 프로세스 시나리오 테스트 기능을 구현",
@@ -648,7 +648,7 @@ export const PROJECTS = [
       "영향: 2개월간 주 1회 이상, 회당 1시간 이상 Agent AI 활용 교육으로 사내 확산을 지원하고, Confluence 문서 자동 발행과 비개발 직군용 인수인계 자료·4주 로드맵으로 운영을 이관"
     ],
     contributionsEn: [
-      "Impact: Reduced recurring release QA effort by about 70% and established a reproducible reporting flow for HTTP 500 errors.",
+      "Impact: Reduced the overall recurring release QA workload by about 70%, covering manual checks, communication with development teams, Confluence documentation, and weekly report preparation, and established a reproducible reporting flow for HTTP 500 errors.",
       "Problem: QA effort was high under regular releases and frequent patches, documented test assets were limited, and menu-level checks alone could not catch cross-step defects across the procurement flow from purchase request to invoice.",
       "Role: Solely led the project end-to-end from idea and goal setting to development and maintenance, building an AI-assisted QA automation operations tool powered by Playwright MCP and Agent AI.",
       "Role: Implemented menu discovery, menu-level unit testing, and purchase-process scenario testing across the SCM solution.",
@@ -663,8 +663,8 @@ export const PROJECTS = [
     ],
     metrics: [
       {
-        label: "릴리즈 QA 공수 절감",
-        labelEn: "QA Effort Reduction",
+        label: "릴리즈 QA 업무 공수 절감",
+        labelEn: "Release QA Workload Reduction",
         value: "약 70%",
         valueEn: "About 70%"
       },
