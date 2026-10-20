@@ -62,7 +62,10 @@ export const periodOrderKey = (periodText) => {
   return Number(yearText) * 100 + Number(monthText);
 };
 
-export const byLatestPeriod = (a, b) => periodOrderKey(b.period) - periodOrderKey(a.period);
+// 영문 기간(Oct 2024)은 날짜 패턴에 걸리지 않으므로, 원본(한국어) 기간으로 미리 계산한 sortKey를 우선 쓴다.
+const resolveSortKey = (item) => item.sortKey ?? periodOrderKey(item.period);
+
+export const byLatestPeriod = (a, b) => resolveSortKey(b) - resolveSortKey(a);
 
 // keys가 있으면 목록에 있는 항목만 그 순서대로 남기고, 없으면 원래 배열을 그대로 반환한다.
 export const pickInOrder = (items, getKey, keys) => {

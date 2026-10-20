@@ -89,6 +89,7 @@ export default function usePortfolioHomeModel({ lang, t, variant = null }) {
         return {
           ...project,
           id: createProjectId(project),
+          sortKey: periodOrderKey(project.period),
           category,
           track,
           isFeatured: Boolean(project.isFeatured),
@@ -181,8 +182,7 @@ export default function usePortfolioHomeModel({ lang, t, variant = null }) {
     );
   }, [allWorkProjects, featuredProjects, localizedProjects, t.qaHead, t.scmHead, t.teamHead, variant]);
 
-  // 경력기술서 앞쪽 프로젝트 이력 표: 실무 투입 이력 전부를 최신순 한 줄씩.
-  // 영문 기간(Oct 2024)은 날짜 패턴에 걸리지 않아 원본(한국어) 기간으로 정렬한다.
+  // 경력기술서 앞쪽 프로젝트 이력 표: 실무 투입 이력 전부를 최신순 한 줄씩
   const resumeProjectHistory = useMemo(() => {
     const toRow = (item) => ({
       sortKey: periodOrderKey(item.period),
@@ -197,7 +197,7 @@ export default function usePortfolioHomeModel({ lang, t, variant = null }) {
     return [
       ...PROJECTS.filter((project) => resolveProjectCategory(project) === "work").map(toRow),
       ...EXTRA_PROJECT_HISTORY.map(toRow)
-    ].sort((a, b) => b.sortKey - a.sortKey);
+    ].sort(byLatestPeriod);
   }, [localize, localizeList]);
 
   const localizedExperience = useMemo(() => {
