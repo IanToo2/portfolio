@@ -6,15 +6,6 @@
   z-index: 1;
 }
 
-body.is-exporting-pdf {
-  background: #ffffff;
-}
-
-body.is-exporting-pdf * {
-  transition: none !important;
-  animation: none !important;
-}
-
 @media (max-width: 760px) {
   .page-shell {
     width: min(100vw - 1rem, 100%);
