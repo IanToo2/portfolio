@@ -4,6 +4,7 @@ import {
   CERTIFICATIONS,
   EDUCATION,
   EXPERIENCE,
+  EXTRA_PROJECT_HISTORY,
   HIGHLIGHTS,
   METRICS,
   PROFILE,
@@ -18,6 +19,7 @@ import {
   createLocalizeList,
   createProjectId,
   localizeTimelineItems,
+  periodOrderKey,
   pickInOrder,
   resolvePendingStatus,
   resolveProjectCategory,
@@ -178,6 +180,25 @@ export default function usePortfolioHomeModel({ lang, t, variant = null }) {
       variant?.trackOrder
     );
   }, [allWorkProjects, featuredProjects, localizedProjects, t.qaHead, t.scmHead, t.teamHead, variant]);
+
+  // 경력기술서 앞쪽 프로젝트 이력 표: 실무 투입 이력 전부를 최신순 한 줄씩.
+  // 영문 기간(Oct 2024)은 날짜 패턴에 걸리지 않아 원본(한국어) 기간으로 정렬한다.
+  const resumeProjectHistory = useMemo(() => {
+    const toRow = (item) => ({
+      sortKey: periodOrderKey(item.period),
+      period: localize(item, "period"),
+      name: localize(item, "name"),
+      kind: localize(item, "kind"),
+      client: localize(item, "client"),
+      teamSize: localize(item, "teamSize"),
+      position: localize(item, "position"),
+      tech: localizeList(item, "tech") ?? []
+    });
+    return [
+      ...PROJECTS.filter((project) => resolveProjectCategory(project) === "work").map(toRow),
+      ...EXTRA_PROJECT_HISTORY.map(toRow)
+    ].sort((a, b) => b.sortKey - a.sortKey);
+  }, [localize, localizeList]);
 
   const localizedExperience = useMemo(() => {
     const scmCount = allWorkProjects.filter((project) => project.track === "scm").length;
@@ -350,6 +371,7 @@ export default function usePortfolioHomeModel({ lang, t, variant = null }) {
   return {
     localizedProfile,
     resumeProjectGroups,
+    resumeProjectHistory,
     resumeStrengths,
     stackGroups,
     experienceGroups,

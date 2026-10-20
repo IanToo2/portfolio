@@ -36,6 +36,8 @@ export const TEXT = {
     capabilityToolsLabel: "대표 도구",
     capabilityStackLabel: "기술 스택",
     capabilityStackSummary: "숙련도 수치보다 실제 전달 경험이 있는 기술 중심으로 정리했습니다.",
+    projectHistoryLabel: "프로젝트 이력",
+    projectHistoryColumns: { period: "기간", project: "프로젝트", client: "고객사", team: "인원", role: "역할" },
     projectsLabel: "Projects",
     projectsTitle: "대표 사례와 전체 프로젝트를 분리해 빠르게 읽을 수 있게 정리했습니다.",
     projectsSubtitle:
@@ -178,6 +180,8 @@ export const TEXT = {
     capabilityToolsLabel: "Representative Tools",
     capabilityStackLabel: "Tech Stack",
     capabilityStackSummary: "This layer prioritizes tools used in production delivery over abstract self-rating.",
+    projectHistoryLabel: "Project History",
+    projectHistoryColumns: { period: "Period", project: "Project", client: "Client", team: "Team", role: "Role" },
     projectsLabel: "Projects",
     projectsTitle: "Featured case studies and project archive are separated for faster scanning",
     projectsSubtitle:

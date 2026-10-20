@@ -130,13 +130,13 @@ export const EXPERIENCE = [
       "SCM 기능 신규 개발 및 운영 고도화",
       "SAP 연동 데이터 처리 로직 개발 및 안정화",
       "Oracle → PostgreSQL DB 마이그레이션을 프로젝트별로 수행하며 스키마·쿼리 전환과 성능·정합성 검증을 담당",
-      "SCHNEIDER POC 참여 (영업 제안용 SCM PoC)"
+      "SCHNEIDER PoC 참여 (영업 제안용 SCM PoC, PPAP 모듈 PoC 준비)"
     ],
     bulletsEn: [
       "Built and stabilized new SCM features.",
       "Developed and stabilized SAP integration and data processing.",
       "Performed Oracle-to-PostgreSQL DB migration across projects, covering schema and query conversion with performance and consistency validation.",
-      "Participated in the SCHNEIDER PoC (pre-sales SCM PoC)."
+      "Participated in the SCHNEIDER PoC (pre-sales SCM PoC), preparing the PPAP module PoC."
     ]
   },
   {
@@ -292,6 +292,22 @@ export const PROJECT_TRACK = Object.freeze({
   TEAM: "team"
 });
 
+// 상세 서술 없이 프로젝트 이력 표에만 나오는 투입 이력
+export const EXTRA_PROJECT_HISTORY = [
+  {
+    period: "2025.09 - 2025.11 중",
+    periodEn: "Within Sep 2025 - Nov 2025",
+    name: "SCM PoC (영업 제안용)",
+    nameEn: "SCM PoC (Pre-sales)",
+    kind: "PoC",
+    kindEn: "PoC",
+    client: "SCHNEIDER",
+    clientEn: "SCHNEIDER",
+    position: "PPAP 모듈 PoC 준비 · 기능 개발 담당",
+    positionEn: "Prepared the PPAP module PoC as feature developer"
+  }
+];
+
 export const PROJECTS = [
   {
     category: PROJECT_CATEGORY.WORK,
@@ -305,6 +321,12 @@ export const PROJECTS = [
     summaryEn: "My first project. I took on duplicated purchase data and broken links in the SAP interface and stabilized the integration.",
     kind: "신규 구축",
     kindEn: "New Setup",
+    client: "Spigen Korea",
+    clientEn: "Spigen Korea",
+    teamSize: "개발 4~6명",
+    teamSizeEn: "4–6 developers",
+    position: "SAP MM 인터페이스 단독 담당",
+    positionEn: "Sole owner of the SAP MM interface",
     scope: ["개발", "테스트", "배포", "운영"],
     scopeEn: ["Development", "Testing", "Release", "Operations"],
     tech: ["Java", "Spring", "MyBatis", "Jenkins", "Git", "GitHub", "Polymer", "JavaScript", "PostgreSQL"],
@@ -343,30 +365,36 @@ export const PROJECTS = [
     nameEn: "CJ Freshway SCM Conversion Project",
     period: "2025.05 - 2025.09",
     periodEn: "May 2025 - Sep 2025",
-    summary: "SCM v7에서 v9로 넘어가는 프로젝트에서 입고·마감 모듈의 DB를 Oracle에서 PostgreSQL로 옮기고 회귀 테스트까지 맡았습니다.",
-    summaryEn: "In the SCM v7-to-v9 migration, I moved the inbound and closing modules from Oracle to PostgreSQL and ran the regression tests.",
+    summary: "SCM v7에서 v9로 넘어가는 프로젝트에서 입고/마감 파트 4명 중 입고 모듈을 맡아, DB를 Oracle에서 PostgreSQL로 옮기고 회귀 테스트까지 했습니다.",
+    summaryEn: "In the SCM v7-to-v9 migration, I owned the inbound module within a 4-person inbound/closing part, moving it from Oracle to PostgreSQL and running the regression tests.",
     kind: "대규모 전환 프로젝트",
     kindEn: "Enterprise Conversion",
+    client: "CJ Freshway",
+    clientEn: "CJ Freshway",
+    teamSize: "개발 11명 이상",
+    teamSizeEn: "11+ developers",
+    position: "입고/마감 파트(4명) 중 입고 모듈 담당",
+    positionEn: "Owned the inbound module in a 4-person inbound/closing part",
     scope: ["개발", "테스트"],
     scopeEn: ["Development", "Testing"],
     tech: ["Java", "Spring", "MyBatis", "Jenkins", "Git", "GitLab", "Polymer", "JavaScript", "PostgreSQL"],
     techEn: ["Java", "Spring", "MyBatis", "Jenkins", "Git", "GitLab", "Polymer", "JavaScript", "PostgreSQL"],
     contributions: [
       "문제: SCM v7→v9 전환에서 담당 모듈의 DB 이관, SQL 차이, 연계 영향도를 함께 통제해야 했음",
-      "역할: 담당한 입고/마감 모듈의 Oracle→PostgreSQL 전환 작업과 회귀 테스트를 수행하고 운영 인계용 체크리스트를 정리",
-      "영향: 담당한 입고/마감 모듈을 안정적으로 전환하고 개발·테스트에서 운영 인계까지 전달 흐름에 기여"
+      "역할: 입고/마감 파트(4명)에서 입고 모듈을 맡아 Oracle→PostgreSQL 전환 작업과 회귀 테스트를 수행하고 운영 인계용 체크리스트를 정리",
+      "영향: 담당한 입고 모듈을 안정적으로 전환하고 개발·테스트에서 운영 인계까지 전달 흐름에 기여"
     ],
     contributionsEn: [
       "Problem: The SCM v7-to-v9 migration required controlling DB migration, SQL differences, and integration impact for the module in scope.",
-      "Role: Performed Oracle-to-PostgreSQL migration and regression testing for the inbound/closing module I owned, and prepared a handoff checklist for operations.",
-      "Impact: Delivered a stable migration of the inbound/closing module I owned and contributed to the handoff flow from development and testing to operations."
+      "Role: Owned the inbound module within the 4-person inbound/closing part, performing its Oracle-to-PostgreSQL migration and regression testing, and prepared a handoff checklist for operations.",
+      "Impact: Delivered a stable migration of the inbound module I owned and contributed to the handoff flow from development and testing to operations."
     ],
     metrics: [
       {
         label: "전환 담당 모듈",
         labelEn: "Module owned",
-        value: "입고/마감 (Oracle→PostgreSQL)",
-        valueEn: "Inbound/Closing (Oracle→PostgreSQL)"
+        value: "입고 (Oracle→PostgreSQL)",
+        valueEn: "Inbound (Oracle→PostgreSQL)"
       },
       {
         label: "기여 단계",
@@ -497,6 +525,10 @@ export const PROJECTS = [
     summaryEn: "I tested S-OIL, SK hynix, and o9-platform SCM solutions against scenarios, handed defects to developers, and verified the fixes.",
     kind: "QA 검증/전달",
     kindEn: "QA Validation & Handoff",
+    client: "S-OIL · SK하이닉스 · o9",
+    clientEn: "S-OIL · SK hynix · o9",
+    position: "QA 검증 (품질그룹 지원 인력)",
+    positionEn: "QA validation (QA Quality Group support)",
     scope: ["시나리오 테스트", "단위 테스트", "결함 전달", "수정 검증"],
     scopeEn: ["Scenario Testing", "Unit Testing", "Defect Handoff", "Fix Verification"],
     tech: [],
@@ -537,6 +569,10 @@ export const PROJECTS = [
     summaryEn: "I tested new release features and checked each hotfix with black-box tests within three days of intake.",
     kind: "신규 릴리즈 QA + 핫픽스 검증",
     kindEn: "New Release QA + Hotfix Validation",
+    client: "자사 표준 솔루션",
+    clientEn: "In-house standard solution",
+    position: "QA 검증 (품질그룹 지원 인력)",
+    positionEn: "QA validation (QA Quality Group support)",
     scope: ["시나리오 테스트", "단위 테스트", "핫픽스 QA", "결함 전달", "수정 검증"],
     scopeEn: ["Scenario Testing", "Unit Testing", "Hotfix QA", "Defect Handoff", "Fix Verification"],
     tech: [],
@@ -587,6 +623,12 @@ export const PROJECTS = [
     summaryEn: "A tool that runs the checks people used to repeat every release overnight and reports results by morning. It validates the procurement flow from purchase request to invoice with real documents. I owned it from planning to handover.",
     kind: "릴리즈 QA 자동화 + 조달 E2E 관통 테스트",
     kindEn: "Release QA Automation + Procurement E2E Testing",
+    client: "사내 (QA 품질그룹)",
+    clientEn: "Internal (QA Quality Group)",
+    teamSize: "1명",
+    teamSizeEn: "Solo",
+    position: "기획·개발·운영 단독",
+    positionEn: "Sole owner from planning to operations",
     scope: ["기획", "설계", "개발", "운영", "교육", "고도화", "인수인계"],
     scopeEn: ["Planning", "Design", "Development", "Operations", "Training", "Enhancement", "Handover"],
     tech: ["Claude Code", "Codex", "TypeScript", "Node.js", "Playwright", "GitLab CI", "Web UI"],
@@ -677,6 +719,12 @@ export const PROJECTS = [
     summaryEn: "I fixed the B/L, L/G, and Invoice screens together with their backend so queries and inputs stayed consistent.",
     kind: "수출입 모듈 프로젝트",
     kindEn: "Import/Export Module Project",
+    client: "자사 솔루션",
+    clientEn: "In-house solution",
+    teamSize: "개발 4~6명",
+    teamSizeEn: "4–6 developers",
+    position: "B/L·L/G·Invoice 화면·API 단독 담당",
+    positionEn: "Sole owner of B/L, L/G, and Invoice screens and APIs",
     scope: ["B/L·L/G·Invoice 모듈 개발", "프론트엔드·백엔드"],
     scopeEn: ["B/L, L/G, Invoice module development", "Frontend & Backend"],
     tech: ["JavaScript", "Java", "Spring", "MyBatis", "Polymer", "SVN", "PostgreSQL"],

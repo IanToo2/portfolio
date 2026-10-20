@@ -346,6 +346,55 @@ body.is-resume-view .page-grain {
   margin-right: 0.3rem;
 }
 
+/* Project history table */
+.resume-history-scroll {
+  overflow-x: auto;
+}
+
+.resume-history {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.resume-history th {
+  text-align: left;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #6b7280;
+  padding: 0 0.6rem 0.45rem 0;
+  border-bottom: 1px solid #d7dce4;
+}
+
+.resume-history td {
+  vertical-align: top;
+  padding: 0.55rem 0.6rem 0.55rem 0;
+  border-bottom: 1px solid #f1f3f6;
+  color: #374151;
+}
+
+.resume-history tr:last-child td {
+  border-bottom: none;
+}
+
+.resume-history strong {
+  color: #111827;
+}
+
+.resume-history small {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.76rem;
+  color: #6b7280;
+}
+
+.resume-history-period,
+.resume-history-team {
+  white-space: nowrap;
+}
+
 /* Skills */
 .resume-skills {
   margin: 0;
@@ -448,8 +497,16 @@ body.is-resume-view .page-grain {
   .resume-entry,
   .resume-project,
   .resume-skill-row,
-  .resume-summary-cell {
+  .resume-summary-cell,
+  .resume-history tr {
     break-inside: avoid;
+  }
+
+  /* 줄 간격이 좁으면 PDF 텍스트 추출기가 셀 안의 두 줄을 한 줄로 섞어 읽는다 */
+  .resume-history {
+    min-width: 0;
+    font-size: 8.5pt;
+    line-height: 1.8;
   }
 
   .resume-contact a {

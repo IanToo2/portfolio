@@ -84,6 +84,7 @@ export default function ResumeDocument({
   summaryQuick,
   resumeStrengths,
   resumeProjectGroups,
+  resumeProjectHistory = [],
   stackGroups,
   experienceGroups,
   learningGroups,
@@ -184,6 +185,42 @@ export default function ResumeDocument({
                   ))}
                 </div>
               ))}
+            </section>
+          ) : null}
+
+          {resumeProjectHistory.length ? (
+            <section className="resume-section">
+              <h2 className="resume-section-title">{t.projectHistoryLabel}</h2>
+              <div className="resume-history-scroll">
+                <table className="resume-history">
+                  <thead>
+                    <tr>
+                      <th scope="col">{t.projectHistoryColumns.period}</th>
+                      <th scope="col">{t.projectHistoryColumns.project}</th>
+                      <th scope="col">{t.projectHistoryColumns.client}</th>
+                      <th scope="col">{t.projectHistoryColumns.team}</th>
+                      <th scope="col">{t.projectHistoryColumns.role}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {resumeProjectHistory.map((row) => (
+                      <tr key={`${row.name}-${row.period}`}>
+                        <td className="resume-history-period">{row.period}</td>
+                        <td>
+                          <strong>{row.name}</strong>
+                          {row.kind ? <small>{row.kind}</small> : null}
+                        </td>
+                        <td>{row.client}</td>
+                        <td className="resume-history-team">{row.teamSize || "-"}</td>
+                        <td>
+                          {row.position}
+                          {row.tech.length ? <small>{row.tech.join(", ")}</small> : null}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </section>
           ) : null}
 

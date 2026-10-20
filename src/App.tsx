@@ -18,6 +18,7 @@ export default function App() {
     localizedProfile,
     summaryQuick,
     resumeProjectGroups,
+    resumeProjectHistory,
     resumeStrengths,
     stackGroups,
     experienceGroups,
@@ -64,6 +65,7 @@ export default function App() {
           summaryQuick={summaryQuick}
           resumeStrengths={resumeStrengths}
           resumeProjectGroups={resumeProjectGroups}
+          resumeProjectHistory={resumeProjectHistory}
           stackGroups={stackGroups}
           experienceGroups={experienceGroups}
           learningGroups={learningGroups}
