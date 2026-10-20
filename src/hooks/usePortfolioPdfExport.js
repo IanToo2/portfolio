@@ -8,16 +8,16 @@ function formatDatePart(value) {
 }
 
 // Chrome/Edge는 문서 제목을 PDF 기본 파일명으로 쓴다.
-function createFileName(fileTag) {
+function createFileName(filePrefix, fileTag) {
   const now = new Date();
   const year = now.getFullYear();
   const month = formatDatePart(now.getMonth() + 1);
   const day = formatDatePart(now.getDate());
-  const prefix = fileTag ? `portfolio-${fileTag}` : "portfolio";
+  const prefix = fileTag ? `${filePrefix}-${fileTag}` : filePrefix;
   return `${prefix}-${year}-${month}-${day}`;
 }
 
-export default function usePortfolioPdfExport({ onError, fileTag }) {
+export default function usePortfolioPdfExport({ onError, filePrefix = "portfolio", fileTag }) {
   const [isExportingPdf, setIsExportingPdf] = useState(false);
 
   const exportPortfolioPdf = useCallback(async () => {
@@ -33,7 +33,7 @@ export default function usePortfolioPdfExport({ onError, fileTag }) {
         await document.fonts.ready;
       }
 
-      document.title = createFileName(fileTag);
+      document.title = createFileName(filePrefix, fileTag);
       // print()는 인쇄 창이 닫힐 때까지 반환하지 않는다.
       window.print();
     } catch (error) {
@@ -43,7 +43,7 @@ export default function usePortfolioPdfExport({ onError, fileTag }) {
       document.title = originalTitle;
       setIsExportingPdf(false);
     }
-  }, [fileTag, isExportingPdf, onError]);
+  }, [filePrefix, fileTag, isExportingPdf, onError]);
 
   return {
     isExportingPdf,

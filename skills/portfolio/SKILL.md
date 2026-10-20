@@ -16,7 +16,7 @@ description: "Use for portfolio-site content, UI, structure, and debugging work.
 - UI 문구/라벨/aria/상태 메시지: `src/data/portfolioText.js`
 - 파생 데이터/로컬라이징/그룹핑: `src/features/portfolio/usePortfolioHomeModel.js`
 - 웹 뷰(개인 홈페이지형): `src/features/portfolio/web/WebHome.jsx`, `src/styles/web.css`
-- 문서 뷰(이력서·PDF 정본): `src/features/portfolio/document/ResumeDocument.jsx`, `src/styles/resume.css`
+- 문서 뷰: 경력기술서 `src/features/portfolio/document/ResumeDocument.jsx`, 이력서 `CvDocument.jsx`, 공용 부품 `DocumentParts.jsx`, 스타일·인쇄 `src/styles/resume.css`
 - 상위 구성/내비게이션/인트로: `src/App.tsx`
 - 스타일: `src/styles/*`
 - PDF 영향: `src/hooks/usePortfolioPdfExport.js`

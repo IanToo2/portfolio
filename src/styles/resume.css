@@ -346,6 +346,32 @@ body.is-resume-view .page-grain {
   margin-right: 0.3rem;
 }
 
+/* CV (이력서) */
+.cv-fit {
+  margin: 0;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.cv-fit span {
+  margin-right: 0.4rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #6b7280;
+}
+
+.cv-sheet .resume-entry {
+  padding: 0.45rem 0;
+}
+
+.cv-sheet .resume-entry-head {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.15rem 1rem;
+}
+
 /* Project history table */
 .resume-history-scroll {
   overflow-x: auto;
@@ -511,5 +537,35 @@ body.is-resume-view .page-grain {
 
   .resume-contact a {
     color: #1b64da;
+  }
+
+  /* 이력서는 2쪽 안에 들어가도록 간격만 줄인다 (글자 크기는 경력기술서와 같음) */
+  .cv-sheet .resume-header {
+    padding-bottom: 0.8rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .cv-sheet .resume-section {
+    margin-top: 1.1rem;
+  }
+
+  .cv-sheet .resume-section-title {
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.3rem;
+    font-size: 12pt;
+  }
+
+  .cv-sheet .resume-intro {
+    margin-bottom: 0.5rem;
+  }
+
+  .cv-sheet .resume-entry,
+  .cv-sheet .resume-skill-row {
+    padding: 0.2rem 0;
+  }
+
+  .cv-sheet .resume-history td {
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
   }
 }
