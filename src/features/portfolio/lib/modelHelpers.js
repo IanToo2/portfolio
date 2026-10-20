@@ -64,6 +64,15 @@ export const periodOrderKey = (periodText) => {
 
 export const byLatestPeriod = (a, b) => periodOrderKey(b.period) - periodOrderKey(a.period);
 
+// keys가 있으면 목록에 있는 항목만 그 순서대로 남기고, 없으면 원래 배열을 그대로 반환한다.
+export const pickInOrder = (items, getKey, keys) => {
+  if (!keys?.length) return items;
+  const rank = new Map(keys.map((key, index) => [key, index]));
+  return items
+    .filter((item) => rank.has(getKey(item)))
+    .sort((a, b) => rank.get(getKey(a)) - rank.get(getKey(b)));
+};
+
 export const resolvePendingStatus = (project) => {
   const matches = [...String(project.period ?? "").matchAll(DATE_PATTERN)];
   if (!matches.length) return Boolean(project.isPending);

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { TEXT } from "./data/portfolioText";
+import { resolveVariant } from "./data/variants";
 import ResumeDocument from "./features/portfolio/document/ResumeDocument";
 import WebHome from "./features/portfolio/web/WebHome";
 import usePortfolioPdfExport from "./hooks/usePortfolioPdfExport";
@@ -10,6 +11,8 @@ export default function App() {
   const [lang, setLang] = useState<"ko" | "en">("ko");
   const year = useMemo(() => new Date().getFullYear(), []);
   const t = TEXT[lang];
+  const { viewMode, variantId, resumeHref, showCard } = useViewMode();
+  const variant = useMemo(() => resolveVariant(variantId), [variantId]);
 
   const {
     localizedProfile,
@@ -22,14 +25,16 @@ export default function App() {
     projectCardLabels,
     webProjectGroups,
     webHistory
-  } = usePortfolioHomeModel({ lang, t });
+  } = usePortfolioHomeModel({ lang, t, variant });
 
-  const { viewMode, resumeHref, showCard } = useViewMode();
   const isDocument = viewMode === "document";
   const handlePdfExportError = useCallback(() => {
     window.alert(t.pdfExportError);
   }, [t.pdfExportError]);
-  const { isExportingPdf, exportPortfolioPdf } = usePortfolioPdfExport({ onError: handlePdfExportError });
+  const { isExportingPdf, exportPortfolioPdf } = usePortfolioPdfExport({
+    onError: handlePdfExportError,
+    fileTag: variant?.id
+  });
 
   const toggleLang = () => setLang((prev) => (prev === "ko" ? "en" : "ko"));
   const langSwitchAriaLabel =

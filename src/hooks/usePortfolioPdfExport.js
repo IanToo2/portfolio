@@ -25,12 +25,13 @@ function formatDatePart(value) {
   return String(value).padStart(2, "0");
 }
 
-function createFileName() {
+function createFileName(fileTag) {
   const now = new Date();
   const year = now.getFullYear();
   const month = formatDatePart(now.getMonth() + 1);
   const day = formatDatePart(now.getDate());
-  return `portfolio-${year}-${month}-${day}.pdf`;
+  const prefix = fileTag ? `portfolio-${fileTag}` : "portfolio";
+  return `${prefix}-${year}-${month}-${day}.pdf`;
 }
 
 function waitForImages(target) {
@@ -113,7 +114,7 @@ function resolveSliceEnd({ startPx, pageHeightPx, maxCanvasHeightPx, breakpoints
   return idealEnd;
 }
 
-export default function usePortfolioPdfExport({ onError }) {
+export default function usePortfolioPdfExport({ onError, fileTag }) {
   const [isExportingPdf, setIsExportingPdf] = useState(false);
 
   const exportPortfolioPdf = useCallback(async () => {
@@ -214,14 +215,14 @@ export default function usePortfolioPdfExport({ onError }) {
         pageIndex += 1;
       }
 
-      pdf.save(createFileName());
+      pdf.save(createFileName(fileTag));
     } catch (error) {
       console.error("PDF export failed:", error);
       onError?.();
     } finally {
       setIsExportingPdf(false);
     }
-  }, [isExportingPdf, onError]);
+  }, [fileTag, isExportingPdf, onError]);
 
   return {
     isExportingPdf,

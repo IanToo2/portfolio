@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "validate:encoding": "node scripts/validate-encoding.mjs",
-    "validate": "npm run validate:encoding",
+    "validate:variants": "node scripts/validate-variants.mjs",
+    "validate": "npm run validate:encoding && npm run validate:variants",
     "build": "vite build",
     "build:strict": "npm run validate && npm run build",
     "preview": "vite preview"

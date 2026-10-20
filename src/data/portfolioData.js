@@ -37,6 +37,7 @@ export const METRICS = [
 
 export const HIGHLIGHTS = [
   {
+    id: "scm-delivery",
     title: "SCM 구축·전환 개발",
     titleEn: "SCM Implementation & Conversion Development",
     text: "신규 구축·컨버전 프로젝트에서 핵심 기능 구현과 도메인 전환을 담당하며 안정적인 릴리즈 기준을 정착시켰습니다.",
@@ -44,6 +45,7 @@ export const HIGHLIGHTS = [
     icon: "shield"
   },
   {
+    id: "integration",
     title: "연동 안정성과 데이터 정합성 관리",
     titleEn: "Integration Stability & Data Integrity Management",
     text: "SAP 인터페이스 로직과 중복 데이터 처리를 개선하고 DB 전환 정합성 검증으로 품질 이슈를 줄였습니다.",
@@ -51,6 +53,7 @@ export const HIGHLIGHTS = [
     icon: "database"
   },
   {
+    id: "team-lead",
     title: "팀 프로젝트 리드 경험",
     titleEn: "Team Project Leadership",
     text: "팀 프로젝트 리드로 API 설계, 인증 체계, 배포 파이프라인을 정비해 개발-배포 흐름을 안정화했습니다.",
@@ -58,6 +61,7 @@ export const HIGHLIGHTS = [
     icon: "route"
   },
   {
+    id: "qa-automation",
     title: "Agent AI 기반 QA 자동화",
     titleEn: "Agent-AI-Based QA Automation",
     text: "Playwright MCP와 Agent AI로 릴리즈 QA 자동화 도구를 단독 구축해 정기 릴리즈 QA 공수를 약 70% 절감하고 사내 확산까지 이끌었습니다.",

@@ -12,6 +12,7 @@ description: "Use for portfolio-site content, UI, structure, and debugging work.
 
 ## Route changes
 - 콘텐츠/경력/프로젝트/기술 데이터: `src/data/portfolioData.js`
+- 직무별 버전(선택·순서·문구 덮어쓰기): `src/data/variants/*`, 검증 `scripts/validate-variants.mjs`
 - UI 문구/라벨/aria/상태 메시지: `src/data/portfolioText.js`
 - 파생 데이터/로컬라이징/그룹핑: `src/features/portfolio/usePortfolioHomeModel.js`
 - 웹 뷰(개인 홈페이지형): `src/features/portfolio/web/WebHome.jsx`, `src/styles/web.css`

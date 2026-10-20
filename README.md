@@ -11,6 +11,10 @@ React + Vite 기반 단일 페이지 포트폴리오.
 - 진입점: `src/main.tsx` -> `src/App.tsx`
 - 화면 2개(해시 라우팅): 문서 뷰 `#/resume`(기본, 이력서·PDF 정본) `src/features/portfolio/document/*`, 웹 뷰 `#/card`(개인 홈페이지형) `src/features/portfolio/web/*`
 - 데이터/문구: `src/data/portfolioData.js`, `src/data/portfolioText.js`
+- 직무별 버전: `src/data/variants/*` (`dev` 개발자, `qa` QA Tester). 원본 데이터는 그대로 두고 선택·순서·문구 덮어쓰기만 정의
+  - 경로: `#/resume/<id>`, `#/card/<id>` (지정하지 않으면 전체 버전), PDF 파일명 `portfolio-<id>-YYYY-MM-DD.pdf`
+  - 설정 필드: `profile`(PROFILE 필드 덮어쓰기), `fit`, `trackOrder`, `highlights`(HIGHLIGHTS id), `stackOrder`, `extraStack`
+  - 새 직무 추가: 설정 파일 작성 -> `variants/index.js` 등록 -> `npm run validate`(참조 id·한/영 쌍 검사)
 - 훅/모델: `src/hooks/*`, `src/features/portfolio/usePortfolioHomeModel.js`
 - 스타일: `src/styles/*.css`
 - 인코딩 검증: `scripts/validate-encoding.mjs`

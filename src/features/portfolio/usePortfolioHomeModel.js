@@ -18,6 +18,7 @@ import {
   createLocalizeList,
   createProjectId,
   localizeTimelineItems,
+  pickInOrder,
   resolvePendingStatus,
   resolveProjectCategory,
   resolveProjectTrack,
@@ -27,24 +28,31 @@ import {
 } from "./lib/modelHelpers";
 const FEATURED_TRACK_ORDER = { scm: 0, qa: 1, team: 2 };
 
-export default function usePortfolioHomeModel({ lang, t }) {
+export default function usePortfolioHomeModel({ lang, t, variant = null }) {
   const localize = useMemo(() => createLocalize(lang), [lang]);
   const localizeList = useMemo(() => createLocalizeList(localize), [localize]);
 
-  const localizedProfile = useMemo(
-    () => ({
-      name: localize(PROFILE, "name", "name"),
-      role: localize(PROFILE, "role"),
-      domain: localize(PROFILE, "domain"),
-      tagline: localize(PROFILE, "tagline"),
-      intro: localize(PROFILE, "intro"),
-      webIntro: localize(PROFILE, "webIntro"),
-      now: localize(PROFILE, "now"),
-      email: PROFILE.email,
-      github: PROFILE.github
-    }),
-    [localize]
-  );
+  // 직무 버전이면 트랙 순서를 그 설정으로, 아니면 기존 순서를 쓴다.
+  const trackRank = useMemo(() => {
+    const order = variant?.trackOrder;
+    if (!order?.length) return FEATURED_TRACK_ORDER;
+    return Object.fromEntries(order.map((track, index) => [track, index]));
+  }, [variant]);
+
+  const localizedProfile = useMemo(() => {
+    const profile = { ...PROFILE, ...variant?.profile };
+    return {
+      name: localize(profile, "name", "name"),
+      role: localize(profile, "role"),
+      domain: localize(profile, "domain"),
+      tagline: localize(profile, "tagline"),
+      intro: localize(profile, "intro"),
+      webIntro: localize(profile, "webIntro"),
+      now: localize(profile, "now"),
+      email: profile.email,
+      github: profile.github
+    };
+  }, [localize, variant]);
 
   const localizedMetrics = useMemo(
     () =>
@@ -62,12 +70,12 @@ export default function usePortfolioHomeModel({ lang, t }) {
 
   const localizedHighlights = useMemo(
     () =>
-      HIGHLIGHTS.map((item) => ({
+      pickInOrder(HIGHLIGHTS, (item) => item.id, variant?.highlights).map((item) => ({
         ...item,
         title: localize(item, "title"),
         text: localize(item, "text")
       })),
-    [localize]
+    [localize, variant]
   );
 
   const localizedProjects = useMemo(
@@ -101,12 +109,14 @@ export default function usePortfolioHomeModel({ lang, t }) {
 
   const localizedStack = useMemo(
     () =>
-      STACK.map((group) => ({
-        ...group,
-        title: localize(group, "title"),
-        items: localizeList(group, "items")
-      })),
-    [localize, localizeList]
+      [...(variant?.extraStack ?? []), ...pickInOrder(STACK, (group) => group.title, variant?.stackOrder)].map(
+        (group) => ({
+          ...group,
+          title: localize(group, "title"),
+          items: localizeList(group, "items")
+        })
+      ),
+    [localize, localizeList, variant]
   );
 
   const allWorkProjects = useMemo(
@@ -120,8 +130,8 @@ export default function usePortfolioHomeModel({ lang, t }) {
         .filter((project) => project.isFeatured)
         .sort(
           (a, b) =>
-            (FEATURED_TRACK_ORDER[a.track] ?? Number.MAX_SAFE_INTEGER) -
-              (FEATURED_TRACK_ORDER[b.track] ?? Number.MAX_SAFE_INTEGER) ||
+            (trackRank[a.track] ?? Number.MAX_SAFE_INTEGER) -
+              (trackRank[b.track] ?? Number.MAX_SAFE_INTEGER) ||
             byLatestPeriod(a, b)
         )
         .map((project) => {
@@ -137,7 +147,7 @@ export default function usePortfolioHomeModel({ lang, t }) {
             }
           };
         }),
-    [localizedProjects]
+    [localizedProjects, trackRank]
   );
 
   const highlightedProjects = useMemo(
@@ -158,12 +168,16 @@ export default function usePortfolioHomeModel({ lang, t }) {
     const qa = decorate(allWorkProjects.filter((project) => project.track === "qa"));
     const team = decorate(localizedProjects.filter((project) => project.category === "team"));
 
-    return [
-      { id: "scm", label: t.scmHead, count: scm.length, projects: scm },
-      { id: "qa", label: t.qaHead, count: qa.length, projects: qa },
-      { id: "team", label: t.teamHead, count: team.length, projects: team }
-    ];
-  }, [allWorkProjects, featuredProjects, localizedProjects, t.qaHead, t.scmHead, t.teamHead]);
+    return pickInOrder(
+      [
+        { id: "scm", label: t.scmHead, count: scm.length, projects: scm },
+        { id: "qa", label: t.qaHead, count: qa.length, projects: qa },
+        { id: "team", label: t.teamHead, count: team.length, projects: team }
+      ],
+      (group) => group.id,
+      variant?.trackOrder
+    );
+  }, [allWorkProjects, featuredProjects, localizedProjects, t.qaHead, t.scmHead, t.teamHead, variant]);
 
   const localizedExperience = useMemo(() => {
     const scmCount = allWorkProjects.filter((project) => project.track === "scm").length;
@@ -246,18 +260,18 @@ export default function usePortfolioHomeModel({ lang, t }) {
     [localizedAwards, localizedCertifications, localizedEducation, localizedTraining, t.timelineTitles]
   );
 
-  const summaryQuick = useMemo(
-    () =>
-      buildSummaryQuick({
-        highlightedProjects,
-        localizedHighlights,
-        localizedMetrics,
-        localizedProfile,
-        lang,
-        t
-      }),
-    [highlightedProjects, lang, localizedHighlights, localizedMetrics, localizedProfile, t]
-  );
+  const summaryQuick = useMemo(() => {
+    const summary = buildSummaryQuick({
+      highlightedProjects,
+      localizedHighlights,
+      localizedMetrics,
+      localizedProfile,
+      lang,
+      t
+    });
+    const fit = variant ? localize(variant, "fit") : null;
+    return fit ? { ...summary, fit } : summary;
+  }, [highlightedProjects, lang, localize, localizedHighlights, localizedMetrics, localizedProfile, t, variant]);
 
   const stackGroups = useMemo(() => localizedStack, [localizedStack]);
 
@@ -267,8 +281,13 @@ export default function usePortfolioHomeModel({ lang, t }) {
   );
 
   const webProjectGroups = useMemo(() => {
+    // 직무 버전이면 해당 트랙 프로젝트가 먼저 오도록 트랙 순서를 우선 적용한다.
+    const byTrack = (a, b) =>
+      variant?.trackOrder?.length
+        ? (trackRank[a.track] ?? Number.MAX_SAFE_INTEGER) - (trackRank[b.track] ?? Number.MAX_SAFE_INTEGER)
+        : 0;
     const decorate = (projects) =>
-      [...projects].sort(byLatestPeriod).map((project) => ({
+      [...projects].sort((a, b) => byTrack(a, b) || byLatestPeriod(a, b)).map((project) => ({
         ...project,
         details: project.contributions.map(stripContributionPrefix).filter(Boolean)
       }));
@@ -281,7 +300,7 @@ export default function usePortfolioHomeModel({ lang, t }) {
         projects: decorate(localizedProjects.filter((project) => project.category === "team"))
       }
     ].filter((group) => group.projects.length);
-  }, [allWorkProjects, localizedProjects, t.web.teamTitle, t.web.workTitle]);
+  }, [allWorkProjects, localizedProjects, t.web.teamTitle, t.web.workTitle, trackRank, variant]);
 
   const webHistory = useMemo(() => {
     const lines = [
